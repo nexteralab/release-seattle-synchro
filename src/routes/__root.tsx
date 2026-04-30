@@ -1,20 +1,17 @@
-import {
-  HeadContent,
-  Scripts,
-  createRootRouteWithContext,
-} from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
-
-import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
+import { HeadContent, Outlet, Scripts, createRootRouteWithContext } from '@tanstack/react-router'
 
 import appCss from '../styles.css?url'
 
-import type { QueryClient } from '@tanstack/react-query'
+import { QueryClientProvider, type QueryClient } from '@tanstack/react-query'
+import GeneralError from '#/components/errors/general-error'
+import NotFoundError from '#/components/errors/not-found-error'
+import { Toaster } from 'sonner'
 
 interface MyRouterContext {
   queryClient: QueryClient
 }
+
+const THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getItem('theme');var mode=(stored==='light'||stored==='dark'||stored==='auto')?stored:'auto';var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;var resolved=mode==='auto'?(prefersDark?'dark':'light'):mode;var root=document.documentElement;root.classList.remove('light','dark');root.classList.add(resolved);if(mode==='auto'){root.removeAttribute('data-theme')}else{root.setAttribute('data-theme',mode)}root.style.colorScheme=resolved;}catch(e){}})();`
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
   head: () => ({
@@ -27,7 +24,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: 'Seattle Synchro ',
       },
     ],
     links: [
@@ -37,31 +34,29 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
     ],
   }),
-  shellComponent: RootDocument,
+  component: RootDocument,
+  errorComponent: GeneralError,
+  notFoundComponent: NotFoundError,
 })
 
-function RootDocument({ children }: { children: React.ReactNode }) {
+function RootDocument() {
+  const { queryClient } = Route.useRouteContext()
   return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <TanStackDevtools
-          config={{
-            position: 'bottom-right',
-          }}
-          plugins={[
-            {
-              name: 'Tanstack Router',
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-            TanStackQueryDevtools,
-          ]}
-        />
-        <Scripts />
-      </body>
-    </html>
+    <QueryClientProvider client={queryClient}>
+      <html lang="en" suppressHydrationWarning>
+        <head>
+          <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+          <HeadContent />
+        </head>
+        <body className="antialiased [overflow-wrap:anywhere]" suppressContentEditableWarning>
+          <Outlet />
+          <Toaster
+            position="bottom-right"
+            richColors
+          />
+          <Scripts />
+        </body>
+      </html>
+    </QueryClientProvider>
   )
 }
