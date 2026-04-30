@@ -2,7 +2,6 @@ import type { SummerCampData } from './types'
 import { SummerCampHero } from './components/SummerCampHero'
 import { SummerCampOverview } from './components/SummerCampOverview'
 import { SummerCampRequirements } from './components/SummerCampRequirements'
-import { SummerCampCTA } from './components/SummerCampCTA'
 import { CtaBanner } from '#/components/CtaBanner'
 
 interface Props {

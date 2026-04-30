@@ -9,19 +9,19 @@ interface Props {
 
 export function FreeTryOverview({ data }: Props) {
   return (
-    <section id="details" className="p-12 md:px-20 md:py-24 bg-white" aria-labelledby="freetry-overview-heading">
+    <section id="details" className="p-6 md:p-12 md:px-20 md:py-24 bg-white" aria-labelledby="freetry-overview-heading">
       <div className="max-w-screen-lg mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 items-start">
 
           {/* Left: info */}
           <div>
             <h2
               id="freetry-overview-heading"
-              className="font-bold text-secondary text-[40px] md:text-[48px] tracking-[-2.4px] uppercase mb-3"
+              className="font-bold text-secondary text-[30px] md:text-[48px] tracking-[-2.4px] uppercase mb-3"
             >
               Come Try Artistic<br />Swimming for Free!
             </h2>
-            <p className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase mb-8">
+            <p className="font-bold text-secondary text-[12px] md:text-[14px] tracking-[1.4px] uppercase mb-8">
               Designed for Future Champions
             </p>
 
@@ -31,7 +31,7 @@ export function FreeTryOverview({ data }: Props) {
             </div>
 
             {/* Safety box */}
-            <div className="bg-secondary p-6 rounded-sm">
+            <div className="bg-secondary p-4 md:p-6 rounded-sm">
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-white text-[20px]">🛡️</span>
                 <h3 className="font-bold text-white text-[14px] tracking-[1.4px] uppercase">
@@ -46,15 +46,15 @@ export function FreeTryOverview({ data }: Props) {
 
           {/* Right: location card */}
           <div className="bg-[#f5f5f5] rounded-sm overflow-hidden">
-            <div className="p-8">
+            <div className="p-6 md:p-8">
               <p className="font-bold text-secondary text-[12px] tracking-[1.4px] uppercase mb-4">
                 Location Details
               </p>
               <div className="flex items-start gap-3 mb-4">
                 <span className="text-secondary text-[18px] mt-0.5">📍</span>
                 <div>
-                  <p className="font-bold text-secondary text-[16px] mb-1">{data.location.name}</p>
-                  <p className="text-[#737373] text-[15px] leading-[24px] whitespace-pre-line">
+                  <p className="font-bold text-secondary text-[14px] md:text-[16px] mb-1">{data.location.name}</p>
+                  <p className="text-[#737373] text-[14px] md:text-[16px] leading-[24px] whitespace-pre-line">
                     {data.location.address}
                   </p>
                 </div>
@@ -63,7 +63,7 @@ export function FreeTryOverview({ data }: Props) {
             <img
               src={LOCATION_IMAGE}
               alt={data.location.name}
-              className="w-full h-[200px] object-cover"
+              className="w-full h-[150px] md:h-[200px] object-cover"
             />
           </div>
 
@@ -76,10 +76,10 @@ export function FreeTryOverview({ data }: Props) {
 function DetailItem({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <h4 className="font-bold text-secondary text-[13px] tracking-[1.4px] uppercase mb-1">
+      <h4 className="font-bold text-secondary text-[12px] md:text-[14px] tracking-[1.4px] uppercase mb-1">
         {label}
       </h4>
-      <p className="text-[#737373] text-[16px]">{value}</p>
+      <p className="text-[#737373] text-[14px] md:text-[16px]">{value}</p>
     </div>
   )
 }

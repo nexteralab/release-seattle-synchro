@@ -323,6 +323,7 @@ export function CoachesPage() {
         linkTo="/contact-us"
         linkLabel="Contact Us"
         image="2"
+        alt="Train with the Best coaching staff banner"
       />
     </div>
   );

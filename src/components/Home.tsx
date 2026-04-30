@@ -100,7 +100,7 @@ export function Home() {
               <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
                 <Link
                   to="/contact-us"
-                  className="bg-white px-10 py-4 font-['Space_Grotesk'] font-bold text-[#021521] text-[14px] tracking-[2.8px] uppercase hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
+                  className="bg-white text-secondary px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:text-primary border border-secondary hover:border-primary transition-colors inline-flex items-center gap-2"
                 >
                   Sign Up!
                   <ArrowRight size={16} />

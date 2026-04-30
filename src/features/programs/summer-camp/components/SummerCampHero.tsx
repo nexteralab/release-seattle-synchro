@@ -66,7 +66,7 @@ export function SummerCampHero() {
           href="https://www.seattlesynchro.com/page/system/classreg-shopping"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block bg-white text-[#021521] px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:bg-gray-100 transition-colors"
+          className="inline-block bg-white text-secondary px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:text-primary border border-secondary hover:border-primary transition-colors"
         >
           Register Now
         </a>
