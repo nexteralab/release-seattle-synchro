@@ -1,4 +1,4 @@
-import readyToJoin from '/images/ready_to_join_5.png'
+import readyToJoin from '/images/ready_to_join_4.png'
 
 export function ShowOffer() {
     return (

@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Link } from "@tanstack/react-router";
 import imgSectionCoaches from "/images/coaches/hero.webp";
 import imgDanielaGarmendia from "/images/coaches/daniela.webp";
 import imgPatriciaCamaran from "/images/coaches/patricia.webp";
@@ -10,7 +9,7 @@ import imgIvyHuang from "/images/coaches/ivy.webp";
 import imgMayaReistad from "/images/coaches/maya.webp";
 import imgGiordanaVentura from "/images/coaches/giordana.webp";
 import imgSophieLin from "/images/coaches/sophie.webp";
-import imgReadyToJoin from '/images/ready_to_join_4.png'
+import { CtaBanner } from '#/components/CtaBanner'
 import imgClaireEvans from "/images/coaches/claire_evans.webp";
 
 interface Coach {
@@ -318,45 +317,13 @@ export function CoachesPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section
-        className="relative pt-10 px-6 pb-[300px] md:px-20 md:py-24 md:pb-24 bg-[#0A0A67] overflow-hidden min-h-[300px]"
-        aria-labelledby="coaches-cta-heading"
-      >
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={vp}
-          variants={stagger}
-          className="relative z-10 flex flex-col items-center text-center gap-6 max-w-screen-lg mx-auto"
-        >
-          <motion.h2
-            variants={fadeUp}
-            id="coaches-cta-heading"
-            className="font-bold text-white text-[48px] tracking-[-2.4px] uppercase"
-          >
-            Train with the Best
-          </motion.h2>
-          <motion.p variants={fadeUp} className="text-white/80 text-[20px] leading-[32px]">
-            Our coaching staff is committed to helping you reach your full potential in artistic swimming. Join our programs today.
-          </motion.p>
-          <motion.div variants={fadeUp}>
-            <Link
-              to="/contact-us"
-              className="inline-block bg-white text-[#021521] px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:bg-gray-100 transition-colors"
-            >
-              Contact Us
-            </Link>
-          </motion.div>
-        </motion.div>
-
-        <img
-          src={imgReadyToJoin}
-          alt=""
-          aria-hidden="true"
-          className="block absolute bottom-[-80px] left-1/2 -translate-x-1/2 h-[360px] w-auto md:h-full md:left-auto md:translate-x-0 md:bottom-[-140px] md:right-[-80px] object-contain object-bottom pointer-events-none opacity-40 md:opacity-50"
-        />
-      </section>
+      <CtaBanner
+        heading="Train with the Best"
+        description="Our coaching staff is committed to helping you reach your full potential in artistic swimming. Join our programs today."
+        linkTo="/contact-us"
+        linkLabel="Contact Us"
+        image="2"
+      />
     </div>
   );
 }
