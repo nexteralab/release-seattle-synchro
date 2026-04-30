@@ -1,17 +1,17 @@
-import Cookies from 'js-cookie'
 import { Outlet, useLocation, useNavigate } from '@tanstack/react-router'
 import { supabase } from '#/utils/supabase'
 import { useAdminAuth } from '#/features/admin/auth/use-admin-auth'
 import { AppSidebar } from '#/features/admin/layout/AppSidebar'
 import { cn } from '#/lib/utils'
 import { SidebarProvider } from '#/components/ui/sidebar'
+import { getCookie } from '#/lib/cookies'
 
 export function AdminLayout({ children }: { children?: React.ReactNode }) {
   const { session } = useAdminAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const defaultOpen = typeof document !== 'undefined'
-    ? Cookies.get('sidebar_state') !== 'false'
+    ? getCookie('sidebar_state') !== 'false'
     : true
 
   async function handleLogout() {
