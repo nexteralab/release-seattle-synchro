@@ -3,5 +3,11 @@
   "name": "release-seattle-synchro",
   "compatibility_date": "2025-09-02",
   "compatibility_flags": ["nodejs_compat"],
-  "main": "@tanstack/react-start/server-entry"
+  "main": "@tanstack/react-start/server-entry",
+  "vars": {
+    "VITE_SUPABASE_URL": "https://hfyxcakixklryajpnszd.supabase.co",
+    "VITE_SUPABASE_PUBLISHABLE_KEY": "sb_publishable_cvhspBXyNwefAaSNSon2qA_BsoxOuhi",
+    "VITE_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmeXhjYWtpeGtscnlhanBuc3pkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0MjEwNjIsImV4cCI6MjA5Mjk5NzA2Mn0.qx15jkjGBVBXQQUyZcUIwNy6peQjL3-FxtJhmh-ofwo",
+    "DATABASE_URL": "postgresql://postgres.ejryrstehkituvqvyhdi:nd3R2Ny7kqlubZWc@aws-1-us-east-2.pooler.supabase.com:6543/postgres"
+  }
 }
