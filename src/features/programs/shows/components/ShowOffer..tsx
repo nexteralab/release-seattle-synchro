@@ -2,19 +2,13 @@ import readyToJoin from '/images/ready_to_join_4.png'
 
 export function ShowOffer() {
     return (
-        <section className="py-24 px-12 md:px-48 bg-white" aria-labelledby="offer-heading">
-            <div className="relative bg-[#0A0A67] p-8 text-white pb-12"
-                style={{
-                    backgroundImage: `url(${readyToJoin})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'right -80px bottom 40px',
-                    backgroundSize: 'auto 50%',
-                }}  >
+        <section className="p-6 md:px-12 md:py-24 bg-white" aria-labelledby="offer-heading">
+            <div className="relative bg-[#0A0A67] p-6 md:p-8 text-white pb-12 md:pb-16">
                 <div className="flex flex-col gap-4">
                     <h3 className="font-bold text-white text-[20px] tracking-[-1px] uppercase mb-4">
                         What we offer
                     </h3>
-                    <ul className="space-y-2 text-white/90 text-[18px]">
+                    <ul className="space-y-2 text-white/90 text-[16px] md:text-[18px]">
                         <li className="flex items-start gap-2">
                             <div
                                 className="bg-primary text-secondary size-6 flex items-center justify-center font-bold shrink-0 rounded-full"
@@ -63,6 +57,11 @@ export function ShowOffer() {
                     </ul>
 
                 </div>
+                <img
+                    src={readyToJoin}
+                    alt="Ready to Join"
+                    className="absolute right-0 bottom-[-40px] md:bottom-[-80px] w-1/2 md:w-full h-auto"
+                />
             </div>
         </section>
     )
