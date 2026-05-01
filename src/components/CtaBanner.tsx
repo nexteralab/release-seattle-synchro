@@ -14,8 +14,8 @@ const vp = { once: true, margin: '-60px' }
 type Variant = 'primary' | 'secondary'
 
 const btnClass: Record<Variant, string> = {
-  primary: 'inline-block bg-white text-[#021521] px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:bg-white/90 transition-colors',
-  secondary: 'inline-block bg-transparent border border-white text-white px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:bg-white/10 transition-colors',
+  primary: 'inline-block bg-white text-secondary px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:bg-white/90 transition-colors hover:text-primary border border-secondary hover:border-primary',
+  secondary: 'inline-block bg-transparent border border-white text-white px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:bg-white/10 transition-colors hover:text-secondary hover:border-secondary',
 }
 
 interface Props {
