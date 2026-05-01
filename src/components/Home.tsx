@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 
 import headerImage from "/images/header.png";
 import summerCampImage from "/images/hader_people.png";
-import logo from "/images/logo_white.png";
 
 import programBeginner from "/images/program_1.png";
 import programRecreational from "/images/program_2.jpg";
