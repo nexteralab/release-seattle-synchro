@@ -8,7 +8,11 @@ const t = { duration: 0.35, ease: [0.35, 0.85, 0.25, 1] as [number, number, numb
 const vp = { once: true }
 
 
-export function FreeTryHero() {
+interface Props {
+  nameProgram: string
+}
+
+export function FreeTryHero({ nameProgram }: Props) {
   return (
     <section
       className="relative md:h-screen h-[50vh] flex items-center justify-center overflow-hidden"
@@ -38,7 +42,7 @@ export function FreeTryHero() {
           </span>
         </div>
         <h1 className="font-bold text-[50px] md:text-[96px] tracking-[-1px] md:tracking-[-3.2px] uppercase leading-none">
-          free try<br />2026
+          {nameProgram}
         </h1>
         <a
           href="https://www.gomotionapp.com/team/zzssst/controller/cms/admin/index#/classreg-shopping"

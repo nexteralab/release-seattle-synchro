@@ -4,6 +4,18 @@ import { FreeTryOverview } from './components/FreeTryOverview'
 import { FreeTryRequirements } from './components/FreeTryRequirements'
 import { CtaBanner } from '#/components/CtaBanner'
 
+
+const consultDbDataFreeTry = {
+  "nameProgram": "FREE TRY EVENT 2028",
+  "description": "Join us on June 7th for a free introduction to the world of artistic swimming.",
+  "linkTo": "https://www.gomotionapp.com/team/zzssst/controller/cms/admin/index#/classreg-shopping",
+  "linkLabel": "Register Now",
+  "linkVariant": "secondary",
+  "linkToRegister": "https://www.gomotionapp.com/team/zzssst/controller/cms/admin/index#/classreg-shopping",
+  "linkLabelRegister": "Register Now",
+  "image": "4",
+}
+
 interface Props {
   data: FreeTryData
 }
@@ -11,7 +23,7 @@ interface Props {
 export function FreeTryPage({ data }: Props) {
   return (
     <div className="w-full">
-      <FreeTryHero />
+      <FreeTryHero nameProgram={consultDbDataFreeTry.nameProgram} />
       <FreeTryOverview data={data} />
       <FreeTryRequirements requirements={data.requirements} />
       <CtaBanner
@@ -22,7 +34,7 @@ export function FreeTryPage({ data }: Props) {
         linkVariant="secondary"
         linkToRegister="https://www.gomotionapp.com/team/zzssst/controller/cms/admin/index#/classreg-shopping"
         linkLabelRegister="Register Now"
-        image="3"
+        image="4"
         alt="Ready to Dive In? Free Try 2026 banner"
       />
     </div>

@@ -10,7 +10,7 @@ const HERO_IMAGE =
 export function SummerCampHero() {
   return (
     <section
-      className="relative md:h-screen h-[50vh] flex items-center justify-center overflow-hidden"
+      className="relative md:h-screen h-[40vh] flex items-center justify-center overflow-hidden"
       aria-label="Summer Camp hero"
     >
       <div className="absolute inset-0">

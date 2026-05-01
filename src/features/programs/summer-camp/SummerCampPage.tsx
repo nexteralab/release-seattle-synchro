@@ -1,5 +1,6 @@
 import type { SummerCampData } from './types'
 import { SummerCampHero } from './components/SummerCampHero'
+import { SummerCampDates } from './components/SummerCampDates'
 import { SummerCampOverview } from './components/SummerCampOverview'
 import { SummerCampRequirements } from './components/SummerCampRequirements'
 import { CtaBanner } from '#/components/CtaBanner'
@@ -12,6 +13,11 @@ export function SummerCampPage({ data }: Props) {
   return (
     <div className="w-full">
       <SummerCampHero />
+      <SummerCampDates
+        locations={data.details.locations}
+        schedule={data.details.schedule}
+        price={data.details.pricing.perWeek}
+      />
       <SummerCampOverview details={data.details} />
       <SummerCampRequirements requirements={data.requirements} />
       <CtaBanner
