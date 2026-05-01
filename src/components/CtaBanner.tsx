@@ -39,7 +39,7 @@ export function CtaBanner({
 }: Props) {
   return (
     <section
-      className="relative pt-10 px-6 pb-[300px] md:px-20 md:py-24 md:pb-24 bg-[#0A0A67] overflow-hidden min-h-[300px]"
+      className="relative px-6 pt-10 pb-[300px] md:px-20 md:pt-24 md:pb-24 bg-[#0A0A67] overflow-hidden min-h-[300px]"
       aria-label={heading}
     >
       <div className="relative z-10 flex flex-col items-center text-center gap-6 max-w-screen-lg mx-auto">
@@ -84,12 +84,11 @@ export function CtaBanner({
           </div>
         </motion.div>
       </div>
-
       <img
         src={images[image]}
         alt={alt}
         aria-hidden="true"
-        className="block absolute bottom-[-80px] left-1/2 -translate-x-1/2 h-[360px] w-auto md:h-full md:left-auto md:translate-x-0 md:bottom-[-120px] md:right-[-80px] object-contain object-bottom pointer-events-none opacity-60 md:opacity-70"
+        className="block absolute bottom-[-40px] md:bottom-[-120px] left-1/2 -translate-x-1/2 h-[300px] min-w-[200px] max-w-[500px] md:max-w-[1200px] md:h-[500px] md:left-auto md:translate-x-0 md:right-[-80px] object-contain object-bottom pointer-events-none opacity-60 md:opacity-70"
       />
     </section>
   )

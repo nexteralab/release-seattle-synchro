@@ -1,13 +1,25 @@
-import imgRecreationalHero from '/images/recreational_hero.webp'
+import heroImage from '/images/recreational_hero.webp'
+
+const HERO_IMAGE =
+  'https://images.unsplash.com/photo-1774009304081-ca87dd2f5d99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzd2ltbWluZyUyMGNvYWNoJTIwcG9vbHNpZGUlMjB0cmFpbmluZ3xlbnwxfHx8fDE3NzUxNzY0NTR8MA&ixlib=rb-4.1.0&q=80&w=1080'
+
 export function RecreationalHero() {
   return (
     <section
-      className="relative h-[280px] md:h-[390px] lg:h-[700px] flex items-end overflow-hidden"
+      className="relative md:h-screen h-[40vh] flex items-center justify-center overflow-hidden"
       aria-label="Recreational Programs hero"
     >
-      <div className="w-full h-full">
-        <img src={imgRecreationalHero} alt="Seattle Synchro recreational swimmers in the pool" className="w-full h-full object-cover object-center" />
-      </div>  
+      <div className="absolute inset-0">
+        <img
+          src={heroImage}
+          alt="Artistic swimming coach training kids poolside"
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            e.currentTarget.src = HERO_IMAGE
+          }}
+        />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40" />
     </section>
   );
 }

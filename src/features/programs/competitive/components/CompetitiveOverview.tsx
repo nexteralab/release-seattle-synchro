@@ -11,7 +11,7 @@ export function CompetitiveOverview() {
         >
           Program Overview
         </h2>
-        <div className="max-w-5xl space-y-6 text-secondary text-[16px] leading-[26px]">
+        <div className="max-w-5xl space-y-6 text-secondary text-[16px] md:text-[18px] leading-[26px]">
           <p>
             Our Competitive programs train at a high level and attend local, national, and
             international competitions. Athletes entering this group must display a desire to begin

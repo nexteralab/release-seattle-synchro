@@ -123,6 +123,7 @@ export function Home() {
             </motion.figure>
           </div>
         </div>
+
       </section>
 
       {/* Summer Camp */}
