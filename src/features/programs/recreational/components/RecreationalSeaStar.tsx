@@ -5,7 +5,7 @@ import readyToJoin from '/images/ready_to_join_3.png'
 
 export function RecreationalSharksMermaids() {
   return (
-    <section className="p-6 md:px-12 lg:px-20 md:py-24 bg-white" aria-labelledby="seastar-heading">
+    <section className="p-6 md:px-12 lg:p-20 bg-white" aria-labelledby="seastar-heading">
       <div className="max-w-screen-lg mx-auto space-y-12">
         <div className="space-y-6">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
@@ -31,7 +31,7 @@ export function RecreationalSharksMermaids() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="bg-white p-6 md:p-10">
+          <div className="bg-[#F5F5F5] p-6 md:p-10">
             <h3 className="font-bold text-secondary text-[16px] md:text-[20px] tracking-[-1px] uppercase mb-8">
               Program Details
             </h3>
@@ -63,7 +63,7 @@ export function RecreationalSharksMermaids() {
             </div>
           </div>
 
-          <div className="bg-white p-6 md:p-10">
+          <div className="bg-[#F5F5F5] p-6 md:p-10">
             <h3 className="font-bold text-secondary text-[16px] md:text-[20px] tracking-[-1px] uppercase mb-8">
               Required Swimming Skills
             </h3>
@@ -121,7 +121,7 @@ export function RecreationalSharksMermaids() {
 
 export function RecreationalSeaStars() {
   return (
-    <section className="p-6 md:px-12 lg:px-20 md:py-24 bg-[#F5F5F5]" aria-labelledby="seastar-heading">
+    <section className="p-6 md:px-12 lg:p-20 bg-[#F5F5F5]" aria-labelledby="seastar-heading">
       <div className="max-w-screen-lg mx-auto space-y-12">
         <div className="space-y-6">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">

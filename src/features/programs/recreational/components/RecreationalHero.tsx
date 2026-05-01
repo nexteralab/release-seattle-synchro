@@ -6,7 +6,7 @@ const HERO_IMAGE =
 export function RecreationalHero() {
   return (
     <section
-      className="relative md:h-screen h-[40vh] flex items-center justify-center overflow-hidden"
+      className="relative md:h-[80vh] h-[40vh] flex items-center justify-center overflow-hidden"
       aria-label="Recreational Programs hero"
     >
       <div className="absolute inset-0">

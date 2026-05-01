@@ -1,6 +1,6 @@
 export function RecreationalOverview() {
   return (
-    <section className="p-6 md:px-12 lg:px-20 md:py-24 bg-white" aria-labelledby="recreational-heading">
+    <section className="p-6 md:px-12 lg:p-20 bg-white" aria-labelledby="recreational-heading">
       <div className="max-w-screen-lg mx-auto">
         <h1
           id="recreational-heading"

@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 
 export function RecreationalDolphins() {
   return (
-    <section className="p-6 md:px-12 lg:px-20 md:py-24 bg-[#F5F5F5]" aria-labelledby="dolphins-heading">
+    <section className="p-6 md:px-12 lg:p-20 bg-[#F5F5F5]" aria-labelledby="dolphins-heading">
       <div className="max-w-screen-lg mx-auto space-y-12">
         <div className="space-y-6">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
