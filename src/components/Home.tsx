@@ -86,23 +86,28 @@ export function Home() {
               variants={fadeInLeft}
               className="flex flex-col items-center md:items-start gap-6"
             >
-              <div className="w-full max-w-xl flex justify-center md:justify-start">
-                <img
-                  src={logo}
-                  alt="Seattle Synchro Logo"
-                  className="w-auto min-w-[100px] max-h-[220px]"
-                />
+              <div className="inline-block px-3 py-1 mb-6 bg-[#63AC2354]">
+                <span className="font-bold text-white text-[14px] tracking-[1.4px] uppercase">
+                  Washington - est 2001
+                </span>
               </div>
-              <p className="font-medium text-white/90 text-[25px] max-w-2xl tracking-[-0.5px] leading-[32px] text-center md:text-left">
-                The Northwest's Premier <span className="font-['Space_Grotesk'] font-bold text-[#63AC23]">Artistic Swimming</span> Team.<br />
-                Excellence in motion, precision in water.
-              </p>
+              <h2 className="font-bold text-white text-[60px] md:text-[120px] tracking-[-1.8px] uppercase leading-[80px] md:leading-[100px]">
+                Seattle Synchro
+              </h2>
+              <div className="flex flex-col gap-1">
+                <p className="font-bold text-white/90 text-[18px] md:text-[25px] max-w-2xl tracking-[-0.5px] leading-[32px] text-center md:text-left">
+                  The Northwest's Premier Artistic Swimming Team.
+                </p>
+                <p className="font-medium text-white/90 text-[18px] md:text-[25px] max-w-2xl tracking-[-0.5px] leading-[32px] text-center md:text-left">
+                  Excellence in motion, precision in water.
+                </p>
+              </div>
               <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
                 <Link
                   to="/contact-us"
                   className="bg-white text-secondary px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:text-primary border border-secondary hover:border-primary transition-colors inline-flex items-center gap-2"
                 >
-                  Sign Up!
+                  Contact Us
                   <ArrowRight size={16} />
                 </Link>
               </div>
