@@ -21,7 +21,7 @@ export function BeginnerIntermediate() {
                     The Intermediate team is another beginner level, competitive team. They perfect their swimming and artistic skills. Swimmers should be able to swim eight laps of crawl stroke and 4 breaststroke, and be comfortable floating on his/her back. Swimmers who have not participated in Sea Stars or a summer camp should schedule an assessment by contacting us at info@seattlesynchro.com. Members of this team will attend several local competitions, and train from September to June.
                 </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="max-w-screen-lg mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div className="bg-[#F5F5F5] p-6 md:p-10">
                     <h3 className="font-bold text-secondary text-[20px] tracking-[-1px] uppercase mb-8">
                         Program Details
@@ -94,7 +94,6 @@ export function BeginnerIntermediate() {
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     )

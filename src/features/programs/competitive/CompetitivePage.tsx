@@ -18,8 +18,9 @@ export function CompetitivePage() {
       <CtaBanner
         heading="Ready to Join?"
         description="Sign up for one of our competitive programs and discover the joy of artistic swimming."
-        linkTo="/contact-us"
-        linkLabel="Contact Us"
+        linkToContact="/contact-us"
+        linkLabelContact="Contact Us"
+        linkVariantContact="secondary"
         image="1"
         alt="Ready to Join? Competitive programs banner"
       />

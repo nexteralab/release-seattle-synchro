@@ -15,15 +15,15 @@ type Variant = 'primary' | 'secondary'
 
 const btnClass: Record<Variant, string> = {
   primary: 'inline-block bg-white text-secondary px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:bg-white/90 transition-colors hover:text-primary border border-secondary hover:border-primary',
-  secondary: 'inline-block bg-transparent border border-white text-white px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:bg-white/10 transition-colors hover:text-secondary hover:border-secondary',
+  secondary: 'inline-block bg-transparent border border-white text-white px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase transition-colors hover:text-primary hover:border-primary',
 }
 
 interface Props {
   heading: string
   description: string
-  linkTo: string
-  linkLabel: string
-  linkVariant?: Variant
+  linkToContact: string
+  linkLabelContact: string
+  linkVariantContact?: Variant
   linkToRegister?: string
   linkLabelRegister?: string
   linkRegisterVariant?: Variant
@@ -33,7 +33,7 @@ interface Props {
 
 export function CtaBanner({
   heading, description,
-  linkTo, linkLabel, linkVariant = 'primary',
+  linkToContact, linkLabelContact, linkVariantContact = 'secondary',
   linkToRegister, linkLabelRegister, linkRegisterVariant = 'primary',
   image, alt,
 }: Props) {
@@ -76,10 +76,10 @@ export function CtaBanner({
               </Link>
             )}
             <Link
-              to={linkTo}
-              className={btnClass[linkVariant]}
+              to={linkToContact}
+              className={btnClass[linkVariantContact]}
             >
-              {linkLabel}
+              {linkLabelContact}
             </Link>
           </div>
         </motion.div>

@@ -18,7 +18,7 @@ const svgPaths = {
 
 export function StoreFooter() {
     return (
-        <footer className="bg-white p-12 md:px-20 md:py-24">
+        <footer className="bg-white p-6 md:px-12 md:py-24">
             <div className="max-w-screen-lg mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
                     {/* About Section */}
@@ -61,27 +61,27 @@ export function StoreFooter() {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
+                                <Link to="/programs/summer-camp" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
                                     Summer Camp
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
+                                <Link to="/team/coaches" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
                                     Coaches
                                 </Link>
                             </li>
-                            <li>
+                            {/* <li>
                                 <Link to="/" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
                                     Hall of Fame
                                 </Link>
-                            </li>
-                            <li>
+                            </li> */}
+                            {/* <li>
                                 <Link to="/" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
                                     About Us
                                 </Link>
-                            </li>
+                            </li> */}
                             <li>
-                                <Link to="/" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
+                                <Link to="/contact-us" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
                                     Contact
                                 </Link>
                             </li>

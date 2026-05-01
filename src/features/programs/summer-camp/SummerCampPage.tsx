@@ -13,19 +13,19 @@ export function SummerCampPage({ data }: Props) {
   return (
     <div className="w-full">
       <SummerCampHero />
+      <SummerCampOverview details={data.details} />
       <SummerCampDates
         locations={data.details.locations}
         schedule={data.details.schedule}
         price={data.details.pricing.perWeek}
       />
-      <SummerCampOverview details={data.details} />
       <SummerCampRequirements requirements={data.requirements} />
       <CtaBanner
         heading="Ready to Dive In?"
         description="Spots fill up quickly! Register now to secure your place in our 2026 Summer Camp program."
-        linkTo="/contact-us"
-        linkLabel="Contact Us"
-        linkVariant="secondary"
+        linkToContact="/contact-us"
+        linkLabelContact="Contact Us"
+        linkVariantContact="secondary"
         linkToRegister="https://www.seattlesynchro.com/page/system/classreg-shopping"
         linkLabelRegister="Register Now"
         image="1"

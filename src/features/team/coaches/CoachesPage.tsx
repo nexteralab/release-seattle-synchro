@@ -321,8 +321,9 @@ export function CoachesPage() {
       <CtaBanner
         heading="Train with the Best"
         description="Our coaching staff is committed to helping you reach your full potential in artistic swimming. Join our programs today."
-        linkTo="/contact-us"
-        linkLabel="Contact Us"
+        linkToContact="/contact-us"
+        linkLabelContact="Contact Us"
+        linkVariantContact="secondary"
         image="2"
         alt="Train with the Best coaching staff banner"
       />

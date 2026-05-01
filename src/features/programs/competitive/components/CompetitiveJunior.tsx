@@ -2,7 +2,7 @@ import readyToJoin from '/images/image_back.png'
 
 export function CompetitiveJunior() {
   return (
-    <section className="p-12 md:px-20 md:py-24 bg-[#f5f5f5]" aria-labelledby="group-junior">
+    <section className="p-6 md:px-12 md:py-24 bg-[#f5f5f5]" aria-labelledby="group-junior">
       <div className="max-w-screen-lg mx-auto space-y-12">
         <div className="">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-16 gap-4">
@@ -25,7 +25,7 @@ export function CompetitiveJunior() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-white p-8">
+          <div className="bg-white p-6 md:p-8">
             <h3 className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase mb-4">
               Coaches
             </h3>
@@ -33,7 +33,7 @@ export function CompetitiveJunior() {
               Maria Romero
             </p>
           </div>
-          <div className="bg-white p-8">
+          <div className="bg-white p-6 md:p-8">
             <h3 className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase mb-4">
               Workout Days
             </h3>

@@ -29,9 +29,9 @@ export function FreeTryPage({ data }: Props) {
       <CtaBanner
         heading="Ready to Dive In?"
         description="Spots are limited! Join us on June 7th for a free introduction to the world of artistic swimming."
-        linkTo="/contact-us"
-        linkLabel="Contact Us"
-        linkVariant="secondary"
+        linkToContact="/contact-us"
+        linkLabelContact="Contact Us"
+        linkVariantContact="secondary"
         linkToRegister="https://www.gomotionapp.com/team/zzssst/controller/cms/admin/index#/classreg-shopping"
         linkLabelRegister="Register Now"
         image="4"
