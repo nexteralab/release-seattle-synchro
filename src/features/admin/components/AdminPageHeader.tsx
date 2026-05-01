@@ -6,9 +6,9 @@ interface AdminPageHeaderProps {
 
 export function AdminPageHeader({ title, description, action }: AdminPageHeaderProps) {
   return (
-    <div className="flex items-center justify-between px-8 py-6 bg-white border-b border-black/[0.06]">
+    <div className="flex items-center justify-between px-8 py-6">
       <div>
-        <h1 className="font-bold text-[#0A0A67] text-[22px] tracking-[-0.6px]">
+        <h1 className="font-bold text-foreground text-[22px] tracking-[-0.6px]">
           {title}
         </h1>
         {description && (

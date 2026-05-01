@@ -9,6 +9,7 @@ import imgIvyHuang from "/images/coaches/ivy.webp";
 import imgMayaReistad from "/images/coaches/maya.webp";
 import imgGiordanaVentura from "/images/coaches/giordana.webp";
 import imgSophieLin from "/images/coaches/sophie.webp";
+import imgCarlieVasquez from "/images/coaches/carlie_vasquez.webp";
 import { CtaBanner } from '#/components/CtaBanner'
 import imgClaireEvans from "/images/coaches/claire_evans.webp";
 
@@ -90,9 +91,9 @@ export const coaches: Coach[] = [
     title: "Swimming & Strengthening Coach",
     email: null,
     bio: "Carlie has been coaching for over 10 years. She has helped a number of athletes achieve great feats and get them at elite levels. She has a degree as an exercise specialist and uses that to create dryland workouts for teams and individuals. She currently coaches for Wave aquatics swimming and is the head coach for the High School team. She also works helping clients with aquatic therapeutic exercises and teaching kids on the spectrum how to swim. She has travelled to China while coaching a team of Washington State's elite athletes at an international meet.",
-    image: "https://images.unsplash.com/photo-1581423880338-b9e4f9718df6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMHdvbWFuJTIwYXRobGV0ZSUyMHBvcnRyYWl0fGVufDF8fHx8MTc3NTE1NDI2MXww&ixlib=rb-4.1.0&q=80&w=1080",
     specialties: ["Swimming Technique", "Head Coach for the High School team"],
     certifications: [],
+    image: imgCarlieVasquez,
   },
   {
     id: 8,

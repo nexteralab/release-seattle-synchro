@@ -1,6 +1,4 @@
-import { Link } from "@tanstack/react-router";
-
-import readyToJoin from '/images/ready_to_join_2.png'
+import readyToJoin from '/images/image_back.png'
 
 export function CompetitiveJunior() {
   return (
