@@ -55,7 +55,7 @@ export function CtaBanner({
           whileInView={{ opacity: [0, 1], y: [40, 0] }}
           viewport={vp}
           transition={{ ...t, delay: 0.1 }}
-          className="text-white/80 text-[16px] md:text-[20px] leading-[32px] max-w-2xl"
+          className="text-white/80 text-[16px] md:text-[20px] leading-[32px]"
         >
           {description}
         </motion.p>
