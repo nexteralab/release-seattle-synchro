@@ -1,13 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { CoachesPage } from '#/features/admin/coaches/CoachesPage'
+import { createFileRoute, Outlet } from '@tanstack/react-router'
 import { MainLayout } from '#/components/Layout/Main'
 
 export const Route = createFileRoute('/app/coaches')({
-  component: RouteComponent,
+  component: () => (
+    <MainLayout>
+      <Outlet />
+    </MainLayout>
+  ),
 })
-
-function RouteComponent() {
-  return <MainLayout>
-    <CoachesPage />
-  </MainLayout>
-}

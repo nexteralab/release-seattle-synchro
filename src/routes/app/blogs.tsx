@@ -1,13 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { BlogsPage } from '#/features/admin/blogs/BlogsPage'
-import { MainLayout } from '#/components/Layout/Main'
+import { createFileRoute, Outlet } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/app/blogs')({
-  component: RouteComponent,
+  component: () => <Outlet />,
 })
-
-function RouteComponent() {
-  return <MainLayout>
-    <BlogsPage />
-  </MainLayout>
-}

@@ -1,5 +1,6 @@
 import { useState, type KeyboardEvent } from 'react'
 import { X } from 'lucide-react'
+import { Label } from '#/components/ui/label'
 
 interface Props {
   label: string
@@ -34,24 +35,22 @@ export function TagInput({ label, placeholder = 'Type and press Enter', tags, on
   }
 
   return (
-    <div>
-      <label className="block font-bold text-[#171717] text-[11px] tracking-[1.1px] uppercase mb-1.5">
-        {label}
-      </label>
-      <div className="border border-black/[0.12] rounded-[6px] px-3 py-2 focus-within:border-[#0A0A67] focus-within:ring-1 focus-within:ring-[#0A0A67]/20 transition-all">
-        {/* Tags */}
+    <div className="space-y-1.5">
+      <Label className="text-[11px] tracking-[1.1px] uppercase">{label}</Label>
+
+      <div className="rounded-md border border-input bg-transparent px-3 py-2 focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50 transition-all">
         {tags.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mb-2">
             {tags.map(tag => (
               <span
                 key={tag}
-                className="inline-flex items-center gap-1 bg-[#0A0A67]/8 text-[#0A0A67] text-[12px] font-medium px-2.5 py-1 rounded-[4px]"
+                className="inline-flex items-center gap-1 bg-secondary/10 text-secondary dark:bg-secondary/20 dark:text-secondary-foreground text-[12px] font-medium px-2.5 py-0.5 rounded-[4px]"
               >
                 {tag}
                 <button
                   type="button"
                   onClick={() => removeTag(tag)}
-                  className="text-[#0A0A67]/50 hover:text-[#0A0A67] transition-colors"
+                  className="text-secondary/50 hover:text-secondary transition-colors"
                   aria-label={`Remove ${tag}`}
                 >
                   <X size={11} strokeWidth={2.5} />
@@ -66,10 +65,11 @@ export function TagInput({ label, placeholder = 'Type and press Enter', tags, on
           onKeyDown={onKeyDown}
           onBlur={addTag}
           placeholder={tags.length ? '' : placeholder}
-          className="w-full text-[14px] text-[#171717] placeholder:text-[#a1a1a1] outline-none bg-transparent"
+          className="w-full text-[14px] text-foreground placeholder:text-muted-foreground outline-none bg-transparent"
         />
       </div>
-      <p className="text-[11px] text-[#a1a1a1] mt-1">Press Enter or comma to add</p>
+
+      <p className="text-[11px] text-muted-foreground">Press Enter or comma to add</p>
     </div>
   )
 }

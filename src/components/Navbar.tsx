@@ -19,7 +19,7 @@ const menuItems = {
     label: "Team",
     items: [{ label: "Coaches", path: "/team/coaches" }],
   },
-  /* athletes: {
+  athletes: {
     label: "Athletes",
     items: [
       { label: "Hall of Fame", path: "/athletes/hall-of-fame" },
@@ -43,7 +43,7 @@ const menuItems = {
       { label: "Suits for Rent", path: "/store/suits-for-rent" },
       { label: "Team Gear", path: "/store/team-gear" },
     ],
-  }, */
+  },
 };
 
 export function NavbarHomePage() {

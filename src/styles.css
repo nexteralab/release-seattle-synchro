@@ -264,3 +264,39 @@ a:not([class*="text-"]):not([class*="color"]) {
 .animate-fade-in-left {
   animation: fade-in-left 0.35s cubic-bezier(0.35, 0.85, 0.25, 1) both;
 }
+
+@layer components {
+  .cn-editor .tiptap {
+    @apply border-input placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 min-h-64 w-full rounded-md border bg-transparent px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] md:text-sm;
+  }
+
+  /* Modo documento — sin borde, fluido, tipografía más grande */
+  .cn-editor-document .tiptap {
+    @apply border-none shadow-none ring-0 px-0 bg-transparent focus-visible:ring-0 focus-visible:border-none text-base leading-relaxed;
+  }
+  .cn-editor-document .tiptap h1 { @apply text-4xl font-bold tracking-tight mt-8 mb-4; }
+  .cn-editor-document .tiptap h2 { @apply text-3xl font-semibold tracking-tight mt-8 mb-3; }
+  .cn-editor-document .tiptap h3 { @apply text-2xl font-semibold tracking-tight mt-6 mb-2; }
+  .cn-editor-document .tiptap p  { @apply leading-8 [&:not(:first-child)]:mt-5; }
+  .cn-editor .tiptap > :first-child { @apply mt-0; }
+  .cn-editor .tiptap > :last-child  { @apply mb-0; }
+  .cn-editor .tiptap h1 { @apply mt-8 mb-3 text-4xl font-bold tracking-tight; }
+  .cn-editor .tiptap h2 { @apply mt-8 mb-3 text-3xl font-semibold tracking-tight; }
+  .cn-editor .tiptap h3 { @apply mt-6 mb-2 text-2xl font-semibold tracking-tight; }
+  .cn-editor .tiptap p  { @apply leading-7 [&:not(:first-child)]:mt-4; }
+  .cn-editor .tiptap ul { @apply my-4 ml-6 list-disc; }
+  .cn-editor .tiptap ol { @apply my-4 ml-6 list-decimal; }
+  .cn-editor .tiptap blockquote { @apply my-6 border-l-2 pl-6 italic; }
+  .cn-editor .tiptap a  { @apply font-medium text-primary underline decoration-dotted underline-offset-4; }
+  .cn-editor .tiptap code { @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm; }
+  .cn-editor .tiptap pre { @apply my-4 overflow-x-auto rounded-xl bg-background p-4; }
+  .cn-editor .tiptap pre code { @apply bg-transparent p-0; }
+  .cn-editor .tiptap img { @apply my-4 transition-shadow; }
+  .cn-editor .tiptap table { @apply my-4 w-full border-collapse; }
+  .cn-editor .tiptap th, .cn-editor .tiptap td { @apply border px-3 py-2 text-left; }
+  .cn-editor .tiptap th { @apply bg-muted font-medium; }
+  .cn-editor .tiptap .selectedCell { @apply text-foreground; outline: 1px solid var(--ring); }
+  .cn-editor .tiptap .selectedCell::after { content: none; }
+  .cn-editor .tiptap .selectedCell::selection,
+  .cn-editor .tiptap .selectedCell *::selection { @apply bg-accent text-foreground!; }
+}

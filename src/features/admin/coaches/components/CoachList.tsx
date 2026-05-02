@@ -24,6 +24,65 @@ interface Props {
   onDelete: (coach: Coach) => void
 }
 
+export function CoachListSkeleton() {
+  return (
+    <div className="w-full animate-pulse">
+      {/* Header */}
+      <div className="border-b border-[#f0f0f0] flex items-center gap-4 px-4 py-2.5">
+        <div className="w-8 shrink-0" />
+        <div className="h-3 w-14 bg-[#f0f0f0] rounded" />
+        <div className="h-3 w-12 bg-[#f0f0f0] rounded ml-28" />
+        <div className="h-3 w-20 bg-[#f0f0f0] rounded ml-24" />
+        <div className="h-3 w-10 bg-[#f0f0f0] rounded ml-auto mr-8" />
+      </div>
+
+      {/* Rows */}
+      {Array.from({ length: 6 }).map((_, i) => (
+        <div key={i} className="border-b border-[#f5f5f5] flex items-center gap-4 px-4 py-3">
+          {/* Drag handle */}
+          <div className="w-8 shrink-0 flex justify-center">
+            <div className="h-4 w-3 bg-[#ececec] rounded" />
+          </div>
+
+          {/* Avatar + name */}
+          <div className="flex items-center gap-3 min-w-0 w-[200px] shrink-0">
+            <div className="w-9 h-9 rounded-md bg-[#ececec] shrink-0" />
+            <div className="space-y-1.5 flex-1 min-w-0">
+              <div className="h-3 bg-[#ececec] rounded" style={{ width: `${55 + (i % 3) * 15}%` }} />
+              <div className="h-2.5 bg-[#f0f0f0] rounded w-3/5" />
+            </div>
+          </div>
+
+          {/* Email */}
+          <div className="w-[180px] shrink-0">
+            <div className="h-2.5 bg-[#f0f0f0] rounded" style={{ width: `${60 + (i % 2) * 20}%` }} />
+          </div>
+
+          {/* Specialties */}
+          <div className="flex gap-1.5 flex-1">
+            <div className="h-5 w-16 bg-[#f0f0f0] rounded-full" />
+            <div className="h-5 w-20 bg-[#f0f0f0] rounded-full" />
+          </div>
+
+          {/* Toggle */}
+          <div className="w-9 h-5 bg-[#ececec] rounded-full shrink-0" />
+
+          {/* Actions */}
+          <div className="flex gap-1 shrink-0 pr-2">
+            <div className="w-7 h-7 bg-[#f0f0f0] rounded-md" />
+            <div className="w-7 h-7 bg-[#f0f0f0] rounded-md" />
+          </div>
+        </div>
+      ))}
+
+      {/* Footer */}
+      <div className="px-4 py-2.5">
+        <div className="h-2.5 w-16 bg-[#f0f0f0] rounded" />
+      </div>
+    </div>
+  )
+}
+
 function Avatar({ coach }: { coach: Coach }) {
   if (coach.image_url) {
     return (
@@ -215,7 +274,7 @@ export function CoachList({ onEdit, onDelete }: Props) {
     getCoreRowModel: getCoreRowModel(),
   })
 
-  if (isLoading) return <div className="py-16 text-center text-[#aaa] text-[13px]">Loading...</div>
+  if (isLoading) return <CoachListSkeleton />
   if (isError)   return <div className="py-16 text-center text-red-400 text-[13px]">Failed to load.</div>
   if (!coaches.length) return null
 

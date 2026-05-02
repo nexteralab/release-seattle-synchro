@@ -78,3 +78,23 @@ export async function reorderCoaches(ordered: { id: string; sort_order: number }
   )
   await Promise.all(updates)
 }
+
+export async function uploadCoachImage(file: File): Promise<string> {
+  const ext = file.name.split('.').pop()
+  const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
+
+  const { error } = await supabase.storage
+    .from('coaches')
+    .upload(fileName, file, { upsert: false })
+
+  if (error) throw error
+
+  const { data } = supabase.storage.from('coaches').getPublicUrl(fileName)
+  return data.publicUrl
+}
+
+export async function deleteCoachImage(url: string): Promise<void> {
+  const path = url.split('/coaches/').pop()
+  if (!path) return
+  await supabase.storage.from('coaches').remove([path])
+}

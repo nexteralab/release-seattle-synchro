@@ -1,35 +1,73 @@
-import { Plus, FileText } from 'lucide-react'
+import { useState } from 'react'
+import { Plus, FileText, BarChart2 } from 'lucide-react'
+import { useNavigate } from '@tanstack/react-router'
+import { Button } from '#/components/ui/button'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '#/components/ui/tabs'
 import { AdminPageHeader } from '#/features/admin/components/AdminPageHeader'
 import { AdminEmptyState } from '#/features/admin/components/AdminEmptyState'
+import { usePosts } from './hooks/use-posts'
+import { PostList } from './components/PostList'
+import { DeletePostDialog } from './components/DeletePostDialog'
+import { AnalyticsDashboard } from './components/AnalyticsDashboard'
+import type { Post } from './services/posts.service'
 
 export function BlogsPage() {
+  const navigate = useNavigate()
+  const { data: posts, isLoading } = usePosts()
+  const [deleting, setDeleting] = useState<Post | null>(null)
+  const [tab, setTab] = useState<'posts' | 'analytics'>('posts')
+
+  const AddButton = (
+    <Button onClick={() => navigate({ to: '/app/blogs/new' })}>
+      <Plus size={14} strokeWidth={2.5} />
+      New Post
+    </Button>
+  )
+
   return (
-    <div>
+    <div className="space-y-6">
       <AdminPageHeader
-        title="Blogs"
+        title="Blog"
         description="Manage your published articles and drafts"
-        action={
-          <button className="flex items-center gap-2 bg-[#0A0A67] text-white px-4 py-2 rounded-[6px] text-[13px] font-bold tracking-[0.6px] uppercase hover:bg-[#0A0A67]/90 transition-colors">
-            <Plus size={14} strokeWidth={2.5} />
-            New Post
-          </button>
-        }
+        action={tab === 'posts' ? AddButton : undefined}
       />
-      <div className="p-8">
-        <div className="bg-white rounded-[10px] border border-black/[0.06]">
-          <AdminEmptyState
-            icon={FileText}
-            title="No blog posts yet"
-            description="Create your first post to start sharing content with your audience."
-            action={
-              <button className="flex items-center gap-2 bg-[#0A0A67] text-white px-4 py-2 rounded-[6px] text-[13px] font-bold tracking-[0.6px] uppercase hover:bg-[#0A0A67]/90 transition-colors">
-                <Plus size={14} strokeWidth={2.5} />
-                New Post
-              </button>
-            }
-          />
-        </div>
-      </div>
+
+      <Tabs value={tab} onValueChange={v => setTab(v as 'posts' | 'analytics')}>
+        <TabsList className="mb-4">
+          <TabsTrigger value="posts" className="flex items-center gap-1.5">
+            <FileText size={13} />
+            Posts
+          </TabsTrigger>
+          <TabsTrigger value="analytics" className="flex items-center gap-1.5">
+            <BarChart2 size={13} />
+            Analytics
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="posts">
+          <div className="bg-card rounded-[10px] border border-border overflow-hidden">
+            {isLoading || posts?.length ? (
+              <PostList
+                onEdit={p => navigate({ to: '/app/blogs/$postId', params: { postId: p.id } })}
+                onDelete={setDeleting}
+              />
+            ) : (
+              <AdminEmptyState
+                icon={FileText}
+                title="No posts yet"
+                description="Create your first post to start sharing content with your audience."
+                action={AddButton}
+              />
+            )}
+          </div>
+        </TabsContent>
+
+        <TabsContent value="analytics">
+          <AnalyticsDashboard postType="blog" />
+        </TabsContent>
+      </Tabs>
+
+      <DeletePostDialog post={deleting} onClose={() => setDeleting(null)} />
     </div>
   )
 }

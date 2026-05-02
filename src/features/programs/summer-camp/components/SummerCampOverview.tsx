@@ -10,7 +10,7 @@ interface Props {
 
 export function SummerCampOverview({ details }: Props) {
   return (
-    <section className="p-6 md:p-12 md:px-20 md:py-24 bg-white" aria-labelledby="overview-heading">
+    <section className="p-6 md:p-12 md:px-20 md:py-24 bg-white peer-[.header-fixed]/header:mt-16" aria-labelledby="overview-heading">
       <div className="max-w-screen-lg mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div>

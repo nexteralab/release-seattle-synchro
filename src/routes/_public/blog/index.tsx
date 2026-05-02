@@ -1,11 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from '@tanstack/react-router'
+import { BlogListPage } from '#/features/blog/BlogListPage'
 
-export const Route = createFileRoute("/_public/blog/")({
-  component: () => (
-    <main className="py-24 px-12 md:px-48 max-w-screen-2xl mx-auto">
-      <h1 className="font-['Space_Grotesk'] font-bold text-[#0A0A67] text-[48px] tracking-[-2.4px] uppercase">
-        Blog
-      </h1>
-    </main>
-  ),
-});
+export const Route = createFileRoute('/_public/blog/')({
+  component: BlogListPage,
+})

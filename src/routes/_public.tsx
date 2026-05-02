@@ -1,5 +1,6 @@
 import { StoreFooter } from '#/components/Footer'
 import { NavbarHomePage } from '#/components/Navbar'
+import { CookieBanner } from '#/components/CookieBanner'
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_public')({
@@ -14,5 +15,6 @@ function PublicRoute() {
             {/* <WhatsAppChat /> */}
         </main>
         <StoreFooter />
+        <CookieBanner />
     </div>
 }

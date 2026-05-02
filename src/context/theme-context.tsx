@@ -1,17 +1,15 @@
-import { createContext, useContext, useEffect, useState, useMemo } from 'react'
-import { getCookie, setCookie, removeCookie } from '@/lib/cookies'
+import { createContext, useContext, useEffect, useRef, useState, useMemo } from 'react'
 
 type Theme = 'dark' | 'light' | 'system'
 type ResolvedTheme = Exclude<Theme, 'system'>
 
 const DEFAULT_THEME = 'system'
-const THEME_COOKIE_NAME = 'vite-ui-theme'
-const THEME_COOKIE_MAX_AGE = 60 * 60 * 24 * 365 // 1 year
+const THEME_STORAGE_KEY = 'vite-ui-theme'
 
 type ThemeProviderProps = {
   children: React.ReactNode
   defaultTheme?: Theme
-  storageKey?: string
+  storageKey?: string  // se ignora — siempre usa THEME_STORAGE_KEY para coincidir con el script
 }
 
 type ThemeProviderState = {
@@ -35,53 +33,67 @@ const ThemeContext = createContext<ThemeProviderState>(initialState)
 export function ThemeProvider({
   children,
   defaultTheme = DEFAULT_THEME,
-  storageKey = THEME_COOKIE_NAME,
   ...props
 }: ThemeProviderProps) {
-  const [theme, _setTheme] = useState<Theme>(
-    () => (getCookie(storageKey) as Theme) || defaultTheme
-  )
+  // SSR y primer render CSR arrancan con defaultTheme — sin mismatch de hidratación
+  const [theme, _setTheme] = useState<Theme>(defaultTheme)
 
-  // Optimized: Memoize the resolved theme calculation to prevent unnecessary re-computations
+  // true mientras no se haya leído localStorage — evita que el efecto de DOM
+  // sobreescriba la clase que el THEME_INIT_SCRIPT ya aplicó correctamente
+  const isFirstMount = useRef(true)
+
   const resolvedTheme = useMemo((): ResolvedTheme => {
     if (theme === 'system') {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light'
+      if (typeof window === 'undefined') return 'light'
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
     }
     return theme as ResolvedTheme
   }, [theme])
 
+  // Paso 1: leer localStorage después de hidratar y actualizar el estado
+  useEffect(() => {
+    const stored = window.localStorage.getItem(THEME_STORAGE_KEY) as Theme | null
+    if (stored === 'light' || stored === 'dark' || stored === 'system') {
+      _setTheme(stored)
+    }
+  }, [])
+
+  // Paso 2: aplicar clase al <html> — se salta el primer run (ya lo hizo el script)
+  // y solo actúa en cambios posteriores (toggle manual, cambio de sistema)
   useEffect(() => {
     const root = window.document.documentElement
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
-    const applyTheme = (currentResolvedTheme: ResolvedTheme) => {
-      root.classList.remove('light', 'dark') // Remove existing theme classes
-      root.classList.add(currentResolvedTheme) // Add the new theme class
+    const applyTheme = (resolved: ResolvedTheme) => {
+      root.classList.remove('light', 'dark')
+      root.classList.add(resolved)
+      root.style.colorScheme = resolved
     }
 
-    const handleChange = () => {
+    const handleSystemChange = () => {
       if (theme === 'system') {
-        const systemTheme = mediaQuery.matches ? 'dark' : 'light'
-        applyTheme(systemTheme)
+        applyTheme(mediaQuery.matches ? 'dark' : 'light')
       }
     }
 
-    applyTheme(resolvedTheme)
+    if (isFirstMount.current) {
+      // El script ya aplicó la clase correcta — no tocar el DOM aquí
+      isFirstMount.current = false
+    } else {
+      applyTheme(resolvedTheme)
+    }
 
-    mediaQuery.addEventListener('change', handleChange)
-
-    return () => mediaQuery.removeEventListener('change', handleChange)
+    mediaQuery.addEventListener('change', handleSystemChange)
+    return () => mediaQuery.removeEventListener('change', handleSystemChange)
   }, [theme, resolvedTheme])
 
   const setTheme = (theme: Theme) => {
-    setCookie(storageKey, theme, THEME_COOKIE_MAX_AGE)
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme)
     _setTheme(theme)
   }
 
   const resetTheme = () => {
-    removeCookie(storageKey)
+    window.localStorage.removeItem(THEME_STORAGE_KEY)
     _setTheme(DEFAULT_THEME)
   }
 

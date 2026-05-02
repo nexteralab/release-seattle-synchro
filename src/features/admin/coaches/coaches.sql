@@ -39,3 +39,22 @@ create policy "Public read" on public.coaches
 
 create policy "Auth write" on public.coaches
   for all using (auth.role() = 'authenticated');
+
+
+
+-- Cualquiera puede ver las fotos (sitio público)
+  CREATE POLICY "Public read"                                                                        
+  ON storage.objects FOR SELECT
+  USING (bucket_id = 'coaches');                                                                     
+                  
+  -- Solo usuarios autenticados pueden subir                                                         
+  CREATE POLICY "Auth upload"
+  ON storage.objects FOR INSERT                                                                      
+  TO authenticated
+  WITH CHECK (bucket_id = 'coaches');
+
+  -- Solo usuarios autenticados pueden eliminar                                                      
+  CREATE POLICY "Auth delete"
+  ON storage.objects FOR DELETE                                                                      
+  TO authenticated
+  USING (bucket_id = 'coaches');

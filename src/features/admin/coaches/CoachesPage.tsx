@@ -1,32 +1,24 @@
 import { useState } from 'react'
 import { Plus, Users } from 'lucide-react'
+import { useNavigate } from '@tanstack/react-router'
 import { AdminPageHeader } from '#/features/admin/components/AdminPageHeader'
 import { AdminEmptyState } from '#/features/admin/components/AdminEmptyState'
 import { useCoaches } from './hooks/use-coaches'
-import { CoachList } from './components/CoachList'
-import { CoachFormModal } from './components/CoachFormModal'
+import { CoachList, CoachListSkeleton } from './components/CoachList'
 import { DeleteCoachDialog } from './components/DeleteCoachDialog'
 import type { Coach } from './services/coaches.service'
 
 export function CoachesPage() {
-  const { data: coaches } = useCoaches()
-  const [formOpen, setFormOpen] = useState(false)
-  const [editing, setEditing] = useState<Coach | null>(null)
+  const navigate = useNavigate()
+  const { data: coaches, isLoading, isError } = useCoaches()
   const [deleting, setDeleting] = useState<Coach | null>(null)
 
   function openCreate() {
-    setEditing(null)
-    setFormOpen(true)
+    navigate({ to: '/app/coaches/new' })
   }
 
   function openEdit(coach: Coach) {
-    setEditing(coach)
-    setFormOpen(true)
-  }
-
-  function closeForm() {
-    setFormOpen(false)
-    setEditing(null)
+    navigate({ to: '/app/coaches/$coachId', params: { coachId: coach.id } })
   }
 
   const AddButton = (
@@ -40,33 +32,33 @@ export function CoachesPage() {
   )
 
   return (
-    <div>
+    <div className='space-y-6'>
       <AdminPageHeader
         title="Coaches"
         description="Manage your coaching staff profiles"
         action={AddButton}
       />
 
-      <div className="p-8">
-        <div className="bg-white rounded-[10px] border border-black/[0.06] overflow-hidden">
-          {coaches?.length ? (
-            <CoachList onEdit={openEdit} onDelete={setDeleting} />
-          ) : (
-            <AdminEmptyState
-              icon={Users}
-              title="No coaches yet"
-              description="Add your coaching staff to display them on the public site."
-              action={AddButton}
-            />
-          )}
-        </div>
+      <div className="bg-white rounded-[10px] border border-black/[0.06] overflow-hidden">
+        {isLoading ? (
+          <CoachListSkeleton />
+        ) : isError ? (
+          <AdminEmptyState
+            icon={Users}
+            title="Error loading coaches"
+            description="Please try again later."
+          />
+        ) : coaches?.length ? (
+          <CoachList onEdit={openEdit} onDelete={setDeleting} />
+        ) : (
+          <AdminEmptyState
+            icon={Users}
+            title="No coaches yet"
+            description="Add your coaching staff to display them on the public site."
+            action={AddButton}
+          />
+        )}
       </div>
-
-      <CoachFormModal
-        open={formOpen}
-        onClose={closeForm}
-        coach={editing}
-      />
 
       <DeleteCoachDialog
         coach={deleting}

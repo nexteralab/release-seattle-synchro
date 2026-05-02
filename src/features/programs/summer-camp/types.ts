@@ -24,6 +24,7 @@ export interface CampRequirement {
 }
 
 export interface SummerCampData {
+  overviewText?: string   // free text, \n\n = paragraph break
   details: CampDetails
   requirements: CampRequirement[]
 }

@@ -792,6 +792,97 @@ Comentarios concisos, en español, solo donde aportan valor.
 
 ---
 
+## Admin Panel — Reglas de Componentes
+
+### OBLIGATORIO: Usar shadcn/ui en el admin
+
+En todas las vistas del admin (`/app/*`) se DEBEN usar los componentes de shadcn/ui disponibles en `src/components/ui/`. **Nunca usar elementos HTML nativos con clases hardcodeadas cuando existe un componente equivalente.**
+
+#### Componentes disponibles y cuándo usarlos
+
+| Necesidad | Componente shadcn | Importar desde |
+|-----------|-------------------|----------------|
+| Botón | `Button` | `#/components/ui/button` |
+| Input de texto | `Input` | `#/components/ui/input` |
+| Textarea | `Textarea` | `#/components/ui/textarea` |
+| Label | `Label` | `#/components/ui/label` |
+| Select | `Select` | `#/components/ui/select` |
+| Checkbox | `Checkbox` | `#/components/ui/checkbox` |
+| Switch toggle | `Switch` | `#/components/ui/switch` |
+| Modal/Dialog | `Dialog` | `#/components/ui/dialog` |
+| Tarjeta | `Card` | `#/components/ui/card` |
+| Badge/Chip | `Badge` | `#/components/ui/badge` |
+| Skeleton | `Skeleton` | `#/components/ui/skeleton` |
+| Spinner | `Spinner` | `#/components/ui/spinner` |
+| Tabs | `Tabs` | `#/components/ui/tabs` |
+| Tooltip | `Tooltip` | `#/components/ui/tooltip` |
+
+#### Razón
+Los componentes shadcn ya tienen soporte de dark mode mediante CSS variables (`--background`, `--foreground`, `--border`, etc. definidas en `styles.css`). Usar `<input className="bg-white text-[#171717]">` quema los colores y rompe el dark mode. Los componentes shadcn resuelven esto automáticamente.
+
+#### ¿Cuándo NO usar shadcn?
+- En el sitio público (`/_public/*`) — ahí se usa el diseño de marca con clases Tailwind directas.
+- Cuando necesites algo muy específico de marca que shadcn no puede expresar.
+
+---
+
+## Estructura de Rutas (`/app` — Admin)
+
+### Convención: carpetas por sección, no archivos planos
+
+Usar **directorios** en lugar de la notación de puntos de TanStack Router. Cada sección del admin vive en su propia carpeta.
+
+```
+src/routes/app/
+  route.tsx               ← layout raíz del admin (AdminLayout + auth guard)
+  index.tsx               ← dashboard /app
+  blog/
+    index.tsx             ← lista de posts     → /app/blog
+    create.tsx            ← nuevo post         → /app/blog/create
+    $postId/
+      index.tsx           ← editar post        → /app/blog/$postId
+      analytics.tsx       ← métricas del post  → /app/blog/$postId/analytics
+  coaches/
+    index.tsx             ← lista de coaches   → /app/coaches
+    create.tsx            ← nuevo coach        → /app/coaches/create
+    $coachId.tsx          ← editar coach       → /app/coaches/$coachId
+  news/
+    index.tsx
+    create.tsx
+    $newsId.tsx
+  programs/
+    index.tsx
+```
+
+### Reglas
+
+- **Cada sección = su propia carpeta** bajo `/app/`. Nunca usar `blogs.index.tsx`, `blogs.new.tsx` — ese patrón aplana todo y dificulta escalar.
+- **`index.tsx` = lista** de la sección (con tabs si aplica: Posts | Analytics).
+- **`create.tsx` = formulario nuevo**. Nunca `new.tsx`.
+- **`$id.tsx` o `$id/index.tsx` = formulario de edición**.
+- **`route.tsx`** solo si la sección necesita un layout propio (ej. sin `MainLayout`, con `AdminLayout` fijo).
+- Los sub-routes del form (`create`, `$id`) NO se envuelven en `MainLayout` — `PostFormPage` y similares manejan su propio layout de altura completa (`flex-1 min-h-0`).
+- El `index.tsx` de cada sección SÍ usa `MainLayout` para el padding y scroll estándar del admin.
+
+### Layout de páginas form (full-height, scroll aislado)
+
+Las páginas de creación/edición necesitan este patrón para que solo el área del editor scrollee:
+
+```tsx
+// El componente de la página form:
+<div className="peer-[.header-fixed]/header:mt-16 flex flex-col flex-1 min-h-0">
+  <div className="shrink-0">          {/* Header fijo — nunca scrollea */}
+  <div className="flex flex-1 min-h-0">
+    <div className="flex-1 min-h-0 overflow-y-auto">  {/* ÚNICO área que scrollea */}
+    <div className="w-72 overflow-y-auto">             {/* Panel lateral independiente */}
+  </div>
+</div>
+```
+
+`min-h-0` en cada nivel es obligatorio — sin él el flex item no puede contraerse y la página entera crece.
+
+---
+
 ## Notas Finales
 
 Este documento debe ser la fuente única de verdad para todas las decisiones de diseño en el sitio Seattle Synchro. Cualquier desviación debe documentarse y actualizarse en este archivo.
