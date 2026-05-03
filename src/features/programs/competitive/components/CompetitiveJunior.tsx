@@ -2,7 +2,7 @@ import readyToJoin from '/images/image_back.png'
 
 export function CompetitiveJunior() {
   return (
-    <section className="p-6 md:px-12 md:py-24 bg-[#f5f5f5]" aria-labelledby="group-junior">
+    <section className="p-6 md:px-20 md:py-24 bg-[#f5f5f5]" aria-labelledby="group-junior">
       <div className="max-w-screen-lg mx-auto space-y-12">
         <div className="">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-16 gap-4">

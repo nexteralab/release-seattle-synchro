@@ -1,7 +1,7 @@
 
 export function CompetitiveSenior() {
   return (
-    <section className="p-6 md:px-12 md:py-24 bg-white" aria-labelledby="group-senior">
+    <section className="p-6 md:px-20 md:py-24 bg-white" aria-labelledby="group-senior">
       <div className="max-w-screen-lg mx-auto">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-16 gap-4">
           <h2

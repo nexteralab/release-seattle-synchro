@@ -40,6 +40,7 @@ import { Route as AppCoachesCoachIdRouteImport } from './routes/app/coaches.$coa
 import { Route as AppBlogsNewRouteImport } from './routes/app/blogs.new'
 import { Route as AppBlogsPostIdRouteImport } from './routes/app/blogs.$postId'
 import { Route as PublicTeamCoachesRouteImport } from './routes/_public/team/coaches'
+import { Route as PublicTeamAboutUsRouteImport } from './routes/_public/team/about-us'
 import { Route as PublicStoreTeamGearRouteImport } from './routes/_public/store/team-gear'
 import { Route as PublicStoreSuitsForRentRouteImport } from './routes/_public/store/suits-for-rent'
 import { Route as PublicProgramsSummerCampRouteImport } from './routes/_public/programs/summer-camp'
@@ -215,6 +216,11 @@ const PublicTeamCoachesRoute = PublicTeamCoachesRouteImport.update({
   path: '/team/coaches',
   getParentRoute: () => PublicRoute,
 } as any)
+const PublicTeamAboutUsRoute = PublicTeamAboutUsRouteImport.update({
+  id: '/team/about-us',
+  path: '/team/about-us',
+  getParentRoute: () => PublicRoute,
+} as any)
 const PublicStoreTeamGearRoute = PublicStoreTeamGearRouteImport.update({
   id: '/store/team-gear',
   path: '/store/team-gear',
@@ -355,6 +361,7 @@ export interface FileRoutesByFullPath {
   '/programs/summer-camp': typeof PublicProgramsSummerCampRoute
   '/store/suits-for-rent': typeof PublicStoreSuitsForRentRoute
   '/store/team-gear': typeof PublicStoreTeamGearRoute
+  '/team/about-us': typeof PublicTeamAboutUsRoute
   '/team/coaches': typeof PublicTeamCoachesRoute
   '/app/blogs/$postId': typeof AppBlogsPostIdRoute
   '/app/blogs/new': typeof AppBlogsNewRoute
@@ -401,6 +408,7 @@ export interface FileRoutesByTo {
   '/programs/summer-camp': typeof PublicProgramsSummerCampRoute
   '/store/suits-for-rent': typeof PublicStoreSuitsForRentRoute
   '/store/team-gear': typeof PublicStoreTeamGearRoute
+  '/team/about-us': typeof PublicTeamAboutUsRoute
   '/team/coaches': typeof PublicTeamCoachesRoute
   '/app/blogs/$postId': typeof AppBlogsPostIdRoute
   '/app/blogs/new': typeof AppBlogsNewRoute
@@ -455,6 +463,7 @@ export interface FileRoutesById {
   '/_public/programs/summer-camp': typeof PublicProgramsSummerCampRoute
   '/_public/store/suits-for-rent': typeof PublicStoreSuitsForRentRoute
   '/_public/store/team-gear': typeof PublicStoreTeamGearRoute
+  '/_public/team/about-us': typeof PublicTeamAboutUsRoute
   '/_public/team/coaches': typeof PublicTeamCoachesRoute
   '/app/blogs/$postId': typeof AppBlogsPostIdRoute
   '/app/blogs/new': typeof AppBlogsNewRoute
@@ -509,6 +518,7 @@ export interface FileRouteTypes {
     | '/programs/summer-camp'
     | '/store/suits-for-rent'
     | '/store/team-gear'
+    | '/team/about-us'
     | '/team/coaches'
     | '/app/blogs/$postId'
     | '/app/blogs/new'
@@ -555,6 +565,7 @@ export interface FileRouteTypes {
     | '/programs/summer-camp'
     | '/store/suits-for-rent'
     | '/store/team-gear'
+    | '/team/about-us'
     | '/team/coaches'
     | '/app/blogs/$postId'
     | '/app/blogs/new'
@@ -608,6 +619,7 @@ export interface FileRouteTypes {
     | '/_public/programs/summer-camp'
     | '/_public/store/suits-for-rent'
     | '/_public/store/team-gear'
+    | '/_public/team/about-us'
     | '/_public/team/coaches'
     | '/app/blogs/$postId'
     | '/app/blogs/new'
@@ -857,6 +869,13 @@ declare module '@tanstack/react-router' {
       path: '/team/coaches'
       fullPath: '/team/coaches'
       preLoaderRoute: typeof PublicTeamCoachesRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/team/about-us': {
+      id: '/_public/team/about-us'
+      path: '/team/about-us'
+      fullPath: '/team/about-us'
+      preLoaderRoute: typeof PublicTeamAboutUsRouteImport
       parentRoute: typeof PublicRoute
     }
     '/_public/store/team-gear': {
@@ -1116,6 +1135,7 @@ interface PublicRouteChildren {
   PublicProgramsSummerCampRoute: typeof PublicProgramsSummerCampRoute
   PublicStoreSuitsForRentRoute: typeof PublicStoreSuitsForRentRoute
   PublicStoreTeamGearRoute: typeof PublicStoreTeamGearRoute
+  PublicTeamAboutUsRoute: typeof PublicTeamAboutUsRoute
   PublicTeamCoachesRoute: typeof PublicTeamCoachesRoute
   PublicProgramsIndexRoute: typeof PublicProgramsIndexRoute
   PublicTeamBlogSlugRoute: typeof PublicTeamBlogSlugRoute
@@ -1143,6 +1163,7 @@ const PublicRouteChildren: PublicRouteChildren = {
   PublicProgramsSummerCampRoute: PublicProgramsSummerCampRoute,
   PublicStoreSuitsForRentRoute: PublicStoreSuitsForRentRoute,
   PublicStoreTeamGearRoute: PublicStoreTeamGearRoute,
+  PublicTeamAboutUsRoute: PublicTeamAboutUsRoute,
   PublicTeamCoachesRoute: PublicTeamCoachesRoute,
   PublicProgramsIndexRoute: PublicProgramsIndexRoute,
   PublicTeamBlogSlugRoute: PublicTeamBlogSlugRoute,
