@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { LayoutDashboard, FileText, Newspaper, BookOpen, Users, LogOut } from 'lucide-react'
+import { LayoutDashboard, FileText, Newspaper, BookOpen, Users, LogOut, Mail } from 'lucide-react'
 import { useAdminAuth } from '#/features/admin/auth/use-admin-auth'
 import {
   Sidebar,
@@ -24,6 +24,7 @@ const navItems = [
   { label: 'News', icon: Newspaper, to: '/app/news', exact: false },
   { label: 'Programs', icon: BookOpen, to: '/app/programs', exact: false },
   { label: 'Coaches', icon: Users, to: '/app/coaches', exact: false },
+  { label: 'Subscriptions', icon: Mail, to: '/app/subscriptions', exact: false },
 ] as const
 
 interface AppSidebarProps {

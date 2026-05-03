@@ -79,7 +79,7 @@ export function HealthWellnessPage() {
                             </p>
                         </Protocol>
 
-                        <Protocol title="Nutrition">
+                        <Protocol title="Sleep">
                             <p className="text-[#737373] text-[15px] md:text-[16px] leading-[1.75]">
                                 How many hours do you sleep at night? <br />
                                 Don't forget! In addition to a healthy diet, its especially important for athletes of all ages to make sure to get <a href='https://www.sleepfoundation.org/physical-activity/athletic-performance-and-sleep' target='_blank' rel='noopener noreferrer' className={link}>enough sleep</a> every night, as well as rest and recovery time. A good night's sleep is essential to stamina and overall health.

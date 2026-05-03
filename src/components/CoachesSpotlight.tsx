@@ -3,14 +3,17 @@ import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Mail } from "lucide-react";
 
-import { coaches } from "@/features/team/coaches/CoachesPage";
+import { usePublicCoaches } from '@/features/team/coaches/hooks/use-coaches'
 
 const imgPlaceholder = "https://images.unsplash.com/photo-1581423880338-b9e4f9718df6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMHdvbWFuJTIwYXRobGV0ZSUyMHBvcnRyYWl0fGVufDF8fHx8MTc3NTE1NDI2MXww&ixlib=rb-4.1.0&q=80&w=1080";
 
 
 export function CoachesSpotlight() {
     const [active, setActive] = useState(0);
+    const { data: coaches = [], isLoading } = usePublicCoaches()
     const coach = coaches[active];
+
+    if (isLoading || !coach) return null;
 
     return (
         <div className="flex flex-col gap-8">
@@ -31,7 +34,7 @@ export function CoachesSpotlight() {
                             transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] }}
                         />
                         <img
-                            src={c.image || imgPlaceholder}
+                            src={c.image_url || imgPlaceholder}
                             alt={c.name}
                             className="w-full h-full object-cover object-top rounded-full transition-[filter] duration-300"
                             style={{ filter: i === active ? "none" : "grayscale(50%) opacity(0.7)" }}
@@ -56,7 +59,7 @@ export function CoachesSpotlight() {
                     <AnimatePresence mode="wait">
                         <motion.img
                             key={active}
-                            src={coach.image || imgPlaceholder}
+                            src={coach.image_url || imgPlaceholder}
                             alt={coach.name}
                             initial={{ opacity: 0, scale: 1.04 }}
                             animate={{ opacity: 1, scale: 1 }}

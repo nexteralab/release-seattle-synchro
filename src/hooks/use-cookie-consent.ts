@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import Cookies from 'js-cookie'
 
 export type ConsentState = 'accepted' | 'declined' | 'pending'
@@ -19,7 +19,13 @@ export function getVisitorId(): string | null {
 }
 
 export function useCookieConsent() {
-  const [consent, setConsent] = useState<ConsentState>(readConsent)
+  // Siempre 'pending' en el primer render (igual que SSR) para evitar hydration mismatch.
+  // useEffect sincroniza el valor real de la cookie solo en el cliente, post-hidratación.
+  const [consent, setConsent] = useState<ConsentState>('pending')
+
+  useEffect(() => {
+    setConsent(readConsent())
+  }, [])
 
   const accept = useCallback(() => {
     Cookies.set(CONSENT_KEY, 'accepted', { expires: EXPIRES_DAYS, sameSite: 'lax' })

@@ -47,6 +47,9 @@ function RootDocument() {
       <html lang="en" suppressHydrationWarning>
         <head>
           <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+          <noscript>
+            <style>{`[style*="opacity"]{opacity:1!important}[style*="translateY"],[style*="translateX"]{transform:none!important}`}</style>
+          </noscript>
           <HeadContent />
         </head>
         <body className="antialiased [overflow-wrap:anywhere]" suppressContentEditableWarning>

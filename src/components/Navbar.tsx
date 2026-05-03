@@ -17,7 +17,12 @@ const menuItems = {
   },
   team: {
     label: "Team",
-    items: [{ label: "Coaches", path: "/team/coaches" }],
+    items: [
+      { label: "Coaches", path: "/team/coaches" },
+      { label: "About Us", path: "/team/about-us" },
+      { label: "Blog", path: "/team/blog" },
+      { label: "News", path: "/team/news" },
+    ],
   },
   athletes: {
     label: "Athletes",
@@ -36,14 +41,7 @@ const menuItems = {
       { label: "Fundraising Opportunities", path: "/booster/fundraising" },
       { label: "Volunteer", path: "/booster/volunteer" },
     ],
-  },
-  store: {
-    label: "Store",
-    items: [
-      { label: "Suits for Rent", path: "/store/suits-for-rent" },
-      { label: "Team Gear", path: "/store/team-gear" },
-    ],
-  },
+  }
 };
 
 export function NavbarHomePage() {
@@ -76,11 +74,10 @@ export function NavbarHomePage() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-white/95 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.06)] py-0"
-            : "bg-white py-0"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+          ? "bg-white/95 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.06)] py-0"
+          : "bg-white py-0"
+          }`}
       >
         <div className="max-w-screen-lg mx-auto px-6 md:px-20 lg:px-0">
           <div className="flex items-center justify-between h-[68px]">
@@ -106,9 +103,8 @@ export function NavbarHomePage() {
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
                     <button
-                      className={`relative px-4 py-2 inline-flex items-center gap-1.5 font-bold text-[12px] tracking-[1.6px] uppercase transition-colors duration-200 group ${
-                        active ? "text-[#0A0A67]" : "text-[#0A0A67]/50 hover:text-[#0A0A67]"
-                      }`}
+                      className={`relative px-4 py-2 inline-flex items-center gap-1.5 font-bold text-[12px] tracking-[1.6px] uppercase transition-colors duration-200 group ${active ? "text-[#0A0A67]" : "text-[#0A0A67]/50 hover:text-[#0A0A67]"
+                        }`}
                     >
                       {menu.label}
                       <ChevronDown
@@ -118,9 +114,8 @@ export function NavbarHomePage() {
                       />
                       {/* Underline */}
                       <span
-                        className={`absolute bottom-0 left-4 right-4 h-[2px] bg-[#0A0A67] transition-all duration-300 origin-left ${
-                          active ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-40"
-                        }`}
+                        className={`absolute bottom-0 left-4 right-4 h-[2px] bg-[#0A0A67] transition-all duration-300 origin-left ${active ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-40"
+                          }`}
                         style={{ transformOrigin: "left" }}
                       />
                     </button>
@@ -142,20 +137,18 @@ export function NavbarHomePage() {
                               <Link
                                 key={item.path}
                                 to={item.path}
-                                className={`group/item flex items-center justify-between mx-2 px-3 py-2 rounded-lg text-[13px] transition-all duration-150 ${
-                                  isActive(item.path)
-                                    ? "bg-[#0A0A67]/[0.06] text-[#0A0A67] font-semibold"
-                                    : "text-[#737373] hover:bg-black/[0.03] hover:text-[#171717]"
-                                }`}
+                                className={`group/item flex items-center justify-between mx-2 px-3 py-2 rounded-lg text-[13px] transition-all duration-150 ${isActive(item.path)
+                                  ? "bg-[#0A0A67]/[0.06] text-[#0A0A67] font-semibold"
+                                  : "text-[#737373] hover:bg-black/[0.03] hover:text-[#171717]"
+                                  }`}
                               >
                                 <span>{item.label}</span>
                                 <ArrowRight
                                   size={10}
-                                  className={`transition-all duration-150 ${
-                                    isActive(item.path)
-                                      ? "opacity-60 text-[#0A0A67]"
-                                      : "opacity-0 group-hover/item:opacity-30"
-                                  }`}
+                                  className={`transition-all duration-150 ${isActive(item.path)
+                                    ? "opacity-60 text-[#0A0A67]"
+                                    : "opacity-0 group-hover/item:opacity-30"
+                                    }`}
                                 />
                               </Link>
                             ))}
@@ -225,7 +218,7 @@ export function NavbarHomePage() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
-            className="fixed inset-0 z-40 bg-white pt-[71px] overflow-y-auto md:hidden"
+            className="fixed inset-0 z-40 bg-white pt-[71px] overflow-y-auto lg:hidden"
           >
             <div className="px-8 py-6 flex flex-col">
               {Object.entries(menuItems).map(([key, menu], index) => (
@@ -264,11 +257,10 @@ export function NavbarHomePage() {
                             <Link
                               key={item.path}
                               to={item.path}
-                              className={`flex items-center gap-2 py-2 text-[14px] transition-colors ${
-                                isActive(item.path)
-                                  ? "text-[#0A0A67] font-semibold"
-                                  : "text-[#737373]"
-                              }`}
+                              className={`flex items-center gap-2 py-2 text-[14px] transition-colors ${isActive(item.path)
+                                ? "text-[#0A0A67] font-semibold"
+                                : "text-[#737373]"
+                                }`}
                             >
                               {isActive(item.path) && (
                                 <span className="w-1 h-1 rounded-full bg-[#0A0A67] shrink-0" />

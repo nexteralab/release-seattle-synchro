@@ -37,11 +37,6 @@ export function BlogPostPage({ post }: Props) {
   return (
     <div className="w-full bg-white">
 
-      {/* Cover image */}
-      <div className="w-full max-w-screen-lg mx-auto">
-
-      </div>
-
       {/* Article */}
       <article className="px-6 md:p-6 md:py-12 bg-white">
         <div className="max-w-screen-lg mx-auto">
@@ -53,8 +48,8 @@ export function BlogPostPage({ post }: Props) {
             className="mb-8"
           >
             <Link
-              to="/blog"
-              className="inline-flex items-center gap-2 font-['Space_Grotesk',sans-serif] font-bold text-[12px] tracking-[1.4px] uppercase text-[#a1a1a1] hover:text-[#0A0A67] transition-colors"
+              to="/team/blog"
+              className="inline-flex items-center gap-2 font-bold text-[12px] tracking-[1.4px] uppercase text-[#a1a1a1] hover:text-[#0A0A67] transition-colors"
             >
               <ArrowLeft size={14} />
               Back to Blog
@@ -72,7 +67,7 @@ export function BlogPostPage({ post }: Props) {
               {post.tags.map(tag => (
                 <span
                   key={tag}
-                  className="font-['Space_Grotesk',sans-serif] font-bold text-[10px] tracking-[1.4px] uppercase text-[#0A0A67] bg-[#0A0A67]/8 px-3 py-1.5"
+                  className="font-bold text-[10px] tracking-[1.4px] uppercase text-[#0A0A67] bg-[#0A0A67]/8 px-3 py-1.5"
                 >
                   {tag}
                 </span>
@@ -85,7 +80,7 @@ export function BlogPostPage({ post }: Props) {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="font-['Space_Grotesk',sans-serif] font-bold text-[#0A0A67] text-[36px] md:text-[52px] tracking-[-1.8px] uppercase leading-[1.1] mb-6"
+            className="font-bold text-[#0A0A67] text-[36px] md:text-[52px] tracking-[-1.8px] uppercase leading-[1.1] mb-6"
           >
             {post.title}
           </motion.h1>
@@ -96,7 +91,7 @@ export function BlogPostPage({ post }: Props) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-['Inter',sans-serif] text-[#737373] text-[18px] md:text-[20px] leading-[1.65] mb-8"
+              className="text-[#737373] text-[18px] md:text-[20px] leading-[1.65] mb-8"
             >
               {post.excerpt}
             </motion.p>
@@ -107,7 +102,7 @@ export function BlogPostPage({ post }: Props) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.25 }}
-            className="flex flex-wrap items-center gap-5 pb-8 border-b border-black/[0.08] mb-10 font-['Inter',sans-serif] text-[13px] text-[#a1a1a1]"
+            className="flex flex-wrap items-center gap-5 pb-8 border-b border-black/[0.08] mb-10 text-[13px] text-[#a1a1a1]"
           >
             {post.author && (
               <span className="flex items-center gap-1.5">

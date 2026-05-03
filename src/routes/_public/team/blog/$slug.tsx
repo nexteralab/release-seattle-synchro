@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { usePostBySlug } from '#/features/blog/hooks/use-blog-posts'
-import { BlogPostPage } from '#/features/blog/BlogPostPage'
+import { usePostBySlug } from '#/features/team/blog/hooks/use-blog-posts'
+import { BlogPostPage } from '#/features/team/blog/BlogPostPage'
 
-export const Route = createFileRoute('/_public/blog/$slug')({
+export const Route = createFileRoute('/_public/team/blog/$slug')({
   component: BlogPostRoute,
 })
 

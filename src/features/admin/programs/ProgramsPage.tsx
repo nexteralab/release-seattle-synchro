@@ -26,7 +26,8 @@ const PROGRAMS: Program[] = [
     icon: Trophy,
     name: 'Competitive',
     description: 'Age group, junior and senior competitive programs.',
-    status: 'coming-soon',
+    route: '/app/programs/competitive',
+    status: 'active',
   },
   {
     key: 'recreational',

@@ -14,6 +14,7 @@ import { Route as PublicRouteImport } from './routes/_public'
 import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as AppIndexRouteImport } from './routes/app/index'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
+import { Route as AppSubscriptionsRouteImport } from './routes/app/subscriptions'
 import { Route as AppNewsRouteImport } from './routes/app/news'
 import { Route as AppCoachesRouteImport } from './routes/app/coaches'
 import { Route as AppBlogsRouteImport } from './routes/app/blogs'
@@ -24,12 +25,16 @@ import { Route as errors404RouteImport } from './routes/(errors)/404'
 import { Route as errors403RouteImport } from './routes/(errors)/403'
 import { Route as errors401RouteImport } from './routes/(errors)/401'
 import { Route as AppProgramsRouteRouteImport } from './routes/app/programs/route'
+import { Route as AppSubscriptionsIndexRouteImport } from './routes/app/subscriptions/index'
 import { Route as AppProgramsIndexRouteImport } from './routes/app/programs/index'
+import { Route as AppNewsIndexRouteImport } from './routes/app/news/index'
 import { Route as AppCoachesIndexRouteImport } from './routes/app/coaches.index'
 import { Route as AppBlogsIndexRouteImport } from './routes/app/blogs.index'
 import { Route as PublicProgramsIndexRouteImport } from './routes/_public/programs/index'
-import { Route as PublicBlogIndexRouteImport } from './routes/_public/blog/index'
 import { Route as AppProgramsSummerCampRouteImport } from './routes/app/programs/summer-camp'
+import { Route as AppProgramsCompetitiveRouteImport } from './routes/app/programs/competitive'
+import { Route as AppNewsCreateRouteImport } from './routes/app/news/create'
+import { Route as AppNewsNewsIdRouteImport } from './routes/app/news/$newsId'
 import { Route as AppCoachesNewRouteImport } from './routes/app/coaches.new'
 import { Route as AppCoachesCoachIdRouteImport } from './routes/app/coaches.$coachId'
 import { Route as AppBlogsNewRouteImport } from './routes/app/blogs.new'
@@ -46,12 +51,15 @@ import { Route as PublicProgramsBeginnerRouteImport } from './routes/_public/pro
 import { Route as PublicBoosterVolunteerRouteImport } from './routes/_public/booster/volunteer'
 import { Route as PublicBoosterFundraisingRouteImport } from './routes/_public/booster/fundraising'
 import { Route as PublicBoosterDonateRouteImport } from './routes/_public/booster/donate'
-import { Route as PublicBlogSlugRouteImport } from './routes/_public/blog/$slug'
 import { Route as PublicAthletesSportPsychologyRouteImport } from './routes/_public/athletes/sport-psychology'
 import { Route as PublicAthletesSafetyRouteImport } from './routes/_public/athletes/safety'
 import { Route as PublicAthletesKnoxingRouteImport } from './routes/_public/athletes/knoxing'
 import { Route as PublicAthletesHealthRouteImport } from './routes/_public/athletes/health'
 import { Route as PublicAthletesHallOfFameRouteImport } from './routes/_public/athletes/hall-of-fame'
+import { Route as PublicTeamNewsIndexRouteImport } from './routes/_public/team/news/index'
+import { Route as PublicTeamBlogIndexRouteImport } from './routes/_public/team/blog/index'
+import { Route as PublicTeamNewsSlugRouteImport } from './routes/_public/team/news/$slug'
+import { Route as PublicTeamBlogSlugRouteImport } from './routes/_public/team/blog/$slug'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -76,6 +84,11 @@ const PublicIndexRoute = PublicIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => PublicRoute,
+} as any)
+const AppSubscriptionsRoute = AppSubscriptionsRouteImport.update({
+  id: '/subscriptions',
+  path: '/subscriptions',
+  getParentRoute: () => AppRouteRoute,
 } as any)
 const AppNewsRoute = AppNewsRouteImport.update({
   id: '/news',
@@ -127,10 +140,20 @@ const AppProgramsRouteRoute = AppProgramsRouteRouteImport.update({
   path: '/programs',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppSubscriptionsIndexRoute = AppSubscriptionsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppSubscriptionsRoute,
+} as any)
 const AppProgramsIndexRoute = AppProgramsIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AppProgramsRouteRoute,
+} as any)
+const AppNewsIndexRoute = AppNewsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppNewsRoute,
 } as any)
 const AppCoachesIndexRoute = AppCoachesIndexRouteImport.update({
   id: '/',
@@ -147,15 +170,25 @@ const PublicProgramsIndexRoute = PublicProgramsIndexRouteImport.update({
   path: '/programs/',
   getParentRoute: () => PublicRoute,
 } as any)
-const PublicBlogIndexRoute = PublicBlogIndexRouteImport.update({
-  id: '/blog/',
-  path: '/blog/',
-  getParentRoute: () => PublicRoute,
-} as any)
 const AppProgramsSummerCampRoute = AppProgramsSummerCampRouteImport.update({
   id: '/summer-camp',
   path: '/summer-camp',
   getParentRoute: () => AppProgramsRouteRoute,
+} as any)
+const AppProgramsCompetitiveRoute = AppProgramsCompetitiveRouteImport.update({
+  id: '/competitive',
+  path: '/competitive',
+  getParentRoute: () => AppProgramsRouteRoute,
+} as any)
+const AppNewsCreateRoute = AppNewsCreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => AppNewsRoute,
+} as any)
+const AppNewsNewsIdRoute = AppNewsNewsIdRouteImport.update({
+  id: '/$newsId',
+  path: '/$newsId',
+  getParentRoute: () => AppNewsRoute,
 } as any)
 const AppCoachesNewRoute = AppCoachesNewRouteImport.update({
   id: '/new',
@@ -242,11 +275,6 @@ const PublicBoosterDonateRoute = PublicBoosterDonateRouteImport.update({
   path: '/booster/donate',
   getParentRoute: () => PublicRoute,
 } as any)
-const PublicBlogSlugRoute = PublicBlogSlugRouteImport.update({
-  id: '/blog/$slug',
-  path: '/blog/$slug',
-  getParentRoute: () => PublicRoute,
-} as any)
 const PublicAthletesSportPsychologyRoute =
   PublicAthletesSportPsychologyRouteImport.update({
     id: '/athletes/sport-psychology',
@@ -274,6 +302,26 @@ const PublicAthletesHallOfFameRoute =
     path: '/athletes/hall-of-fame',
     getParentRoute: () => PublicRoute,
   } as any)
+const PublicTeamNewsIndexRoute = PublicTeamNewsIndexRouteImport.update({
+  id: '/team/news/',
+  path: '/team/news/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicTeamBlogIndexRoute = PublicTeamBlogIndexRouteImport.update({
+  id: '/team/blog/',
+  path: '/team/blog/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicTeamNewsSlugRoute = PublicTeamNewsSlugRouteImport.update({
+  id: '/team/news/$slug',
+  path: '/team/news/$slug',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicTeamBlogSlugRoute = PublicTeamBlogSlugRouteImport.update({
+  id: '/team/blog/$slug',
+  path: '/team/blog/$slug',
+  getParentRoute: () => PublicRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/app': typeof AppRouteRouteWithChildren
@@ -288,14 +336,14 @@ export interface FileRoutesByFullPath {
   '/contact-us': typeof PublicContactUsRoute
   '/app/blogs': typeof AppBlogsRouteWithChildren
   '/app/coaches': typeof AppCoachesRouteWithChildren
-  '/app/news': typeof AppNewsRoute
+  '/app/news': typeof AppNewsRouteWithChildren
+  '/app/subscriptions': typeof AppSubscriptionsRouteWithChildren
   '/app/': typeof AppIndexRoute
   '/athletes/hall-of-fame': typeof PublicAthletesHallOfFameRoute
   '/athletes/health': typeof PublicAthletesHealthRoute
   '/athletes/knoxing': typeof PublicAthletesKnoxingRoute
   '/athletes/safety': typeof PublicAthletesSafetyRoute
   '/athletes/sport-psychology': typeof PublicAthletesSportPsychologyRoute
-  '/blog/$slug': typeof PublicBlogSlugRoute
   '/booster/donate': typeof PublicBoosterDonateRoute
   '/booster/fundraising': typeof PublicBoosterFundraisingRoute
   '/booster/volunteer': typeof PublicBoosterVolunteerRoute
@@ -312,12 +360,20 @@ export interface FileRoutesByFullPath {
   '/app/blogs/new': typeof AppBlogsNewRoute
   '/app/coaches/$coachId': typeof AppCoachesCoachIdRoute
   '/app/coaches/new': typeof AppCoachesNewRoute
+  '/app/news/$newsId': typeof AppNewsNewsIdRoute
+  '/app/news/create': typeof AppNewsCreateRoute
+  '/app/programs/competitive': typeof AppProgramsCompetitiveRoute
   '/app/programs/summer-camp': typeof AppProgramsSummerCampRoute
-  '/blog/': typeof PublicBlogIndexRoute
   '/programs/': typeof PublicProgramsIndexRoute
   '/app/blogs/': typeof AppBlogsIndexRoute
   '/app/coaches/': typeof AppCoachesIndexRoute
+  '/app/news/': typeof AppNewsIndexRoute
   '/app/programs/': typeof AppProgramsIndexRoute
+  '/app/subscriptions/': typeof AppSubscriptionsIndexRoute
+  '/team/blog/$slug': typeof PublicTeamBlogSlugRoute
+  '/team/news/$slug': typeof PublicTeamNewsSlugRoute
+  '/team/blog/': typeof PublicTeamBlogIndexRoute
+  '/team/news/': typeof PublicTeamNewsIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
@@ -327,7 +383,6 @@ export interface FileRoutesByTo {
   '/500': typeof errors500Route
   '/503': typeof errors503Route
   '/contact-us': typeof PublicContactUsRoute
-  '/app/news': typeof AppNewsRoute
   '/': typeof PublicIndexRoute
   '/app': typeof AppIndexRoute
   '/athletes/hall-of-fame': typeof PublicAthletesHallOfFameRoute
@@ -335,7 +390,6 @@ export interface FileRoutesByTo {
   '/athletes/knoxing': typeof PublicAthletesKnoxingRoute
   '/athletes/safety': typeof PublicAthletesSafetyRoute
   '/athletes/sport-psychology': typeof PublicAthletesSportPsychologyRoute
-  '/blog/$slug': typeof PublicBlogSlugRoute
   '/booster/donate': typeof PublicBoosterDonateRoute
   '/booster/fundraising': typeof PublicBoosterFundraisingRoute
   '/booster/volunteer': typeof PublicBoosterVolunteerRoute
@@ -352,12 +406,20 @@ export interface FileRoutesByTo {
   '/app/blogs/new': typeof AppBlogsNewRoute
   '/app/coaches/$coachId': typeof AppCoachesCoachIdRoute
   '/app/coaches/new': typeof AppCoachesNewRoute
+  '/app/news/$newsId': typeof AppNewsNewsIdRoute
+  '/app/news/create': typeof AppNewsCreateRoute
+  '/app/programs/competitive': typeof AppProgramsCompetitiveRoute
   '/app/programs/summer-camp': typeof AppProgramsSummerCampRoute
-  '/blog': typeof PublicBlogIndexRoute
   '/programs': typeof PublicProgramsIndexRoute
   '/app/blogs': typeof AppBlogsIndexRoute
   '/app/coaches': typeof AppCoachesIndexRoute
+  '/app/news': typeof AppNewsIndexRoute
   '/app/programs': typeof AppProgramsIndexRoute
+  '/app/subscriptions': typeof AppSubscriptionsIndexRoute
+  '/team/blog/$slug': typeof PublicTeamBlogSlugRoute
+  '/team/news/$slug': typeof PublicTeamNewsSlugRoute
+  '/team/blog': typeof PublicTeamBlogIndexRoute
+  '/team/news': typeof PublicTeamNewsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -373,7 +435,8 @@ export interface FileRoutesById {
   '/_public/contact-us': typeof PublicContactUsRoute
   '/app/blogs': typeof AppBlogsRouteWithChildren
   '/app/coaches': typeof AppCoachesRouteWithChildren
-  '/app/news': typeof AppNewsRoute
+  '/app/news': typeof AppNewsRouteWithChildren
+  '/app/subscriptions': typeof AppSubscriptionsRouteWithChildren
   '/_public/': typeof PublicIndexRoute
   '/app/': typeof AppIndexRoute
   '/_public/athletes/hall-of-fame': typeof PublicAthletesHallOfFameRoute
@@ -381,7 +444,6 @@ export interface FileRoutesById {
   '/_public/athletes/knoxing': typeof PublicAthletesKnoxingRoute
   '/_public/athletes/safety': typeof PublicAthletesSafetyRoute
   '/_public/athletes/sport-psychology': typeof PublicAthletesSportPsychologyRoute
-  '/_public/blog/$slug': typeof PublicBlogSlugRoute
   '/_public/booster/donate': typeof PublicBoosterDonateRoute
   '/_public/booster/fundraising': typeof PublicBoosterFundraisingRoute
   '/_public/booster/volunteer': typeof PublicBoosterVolunteerRoute
@@ -398,12 +460,20 @@ export interface FileRoutesById {
   '/app/blogs/new': typeof AppBlogsNewRoute
   '/app/coaches/$coachId': typeof AppCoachesCoachIdRoute
   '/app/coaches/new': typeof AppCoachesNewRoute
+  '/app/news/$newsId': typeof AppNewsNewsIdRoute
+  '/app/news/create': typeof AppNewsCreateRoute
+  '/app/programs/competitive': typeof AppProgramsCompetitiveRoute
   '/app/programs/summer-camp': typeof AppProgramsSummerCampRoute
-  '/_public/blog/': typeof PublicBlogIndexRoute
   '/_public/programs/': typeof PublicProgramsIndexRoute
   '/app/blogs/': typeof AppBlogsIndexRoute
   '/app/coaches/': typeof AppCoachesIndexRoute
+  '/app/news/': typeof AppNewsIndexRoute
   '/app/programs/': typeof AppProgramsIndexRoute
+  '/app/subscriptions/': typeof AppSubscriptionsIndexRoute
+  '/_public/team/blog/$slug': typeof PublicTeamBlogSlugRoute
+  '/_public/team/news/$slug': typeof PublicTeamNewsSlugRoute
+  '/_public/team/blog/': typeof PublicTeamBlogIndexRoute
+  '/_public/team/news/': typeof PublicTeamNewsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -421,13 +491,13 @@ export interface FileRouteTypes {
     | '/app/blogs'
     | '/app/coaches'
     | '/app/news'
+    | '/app/subscriptions'
     | '/app/'
     | '/athletes/hall-of-fame'
     | '/athletes/health'
     | '/athletes/knoxing'
     | '/athletes/safety'
     | '/athletes/sport-psychology'
-    | '/blog/$slug'
     | '/booster/donate'
     | '/booster/fundraising'
     | '/booster/volunteer'
@@ -444,12 +514,20 @@ export interface FileRouteTypes {
     | '/app/blogs/new'
     | '/app/coaches/$coachId'
     | '/app/coaches/new'
+    | '/app/news/$newsId'
+    | '/app/news/create'
+    | '/app/programs/competitive'
     | '/app/programs/summer-camp'
-    | '/blog/'
     | '/programs/'
     | '/app/blogs/'
     | '/app/coaches/'
+    | '/app/news/'
     | '/app/programs/'
+    | '/app/subscriptions/'
+    | '/team/blog/$slug'
+    | '/team/news/$slug'
+    | '/team/blog/'
+    | '/team/news/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
@@ -459,7 +537,6 @@ export interface FileRouteTypes {
     | '/500'
     | '/503'
     | '/contact-us'
-    | '/app/news'
     | '/'
     | '/app'
     | '/athletes/hall-of-fame'
@@ -467,7 +544,6 @@ export interface FileRouteTypes {
     | '/athletes/knoxing'
     | '/athletes/safety'
     | '/athletes/sport-psychology'
-    | '/blog/$slug'
     | '/booster/donate'
     | '/booster/fundraising'
     | '/booster/volunteer'
@@ -484,12 +560,20 @@ export interface FileRouteTypes {
     | '/app/blogs/new'
     | '/app/coaches/$coachId'
     | '/app/coaches/new'
+    | '/app/news/$newsId'
+    | '/app/news/create'
+    | '/app/programs/competitive'
     | '/app/programs/summer-camp'
-    | '/blog'
     | '/programs'
     | '/app/blogs'
     | '/app/coaches'
+    | '/app/news'
     | '/app/programs'
+    | '/app/subscriptions'
+    | '/team/blog/$slug'
+    | '/team/news/$slug'
+    | '/team/blog'
+    | '/team/news'
   id:
     | '__root__'
     | '/app'
@@ -505,6 +589,7 @@ export interface FileRouteTypes {
     | '/app/blogs'
     | '/app/coaches'
     | '/app/news'
+    | '/app/subscriptions'
     | '/_public/'
     | '/app/'
     | '/_public/athletes/hall-of-fame'
@@ -512,7 +597,6 @@ export interface FileRouteTypes {
     | '/_public/athletes/knoxing'
     | '/_public/athletes/safety'
     | '/_public/athletes/sport-psychology'
-    | '/_public/blog/$slug'
     | '/_public/booster/donate'
     | '/_public/booster/fundraising'
     | '/_public/booster/volunteer'
@@ -529,12 +613,20 @@ export interface FileRouteTypes {
     | '/app/blogs/new'
     | '/app/coaches/$coachId'
     | '/app/coaches/new'
+    | '/app/news/$newsId'
+    | '/app/news/create'
+    | '/app/programs/competitive'
     | '/app/programs/summer-camp'
-    | '/_public/blog/'
     | '/_public/programs/'
     | '/app/blogs/'
     | '/app/coaches/'
+    | '/app/news/'
     | '/app/programs/'
+    | '/app/subscriptions/'
+    | '/_public/team/blog/$slug'
+    | '/_public/team/news/$slug'
+    | '/_public/team/blog/'
+    | '/_public/team/news/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -584,6 +676,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof PublicIndexRouteImport
       parentRoute: typeof PublicRoute
+    }
+    '/app/subscriptions': {
+      id: '/app/subscriptions'
+      path: '/subscriptions'
+      fullPath: '/app/subscriptions'
+      preLoaderRoute: typeof AppSubscriptionsRouteImport
+      parentRoute: typeof AppRouteRoute
     }
     '/app/news': {
       id: '/app/news'
@@ -655,12 +754,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppProgramsRouteRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/app/subscriptions/': {
+      id: '/app/subscriptions/'
+      path: '/'
+      fullPath: '/app/subscriptions/'
+      preLoaderRoute: typeof AppSubscriptionsIndexRouteImport
+      parentRoute: typeof AppSubscriptionsRoute
+    }
     '/app/programs/': {
       id: '/app/programs/'
       path: '/'
       fullPath: '/app/programs/'
       preLoaderRoute: typeof AppProgramsIndexRouteImport
       parentRoute: typeof AppProgramsRouteRoute
+    }
+    '/app/news/': {
+      id: '/app/news/'
+      path: '/'
+      fullPath: '/app/news/'
+      preLoaderRoute: typeof AppNewsIndexRouteImport
+      parentRoute: typeof AppNewsRoute
     }
     '/app/coaches/': {
       id: '/app/coaches/'
@@ -683,19 +796,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicProgramsIndexRouteImport
       parentRoute: typeof PublicRoute
     }
-    '/_public/blog/': {
-      id: '/_public/blog/'
-      path: '/blog'
-      fullPath: '/blog/'
-      preLoaderRoute: typeof PublicBlogIndexRouteImport
-      parentRoute: typeof PublicRoute
-    }
     '/app/programs/summer-camp': {
       id: '/app/programs/summer-camp'
       path: '/summer-camp'
       fullPath: '/app/programs/summer-camp'
       preLoaderRoute: typeof AppProgramsSummerCampRouteImport
       parentRoute: typeof AppProgramsRouteRoute
+    }
+    '/app/programs/competitive': {
+      id: '/app/programs/competitive'
+      path: '/competitive'
+      fullPath: '/app/programs/competitive'
+      preLoaderRoute: typeof AppProgramsCompetitiveRouteImport
+      parentRoute: typeof AppProgramsRouteRoute
+    }
+    '/app/news/create': {
+      id: '/app/news/create'
+      path: '/create'
+      fullPath: '/app/news/create'
+      preLoaderRoute: typeof AppNewsCreateRouteImport
+      parentRoute: typeof AppNewsRoute
+    }
+    '/app/news/$newsId': {
+      id: '/app/news/$newsId'
+      path: '/$newsId'
+      fullPath: '/app/news/$newsId'
+      preLoaderRoute: typeof AppNewsNewsIdRouteImport
+      parentRoute: typeof AppNewsRoute
     }
     '/app/coaches/new': {
       id: '/app/coaches/new'
@@ -809,13 +936,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicBoosterDonateRouteImport
       parentRoute: typeof PublicRoute
     }
-    '/_public/blog/$slug': {
-      id: '/_public/blog/$slug'
-      path: '/blog/$slug'
-      fullPath: '/blog/$slug'
-      preLoaderRoute: typeof PublicBlogSlugRouteImport
-      parentRoute: typeof PublicRoute
-    }
     '/_public/athletes/sport-psychology': {
       id: '/_public/athletes/sport-psychology'
       path: '/athletes/sport-psychology'
@@ -851,15 +971,45 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicAthletesHallOfFameRouteImport
       parentRoute: typeof PublicRoute
     }
+    '/_public/team/news/': {
+      id: '/_public/team/news/'
+      path: '/team/news'
+      fullPath: '/team/news/'
+      preLoaderRoute: typeof PublicTeamNewsIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/team/blog/': {
+      id: '/_public/team/blog/'
+      path: '/team/blog'
+      fullPath: '/team/blog/'
+      preLoaderRoute: typeof PublicTeamBlogIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/team/news/$slug': {
+      id: '/_public/team/news/$slug'
+      path: '/team/news/$slug'
+      fullPath: '/team/news/$slug'
+      preLoaderRoute: typeof PublicTeamNewsSlugRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/team/blog/$slug': {
+      id: '/_public/team/blog/$slug'
+      path: '/team/blog/$slug'
+      fullPath: '/team/blog/$slug'
+      preLoaderRoute: typeof PublicTeamBlogSlugRouteImport
+      parentRoute: typeof PublicRoute
+    }
   }
 }
 
 interface AppProgramsRouteRouteChildren {
+  AppProgramsCompetitiveRoute: typeof AppProgramsCompetitiveRoute
   AppProgramsSummerCampRoute: typeof AppProgramsSummerCampRoute
   AppProgramsIndexRoute: typeof AppProgramsIndexRoute
 }
 
 const AppProgramsRouteRouteChildren: AppProgramsRouteRouteChildren = {
+  AppProgramsCompetitiveRoute: AppProgramsCompetitiveRoute,
   AppProgramsSummerCampRoute: AppProgramsSummerCampRoute,
   AppProgramsIndexRoute: AppProgramsIndexRoute,
 }
@@ -899,11 +1049,38 @@ const AppCoachesRouteWithChildren = AppCoachesRoute._addFileChildren(
   AppCoachesRouteChildren,
 )
 
+interface AppNewsRouteChildren {
+  AppNewsNewsIdRoute: typeof AppNewsNewsIdRoute
+  AppNewsCreateRoute: typeof AppNewsCreateRoute
+  AppNewsIndexRoute: typeof AppNewsIndexRoute
+}
+
+const AppNewsRouteChildren: AppNewsRouteChildren = {
+  AppNewsNewsIdRoute: AppNewsNewsIdRoute,
+  AppNewsCreateRoute: AppNewsCreateRoute,
+  AppNewsIndexRoute: AppNewsIndexRoute,
+}
+
+const AppNewsRouteWithChildren =
+  AppNewsRoute._addFileChildren(AppNewsRouteChildren)
+
+interface AppSubscriptionsRouteChildren {
+  AppSubscriptionsIndexRoute: typeof AppSubscriptionsIndexRoute
+}
+
+const AppSubscriptionsRouteChildren: AppSubscriptionsRouteChildren = {
+  AppSubscriptionsIndexRoute: AppSubscriptionsIndexRoute,
+}
+
+const AppSubscriptionsRouteWithChildren =
+  AppSubscriptionsRoute._addFileChildren(AppSubscriptionsRouteChildren)
+
 interface AppRouteRouteChildren {
   AppProgramsRouteRoute: typeof AppProgramsRouteRouteWithChildren
   AppBlogsRoute: typeof AppBlogsRouteWithChildren
   AppCoachesRoute: typeof AppCoachesRouteWithChildren
-  AppNewsRoute: typeof AppNewsRoute
+  AppNewsRoute: typeof AppNewsRouteWithChildren
+  AppSubscriptionsRoute: typeof AppSubscriptionsRouteWithChildren
   AppIndexRoute: typeof AppIndexRoute
 }
 
@@ -911,7 +1088,8 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppProgramsRouteRoute: AppProgramsRouteRouteWithChildren,
   AppBlogsRoute: AppBlogsRouteWithChildren,
   AppCoachesRoute: AppCoachesRouteWithChildren,
-  AppNewsRoute: AppNewsRoute,
+  AppNewsRoute: AppNewsRouteWithChildren,
+  AppSubscriptionsRoute: AppSubscriptionsRouteWithChildren,
   AppIndexRoute: AppIndexRoute,
 }
 
@@ -927,7 +1105,6 @@ interface PublicRouteChildren {
   PublicAthletesKnoxingRoute: typeof PublicAthletesKnoxingRoute
   PublicAthletesSafetyRoute: typeof PublicAthletesSafetyRoute
   PublicAthletesSportPsychologyRoute: typeof PublicAthletesSportPsychologyRoute
-  PublicBlogSlugRoute: typeof PublicBlogSlugRoute
   PublicBoosterDonateRoute: typeof PublicBoosterDonateRoute
   PublicBoosterFundraisingRoute: typeof PublicBoosterFundraisingRoute
   PublicBoosterVolunteerRoute: typeof PublicBoosterVolunteerRoute
@@ -940,8 +1117,11 @@ interface PublicRouteChildren {
   PublicStoreSuitsForRentRoute: typeof PublicStoreSuitsForRentRoute
   PublicStoreTeamGearRoute: typeof PublicStoreTeamGearRoute
   PublicTeamCoachesRoute: typeof PublicTeamCoachesRoute
-  PublicBlogIndexRoute: typeof PublicBlogIndexRoute
   PublicProgramsIndexRoute: typeof PublicProgramsIndexRoute
+  PublicTeamBlogSlugRoute: typeof PublicTeamBlogSlugRoute
+  PublicTeamNewsSlugRoute: typeof PublicTeamNewsSlugRoute
+  PublicTeamBlogIndexRoute: typeof PublicTeamBlogIndexRoute
+  PublicTeamNewsIndexRoute: typeof PublicTeamNewsIndexRoute
 }
 
 const PublicRouteChildren: PublicRouteChildren = {
@@ -952,7 +1132,6 @@ const PublicRouteChildren: PublicRouteChildren = {
   PublicAthletesKnoxingRoute: PublicAthletesKnoxingRoute,
   PublicAthletesSafetyRoute: PublicAthletesSafetyRoute,
   PublicAthletesSportPsychologyRoute: PublicAthletesSportPsychologyRoute,
-  PublicBlogSlugRoute: PublicBlogSlugRoute,
   PublicBoosterDonateRoute: PublicBoosterDonateRoute,
   PublicBoosterFundraisingRoute: PublicBoosterFundraisingRoute,
   PublicBoosterVolunteerRoute: PublicBoosterVolunteerRoute,
@@ -965,8 +1144,11 @@ const PublicRouteChildren: PublicRouteChildren = {
   PublicStoreSuitsForRentRoute: PublicStoreSuitsForRentRoute,
   PublicStoreTeamGearRoute: PublicStoreTeamGearRoute,
   PublicTeamCoachesRoute: PublicTeamCoachesRoute,
-  PublicBlogIndexRoute: PublicBlogIndexRoute,
   PublicProgramsIndexRoute: PublicProgramsIndexRoute,
+  PublicTeamBlogSlugRoute: PublicTeamBlogSlugRoute,
+  PublicTeamNewsSlugRoute: PublicTeamNewsSlugRoute,
+  PublicTeamBlogIndexRoute: PublicTeamBlogIndexRoute,
+  PublicTeamNewsIndexRoute: PublicTeamNewsIndexRoute,
 }
 
 const PublicRouteWithChildren =
