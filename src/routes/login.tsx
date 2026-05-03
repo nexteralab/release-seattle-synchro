@@ -1,10 +1,10 @@
-import { createFileRoute, useNavigate, useSearch } from '@tanstack/react-router'
+import { createFileRoute, Link, useNavigate, useSearch } from '@tanstack/react-router'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { toast } from 'sonner'
-import { Eye, EyeOff, Lock, Mail } from 'lucide-react'
+import { ArrowLeft, Eye, EyeOff, Lock, Mail } from 'lucide-react'
 import { useState } from 'react'
 import { useAdminAuth } from '#/features/admin/auth/use-admin-auth'
 import logo from '/images/logo.png'
@@ -127,9 +127,18 @@ function LoginPage() {
           </form>
         </div>
 
-        <p className="text-center text-[#a1a1a1] text-[12px] mt-8">
-          Seattle Synchro · Admin Panel
-        </p>
+        <div className="flex items-center justify-center gap-6 mt-8">
+          <p className="text-[#a1a1a1] text-[12px]">
+            Seattle Synchro · Admin Panel
+          </p>
+          <Link
+            to="/"
+            className="flex items-center gap-1.5 text-[#737373] text-[12px] hover:text-[#0A0A67] transition-colors"
+          >
+            <ArrowLeft size={12} />
+            Back to website
+          </Link>
+        </div>
       </div>
     </div>
   )

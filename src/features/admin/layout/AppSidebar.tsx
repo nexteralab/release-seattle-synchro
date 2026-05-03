@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { LayoutDashboard, FileText, Newspaper, BookOpen, Users, LogOut, Mail } from 'lucide-react'
+import { LayoutDashboard, FileText, Newspaper, BookOpen, Users, LogOut, Mail, Home } from 'lucide-react'
 import { useAdminAuth } from '#/features/admin/auth/use-admin-auth'
 import {
   Sidebar,
@@ -88,6 +88,18 @@ export function AppSidebar({ session, pathname, onLogout, ...props }: AppSidebar
                 Administrator
               </p>
             </div>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              tooltip="Go to website"
+              className="text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground"
+            >
+              <Link to="/">
+                <Home />
+                <span>Go to website</span>
+              </Link>
+            </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton
