@@ -37,7 +37,7 @@ export function BeginnerDetails() {
                     <span className="font-semibold">
                         Swimmers should be able to swim four (4) laps of crawl stroke and 4 breaststroke (1 lap=25 yards) and be comfortable floating on his/her back.
                     </span>{" "}
-                    Swimmers who have not participated in Sea Stars or a summer camp should schedule an assessment by contacting us at info@seattlesynchro.com Members of this team will attend several local competitions, and train from September to June.
+                    Swimmers who have not participated in Sea Stars or a summer camp should schedule an assessment by contacting us at info@seattlesynchrosst.com Members of this team will attend several local competitions, and train from September to June.
                 </p>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <div className="bg-white p-6 md:p-10">

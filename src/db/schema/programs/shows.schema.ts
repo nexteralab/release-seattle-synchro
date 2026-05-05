@@ -9,7 +9,7 @@ export const showsConfig = sqliteTable('shows_config', {
   id:           text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
 
   // Email o enlace de contacto directo para shows
-  contactEmail: text('contact_email').notNull().default('info@seattlesynchro.com'),
+  contactEmail: text('contact_email').notNull().default('info@seattlesynchrosst.com'),
 
   isActive:     integer('is_active', { mode: 'boolean' }).notNull().default(true),
   updatedAt:    text('updated_at').notNull().default(sql`(datetime('now'))`),

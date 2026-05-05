@@ -40,7 +40,7 @@ export const DEFAULT_CONFIG: SummerCampConfig = {
     { name: 'August in Somerset', dates: 'August 3 – August 7, 2026', address: '4445 Somerset Blvd SE, Bellevue, WA 98006' },
   ],
   price_per_week: '$450 per week',
-  register_url: 'https://www.seattlesynchro.com/page/system/classreg-shopping',
+  register_url: 'https://www.seattlesynchrosst.com/page/system/classreg-shopping',
   requirements: [
     { name: 'Swim Suit', note: '', link: '' },
     { name: 'Swim Cap', note: '', link: '' },

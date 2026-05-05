@@ -92,12 +92,12 @@ export function SafetyPage() {
                 health consequences, it is essential that synchronized swimmers, coaches, parents, and healthcare
                 providers learn the signs and symptoms of concussion and what to do if a concussion occurs. For
                 more information, review this{' '}
-                <a href="https://www.seattlesynchro.com/zzssst/UserFiles/File/Safety/synchro-concussions-selina-shah.pdf" target="_blank" rel="noopener noreferrer" className={link}>
+                <a href="https://www.seattlesynchrosst.com/zzssst/UserFiles/File/Safety/synchro-concussions-selina-shah.pdf" target="_blank" rel="noopener noreferrer" className={link}>
                   fact sheet
                 </a>{' '}
                 from Selina Shah, MD, FACP, Team Physician USC Synchronized Swimming.
               </p>
-              <a href="https://www.seattlesynchro.com/zzssst/UserFiles/File/Safety/synchro-concussions-selina-shah.pdf" target="_blank" rel="noopener noreferrer" className={btn}>
+              <a href="https://www.seattlesynchrosst.com/zzssst/UserFiles/File/Safety/synchro-concussions-selina-shah.pdf" target="_blank" rel="noopener noreferrer" className={btn}>
                 Download Fact Sheet <ExternalLink size={11} />
               </a>
             </Protocol>

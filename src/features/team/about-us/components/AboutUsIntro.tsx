@@ -1,6 +1,3 @@
-const LOGO_IMAGE =
-  'https://images.unsplash.com/photo-1530549387789-4c1017266635?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=400'
-
 const logoImage = '/images/logo.png'
 
 export function AboutUsIntro() {

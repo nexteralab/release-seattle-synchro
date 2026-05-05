@@ -161,7 +161,7 @@ export function Home() {
                   Learn More
                 </Link>
                 <a
-                  href="https://www.seattlesynchro.com/page/system/classreg-shopping" target="_blank" rel="noopener noreferrer"
+                  href="https://www.seattlesynchrosst.com/page/system/classreg-shopping" target="_blank" rel="noopener noreferrer"
                   className="inline-block bg-white border border-secondary text-secondary px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:border-primary hover:text-primary transition-colors"
                 >
                   Register Now
@@ -374,7 +374,7 @@ export function Home() {
               Our<br />Sponsors
             </h2>
             <a
-              href="https://www.seattlesynchro.com/page/donate"
+              href="https://www.seattlesynchrosst.com/page/donate"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-secondary text-primary px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-white transition-colors"

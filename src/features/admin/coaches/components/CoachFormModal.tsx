@@ -116,7 +116,7 @@ export function CoachFormModal({ open, onClose, coach }: Props) {
 
                 <div>
                   <label className={labelCls}>Email</label>
-                  <input {...register('email')} type="email" className={inputCls} placeholder="coach@seattlesynchro.com" />
+                  <input {...register('email')} type="email" className={inputCls} placeholder="coach@seattlesynchrosst.com" />
                   {errors.email && <p className={errorCls}>{errors.email.message}</p>}
                 </div>
 

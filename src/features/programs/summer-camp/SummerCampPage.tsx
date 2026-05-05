@@ -26,7 +26,7 @@ export function SummerCampPage({ data }: Props) {
         linkToContact="/contact-us"
         linkLabelContact="Contact Us"
         linkVariantContact="secondary"
-        linkToRegister="https://www.seattlesynchro.com/page/system/classreg-shopping"
+        linkToRegister="https://www.seattlesynchrosst.com/page/system/classreg-shopping"
         linkLabelRegister="Register Now"
         image="1"
         alt="Ready to Dive In? Summer Camp 2026 banner"

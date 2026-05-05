@@ -12,8 +12,8 @@ export function ContactInfoPanel() {
       <ContactCard
         icon={<Mail size={18} strokeWidth={1.75} />}
         label="Email"
-        lines={['info@seattlesynchro.com']}
-        href="mailto:info@seattlesynchro.com"
+        lines={['info@seattlesynchrosst.com']}
+        href="mailto:info@seattlesynchrosst.com"
       />
       <ContactCard
         icon={<Phone size={18} strokeWidth={1.75} />}

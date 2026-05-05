@@ -6,7 +6,7 @@ import { CtaBanner } from '#/components/CtaBanner'
 
 
 const consultDbDataFreeTry = {
-  "nameProgram": "FREE TRY EVENT 2028",
+  "nameProgram": "FREE TRY EVENT 2026",
   "description": "Join us on June 7th for a free introduction to the world of artistic swimming.",
   "linkTo": "https://www.gomotionapp.com/team/zzssst/controller/cms/admin/index#/classreg-shopping",
   "linkLabel": "Register Now",

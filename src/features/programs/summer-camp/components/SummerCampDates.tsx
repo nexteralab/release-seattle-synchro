@@ -95,7 +95,7 @@ export function SummerCampDates({ locations, schedule, price }: Props) {
             <p className="font-bold text-white text-[24px] tracking-[-0.5px]">{price}</p>
           </div>
           <a
-            href="https://www.seattlesynchro.com/page/system/classreg-shopping"
+            href="https://www.seattlesynchrosst.com/page/system/classreg-shopping"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-[#63AC23] text-white px-10 py-4 font-bold text-[13px] tracking-[2.6px] uppercase hover:bg-[#4d8a18] transition-colors"

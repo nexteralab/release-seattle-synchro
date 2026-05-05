@@ -37,7 +37,7 @@ export const programsSeo = sqliteTable('programs_seo', {
 
     canonicalUrl: text('canonical_url'),
     // URL canónica completa. Previene duplicate content.
-    // Ej: 'https://seattlesynchro.com/programs/summer-camp'
+    // Ej: 'https://seattlesynchrosst.com/programs/summer-camp'
 
     robots: text('robots').notNull().default('index, follow'),
     // Directiva para crawlers. Valores: 'index, follow' | 'noindex, nofollow'

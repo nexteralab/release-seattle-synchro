@@ -342,7 +342,7 @@ export function PostFormPage({ post }: Props) {
               <p className="text-[10px] font-bold tracking-[1.4px] uppercase text-muted-foreground mb-3">Google Preview</p>
               <div className="bg-card border border-border rounded-md p-3 space-y-0.5">
                 <p className="text-primary text-[11px] truncate">
-                  seattlesynchro.com/blog/{watch('slug') || 'your-post'}
+                  seattlesynchrosst.com/blog/{watch('slug') || 'your-post'}
                 </p>
                 <p className="text-[13px] font-medium text-blue-600 dark:text-blue-400 line-clamp-1">
                   {watch('meta_title') || watch('title') || 'Post title'}

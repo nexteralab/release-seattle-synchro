@@ -78,7 +78,7 @@ function LoginPage() {
                 <input
                   type="email"
                   autoComplete="email"
-                  placeholder="admin@seattlesynchro.com"
+                  placeholder="admin@seattlesynchrosst.com"
                   {...register('email')}
                   className="w-full bg-[#f3f3f5] border border-transparent pl-10 pr-4 py-3 text-[15px] text-[#171717] placeholder:text-[#a1a1a1] focus:outline-none focus:border-[#0A0A67] focus:ring-2 focus:ring-[#0A0A67]/10 transition-all"
                 />

@@ -133,7 +133,7 @@ export function CoachFormPage({ coach }: Props) {
 
               <div className="space-y-1.5">
                 <Label className="text-[11px] tracking-[1.1px] uppercase">Email</Label>
-                <Input {...register('email')} type="email" placeholder="coach@seattlesynchro.com" />
+                <Input {...register('email')} type="email" placeholder="coach@seattlesynchrosst.com" />
               </div>
 
               <div className="space-y-1.5">
