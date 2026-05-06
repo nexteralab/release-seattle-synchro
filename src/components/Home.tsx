@@ -90,7 +90,7 @@ export function Home() {
                   Washington - est 2001
                 </span>
               </div>
-              <h2 className="font-bold text-white text-[60px] md:text-[120px] tracking-[-1.8px] uppercase leading-[80px] md:leading-[100px]">
+              <h2 className="font-bold text-white text-[60px] md:text-[120px] tracking-[-1.8px] uppercase leading-[80px] md:leading-[100px] text-center md:text-left">
                 Seattle Synchro
               </h2>
               <div className="flex flex-col gap-1">
