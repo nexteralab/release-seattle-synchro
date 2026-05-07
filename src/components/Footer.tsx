@@ -66,13 +66,28 @@ export function StoreFooter() {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
+                                <Link to="/athletes/hall-of-fame" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
                                     Hall of Fame
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
+                                <Link to="/team/about-us" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
                                     About Us
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/team/blog" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
+                                    Blog
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/team/news" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
+                                    News
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/app" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
+                                    Admin
                                 </Link>
                             </li>
                         </ul>
