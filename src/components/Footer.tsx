@@ -134,7 +134,7 @@ export function StoreFooter() {
                             }}
                             className="text-secondary"
                         >
-                            © 2026 Opulent Watches. All rights reserved.
+                            © 2026 Seattle Synchro. All rights reserved.
                         </p>
 
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>

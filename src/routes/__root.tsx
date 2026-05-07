@@ -50,6 +50,26 @@ function RootDocument() {
           <noscript>
             <style>{`[style*="opacity"]{opacity:1!important}[style*="translateY"],[style*="translateX"]{transform:none!important}`}</style>
           </noscript>
+          <noscript>
+            <style
+              dangerouslySetInnerHTML={{
+                __html: `
+                  [style*="opacity: 0"],
+                  [style*="opacity:0"] {
+                    opacity: 1 !important;
+                  }
+                  [style*="transform"][style*="translate"],
+                  [style*="transform"][style*="scale"],
+                  [style*="transform"][style*="matrix"] {
+                    transform: none !important;
+                  }
+                  [style*="filter"][style*="blur"] {
+                    filter: none !important;
+                  }
+                `,
+              }}
+            />
+          </noscript>
           <HeadContent />
         </head>
         <body className="antialiased [overflow-wrap:anywhere]" suppressContentEditableWarning>
