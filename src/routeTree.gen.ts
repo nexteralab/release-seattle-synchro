@@ -16,8 +16,10 @@ import { Route as SitemapBlogDotxmlRouteImport } from './routes/sitemap-blog[.]x
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as PublicRouteImport } from './routes/_public'
 import { Route as AppRouteRouteImport } from './routes/app/route'
+import { Route as PageIndexRouteImport } from './routes/page/index'
 import { Route as AppIndexRouteImport } from './routes/app/index'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
+import { Route as PageSplatRouteImport } from './routes/page/$'
 import { Route as AppSubscriptionsRouteImport } from './routes/app/subscriptions'
 import { Route as AppNewsRouteImport } from './routes/app/news'
 import { Route as AppCoachesRouteImport } from './routes/app/coaches'
@@ -100,6 +102,11 @@ const AppRouteRoute = AppRouteRouteImport.update({
   path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PageIndexRoute = PageIndexRouteImport.update({
+  id: '/page/',
+  path: '/page/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -109,6 +116,11 @@ const PublicIndexRoute = PublicIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => PublicRoute,
+} as any)
+const PageSplatRoute = PageSplatRouteImport.update({
+  id: '/page/$',
+  path: '/page/$',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AppSubscriptionsRoute = AppSubscriptionsRouteImport.update({
   id: '/subscriptions',
@@ -372,7 +384,9 @@ export interface FileRoutesByFullPath {
   '/app/coaches': typeof AppCoachesRouteWithChildren
   '/app/news': typeof AppNewsRouteWithChildren
   '/app/subscriptions': typeof AppSubscriptionsRouteWithChildren
+  '/page/$': typeof PageSplatRoute
   '/app/': typeof AppIndexRoute
+  '/page/': typeof PageIndexRoute
   '/athletes/hall-of-fame': typeof PublicAthletesHallOfFameRoute
   '/athletes/health': typeof PublicAthletesHealthRoute
   '/athletes/knoxing': typeof PublicAthletesKnoxingRoute
@@ -422,8 +436,10 @@ export interface FileRoutesByTo {
   '/500': typeof errors500Route
   '/503': typeof errors503Route
   '/contact-us': typeof PublicContactUsRoute
+  '/page/$': typeof PageSplatRoute
   '/': typeof PublicIndexRoute
   '/app': typeof AppIndexRoute
+  '/page': typeof PageIndexRoute
   '/athletes/hall-of-fame': typeof PublicAthletesHallOfFameRoute
   '/athletes/health': typeof PublicAthletesHealthRoute
   '/athletes/knoxing': typeof PublicAthletesKnoxingRoute
@@ -481,8 +497,10 @@ export interface FileRoutesById {
   '/app/coaches': typeof AppCoachesRouteWithChildren
   '/app/news': typeof AppNewsRouteWithChildren
   '/app/subscriptions': typeof AppSubscriptionsRouteWithChildren
+  '/page/$': typeof PageSplatRoute
   '/_public/': typeof PublicIndexRoute
   '/app/': typeof AppIndexRoute
+  '/page/': typeof PageIndexRoute
   '/_public/athletes/hall-of-fame': typeof PublicAthletesHallOfFameRoute
   '/_public/athletes/health': typeof PublicAthletesHealthRoute
   '/_public/athletes/knoxing': typeof PublicAthletesKnoxingRoute
@@ -541,7 +559,9 @@ export interface FileRouteTypes {
     | '/app/coaches'
     | '/app/news'
     | '/app/subscriptions'
+    | '/page/$'
     | '/app/'
+    | '/page/'
     | '/athletes/hall-of-fame'
     | '/athletes/health'
     | '/athletes/knoxing'
@@ -591,8 +611,10 @@ export interface FileRouteTypes {
     | '/500'
     | '/503'
     | '/contact-us'
+    | '/page/$'
     | '/'
     | '/app'
+    | '/page'
     | '/athletes/hall-of-fame'
     | '/athletes/health'
     | '/athletes/knoxing'
@@ -649,8 +671,10 @@ export interface FileRouteTypes {
     | '/app/coaches'
     | '/app/news'
     | '/app/subscriptions'
+    | '/page/$'
     | '/_public/'
     | '/app/'
+    | '/page/'
     | '/_public/athletes/hall-of-fame'
     | '/_public/athletes/health'
     | '/_public/athletes/knoxing'
@@ -702,6 +726,8 @@ export interface RootRouteChildren {
   errors404Route: typeof errors404Route
   errors500Route: typeof errors500Route
   errors503Route: typeof errors503Route
+  PageSplatRoute: typeof PageSplatRoute
+  PageIndexRoute: typeof PageIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -755,6 +781,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/page/': {
+      id: '/page/'
+      path: '/page'
+      fullPath: '/page/'
+      preLoaderRoute: typeof PageIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/app/': {
       id: '/app/'
       path: '/'
@@ -768,6 +801,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof PublicIndexRouteImport
       parentRoute: typeof PublicRoute
+    }
+    '/page/$': {
+      id: '/page/$'
+      path: '/page/$'
+      fullPath: '/page/$'
+      preLoaderRoute: typeof PageSplatRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/app/subscriptions': {
       id: '/app/subscriptions'
@@ -1268,6 +1308,8 @@ const rootRouteChildren: RootRouteChildren = {
   errors404Route: errors404Route,
   errors500Route: errors500Route,
   errors503Route: errors503Route,
+  PageSplatRoute: PageSplatRoute,
+  PageIndexRoute: PageIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
