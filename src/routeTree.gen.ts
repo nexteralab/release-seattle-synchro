@@ -9,6 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SitemapPrincipalDotxmlRouteImport } from './routes/sitemap-principal[.]xml'
+import { Route as SitemapNewsDotxmlRouteImport } from './routes/sitemap-news[.]xml'
+import { Route as SitemapBlogDotxmlRouteImport } from './routes/sitemap-blog[.]xml'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as PublicRouteImport } from './routes/_public'
 import { Route as AppRouteRouteImport } from './routes/app/route'
@@ -62,6 +66,26 @@ import { Route as PublicTeamBlogIndexRouteImport } from './routes/_public/team/b
 import { Route as PublicTeamNewsSlugRouteImport } from './routes/_public/team/news/$slug'
 import { Route as PublicTeamBlogSlugRouteImport } from './routes/_public/team/blog/$slug'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapPrincipalDotxmlRoute = SitemapPrincipalDotxmlRouteImport.update({
+  id: '/sitemap-principal.xml',
+  path: '/sitemap-principal.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapNewsDotxmlRoute = SitemapNewsDotxmlRouteImport.update({
+  id: '/sitemap-news.xml',
+  path: '/sitemap-news.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapBlogDotxmlRoute = SitemapBlogDotxmlRouteImport.update({
+  id: '/sitemap-blog.xml',
+  path: '/sitemap-blog.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -333,6 +357,10 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteRouteWithChildren
   '/': typeof PublicIndexRoute
   '/login': typeof LoginRoute
+  '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
+  '/sitemap-news.xml': typeof SitemapNewsDotxmlRoute
+  '/sitemap-principal.xml': typeof SitemapPrincipalDotxmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/app/programs': typeof AppProgramsRouteRouteWithChildren
   '/401': typeof errors401Route
   '/403': typeof errors403Route
@@ -384,6 +412,10 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
+  '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
+  '/sitemap-news.xml': typeof SitemapNewsDotxmlRoute
+  '/sitemap-principal.xml': typeof SitemapPrincipalDotxmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/401': typeof errors401Route
   '/403': typeof errors403Route
   '/404': typeof errors404Route
@@ -434,6 +466,10 @@ export interface FileRoutesById {
   '/app': typeof AppRouteRouteWithChildren
   '/_public': typeof PublicRouteWithChildren
   '/login': typeof LoginRoute
+  '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
+  '/sitemap-news.xml': typeof SitemapNewsDotxmlRoute
+  '/sitemap-principal.xml': typeof SitemapPrincipalDotxmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/app/programs': typeof AppProgramsRouteRouteWithChildren
   '/(errors)/401': typeof errors401Route
   '/(errors)/403': typeof errors403Route
@@ -490,6 +526,10 @@ export interface FileRouteTypes {
     | '/app'
     | '/'
     | '/login'
+    | '/sitemap-blog.xml'
+    | '/sitemap-news.xml'
+    | '/sitemap-principal.xml'
+    | '/sitemap.xml'
     | '/app/programs'
     | '/401'
     | '/403'
@@ -541,6 +581,10 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
+    | '/sitemap-blog.xml'
+    | '/sitemap-news.xml'
+    | '/sitemap-principal.xml'
+    | '/sitemap.xml'
     | '/401'
     | '/403'
     | '/404'
@@ -590,6 +634,10 @@ export interface FileRouteTypes {
     | '/app'
     | '/_public'
     | '/login'
+    | '/sitemap-blog.xml'
+    | '/sitemap-news.xml'
+    | '/sitemap-principal.xml'
+    | '/sitemap.xml'
     | '/app/programs'
     | '/(errors)/401'
     | '/(errors)/403'
@@ -645,6 +693,10 @@ export interface RootRouteChildren {
   AppRouteRoute: typeof AppRouteRouteWithChildren
   PublicRoute: typeof PublicRouteWithChildren
   LoginRoute: typeof LoginRoute
+  SitemapBlogDotxmlRoute: typeof SitemapBlogDotxmlRoute
+  SitemapNewsDotxmlRoute: typeof SitemapNewsDotxmlRoute
+  SitemapPrincipalDotxmlRoute: typeof SitemapPrincipalDotxmlRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   errors401Route: typeof errors401Route
   errors403Route: typeof errors403Route
   errors404Route: typeof errors404Route
@@ -654,6 +706,34 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap-principal.xml': {
+      id: '/sitemap-principal.xml'
+      path: '/sitemap-principal.xml'
+      fullPath: '/sitemap-principal.xml'
+      preLoaderRoute: typeof SitemapPrincipalDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap-news.xml': {
+      id: '/sitemap-news.xml'
+      path: '/sitemap-news.xml'
+      fullPath: '/sitemap-news.xml'
+      preLoaderRoute: typeof SitemapNewsDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap-blog.xml': {
+      id: '/sitemap-blog.xml'
+      path: '/sitemap-blog.xml'
+      fullPath: '/sitemap-blog.xml'
+      preLoaderRoute: typeof SitemapBlogDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -1179,6 +1259,10 @@ const rootRouteChildren: RootRouteChildren = {
   AppRouteRoute: AppRouteRouteWithChildren,
   PublicRoute: PublicRouteWithChildren,
   LoginRoute: LoginRoute,
+  SitemapBlogDotxmlRoute: SitemapBlogDotxmlRoute,
+  SitemapNewsDotxmlRoute: SitemapNewsDotxmlRoute,
+  SitemapPrincipalDotxmlRoute: SitemapPrincipalDotxmlRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   errors401Route: errors401Route,
   errors403Route: errors403Route,
   errors404Route: errors404Route,
