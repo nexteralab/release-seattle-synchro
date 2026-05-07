@@ -1,7 +1,7 @@
 import { Mail, Phone, Clock } from 'lucide-react'
 
 const OFFICE_HOURS = [
-  { day: 'Monday – Friday', hours: '9:00 AM – 5:00 PM' },
+  { day: 'Monday – Friday', hours: '8:00 AM – 4:00 PM' },
   { day: 'Saturday', hours: 'Closed' },
   { day: 'Sunday', hours: 'Closed' },
 ]
@@ -12,17 +12,17 @@ export function ContactInfoPanel() {
       <ContactCard
         icon={<Mail size={18} strokeWidth={1.75} />}
         label="Email"
-        lines={['info@seattlesynchrosst.com']}
-        href="mailto:info@seattlesynchrosst.com"
+        lines={['info@seattlesynchro.com']}
+        href="mailto:info@seattlesynchro.com"
       />
       <ContactCard
         icon={<Phone size={18} strokeWidth={1.75} />}
         label="Phone"
-        lines={['(206) 555-0192']}
-        href="tel:+12065550192"
+        lines={['(206) 596-1899']}
+        href="tel:+12065961899"
       />
       <div className="bg-white p-6 space-y-4">
-        <div className="flex items-center gap-3 text-[#0A0A67]">
+        <div className="flex items-center gap-3 text-secondary">
           <Clock size={18} strokeWidth={1.75} />
           <span
             className="font-bold text-[13px] tracking-[1.3px] uppercase"
@@ -35,13 +35,13 @@ export function ContactInfoPanel() {
           {OFFICE_HOURS.map(({ day, hours }) => (
             <div key={day} className="flex justify-between py-3">
               <span
-                className="text-[#171717] text-[14px]"
+                className="text-secondary text-[14px]"
                 style={{ fontFamily: "'Inter', sans-serif" }}
               >
                 {day}
               </span>
               <span
-                className={`text-[14px] font-medium ${hours === 'Closed' ? 'text-[#d4183d]' : 'text-[#0A0A67]'}`}
+                className={`text-[14px] font-medium ${hours === 'Closed' ? 'text-[#d4183d]' : 'text-secondary'}`}
                 style={{ fontFamily: "'Inter', sans-serif" }}
               >
                 {hours}
@@ -70,10 +70,10 @@ function ContactCard({
       href={href}
       className="flex items-start gap-4 bg-white p-6 hover:shadow-md transition-shadow group"
     >
-      <span className="text-[#0A0A67] mt-0.5">{icon}</span>
+      <span className="text-secondary mt-0.5">{icon}</span>
       <div>
         <p
-          className="font-bold text-[13px] tracking-[1.3px] uppercase text-[#0A0A67] mb-1"
+          className="font-bold text-[13px] tracking-[1.3px] uppercase text-secondary mb-1"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
           {label}
@@ -81,7 +81,7 @@ function ContactCard({
         {lines.map((line) => (
           <p
             key={line}
-            className="text-[#737373] text-[15px] group-hover:text-[#0A0A67] transition-colors"
+            className="text-secondary text-[15px] group-hover:text-secondary transition-colors"
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
             {line}

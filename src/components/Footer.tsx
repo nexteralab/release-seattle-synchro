@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Lock } from "lucide-react";
+import { Lock, Phone } from "lucide-react";
 import logo from "/images/logo.png";
 
 
@@ -20,7 +20,7 @@ export function StoreFooter() {
     return (
         <footer className="bg-white p-6 md:px-12 md:py-24">
             <div className="max-w-screen-lg mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     {/* About Section */}
                     <div className="md:col-span-2">
                         <img src={logo} alt="Seattle Synchro Logo" className="h-[200px] mb-8" />
@@ -84,13 +84,10 @@ export function StoreFooter() {
                             Contact
                         </h4>
                         <ul className="flex flex-col gap-4">
-                            <li className="flex gap-3 items-start">
-                                <svg className="size-4 mt-0.5 shrink-0" fill="none" viewBox="0 0 16 16">
-                                    <path d={svgPaths.p14548f00} stroke="#021521" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.33333" />
-                                    <path d={svgPaths.p17781bc0} stroke="#021521" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.33333" />
-                                </svg>
+                            <li className="flex gap-3 items-center">
+                                <Phone size={16} color="#021521" />
                                 <span className="font-medium text-[#737373] text-[14px] leading-[20px]">
-                                    123 Aquatic Way,<br />Seattle, WA 98101
+                                    +1 (206) 596-1899
                                 </span>
                             </li>
                             <li className="flex gap-3 items-center">
@@ -101,31 +98,47 @@ export function StoreFooter() {
                                     <path d="M2 6.66667H14" stroke="#021521" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.33333" />
                                 </svg>
                                 <span className="font-medium text-[#737373] text-[14px] leading-[20px]">
-                                    Mon - Sat: 6:00 AM - 8:00 PM
+                                    Mon - Fri: 8:00 AM - 4:00 PM<br />
+                                    Sat - Sun: Closed
                                 </span>
                             </li>
+
                         </ul>
                     </div>
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-12 border-t border-[#f5f5f5] flex flex-col md:flex-row items-center justify-between gap-4">
-                    <p className="font-medium text-[#737373] text-[12px] tracking-[1.2px] uppercase">
-                        © Seattle Synchro 2026. All Rights Reserved.
-                    </p>
-                    <div className="flex gap-8 items-center">
-                        <Link to="/" className="font-bold text-[#737373] text-[10px] tracking-[1px] uppercase hover:text-[#737373] transition-colors">
-                            Privacy Policy
-                        </Link>
-                        <Link to="/" className="font-bold text-[#737373] text-[10px] tracking-[1px] uppercase hover:text-[#737373] transition-colors">
-                            Terms of Service
-                        </Link>
-                        <Link to="/" className="font-bold text-[#737373] text-[10px] tracking-[1px] uppercase hover:text-[#737373] transition-colors">
-                            Accessibility
-                        </Link>
-                        <Link to="/login" className="text-[#a1a1a1] hover:text-[#737373] transition-colors">
-                            <Lock size={10} />
-                        </Link>
+
+                <div style={{ borderTop: '1px solid rgba(163,126,44,0.15)' }}>
+                    <div className="max-w-7xl mx-auto px-6 lg:px-10 py-6 flex flex-col items-center gap-2">
+                        <p
+                            style={{
+                                fontSize: '0.72rem',
+                                letterSpacing: '0.1em',
+                                textTransform: 'uppercase',
+                            }}
+                            className="text-secondary"
+                        >
+                            © 2026 Opulent Watches. All rights reserved.
+                        </p>
+
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <span className="block w-4 h-px bg-gray-300" />
+                            <p className="font-futura text-gray-500 text-xs tracking-wide uppercase">
+                                Developed by{' '}
+                                <a
+                                    href="https://thenexteralab.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-secondary hover:text-secondary/80 transition-colors"
+                                    onMouseEnter={(e) => (e.currentTarget.style.color = '#A37E2C')}
+                                    onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(163,126,44,0.55)')}
+                                >
+                                    The Nextera Lab
+                                </a>
+                            </p>
+                            <span className="block w-4 h-px bg-gray-300" />
+                        </div>
                     </div>
                 </div>
             </div>
