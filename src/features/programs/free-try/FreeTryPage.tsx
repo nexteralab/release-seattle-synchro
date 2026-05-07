@@ -6,12 +6,12 @@ import { CtaBanner } from '#/components/CtaBanner'
 
 
 const consultDbDataFreeTry = {
-  "nameProgram": "FREE TRY EVENT 2026",
+  "nameProgram": "Free Artistic Swimming Trial",
   "description": "Join us on June 7th for a free introduction to the world of artistic swimming.",
-  "linkTo": "https://www.gomotionapp.com/team/zzssst/controller/cms/admin/index#/classreg-shopping",
+  "linkTo": "https://www.seattlesynchrosst.com/page/system/classreg-shopping",
   "linkLabel": "Register Now",
   "linkVariant": "secondary",
-  "linkToRegister": "https://www.gomotionapp.com/team/zzssst/controller/cms/admin/index#/classreg-shopping",
+  "linkToRegister": "https://www.seattlesynchrosst.com/page/system/classreg-shopping",
   "linkLabelRegister": "Register Now",
   "image": "4",
 }
@@ -32,7 +32,7 @@ export function FreeTryPage({ data }: Props) {
         linkToContact="/contact-us"
         linkLabelContact="Contact Us"
         linkVariantContact="secondary"
-        linkToRegister="https://www.gomotionapp.com/team/zzssst/controller/cms/admin/index#/classreg-shopping"
+        linkToRegister="https://www.seattlesynchrosst.com/page/system/classreg-shopping"
         linkLabelRegister="Register Now"
         image="4"
         alt="Ready to Dive In? Free Try 2026 banner"

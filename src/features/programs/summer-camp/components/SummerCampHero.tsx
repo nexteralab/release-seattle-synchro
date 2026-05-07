@@ -1,4 +1,4 @@
-import heroImage from '/images/summer_camp.png'
+import heroImage from '/images/hero_summer.webp'
 import { motion } from 'motion/react'
 
 const t = { duration: 0.35, ease: [0.35, 0.85, 0.25, 1] as [number, number, number, number] }

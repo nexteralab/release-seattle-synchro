@@ -39,7 +39,7 @@ export const DEFAULT_CONFIG: SummerCampConfig = {
     { name: 'July in Bellevue (Newport Hills)', dates: 'July 27 – July 31, 2026', address: 'Newport Swim and Tennis Club\n5464 119th Ave SE, Bellevue, WA 98006' },
     { name: 'August in Somerset', dates: 'August 3 – August 7, 2026', address: '4445 Somerset Blvd SE, Bellevue, WA 98006' },
   ],
-  price_per_week: '$450 per week',
+  price_per_week: '$330 per week',
   register_url: 'https://www.seattlesynchrosst.com/page/system/classreg-shopping',
   requirements: [
     { name: 'Swim Suit', note: '', link: '' },
