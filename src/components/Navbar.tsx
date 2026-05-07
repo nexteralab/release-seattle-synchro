@@ -38,8 +38,7 @@ const menuItems = {
     label: "Booster",
     items: [
       { label: "Donate", path: "/booster/donate" },
-      { label: "Fundraising Opportunities", path: "/booster/fundraising" },
-      { label: "Volunteer", path: "/booster/volunteer" },
+      { label: "Fundraising Opportunities", path: "/booster/fundraising" }
     ],
   }
 };

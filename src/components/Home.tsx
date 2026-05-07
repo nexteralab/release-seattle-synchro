@@ -97,9 +97,6 @@ export function Home() {
                 <p className="font-bold text-white/90 text-[18px] md:text-[25px] max-w-2xl tracking-[-0.5px] leading-[32px] text-center md:text-left">
                   The Northwest's Premier Artistic Swimming Team.
                 </p>
-                <p className="font-medium text-white/90 text-[18px] md:text-[25px] max-w-2xl tracking-[-0.5px] leading-[32px] text-center md:text-left">
-                  Excellence in motion, precision in water.
-                </p>
               </div>
               <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
                 <Link

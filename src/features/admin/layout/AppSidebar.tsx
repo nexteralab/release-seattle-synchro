@@ -22,7 +22,7 @@ const navItems = [
   { label: 'Dashboard', icon: LayoutDashboard, to: '/app', exact: true },
   { label: 'Blogs', icon: FileText, to: '/app/blogs', exact: false },
   { label: 'News', icon: Newspaper, to: '/app/news', exact: false },
-  { label: 'Programs', icon: BookOpen, to: '/app/programs', exact: false },
+  /* { label: 'Programs', icon: BookOpen, to: '/app/programs', exact: false }, */
   { label: 'Coaches', icon: Users, to: '/app/coaches', exact: false },
   { label: 'Subscriptions', icon: Mail, to: '/app/subscriptions', exact: false },
 ] as const

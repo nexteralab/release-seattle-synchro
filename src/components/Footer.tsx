@@ -56,11 +56,6 @@ export function StoreFooter() {
                         </h4>
                         <ul className="flex flex-col gap-4">
                             <li>
-                                <Link to="/programs" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
-                                    Programs
-                                </Link>
-                            </li>
-                            <li>
                                 <Link to="/programs/summer-camp" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
                                     Summer Camp
                                 </Link>
@@ -70,19 +65,14 @@ export function StoreFooter() {
                                     Coaches
                                 </Link>
                             </li>
-                            {/* <li>
+                            <li>
                                 <Link to="/" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
                                     Hall of Fame
                                 </Link>
-                            </li> */}
-                            {/* <li>
+                            </li>
+                            <li>
                                 <Link to="/" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
                                     About Us
-                                </Link>
-                            </li> */}
-                            <li>
-                                <Link to="/contact-us" className="font-medium text-[#737373] text-[14px] hover:text-[#737373] transition-colors">
-                                    Contact
                                 </Link>
                             </li>
                         </ul>
