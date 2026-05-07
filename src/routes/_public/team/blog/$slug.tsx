@@ -1,8 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { usePostBySlug } from '#/features/team/blog/hooks/use-blog-posts'
+import { postBySlugQueryOptions, usePostBySlug } from '#/features/team/blog/hooks/use-blog-posts'
 import { BlogPostPage } from '#/features/team/blog/BlogPostPage'
 
 export const Route = createFileRoute('/_public/team/blog/$slug')({
+  loader: ({ context: { queryClient }, params: { slug } }) =>
+    queryClient.ensureQueryData(postBySlugQueryOptions(slug)),
   component: BlogPostRoute,
 })
 
@@ -33,10 +35,10 @@ function BlogPostRoute() {
   if (isError || !post) {
     return (
       <div className="flex flex-col items-center justify-center py-32 text-center px-12">
-        <p className="font-['Space_Grotesk',sans-serif] font-bold text-[#0A0A67] text-[28px] tracking-[-0.8px] uppercase mb-3">
+        <p className="font-bold text-[#0A0A67] text-[28px] tracking-[-0.8px] uppercase mb-3">
           Post Not Found
         </p>
-        <p className="font-['Inter',sans-serif] text-[#737373] text-[16px]">
+        <p className="text-[#737373] text-[16px]">
           This post doesn't exist or has been removed.
         </p>
       </div>

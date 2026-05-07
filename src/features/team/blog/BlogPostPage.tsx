@@ -5,21 +5,17 @@ import { CtaBanner } from '#/components/CtaBanner'
 import { usePostAnalytics } from '#/hooks/use-post-analytics'
 import { BlogPostContent } from './components/BlogPostContent'
 import type { Post } from '#/features/admin/blogs/services/posts.service'
+import {
+  blurUp,
+  blurUpWithDelay,
+  kenBurnsSlow,
+  slideLeft,
+  staggerContainer,
+  DEFAULT_VIEWPORT,
+} from '#/lib/animations'
 
 interface Props {
   post: Post
-}
-
-const vp = { once: true, margin: '-40px' } as const
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const } },
-}
-
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
 }
 
 function fmtDate(dateStr: string | null): string {
@@ -37,14 +33,14 @@ export function BlogPostPage({ post }: Props) {
   return (
     <div className="w-full bg-white">
 
-      {/* Article */}
       <article className="px-6 md:p-6 md:py-12 bg-white">
         <div className="max-w-screen-lg mx-auto">
+
           {/* Back link */}
           <motion.div
-            initial={{ opacity: 0, x: -16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            initial="hidden"
+            animate="visible"
+            variants={slideLeft}
             className="mb-8"
           >
             <Link
@@ -59,9 +55,9 @@ export function BlogPostPage({ post }: Props) {
           {/* Tags */}
           {post.tags?.length > 0 && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              initial="hidden"
+              animate="visible"
+              variants={blurUpWithDelay(0.05)}
               className="flex flex-wrap gap-2 mb-5"
             >
               {post.tags.map(tag => (
@@ -77,9 +73,9 @@ export function BlogPostPage({ post }: Props) {
 
           {/* Title */}
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
+            initial="hidden"
+            animate="visible"
+            variants={blurUpWithDelay(0.12)}
             className="font-bold text-[#0A0A67] text-[36px] md:text-[52px] tracking-[-1.8px] uppercase leading-[1.1] mb-6"
           >
             {post.title}
@@ -88,9 +84,9 @@ export function BlogPostPage({ post }: Props) {
           {/* Excerpt */}
           {post.excerpt && (
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              initial="hidden"
+              animate="visible"
+              variants={blurUpWithDelay(0.2)}
               className="text-[#737373] text-[18px] md:text-[20px] leading-[1.65] mb-8"
             >
               {post.excerpt}
@@ -99,9 +95,9 @@ export function BlogPostPage({ post }: Props) {
 
           {/* Meta bar */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
+            initial="hidden"
+            animate="visible"
+            variants={blurUpWithDelay(0.26)}
             className="flex flex-wrap items-center gap-5 pb-8 border-b border-black/[0.08] mb-10 text-[13px] text-[#a1a1a1]"
           >
             {post.author && (
@@ -124,32 +120,35 @@ export function BlogPostPage({ post }: Props) {
             )}
           </motion.div>
 
+          {/* Cover image — Ken Burns lento */}
           {post.cover_url && (
-            <div className="w-full h-[480px] md:h-[560px] overflow-hidden bg-[#030213]">
-              <motion.img
-                initial={{ scale: 1.05, opacity: 0.8 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={kenBurnsSlow}
+              className="w-full h-[480px] md:h-[560px] overflow-hidden bg-[#030213] mb-12"
+            >
+              <img
                 src={post.cover_url}
                 alt={post.title}
                 className="w-full h-full object-cover"
               />
-            </div>
+            </motion.div>
           )}
 
           {/* Content */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={vp}
-            variants={stagger}
+            viewport={DEFAULT_VIEWPORT}
+            variants={staggerContainer(0.1)}
           >
-            <motion.div variants={fadeUp}>
+            <motion.div variants={blurUp}>
               <BlogPostContent html={post.content ?? ''} />
             </motion.div>
           </motion.div>
-        </div>
 
+        </div>
       </article>
 
       <CtaBanner

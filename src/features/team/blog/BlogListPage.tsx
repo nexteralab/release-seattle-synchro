@@ -4,11 +4,16 @@ import { Clock, User, ArrowRight } from 'lucide-react'
 import { usePublishedPosts } from './hooks/use-blog-posts'
 import type { Post } from '#/features/admin/blogs/services/posts.service'
 import { SubscribeForm } from '#/features/subscriptions/components/SubscribeForm'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const } },
-}
+import {
+  blurUp,
+  blurUpWithDelay,
+  kenBurns,
+  scaleIn,
+  slideRight,
+  staggerContainer,
+  DEFAULT_VIEWPORT,
+  EAGER_VIEWPORT,
+} from '#/lib/animations'
 
 function fmtDate(dateStr: string | null): string {
   if (!dateStr) return ''
@@ -67,7 +72,13 @@ function FeaturedArticle({ post }: { post: Post }) {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="overflow-hidden">
+          <motion.div
+            className="overflow-hidden"
+            initial="hidden"
+            whileInView="visible"
+            viewport={DEFAULT_VIEWPORT}
+            variants={kenBurns}
+          >
             {post.cover_url ? (
               <img
                 src={post.cover_url}
@@ -81,13 +92,13 @@ function FeaturedArticle({ post }: { post: Post }) {
                 </span>
               </div>
             )}
-          </div>
+          </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={DEFAULT_VIEWPORT}
+            variants={slideRight}
           >
             {category && (
               <span className="font-bold text-[#0A0A67] text-[12px] tracking-[1.4px] uppercase">
@@ -135,20 +146,15 @@ function FeaturedArticle({ post }: { post: Post }) {
 }
 
 // ── Grid card ─────────────────────────────────────────────
-function ArticleCard({ post, index }: { post: Post; index: number }) {
+function ArticleCard({ post }: { post: Post }) {
   const category = post.tags?.[0]
 
   return (
     <motion.article
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
-      variants={fadeInUp}
-      transition={{ delay: index * 0.08 }}
+      variants={scaleIn}
       className="bg-white overflow-hidden group cursor-pointer"
     >
       <Link to="/team/blog/$slug" params={{ slug: post.slug }}>
-        {/* Image */}
         <div className="relative h-[300px] overflow-hidden bg-[#ececf0]">
           {post.cover_url ? (
             <img
@@ -173,7 +179,6 @@ function ArticleCard({ post, index }: { post: Post; index: number }) {
           )}
         </div>
 
-        {/* Body */}
         <div className="p-6">
           <div className="flex items-center gap-3 mb-4 text-[#737373] text-[12px]">
             {post.published_at && <span>{fmtDate(post.published_at)}</span>}
@@ -219,17 +224,17 @@ export function BlogListPage() {
       <section className="py-24 px-12 md:px-48 bg-gradient-to-br from-[#0A0A67] to-[#021521]">
         <div className="max-w-screen-2xl mx-auto text-center">
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial="hidden"
+            animate="visible"
+            variants={blurUpWithDelay(0)}
             className="font-bold text-white text-[64px] md:text-[72px] tracking-[-3.6px] uppercase leading-[1] mb-6"
           >
             Seattle Synchro<br />Blog
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial="hidden"
+            animate="visible"
+            variants={blurUpWithDelay(0.18)}
             className="font-medium text-white/80 text-[20px] md:text-[24px] tracking-[-0.6px] leading-[32px] max-w-3xl mx-auto"
           >
             Insights, stories, and updates from the world of artistic swimming
@@ -286,14 +291,26 @@ export function BlogListPage() {
       {!isLoading && !isError && rest.length > 0 && (
         <section className="py-12 px-12 md:px-48 bg-[#f5f5f5]">
           <div className="max-w-screen-2xl mx-auto">
-            <h2 className="font-bold text-[#0A0A67] text-[40px] md:text-[48px] tracking-[-2.4px] uppercase mb-16">
+            <motion.h2
+              initial="hidden"
+              whileInView="visible"
+              viewport={EAGER_VIEWPORT}
+              variants={blurUp}
+              className="font-bold text-[#0A0A67] text-[40px] md:text-[48px] tracking-[-2.4px] uppercase mb-16"
+            >
               Recent Articles
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {rest.map((post, i) => (
-                <ArticleCard key={post.id} post={post} index={i} />
+            </motion.h2>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={EAGER_VIEWPORT}
+              variants={staggerContainer(0.08)}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              {rest.map((post) => (
+                <ArticleCard key={post.id} post={post} />
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
       )}
@@ -302,19 +319,19 @@ export function BlogListPage() {
       <section className="py-12 px-12 md:px-48 bg-[#202124]">
         <div className="max-w-screen-2xl mx-auto text-center">
           <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={DEFAULT_VIEWPORT}
+            variants={blurUpWithDelay(0)}
             className="font-bold text-white text-[40px] md:text-[48px] tracking-[-2.4px] uppercase mb-6"
           >
             Stay Updated
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={DEFAULT_VIEWPORT}
+            variants={blurUpWithDelay(0.12)}
             className="text-white/70 text-[18px] md:text-[20px] leading-[32px] mb-8 max-w-2xl mx-auto"
           >
             Subscribe to our newsletter for the latest articles, team updates, and artistic swimming news.

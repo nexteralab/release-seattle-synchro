@@ -5,21 +5,17 @@ import { CtaBanner } from '#/components/CtaBanner'
 import { usePostAnalytics } from '#/hooks/use-post-analytics'
 import { NewsPostContent } from './components/NewsPostContent'
 import type { NewsItem } from '#/features/admin/news/services/news.service'
+import {
+  blurUp,
+  blurUpWithDelay,
+  kenBurnsSlow,
+  slideLeft,
+  staggerContainer,
+  DEFAULT_VIEWPORT,
+} from '#/lib/animations'
 
 interface Props {
   news: NewsItem
-}
-
-const vp = { once: true, margin: '-40px' } as const
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const } },
-}
-
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
 }
 
 function fmtDate(dateStr: string | null): string {
@@ -42,14 +38,14 @@ export function NewsPostPage({ news }: Props) {
 
           {/* Back link */}
           <motion.div
-            initial={{ opacity: 0, x: -16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            initial="hidden"
+            animate="visible"
+            variants={slideLeft}
             className="mb-8"
           >
             <Link
               to="/team/news"
-              className="inline-flex items-center gap-2 font-['Space_Grotesk',sans-serif] font-bold text-[12px] tracking-[1.4px] uppercase text-[#a1a1a1] hover:text-[#0A0A67] transition-colors"
+              className="inline-flex items-center gap-2 font-bold text-[12px] tracking-[1.4px] uppercase text-[#a1a1a1] hover:text-[#0A0A67] transition-colors"
             >
               <ArrowLeft size={14} />
               Back to News
@@ -58,20 +54,20 @@ export function NewsPostPage({ news }: Props) {
 
           {/* Category + Tags */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            initial="hidden"
+            animate="visible"
+            variants={blurUpWithDelay(0.05)}
             className="flex flex-wrap gap-2 mb-5"
           >
             {news.category && (
-              <span className="font-['Space_Grotesk',sans-serif] font-bold text-[10px] tracking-[1.4px] uppercase text-white bg-[#0A0A67] px-3 py-1.5">
+              <span className="font-bold text-[10px] tracking-[1.4px] uppercase text-white bg-[#0A0A67] px-3 py-1.5">
                 {news.category}
               </span>
             )}
             {news.tags?.map(tag => (
               <span
                 key={tag}
-                className="font-['Space_Grotesk',sans-serif] font-bold text-[10px] tracking-[1.4px] uppercase text-[#0A0A67] bg-[#0A0A67]/8 px-3 py-1.5"
+                className="font-bold text-[10px] tracking-[1.4px] uppercase text-[#0A0A67] bg-[#0A0A67]/8 px-3 py-1.5"
               >
                 {tag}
               </span>
@@ -80,10 +76,10 @@ export function NewsPostPage({ news }: Props) {
 
           {/* Title */}
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="font-['Space_Grotesk',sans-serif] font-bold text-[#0A0A67] text-[36px] md:text-[52px] tracking-[-1.8px] uppercase leading-[1.1] mb-6"
+            initial="hidden"
+            animate="visible"
+            variants={blurUpWithDelay(0.12)}
+            className="font-bold text-[#0A0A67] text-[36px] md:text-[52px] tracking-[-1.8px] uppercase leading-[1.1] mb-6"
           >
             {news.title}
           </motion.h1>
@@ -91,10 +87,10 @@ export function NewsPostPage({ news }: Props) {
           {/* Excerpt */}
           {news.excerpt && (
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-['Inter',sans-serif] text-[#737373] text-[18px] md:text-[20px] leading-[1.65] mb-8"
+              initial="hidden"
+              animate="visible"
+              variants={blurUpWithDelay(0.2)}
+              className="text-[#737373] text-[18px] md:text-[20px] leading-[1.65] mb-8"
             >
               {news.excerpt}
             </motion.p>
@@ -102,10 +98,10 @@ export function NewsPostPage({ news }: Props) {
 
           {/* Meta bar */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="flex flex-wrap items-center gap-5 pb-8 border-b border-black/[0.08] mb-10 font-['Inter',sans-serif] text-[13px] text-[#a1a1a1]"
+            initial="hidden"
+            animate="visible"
+            variants={blurUpWithDelay(0.26)}
+            className="flex flex-wrap items-center gap-5 pb-8 border-b border-black/[0.08] mb-10 text-[13px] text-[#a1a1a1]"
           >
             {news.author && (
               <span className="flex items-center gap-1.5">
@@ -127,28 +123,30 @@ export function NewsPostPage({ news }: Props) {
             )}
           </motion.div>
 
-          {/* Cover */}
+          {/* Cover — Ken Burns lento */}
           {news.cover_url && (
-            <div className="w-full h-[480px] md:h-[560px] overflow-hidden bg-[#030213] mb-10">
-              <motion.img
-                initial={{ scale: 1.05, opacity: 0.8 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={kenBurnsSlow}
+              className="w-full h-[480px] md:h-[560px] overflow-hidden bg-[#030213] mb-12"
+            >
+              <img
                 src={news.cover_url}
                 alt={news.title}
                 className="w-full h-full object-cover"
               />
-            </div>
+            </motion.div>
           )}
 
           {/* Content */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={vp}
-            variants={stagger}
+            viewport={DEFAULT_VIEWPORT}
+            variants={staggerContainer(0.1)}
           >
-            <motion.div variants={fadeUp}>
+            <motion.div variants={blurUp}>
               <NewsPostContent html={news.content ?? ''} />
             </motion.div>
           </motion.div>
