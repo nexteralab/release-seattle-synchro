@@ -214,7 +214,7 @@ export function SummerCampAdminPage() {
               <div className="space-y-4">
                 <div className="space-y-1.5">
                   <Label className={labelCls}>Price per Week</Label>
-                  <Input value={config.price_per_week} onChange={e => set('price_per_week', e.target.value)} placeholder="$450 per week" />
+                  <Input value={config.price_per_week} onChange={e => set('price_per_week', e.target.value)} placeholder="$330 per week" />
                 </div>
                 <div className="space-y-1.5">
                   <Label className={labelCls}>Registration URL</Label>

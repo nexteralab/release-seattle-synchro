@@ -22,7 +22,7 @@ export async function getSummerCampData(): Promise<SummerCampData> {
         },
       ],
       pricing: {
-        perWeek: '$450 per week',
+        perWeek: '$330 per week',
       },
     },
     requirements: [

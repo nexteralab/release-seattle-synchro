@@ -14,7 +14,7 @@ export const summerCampConfig = sqliteTable('summer_camp_config', {
   dailySchedule:  text('daily_schedule').notNull(),// ej: '9:00 AM – 11:00 AM'
 
   // Precio
-  pricePerWeek:   text('price_per_week').notNull(),// ej: '$450 per week'
+  pricePerWeek:   text('price_per_week').notNull(),// ej: '$330 per week'
   priceNote:      text('price_note'),              // nota opcional sobre el precio
 
   isActive:       integer('is_active', { mode: 'boolean' }).notNull().default(true),
