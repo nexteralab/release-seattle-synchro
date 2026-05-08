@@ -6,12 +6,9 @@ import { usePostAnalytics } from '#/hooks/use-post-analytics'
 import { BlogPostContent } from './components/BlogPostContent'
 import type { Post } from '#/features/admin/blogs/services/posts.service'
 import {
-  blurUp,
   blurUpWithDelay,
   kenBurnsSlow,
   slideLeft,
-  staggerContainer,
-  DEFAULT_VIEWPORT,
 } from '#/lib/animations'
 
 interface Props {
@@ -139,13 +136,10 @@ export function BlogPostPage({ post }: Props) {
           {/* Content */}
           <motion.div
             initial="hidden"
-            whileInView="visible"
-            viewport={DEFAULT_VIEWPORT}
-            variants={staggerContainer(0.1)}
+            animate="visible"
+            variants={blurUpWithDelay(0.35)}
           >
-            <motion.div variants={blurUp}>
-              <BlogPostContent html={post.content ?? ''} />
-            </motion.div>
+            <BlogPostContent html={post.content ?? ''} />
           </motion.div>
 
         </div>
