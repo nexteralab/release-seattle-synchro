@@ -28,23 +28,20 @@ export function StoreFooter() {
                             Empowering athletes through the unique blend of swimming, dance, and gymnastics. Join the Northwest's premier artistic swimming community.
                         </p>
                         <div className="flex gap-6">
-                            <a href="#" className="text-[#737373] hover:text-[#737373] transition-colors">
+                            <a href="https://www.instagram.com/seattle_synchro/" target="_blank" rel="noopener noreferrer" className="text-[#737373] hover:text-[#737373] transition-colors">
                                 <svg className="size-6" fill="none" viewBox="0 0 24 24">
                                     <path d={svgPaths.p4fdb300} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
                                     <path d={svgPaths.p39557800} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
                                     <path d="M17.5 6.5H17.51" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
                                 </svg>
                             </a>
-                            <a href="#" className="text-[#737373] hover:text-[#737373] transition-colors">
+                            <a href="https://www.facebook.com/profile.php?id=100034431865593" target="_blank" rel="noopener noreferrer" className="text-[#737373] hover:text-[#737373] transition-colors">
                                 <svg className="size-6" fill="none" viewBox="0 0 24 24">
                                     <path d={svgPaths.p3d19f300} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
                                 </svg>
                             </a>
-                            <a href="#" className="text-[#737373] hover:text-[#737373] transition-colors">
-                                <svg className="size-6" fill="none" viewBox="0 0 24 24">
-                                    <path d={svgPaths.p2a798400} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-                                    <path d="M10 15L15 12L10 9V15Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-                                </svg>
+                            <a href="https://x.com/SeattleSynchro" target="_blank" rel="noopener noreferrer" className="text-[#737373] hover:text-[#737373] transition-colors">
+                                <span className="text-[#737373] hover:text-[#737373] transition-colors text-3xl">𝕏</span>
                             </a>
                         </div>
                     </div>
