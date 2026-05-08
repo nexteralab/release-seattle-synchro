@@ -27,7 +27,7 @@ export function StoreFooter() {
                         <p className="font-medium text-[#737373] text-[16px] leading-[26px] max-w-sm mb-8">
                             Empowering athletes through the unique blend of swimming, dance, and gymnastics. Join the Northwest's premier artistic swimming community.
                         </p>
-                        <div className="flex gap-6">
+                        <div className="flex gap-6 items-center">
                             <a href="https://www.instagram.com/seattle_synchro/" target="_blank" rel="noopener noreferrer" className="text-[#737373] hover:text-[#737373] transition-colors">
                                 <svg className="size-6" fill="none" viewBox="0 0 24 24">
                                     <path d={svgPaths.p4fdb300} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
