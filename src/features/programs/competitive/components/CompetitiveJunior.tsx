@@ -43,15 +43,14 @@ export function CompetitiveJunior() {
           </div>
         </div>
 
-        <div className="relative bg-[#0A0A67] p-8 text-white pb-12"
-          style={{
-            backgroundImage: `url(${readyToJoin})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'right -20px bottom 0px',
-            backgroundSize: 'auto 60%'
-          }}  >
-          <div className="absolute inset-0 bg-[#0A0A67]/60" aria-hidden="true" />
-          <div className="relative flex flex-col gap-4">
+        <div className="relative overflow-hidden bg-[#0A0A67] text-white">
+          <img
+            src={readyToJoin}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none select-none absolute right-0 bottom-[-40px] md:bottom-[-60px] w-80 sm:w-80 md:w-96 lg:w-[28rem] h-auto opacity-60 md:opacity-70"
+          />
+          <div className="relative flex flex-col gap-4 p-6 md:p-8 pb-52 sm:pb-[12rem] md:pb-12 md:pr-[26rem] lg:pr-[30rem]">
             <h3 className="font-bold text-white text-[20px] tracking-[-1px] uppercase mb-4">
               Program Highlights
             </h3>

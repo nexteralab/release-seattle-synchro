@@ -22,10 +22,10 @@ export function RecreationalSharksMermaids() {
               Contact Us
             </Link>
           </div>
-          <p className="text-secondary text-[16px] md:text-[18px] leading-[26px]">
-            The Little Mermaids is the continuation of Sea Star. It is a hybrid program that transitions between recreational to beginner. The classes are specially designed for our young athletes age 5 to 11. They work on strengthening their swimming skills while learning synchro basics and a short routine to music. This is a non competitive program that runs from March to June. Members of this team will have the opportunity to perform the routine they learn throughout the season at our club's celebration swim on June 7th.
+          <p className="text-[#171717] text-[16px] md:text-[18px] leading-[26px]">
+            The Little Mermaids is the continuation of Sea Stars Program. It is a hybrid program that transitions between recreational to beginner. The classes are specially designed for our young athletes age 5 to 11. They work on strengthening their swimming skills while learning synchro basics and a short routine to music. This is a non competitive program that runs from March to June. Members of this team will have the opportunity to perform the routine they learn throughout the season at our club's celebration swim on June 7th.
           </p>
-          <p className="text-secondary text-[16px] md:text-[18px] leading-[26px]">
+          <p className="text-[#171717] text-[16px] md:text-[18px] leading-[26px]">
             Even though mermaids is our recreational program, it is important that the swimmers are able to swim independently and be safe in water.
           </p>
         </div>
@@ -42,10 +42,10 @@ export function RecreationalSharksMermaids() {
                 <h4 className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase mb-2">
                   Workout Days / Times
                 </h4>
-                <p className="text-secondary text-[16px] md:text-[18px] leading-[26px]">
+                <p className="text-[#737373] text-[16px] md:text-[18px] leading-[26px]">
                   Saturdays 11:00am – 11:50am
                 </p>
-                <p className="text-secondary text-[14px] italic mt-2">
+                <p className="text-[#737373] text-[14px] mt-2">
                   No class Friday May 15th. Last class June 5th.
                 </p>
               </div>
@@ -53,10 +53,10 @@ export function RecreationalSharksMermaids() {
                 <h4 className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase mb-2">
                   Cost
                 </h4>
-                <p className="text-secondary text-[16px] md:text-[18px] leading-[26px]">
+                <p className="text-[#737373] text-[16px] md:text-[18px] leading-[26px]">
                   $50 registration fee + $60 March dues
                 </p>
-                <p className="text-secondary text-[14px] italic mt-2">
+                <p className="text-[#737373] text-[14px] mt-2">
                   Pool fees should be covered through one payment to the booster club (approximately $280)
                 </p>
               </div>
@@ -67,7 +67,7 @@ export function RecreationalSharksMermaids() {
             <h3 className="font-bold text-secondary text-[16px] md:text-[20px] tracking-[-1px] uppercase mb-8">
               Required Swimming Skills
             </h3>
-            <ul className="text-secondary text-[16px] md:text-[18px] leading-[26px] space-y-2">
+            <ul className="text-[#737373] text-[16px] md:text-[18px] leading-[26px] space-y-2">
               <li>• Swimmers must be safe in water and swim independently</li>
               <li>• 2 laps of crawl</li>
               <li>• 2 laps of breaststroke</li>
@@ -77,10 +77,14 @@ export function RecreationalSharksMermaids() {
             </ul>
           </div>
         </div>
-        <div className="relative mt-8 bg-[#0A0A67] p-6 md:p-10 text-white overflow-hidden min-h-[220px]">
-          {/* Content — capped width on desktop to leave room for the illustration */}
-
-          <div className="relative flex flex-col gap-4">
+        <div className="relative mt-8 overflow-hidden bg-[#0A0A67] text-white">
+          <img
+            src={readyToJoin}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none select-none absolute right-0 bottom-[-40px] md:bottom-[-60px] w-80 sm:w-80 md:w-96 lg:w-[28rem] h-auto opacity-60 md:opacity-70"
+          />
+          <div className="relative flex flex-col gap-4 p-6 md:p-10 pb-60 sm:pb-[10rem] md:pb-12 md:pr-[26rem] lg:pr-[30rem]">
             <h3 className="font-bold text-white text-[20px] tracking-[-1px] uppercase mb-4">
               Unique Opportunity
             </h3>
@@ -103,15 +107,6 @@ export function RecreationalSharksMermaids() {
                 </li>
               ))}
             </ul>
-
-            {/* Decorative illustration — absolute bottom-right, hidden on mobile */}
-            <img
-              src={readyToJoin}
-              alt=""
-              aria-hidden="true"
-              className="hidden md:block absolute bottom-[-100px] right-[-40px] h-full w-auto object-contain object-bottom pointer-events-none opacity-70"
-            />
-
           </div>
         </div>
       </div>
@@ -129,7 +124,7 @@ export function RecreationalSeaStars() {
               id="seastar-heading"
               className="font-bold text-primary text-[48px] tracking-[-2.4px] uppercase"
             >
-              Sharks & Mermaids
+              Sea stars
             </h2>
             <Link
               to="/contact-us"
@@ -139,10 +134,7 @@ export function RecreationalSeaStars() {
             </Link>
           </div>
           <p className="text-secondary text-[16px] md:text-[18px] leading-[26px]">
-            The Little Mermaids is the continuation of Sea Star. It is a hybrid program that transitions between recreational to beginner. The classes are specially designed for our young athletes age 5 to 11. They work on strengthening their swimming skills while learning synchro basics and a short routine to music. This is a non competitive program that runs from March to June. Members of this team will have the opportunity to perform the routine they learn throughout the season at our club's celebration swim on June 7th.
-          </p>
-          <p className="text-secondary text-[16px] md:text-[18px] leading-[26px]">
-            Even though mermaids is our recreational program, it is important that the swimmers are able to swim independently and be safe in water.
+            Sea Star is our non-competitive/recreational program. Lessons run in 8 week sessions from January-June. This program is for kids who have mastered the basic strokes but have no experience in Artistic Swimming. An athlete should be able to swim two laps of crawl stroke and breaststroke as well as feel comfortable floating on his/her back.
           </p>
         </div>
 
@@ -158,10 +150,10 @@ export function RecreationalSeaStars() {
                 <h4 className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase mb-2">
                   Workout Days / Times
                 </h4>
-                <p className="text-secondary text-[16px] md:text-[18px] leading-[26px]">
-                  Saturdays 11:00am – 11:50am
+                <p className="text-[#737373] text-[16px] md:text-[18px] leading-[26px]">
+                  Fridays 4:00-5:00pm
                 </p>
-                <p className="text-secondary text-[14px] italic mt-2">
+                <p className="text-[#737373] text-[14px] mt-2">
                   No class Friday May 15th. Last class June 5th.
                 </p>
               </div>
@@ -169,10 +161,10 @@ export function RecreationalSeaStars() {
                 <h4 className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase mb-2">
                   Cost
                 </h4>
-                <p className="text-secondary text-[16px] md:text-[18px] leading-[26px]">
+                <p className="text-[#737373] text-[16px] md:text-[18px] leading-[26px]">
                   $50 registration fee + $60 March dues
                 </p>
-                <p className="text-secondary text-[14px] italic mt-2">
+                <p className="text-[#737373] text-[14px] mt-2">
                   Pool fees should be covered through one payment to the booster club (approximately $280)
                 </p>
               </div>
@@ -183,7 +175,7 @@ export function RecreationalSeaStars() {
             <h3 className="font-bold text-secondary text-[16px] md:text-[20px] tracking-[-1px] uppercase mb-8">
               Required Swimming Skills
             </h3>
-            <ul className="text-secondary text-[16px] md:text-[18px] leading-[26px] space-y-2">
+            <ul className="text-[#737373] text-[16px] md:text-[18px] leading-[26px] space-y-2">
               <li>• Swimmers must be safe in water and swim independently</li>
               <li>• 2 laps of crawl</li>
               <li>• 2 laps of breaststroke</li>
@@ -201,10 +193,10 @@ export function RecreationalSeaStars() {
 function DetailItem({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <h4 className="font-bold text-secondary text-[12px] md:text-[14px] tracking-[1.4px] uppercase mb-2">
+      <h4 className="font-bold text-[#737373] text-[12px] md:text-[14px] tracking-[1.4px] uppercase mb-2">
         {label}
       </h4>
-      <p className="text-secondary text-[16px] md:text-[18px] leading-[26px]">{value}</p>
+      <p className="text-[#737373] text-[16px] md:text-[18px] leading-[26px]">{value}</p>
     </div>
   )
 }
