@@ -55,7 +55,6 @@ import { Route as PublicProgramsRecreationalRouteImport } from './routes/_public
 import { Route as PublicProgramsFreeTry2026RouteImport } from './routes/_public/programs/free-try-2026'
 import { Route as PublicProgramsCompetitiveRouteImport } from './routes/_public/programs/competitive'
 import { Route as PublicProgramsBeginnerRouteImport } from './routes/_public/programs/beginner'
-import { Route as PublicBoosterVolunteerRouteImport } from './routes/_public/booster/volunteer'
 import { Route as PublicBoosterFundraisingRouteImport } from './routes/_public/booster/fundraising'
 import { Route as PublicBoosterDonateRouteImport } from './routes/_public/booster/donate'
 import { Route as PublicAthletesSportPsychologyRouteImport } from './routes/_public/athletes/sport-psychology'
@@ -301,11 +300,6 @@ const PublicProgramsBeginnerRoute = PublicProgramsBeginnerRouteImport.update({
   path: '/programs/beginner',
   getParentRoute: () => PublicRoute,
 } as any)
-const PublicBoosterVolunteerRoute = PublicBoosterVolunteerRouteImport.update({
-  id: '/booster/volunteer',
-  path: '/booster/volunteer',
-  getParentRoute: () => PublicRoute,
-} as any)
 const PublicBoosterFundraisingRoute =
   PublicBoosterFundraisingRouteImport.update({
     id: '/booster/fundraising',
@@ -394,7 +388,6 @@ export interface FileRoutesByFullPath {
   '/athletes/sport-psychology': typeof PublicAthletesSportPsychologyRoute
   '/booster/donate': typeof PublicBoosterDonateRoute
   '/booster/fundraising': typeof PublicBoosterFundraisingRoute
-  '/booster/volunteer': typeof PublicBoosterVolunteerRoute
   '/programs/beginner': typeof PublicProgramsBeginnerRoute
   '/programs/competitive': typeof PublicProgramsCompetitiveRoute
   '/programs/free-try-2026': typeof PublicProgramsFreeTry2026Route
@@ -447,7 +440,6 @@ export interface FileRoutesByTo {
   '/athletes/sport-psychology': typeof PublicAthletesSportPsychologyRoute
   '/booster/donate': typeof PublicBoosterDonateRoute
   '/booster/fundraising': typeof PublicBoosterFundraisingRoute
-  '/booster/volunteer': typeof PublicBoosterVolunteerRoute
   '/programs/beginner': typeof PublicProgramsBeginnerRoute
   '/programs/competitive': typeof PublicProgramsCompetitiveRoute
   '/programs/free-try-2026': typeof PublicProgramsFreeTry2026Route
@@ -508,7 +500,6 @@ export interface FileRoutesById {
   '/_public/athletes/sport-psychology': typeof PublicAthletesSportPsychologyRoute
   '/_public/booster/donate': typeof PublicBoosterDonateRoute
   '/_public/booster/fundraising': typeof PublicBoosterFundraisingRoute
-  '/_public/booster/volunteer': typeof PublicBoosterVolunteerRoute
   '/_public/programs/beginner': typeof PublicProgramsBeginnerRoute
   '/_public/programs/competitive': typeof PublicProgramsCompetitiveRoute
   '/_public/programs/free-try-2026': typeof PublicProgramsFreeTry2026Route
@@ -569,7 +560,6 @@ export interface FileRouteTypes {
     | '/athletes/sport-psychology'
     | '/booster/donate'
     | '/booster/fundraising'
-    | '/booster/volunteer'
     | '/programs/beginner'
     | '/programs/competitive'
     | '/programs/free-try-2026'
@@ -622,7 +612,6 @@ export interface FileRouteTypes {
     | '/athletes/sport-psychology'
     | '/booster/donate'
     | '/booster/fundraising'
-    | '/booster/volunteer'
     | '/programs/beginner'
     | '/programs/competitive'
     | '/programs/free-try-2026'
@@ -682,7 +671,6 @@ export interface FileRouteTypes {
     | '/_public/athletes/sport-psychology'
     | '/_public/booster/donate'
     | '/_public/booster/fundraising'
-    | '/_public/booster/volunteer'
     | '/_public/programs/beginner'
     | '/_public/programs/competitive'
     | '/_public/programs/free-try-2026'
@@ -1054,13 +1042,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicProgramsBeginnerRouteImport
       parentRoute: typeof PublicRoute
     }
-    '/_public/booster/volunteer': {
-      id: '/_public/booster/volunteer'
-      path: '/booster/volunteer'
-      fullPath: '/booster/volunteer'
-      preLoaderRoute: typeof PublicBoosterVolunteerRouteImport
-      parentRoute: typeof PublicRoute
-    }
     '/_public/booster/fundraising': {
       id: '/_public/booster/fundraising'
       path: '/booster/fundraising'
@@ -1246,7 +1227,6 @@ interface PublicRouteChildren {
   PublicAthletesSportPsychologyRoute: typeof PublicAthletesSportPsychologyRoute
   PublicBoosterDonateRoute: typeof PublicBoosterDonateRoute
   PublicBoosterFundraisingRoute: typeof PublicBoosterFundraisingRoute
-  PublicBoosterVolunteerRoute: typeof PublicBoosterVolunteerRoute
   PublicProgramsBeginnerRoute: typeof PublicProgramsBeginnerRoute
   PublicProgramsCompetitiveRoute: typeof PublicProgramsCompetitiveRoute
   PublicProgramsFreeTry2026Route: typeof PublicProgramsFreeTry2026Route
@@ -1274,7 +1254,6 @@ const PublicRouteChildren: PublicRouteChildren = {
   PublicAthletesSportPsychologyRoute: PublicAthletesSportPsychologyRoute,
   PublicBoosterDonateRoute: PublicBoosterDonateRoute,
   PublicBoosterFundraisingRoute: PublicBoosterFundraisingRoute,
-  PublicBoosterVolunteerRoute: PublicBoosterVolunteerRoute,
   PublicProgramsBeginnerRoute: PublicProgramsBeginnerRoute,
   PublicProgramsCompetitiveRoute: PublicProgramsCompetitiveRoute,
   PublicProgramsFreeTry2026Route: PublicProgramsFreeTry2026Route,

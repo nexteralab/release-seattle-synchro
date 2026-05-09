@@ -1,11 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { DonatePage } from "#/features/booster/donate/DonatePage";
 
 export const Route = createFileRoute("/_public/booster/donate")({
-  component: () => (
-    <main className="py-24 px-12 md:px-48 max-w-screen-2xl mx-auto">
-      <h1 className="font-['Space_Grotesk'] font-bold text-[#0A0A67] text-[48px] tracking-[-2.4px] uppercase">
-        Donate
-      </h1>
-    </main>
-  ),
+  component: DonatePage,
 });

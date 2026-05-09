@@ -39,7 +39,7 @@ export function CtaBanner({
 }: Props) {
   return (
     <section
-      className="relative px-6 pt-10 pb-[300px] md:px-20 md:pt-24 md:pb-24 bg-[#0A0A67] overflow-hidden min-h-[300px]"
+      className="relative px-6 pt-10 pb-[300px] md:px-20 md:pt-24 md:pb-24 bg-secondary overflow-hidden min-h-[300px]"
       aria-label={heading}
     >
       <div className="relative z-10 flex flex-col items-center text-center gap-6 max-w-screen-lg mx-auto">
