@@ -164,7 +164,7 @@ export function NavbarHomePage() {
 
               {/* CTA */}
               <Link
-                to="/programs/free-try-2026"
+                to="/programs/free-try"
                 className="group inline-flex items-center gap-2 bg-[#0A0A67] text-white px-5 py-2 rounded-full font-['Space_Grotesk'] font-bold text-[12px] tracking-[1.4px] uppercase hover:bg-[#030213] transition-all duration-200"
               >
                 Free Try
@@ -281,7 +281,7 @@ export function NavbarHomePage() {
                 className="mt-8"
               >
                 <Link
-                  to="/programs/free-try-2026"
+                  to="/programs/free-try"
                   className="flex items-center justify-center gap-2 w-full py-4 font-bold text-[13px] tracking-[2px] uppercase bg-[#0A0A67] text-white"
                 >
                   Free Try

@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { getFreeTryData, FreeTryPage } from '#/features/programs/free-try'
 
 const SITE_URL = 'https://seattlesynchro.com'
-const PAGE_URL = `${SITE_URL}/programs/free-try-2026`
+const PAGE_URL = `${SITE_URL}/programs/free-try`
 const OG_IMAGE = `${SITE_URL}/images/image_free_try.png`
 const TITLE = 'Free Artistic Swimming Trial 2026 | Seattle Synchro'
 const DESCRIPTION =
@@ -52,7 +52,7 @@ const EVENT_JSONLD = JSON.stringify({
   },
 })
 
-export const Route = createFileRoute('/_public/programs/free-try-2026')({
+export const Route = createFileRoute('/_public/programs/free-try')({
   loader: () => getFreeTryData(),
   head: () => ({
     meta: [

@@ -7,6 +7,8 @@ const OG_IMAGE = `${SITE_URL}/images/header.png`;
 const TITLE = "Seattle Synchro | Premier Artistic Swimming Team";
 const DESCRIPTION =
   "Seattle Synchro is the Pacific Northwest's premier artistic swimming team. Competitive, recreational, beginner and summer camp programs in Washington since 2001.";
+const KEYWORDS =
+  "artistic swimming, synchronized swimming, Seattle, Bellevue, Pacific Northwest, Washington, swim team, competitive swimming, kids swimming, summer camp, water sports";
 
 const ORGANIZATION_JSONLD = JSON.stringify({
   "@context": "https://schema.org",
@@ -37,6 +39,7 @@ export const Route = createFileRoute("/_public/")({
       { title: TITLE },
       { name: "description", content: DESCRIPTION },
       { name: "robots", content: "index, follow" },
+      { name: "keywords", content: KEYWORDS },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },

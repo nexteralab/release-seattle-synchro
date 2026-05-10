@@ -1,5 +1,46 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { getSummerCampContent, SummerCampPage } from '#/features/programs/summer-camp' 
+import { getSummerCampContent, SummerCampPage } from '#/features/programs/summer-camp'
+
+const SITE_URL = 'https://seattlesynchro.com'
+const PAGE_URL = `${SITE_URL}/programs/summer-camp`
+const OG_IMAGE = `${SITE_URL}/images/hero_summer.webp`
+const TITLE = 'Summer Camp 2026 | Seattle Synchro'
+const DESCRIPTION =
+  'Artistic swimming summer camp for kids 6–11 in Bellevue, WA. Fun, creative and skill-building sessions with experienced coaches. Limited spots — register now.'
+const KEYWORDS =
+  'summer camp, artistic swimming camp, kids summer camp 2026, Bellevue WA camp, synchronized swimming camp, ages 6-11, Seattle summer activities'
+
+const CAMP_JSONLD = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'SportsEvent',
+  name: 'Seattle Synchro Summer Camp 2026',
+  description: DESCRIPTION,
+  url: PAGE_URL,
+  image: OG_IMAGE,
+  sport: 'Artistic Swimming',
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: {
+    '@type': 'Place',
+    name: 'Bellevue, WA',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Bellevue',
+      addressRegion: 'WA',
+      addressCountry: 'US',
+    },
+  },
+  organizer: {
+    '@type': 'SportsOrganization',
+    name: 'Seattle Synchro',
+    url: SITE_URL,
+  },
+  audience: {
+    '@type': 'PeopleAudience',
+    suggestedMinAge: 6,
+    suggestedMaxAge: 11,
+  },
+})
 
 // Cuando conectes la DB, el loader también traerá el SEO:
 // import { getProgramSeo } from '#/features/programs/seo'
@@ -11,41 +52,29 @@ import { getSummerCampContent, SummerCampPage } from '#/features/programs/summer
 //   ])
 //   return { data, seo }
 // },
-//
-// head: ({ loaderData }) => ({
-//   meta: [
-//     { title: loaderData.seo.metaTitle },
-//     { name: 'description', content: loaderData.seo.metaDescription },
-//     { name: 'keywords',    content: loaderData.seo.keywords ?? '' },
-//     { name: 'robots',      content: loaderData.seo.robots },
-//     { property: 'og:title',       content: loaderData.seo.ogTitle ?? loaderData.seo.metaTitle },
-//     { property: 'og:description', content: loaderData.seo.ogDescription ?? loaderData.seo.metaDescription },
-//     { property: 'og:image',       content: loaderData.seo.ogImageUrl ?? '' },
-//     { property: 'og:type',        content: loaderData.seo.ogType },
-//     { name: 'twitter:card',        content: loaderData.seo.twitterCard },
-//     { name: 'twitter:title',       content: loaderData.seo.twitterTitle ?? loaderData.seo.metaTitle },
-//     { name: 'twitter:description', content: loaderData.seo.twitterDescription ?? loaderData.seo.metaDescription },
-//   ],
-//   links: loaderData.seo.canonicalUrl
-//     ? [{ rel: 'canonical', href: loaderData.seo.canonicalUrl }]
-//     : [],
-//   scripts: loaderData.seo.schemaJson
-//     ? [{ type: 'application/ld+json', children: loaderData.seo.schemaJson }]
-//     : [],
-// }),
 
 export const Route = createFileRoute('/_public/programs/summer-camp')({
   loader: () => getSummerCampContent(),
   head: () => ({
     meta: [
-      { title: 'Summer Camp 2026 | Seattle Synchro' },
-      { name: 'description', content: 'Artistic KJAJKSDKAKSD summer camp for kids 6–11 in Bellevue, WA. Fun, creative, and skill-building. Limited spots — register now.' },
+      { title: TITLE },
+      { name: 'description', content: DESCRIPTION },
       { name: 'robots', content: 'index, follow' },
-      { property: 'og:title',       content: 'Summer Camp 2026 | Seattle Synchro' },
-      { property: 'og:description', content: 'Artistic KJAJKSDKAKSD summer camp for kids 6–11 in Bellevue, WA.' },
-      { property: 'og:type',        content: 'website' },
+      { name: 'keywords', content: KEYWORDS },
+      { property: 'og:title', content: TITLE },
+      { property: 'og:description', content: DESCRIPTION },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: PAGE_URL },
+      { property: 'og:image', content: OG_IMAGE },
+      { property: 'og:site_name', content: 'Seattle Synchro' },
+      { property: 'og:locale', content: 'en_US' },
       { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: TITLE },
+      { name: 'twitter:description', content: DESCRIPTION },
+      { name: 'twitter:image', content: OG_IMAGE },
     ],
+    links: [{ rel: 'canonical', href: PAGE_URL }],
+    scripts: [{ type: 'application/ld+json', children: CAMP_JSONLD }],
   }),
   component: RouteComponent,
 })

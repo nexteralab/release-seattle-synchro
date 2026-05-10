@@ -1,8 +1,54 @@
 import ShowPage from "#/features/programs/shows";
 import { createFileRoute } from "@tanstack/react-router";
 
+const SITE_URL = "https://seattlesynchro.com";
+const PAGE_URL = `${SITE_URL}/programs/shows`;
+const OG_IMAGE = `${SITE_URL}/images/shows_hero.jpg`;
+const TITLE = "Artistic Swimming Shows | Seattle Synchro";
+const DESCRIPTION =
+  "Watch Seattle Synchro's artistic swimming performances and exhibitions. Choreographed routines that combine athleticism, music and storytelling for the Pacific Northwest community.";
+const KEYWORDS =
+  "artistic swimming shows, synchronized swimming performance, Seattle swim exhibition, choreographed routines, water performance, Pacific Northwest, Seattle Synchro shows";
+
+const SCHEMA_JSONLD = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: "Seattle Synchro Artistic Swimming Shows",
+  description: DESCRIPTION,
+  url: PAGE_URL,
+  image: OG_IMAGE,
+  inLanguage: "en-US",
+  creator: {
+    "@type": "SportsOrganization",
+    name: "Seattle Synchro",
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo.png`,
+  },
+  genre: "Artistic Swimming",
+  about: { "@type": "Thing", name: "Choreographed water performance" },
+});
+
 export const Route = createFileRoute("/_public/programs/shows")({
-  component: () => (
-    <ShowPage />
-  ),
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { name: "robots", content: "index, follow" },
+      { name: "keywords", content: KEYWORDS },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: PAGE_URL },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:site_name", content: "Seattle Synchro" },
+      { property: "og:locale", content: "en_US" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESCRIPTION },
+      { name: "twitter:image", content: OG_IMAGE },
+    ],
+    links: [{ rel: "canonical", href: PAGE_URL }],
+    scripts: [{ type: "application/ld+json", children: SCHEMA_JSONLD }],
+  }),
+  component: () => <ShowPage />,
 });

@@ -47,12 +47,10 @@ import { Route as AppBlogsNewRouteImport } from './routes/app/blogs.new'
 import { Route as AppBlogsPostIdRouteImport } from './routes/app/blogs.$postId'
 import { Route as PublicTeamCoachesRouteImport } from './routes/_public/team/coaches'
 import { Route as PublicTeamAboutUsRouteImport } from './routes/_public/team/about-us'
-import { Route as PublicStoreTeamGearRouteImport } from './routes/_public/store/team-gear'
-import { Route as PublicStoreSuitsForRentRouteImport } from './routes/_public/store/suits-for-rent'
 import { Route as PublicProgramsSummerCampRouteImport } from './routes/_public/programs/summer-camp'
 import { Route as PublicProgramsShowsRouteImport } from './routes/_public/programs/shows'
 import { Route as PublicProgramsRecreationalRouteImport } from './routes/_public/programs/recreational'
-import { Route as PublicProgramsFreeTry2026RouteImport } from './routes/_public/programs/free-try-2026'
+import { Route as PublicProgramsFreeTryRouteImport } from './routes/_public/programs/free-try'
 import { Route as PublicProgramsCompetitiveRouteImport } from './routes/_public/programs/competitive'
 import { Route as PublicProgramsBeginnerRouteImport } from './routes/_public/programs/beginner'
 import { Route as PublicBoosterFundraisingRouteImport } from './routes/_public/booster/fundraising'
@@ -256,16 +254,6 @@ const PublicTeamAboutUsRoute = PublicTeamAboutUsRouteImport.update({
   path: '/team/about-us',
   getParentRoute: () => PublicRoute,
 } as any)
-const PublicStoreTeamGearRoute = PublicStoreTeamGearRouteImport.update({
-  id: '/store/team-gear',
-  path: '/store/team-gear',
-  getParentRoute: () => PublicRoute,
-} as any)
-const PublicStoreSuitsForRentRoute = PublicStoreSuitsForRentRouteImport.update({
-  id: '/store/suits-for-rent',
-  path: '/store/suits-for-rent',
-  getParentRoute: () => PublicRoute,
-} as any)
 const PublicProgramsSummerCampRoute =
   PublicProgramsSummerCampRouteImport.update({
     id: '/programs/summer-camp',
@@ -283,12 +271,11 @@ const PublicProgramsRecreationalRoute =
     path: '/programs/recreational',
     getParentRoute: () => PublicRoute,
   } as any)
-const PublicProgramsFreeTry2026Route =
-  PublicProgramsFreeTry2026RouteImport.update({
-    id: '/programs/free-try-2026',
-    path: '/programs/free-try-2026',
-    getParentRoute: () => PublicRoute,
-  } as any)
+const PublicProgramsFreeTryRoute = PublicProgramsFreeTryRouteImport.update({
+  id: '/programs/free-try',
+  path: '/programs/free-try',
+  getParentRoute: () => PublicRoute,
+} as any)
 const PublicProgramsCompetitiveRoute =
   PublicProgramsCompetitiveRouteImport.update({
     id: '/programs/competitive',
@@ -390,12 +377,10 @@ export interface FileRoutesByFullPath {
   '/booster/fundraising': typeof PublicBoosterFundraisingRoute
   '/programs/beginner': typeof PublicProgramsBeginnerRoute
   '/programs/competitive': typeof PublicProgramsCompetitiveRoute
-  '/programs/free-try-2026': typeof PublicProgramsFreeTry2026Route
+  '/programs/free-try': typeof PublicProgramsFreeTryRoute
   '/programs/recreational': typeof PublicProgramsRecreationalRoute
   '/programs/shows': typeof PublicProgramsShowsRoute
   '/programs/summer-camp': typeof PublicProgramsSummerCampRoute
-  '/store/suits-for-rent': typeof PublicStoreSuitsForRentRoute
-  '/store/team-gear': typeof PublicStoreTeamGearRoute
   '/team/about-us': typeof PublicTeamAboutUsRoute
   '/team/coaches': typeof PublicTeamCoachesRoute
   '/app/blogs/$postId': typeof AppBlogsPostIdRoute
@@ -442,12 +427,10 @@ export interface FileRoutesByTo {
   '/booster/fundraising': typeof PublicBoosterFundraisingRoute
   '/programs/beginner': typeof PublicProgramsBeginnerRoute
   '/programs/competitive': typeof PublicProgramsCompetitiveRoute
-  '/programs/free-try-2026': typeof PublicProgramsFreeTry2026Route
+  '/programs/free-try': typeof PublicProgramsFreeTryRoute
   '/programs/recreational': typeof PublicProgramsRecreationalRoute
   '/programs/shows': typeof PublicProgramsShowsRoute
   '/programs/summer-camp': typeof PublicProgramsSummerCampRoute
-  '/store/suits-for-rent': typeof PublicStoreSuitsForRentRoute
-  '/store/team-gear': typeof PublicStoreTeamGearRoute
   '/team/about-us': typeof PublicTeamAboutUsRoute
   '/team/coaches': typeof PublicTeamCoachesRoute
   '/app/blogs/$postId': typeof AppBlogsPostIdRoute
@@ -502,12 +485,10 @@ export interface FileRoutesById {
   '/_public/booster/fundraising': typeof PublicBoosterFundraisingRoute
   '/_public/programs/beginner': typeof PublicProgramsBeginnerRoute
   '/_public/programs/competitive': typeof PublicProgramsCompetitiveRoute
-  '/_public/programs/free-try-2026': typeof PublicProgramsFreeTry2026Route
+  '/_public/programs/free-try': typeof PublicProgramsFreeTryRoute
   '/_public/programs/recreational': typeof PublicProgramsRecreationalRoute
   '/_public/programs/shows': typeof PublicProgramsShowsRoute
   '/_public/programs/summer-camp': typeof PublicProgramsSummerCampRoute
-  '/_public/store/suits-for-rent': typeof PublicStoreSuitsForRentRoute
-  '/_public/store/team-gear': typeof PublicStoreTeamGearRoute
   '/_public/team/about-us': typeof PublicTeamAboutUsRoute
   '/_public/team/coaches': typeof PublicTeamCoachesRoute
   '/app/blogs/$postId': typeof AppBlogsPostIdRoute
@@ -562,12 +543,10 @@ export interface FileRouteTypes {
     | '/booster/fundraising'
     | '/programs/beginner'
     | '/programs/competitive'
-    | '/programs/free-try-2026'
+    | '/programs/free-try'
     | '/programs/recreational'
     | '/programs/shows'
     | '/programs/summer-camp'
-    | '/store/suits-for-rent'
-    | '/store/team-gear'
     | '/team/about-us'
     | '/team/coaches'
     | '/app/blogs/$postId'
@@ -614,12 +593,10 @@ export interface FileRouteTypes {
     | '/booster/fundraising'
     | '/programs/beginner'
     | '/programs/competitive'
-    | '/programs/free-try-2026'
+    | '/programs/free-try'
     | '/programs/recreational'
     | '/programs/shows'
     | '/programs/summer-camp'
-    | '/store/suits-for-rent'
-    | '/store/team-gear'
     | '/team/about-us'
     | '/team/coaches'
     | '/app/blogs/$postId'
@@ -673,12 +650,10 @@ export interface FileRouteTypes {
     | '/_public/booster/fundraising'
     | '/_public/programs/beginner'
     | '/_public/programs/competitive'
-    | '/_public/programs/free-try-2026'
+    | '/_public/programs/free-try'
     | '/_public/programs/recreational'
     | '/_public/programs/shows'
     | '/_public/programs/summer-camp'
-    | '/_public/store/suits-for-rent'
-    | '/_public/store/team-gear'
     | '/_public/team/about-us'
     | '/_public/team/coaches'
     | '/app/blogs/$postId'
@@ -986,20 +961,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicTeamAboutUsRouteImport
       parentRoute: typeof PublicRoute
     }
-    '/_public/store/team-gear': {
-      id: '/_public/store/team-gear'
-      path: '/store/team-gear'
-      fullPath: '/store/team-gear'
-      preLoaderRoute: typeof PublicStoreTeamGearRouteImport
-      parentRoute: typeof PublicRoute
-    }
-    '/_public/store/suits-for-rent': {
-      id: '/_public/store/suits-for-rent'
-      path: '/store/suits-for-rent'
-      fullPath: '/store/suits-for-rent'
-      preLoaderRoute: typeof PublicStoreSuitsForRentRouteImport
-      parentRoute: typeof PublicRoute
-    }
     '/_public/programs/summer-camp': {
       id: '/_public/programs/summer-camp'
       path: '/programs/summer-camp'
@@ -1021,11 +982,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicProgramsRecreationalRouteImport
       parentRoute: typeof PublicRoute
     }
-    '/_public/programs/free-try-2026': {
-      id: '/_public/programs/free-try-2026'
-      path: '/programs/free-try-2026'
-      fullPath: '/programs/free-try-2026'
-      preLoaderRoute: typeof PublicProgramsFreeTry2026RouteImport
+    '/_public/programs/free-try': {
+      id: '/_public/programs/free-try'
+      path: '/programs/free-try'
+      fullPath: '/programs/free-try'
+      preLoaderRoute: typeof PublicProgramsFreeTryRouteImport
       parentRoute: typeof PublicRoute
     }
     '/_public/programs/competitive': {
@@ -1229,12 +1190,10 @@ interface PublicRouteChildren {
   PublicBoosterFundraisingRoute: typeof PublicBoosterFundraisingRoute
   PublicProgramsBeginnerRoute: typeof PublicProgramsBeginnerRoute
   PublicProgramsCompetitiveRoute: typeof PublicProgramsCompetitiveRoute
-  PublicProgramsFreeTry2026Route: typeof PublicProgramsFreeTry2026Route
+  PublicProgramsFreeTryRoute: typeof PublicProgramsFreeTryRoute
   PublicProgramsRecreationalRoute: typeof PublicProgramsRecreationalRoute
   PublicProgramsShowsRoute: typeof PublicProgramsShowsRoute
   PublicProgramsSummerCampRoute: typeof PublicProgramsSummerCampRoute
-  PublicStoreSuitsForRentRoute: typeof PublicStoreSuitsForRentRoute
-  PublicStoreTeamGearRoute: typeof PublicStoreTeamGearRoute
   PublicTeamAboutUsRoute: typeof PublicTeamAboutUsRoute
   PublicTeamCoachesRoute: typeof PublicTeamCoachesRoute
   PublicProgramsIndexRoute: typeof PublicProgramsIndexRoute
@@ -1256,12 +1215,10 @@ const PublicRouteChildren: PublicRouteChildren = {
   PublicBoosterFundraisingRoute: PublicBoosterFundraisingRoute,
   PublicProgramsBeginnerRoute: PublicProgramsBeginnerRoute,
   PublicProgramsCompetitiveRoute: PublicProgramsCompetitiveRoute,
-  PublicProgramsFreeTry2026Route: PublicProgramsFreeTry2026Route,
+  PublicProgramsFreeTryRoute: PublicProgramsFreeTryRoute,
   PublicProgramsRecreationalRoute: PublicProgramsRecreationalRoute,
   PublicProgramsShowsRoute: PublicProgramsShowsRoute,
   PublicProgramsSummerCampRoute: PublicProgramsSummerCampRoute,
-  PublicStoreSuitsForRentRoute: PublicStoreSuitsForRentRoute,
-  PublicStoreTeamGearRoute: PublicStoreTeamGearRoute,
   PublicTeamAboutUsRoute: PublicTeamAboutUsRoute,
   PublicTeamCoachesRoute: PublicTeamCoachesRoute,
   PublicProgramsIndexRoute: PublicProgramsIndexRoute,
