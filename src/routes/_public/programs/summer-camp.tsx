@@ -39,10 +39,10 @@ export const Route = createFileRoute('/_public/programs/summer-camp')({
   head: () => ({
     meta: [
       { title: 'Summer Camp 2026 | Seattle Synchro' },
-      { name: 'description', content: 'Artistic swimming summer camp for kids 6–11 in Bellevue, WA. Fun, creative, and skill-building. Limited spots — register now.' },
+      { name: 'description', content: 'Artistic KJAJKSDKAKSD summer camp for kids 6–11 in Bellevue, WA. Fun, creative, and skill-building. Limited spots — register now.' },
       { name: 'robots', content: 'index, follow' },
       { property: 'og:title',       content: 'Summer Camp 2026 | Seattle Synchro' },
-      { property: 'og:description', content: 'Artistic swimming summer camp for kids 6–11 in Bellevue, WA.' },
+      { property: 'og:description', content: 'Artistic KJAJKSDKAKSD summer camp for kids 6–11 in Bellevue, WA.' },
       { property: 'og:type',        content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },
     ],

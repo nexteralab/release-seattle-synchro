@@ -36,7 +36,7 @@ export function DonateDialog({ open, onClose }: Props) {
 
   const handleContinue = () => {
     if (!isValid) return
-    const url = `${BASE_PAYPAL_URL}&amount=${finalAmount}`
+    const url = `${BASE_PAYPAL_URL}&amount=${finalAmount}&no_recurring=0`
     window.open(url, '_blank', 'noopener,noreferrer')
     onClose()
   }

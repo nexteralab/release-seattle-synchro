@@ -90,9 +90,9 @@ export function Home() {
                   Washington - est 2001
                 </span>
               </div>
-              <h2 className="font-bold text-white text-[60px] md:text-[120px] tracking-[-1.8px] uppercase leading-[80px] md:leading-[100px] text-center md:text-left">
+              <h1 className="font-bold text-white text-[60px] md:text-[120px] tracking-[-1.8px] uppercase leading-[80px] md:leading-[100px] text-center md:text-left">
                 Seattle Synchro
-              </h2>
+              </h1>
               <div className="flex flex-col gap-1">
                 <p className="font-bold text-white/90 text-[18px] md:text-[25px] max-w-2xl tracking-[-0.5px] leading-[32px] text-center md:text-left">
                   The Northwest's Premier Artistic Swimming Team.
