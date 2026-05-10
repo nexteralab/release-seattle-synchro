@@ -1,3 +1,4 @@
 export { FreeTryPage } from './FreeTryPage'
 export { getFreeTryData } from './services/free-try.service'
-export type { FreeTryData, FreeTryRequirement, FreeTryLocation } from './types'
+export { freeTryQueryOptions, useFreeTry } from './hooks/use-free-try'
+export type { FreeTryData, FreeTryLocation } from './types'

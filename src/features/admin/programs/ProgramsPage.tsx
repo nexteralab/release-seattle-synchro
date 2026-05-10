@@ -1,5 +1,5 @@
 import { useNavigate } from '@tanstack/react-router'
-import { Sun, Trophy, Waves, Dumbbell, Pencil, Lock } from 'lucide-react'
+import { Sun, Trophy, Waves, Dumbbell, Sparkles, Pencil, Lock } from 'lucide-react'
 import { AdminPageHeader } from '#/features/admin/components/AdminPageHeader'
 import { Button } from '#/components/ui/button'
 
@@ -33,15 +33,25 @@ const PROGRAMS: Program[] = [
     key: 'recreational',
     icon: Waves,
     name: 'Recreational',
-    description: 'Beginner and intermediate recreational programs.',
-    status: 'coming-soon',
+    description: 'Sea Stars, Sharks & Mermaids, and Dolphins sub-programs. Edit details, coaches, schedule and pricing.',
+    route: '/app/programs/recreational',
+    status: 'active',
   },
   {
     key: 'beginner',
     icon: Dumbbell,
     name: 'Beginner',
-    description: 'Introduction to artistic swimming for new swimmers.',
-    status: 'coming-soon',
+    description: 'Novice and Intermediate teams. Edit details, coaches, schedule, dates and cost.',
+    route: '/app/programs/beginner',
+    status: 'active',
+  },
+  {
+    key: 'free-try',
+    icon: Sparkles,
+    name: 'Free Try',
+    description: 'Free trial event. Edit date, time, ages, safety note, location and required items.',
+    route: '/app/programs/free-try',
+    status: 'active',
   },
 ]
 

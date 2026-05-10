@@ -12,9 +12,8 @@ interface Props {
 export function SummerCampPage({ content }: Props) {
   return (
     <div className="w-full">
-      <SummerCampHero imageUrl={content.hero_image_url} />
+      <SummerCampHero />
       <SummerCampOverview
-        body={content.overview_body}
         details={content.details}
         sessions={content.sessions}
       />
@@ -23,7 +22,7 @@ export function SummerCampPage({ content }: Props) {
         schedule={content.details.schedule}
         pricePerWeek={content.price_per_week}
       />
-      <SummerCampRequirements requirements={content.requirements} />
+      <SummerCampRequirements />
       <CtaBanner
         heading="Ready to Dive In?"
         description="Spots fill up quickly! Register now to secure your place in our 2026 Summer Camp program."

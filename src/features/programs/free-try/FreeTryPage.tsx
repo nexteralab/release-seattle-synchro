@@ -25,7 +25,7 @@ export function FreeTryPage({ data }: Props) {
     <div className="w-full">
       <FreeTryHero nameProgram={consultDbDataFreeTry.nameProgram} />
       <FreeTryOverview data={data} />
-      <FreeTryRequirements requirements={data.requirements} />
+      <FreeTryRequirements />
       <CtaBanner
         heading="Ready to Dive In?"
         description="Spots are limited! Join us on June 7th for a free introduction to the world of artistic swimming."

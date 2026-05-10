@@ -1,13 +1,25 @@
-import type { FreeTryRequirement } from '../types'
-
-interface Props {
-  requirements: FreeTryRequirement[]
+interface Requirement {
+  name: string
+  note?: string
+  link?: string
 }
 
-export function FreeTryRequirements({ requirements }: Props) {
-  const half = Math.ceil(requirements.length / 2)
-  const left = requirements.slice(0, half)
-  const right = requirements.slice(half)
+const REQUIREMENTS: Requirement[] = [
+  { name: 'Swim Suit' },
+  { name: 'Swim Cap' },
+  { name: 'Goggles' },
+  {
+    name: 'Nose Clips',
+    note: 'Recommendations',
+    link: 'https://www.amazon.com/Hurdilen-Swimming-Waterproof-Silica-Multi-Color/dp/B07HH4HQXW/ref=sr_1_5?th=1',
+  },
+  { name: 'Towel' },
+]
+
+export function FreeTryRequirements() {
+  const half = Math.ceil(REQUIREMENTS.length / 2)
+  const left = REQUIREMENTS.slice(0, half)
+  const right = REQUIREMENTS.slice(half)
 
   return (
     <section
@@ -30,7 +42,7 @@ export function FreeTryRequirements({ requirements }: Props) {
   )
 }
 
-function RequirementList({ items }: { items: FreeTryRequirement[] }) {
+function RequirementList({ items }: { items: Requirement[] }) {
   return (
     <div className="space-y-6">
       {items.map((item) => (

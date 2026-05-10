@@ -1,6 +1,14 @@
+import { Fragment } from 'react'
 import readyToJoin from '/images/image_back.png'
 
-export function CompetitiveJunior() {
+interface Props {
+  coaches: string
+  workoutDays: string
+}
+
+export function CompetitiveJunior({ coaches, workoutDays }: Props) {
+  const coachLines = coaches.split('\n').filter(Boolean)
+
   return (
     <section className="p-6 md:px-20 md:py-24 bg-[#f5f5f5]" aria-labelledby="group-junior">
       <div className="max-w-screen-lg mx-auto space-y-12">
@@ -20,8 +28,6 @@ export function CompetitiveJunior() {
             meets a year. Many swimmers go on to train with US National Teams. Minimum age for the
             group is 14.
           </p>
-
-
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -30,7 +36,12 @@ export function CompetitiveJunior() {
               Coaches
             </h3>
             <p className="text-[#737373] text-[16px] leading-[26px]">
-              Maria Romero
+              {coachLines.map((line, i) => (
+                <Fragment key={i}>
+                  {line}
+                  {i < coachLines.length - 1 && <br />}
+                </Fragment>
+              ))}
             </p>
           </div>
           <div className="bg-white p-6 md:p-8">
@@ -38,7 +49,7 @@ export function CompetitiveJunior() {
               Workout Days
             </h3>
             <p className="text-[#737373] text-[16px] leading-[26px]">
-              3 Weekdays and Sunday morning
+              {workoutDays}
             </p>
           </div>
         </div>
@@ -101,7 +112,6 @@ export function CompetitiveJunior() {
                 <span>Minimum age: 14 years old</span>
               </li>
             </ul>
-
           </div>
         </div>
       </div>

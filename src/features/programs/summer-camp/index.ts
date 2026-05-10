@@ -5,5 +5,4 @@ export type {
   SummerCampContent,
   CampDetails,
   CampSession,
-  CampRequirement,
 } from './types'

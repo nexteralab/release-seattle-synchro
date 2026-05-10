@@ -38,7 +38,10 @@ import { Route as AppCoachesIndexRouteImport } from './routes/app/coaches.index'
 import { Route as AppBlogsIndexRouteImport } from './routes/app/blogs.index'
 import { Route as PublicProgramsIndexRouteImport } from './routes/_public/programs/index'
 import { Route as AppProgramsSummerCampRouteImport } from './routes/app/programs/summer-camp'
+import { Route as AppProgramsRecreationalRouteImport } from './routes/app/programs/recreational'
+import { Route as AppProgramsFreeTryRouteImport } from './routes/app/programs/free-try'
 import { Route as AppProgramsCompetitiveRouteImport } from './routes/app/programs/competitive'
+import { Route as AppProgramsBeginnerRouteImport } from './routes/app/programs/beginner'
 import { Route as AppNewsCreateRouteImport } from './routes/app/news/create'
 import { Route as AppNewsNewsIdRouteImport } from './routes/app/news/$newsId'
 import { Route as AppCoachesNewRouteImport } from './routes/app/coaches.new'
@@ -209,9 +212,24 @@ const AppProgramsSummerCampRoute = AppProgramsSummerCampRouteImport.update({
   path: '/summer-camp',
   getParentRoute: () => AppProgramsRouteRoute,
 } as any)
+const AppProgramsRecreationalRoute = AppProgramsRecreationalRouteImport.update({
+  id: '/recreational',
+  path: '/recreational',
+  getParentRoute: () => AppProgramsRouteRoute,
+} as any)
+const AppProgramsFreeTryRoute = AppProgramsFreeTryRouteImport.update({
+  id: '/free-try',
+  path: '/free-try',
+  getParentRoute: () => AppProgramsRouteRoute,
+} as any)
 const AppProgramsCompetitiveRoute = AppProgramsCompetitiveRouteImport.update({
   id: '/competitive',
   path: '/competitive',
+  getParentRoute: () => AppProgramsRouteRoute,
+} as any)
+const AppProgramsBeginnerRoute = AppProgramsBeginnerRouteImport.update({
+  id: '/beginner',
+  path: '/beginner',
   getParentRoute: () => AppProgramsRouteRoute,
 } as any)
 const AppNewsCreateRoute = AppNewsCreateRouteImport.update({
@@ -389,7 +407,10 @@ export interface FileRoutesByFullPath {
   '/app/coaches/new': typeof AppCoachesNewRoute
   '/app/news/$newsId': typeof AppNewsNewsIdRoute
   '/app/news/create': typeof AppNewsCreateRoute
+  '/app/programs/beginner': typeof AppProgramsBeginnerRoute
   '/app/programs/competitive': typeof AppProgramsCompetitiveRoute
+  '/app/programs/free-try': typeof AppProgramsFreeTryRoute
+  '/app/programs/recreational': typeof AppProgramsRecreationalRoute
   '/app/programs/summer-camp': typeof AppProgramsSummerCampRoute
   '/programs/': typeof PublicProgramsIndexRoute
   '/app/blogs/': typeof AppBlogsIndexRoute
@@ -439,7 +460,10 @@ export interface FileRoutesByTo {
   '/app/coaches/new': typeof AppCoachesNewRoute
   '/app/news/$newsId': typeof AppNewsNewsIdRoute
   '/app/news/create': typeof AppNewsCreateRoute
+  '/app/programs/beginner': typeof AppProgramsBeginnerRoute
   '/app/programs/competitive': typeof AppProgramsCompetitiveRoute
+  '/app/programs/free-try': typeof AppProgramsFreeTryRoute
+  '/app/programs/recreational': typeof AppProgramsRecreationalRoute
   '/app/programs/summer-camp': typeof AppProgramsSummerCampRoute
   '/programs': typeof PublicProgramsIndexRoute
   '/app/blogs': typeof AppBlogsIndexRoute
@@ -497,7 +521,10 @@ export interface FileRoutesById {
   '/app/coaches/new': typeof AppCoachesNewRoute
   '/app/news/$newsId': typeof AppNewsNewsIdRoute
   '/app/news/create': typeof AppNewsCreateRoute
+  '/app/programs/beginner': typeof AppProgramsBeginnerRoute
   '/app/programs/competitive': typeof AppProgramsCompetitiveRoute
+  '/app/programs/free-try': typeof AppProgramsFreeTryRoute
+  '/app/programs/recreational': typeof AppProgramsRecreationalRoute
   '/app/programs/summer-camp': typeof AppProgramsSummerCampRoute
   '/_public/programs/': typeof PublicProgramsIndexRoute
   '/app/blogs/': typeof AppBlogsIndexRoute
@@ -555,7 +582,10 @@ export interface FileRouteTypes {
     | '/app/coaches/new'
     | '/app/news/$newsId'
     | '/app/news/create'
+    | '/app/programs/beginner'
     | '/app/programs/competitive'
+    | '/app/programs/free-try'
+    | '/app/programs/recreational'
     | '/app/programs/summer-camp'
     | '/programs/'
     | '/app/blogs/'
@@ -605,7 +635,10 @@ export interface FileRouteTypes {
     | '/app/coaches/new'
     | '/app/news/$newsId'
     | '/app/news/create'
+    | '/app/programs/beginner'
     | '/app/programs/competitive'
+    | '/app/programs/free-try'
+    | '/app/programs/recreational'
     | '/app/programs/summer-camp'
     | '/programs'
     | '/app/blogs'
@@ -662,7 +695,10 @@ export interface FileRouteTypes {
     | '/app/coaches/new'
     | '/app/news/$newsId'
     | '/app/news/create'
+    | '/app/programs/beginner'
     | '/app/programs/competitive'
+    | '/app/programs/free-try'
+    | '/app/programs/recreational'
     | '/app/programs/summer-camp'
     | '/_public/programs/'
     | '/app/blogs/'
@@ -898,11 +934,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppProgramsSummerCampRouteImport
       parentRoute: typeof AppProgramsRouteRoute
     }
+    '/app/programs/recreational': {
+      id: '/app/programs/recreational'
+      path: '/recreational'
+      fullPath: '/app/programs/recreational'
+      preLoaderRoute: typeof AppProgramsRecreationalRouteImport
+      parentRoute: typeof AppProgramsRouteRoute
+    }
+    '/app/programs/free-try': {
+      id: '/app/programs/free-try'
+      path: '/free-try'
+      fullPath: '/app/programs/free-try'
+      preLoaderRoute: typeof AppProgramsFreeTryRouteImport
+      parentRoute: typeof AppProgramsRouteRoute
+    }
     '/app/programs/competitive': {
       id: '/app/programs/competitive'
       path: '/competitive'
       fullPath: '/app/programs/competitive'
       preLoaderRoute: typeof AppProgramsCompetitiveRouteImport
+      parentRoute: typeof AppProgramsRouteRoute
+    }
+    '/app/programs/beginner': {
+      id: '/app/programs/beginner'
+      path: '/beginner'
+      fullPath: '/app/programs/beginner'
+      preLoaderRoute: typeof AppProgramsBeginnerRouteImport
       parentRoute: typeof AppProgramsRouteRoute
     }
     '/app/news/create': {
@@ -1084,13 +1141,19 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppProgramsRouteRouteChildren {
+  AppProgramsBeginnerRoute: typeof AppProgramsBeginnerRoute
   AppProgramsCompetitiveRoute: typeof AppProgramsCompetitiveRoute
+  AppProgramsFreeTryRoute: typeof AppProgramsFreeTryRoute
+  AppProgramsRecreationalRoute: typeof AppProgramsRecreationalRoute
   AppProgramsSummerCampRoute: typeof AppProgramsSummerCampRoute
   AppProgramsIndexRoute: typeof AppProgramsIndexRoute
 }
 
 const AppProgramsRouteRouteChildren: AppProgramsRouteRouteChildren = {
+  AppProgramsBeginnerRoute: AppProgramsBeginnerRoute,
   AppProgramsCompetitiveRoute: AppProgramsCompetitiveRoute,
+  AppProgramsFreeTryRoute: AppProgramsFreeTryRoute,
+  AppProgramsRecreationalRoute: AppProgramsRecreationalRoute,
   AppProgramsSummerCampRoute: AppProgramsSummerCampRoute,
   AppProgramsIndexRoute: AppProgramsIndexRoute,
 }

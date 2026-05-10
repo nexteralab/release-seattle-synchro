@@ -3,6 +3,9 @@ import type { FreeTryData } from '../types'
 const LOCATION_IMAGE =
   'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzd2ltJTIwdGVubmlzJTIwY2x1YiUyMGFlcmlhbHxlbnwxfHx8fDE3NzUxNzY0NTR8MA&ixlib=rb-4.1.0&q=80&w=800'
 
+const SAFETY_NOTE =
+  'Safety is our priority. Participants MUST be able to swim a full lap of crawl stroke and breast stroke unassisted.'
+
 interface Props {
   data: FreeTryData
 }
@@ -39,7 +42,7 @@ export function FreeTryOverview({ data }: Props) {
                 </h3>
               </div>
               <p className="text-white/90 text-[15px] leading-[24px] italic">
-                "{data.safetyNote}"
+                "{SAFETY_NOTE}"
               </p>
             </div>
           </div>

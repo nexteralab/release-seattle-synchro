@@ -1,23 +1,19 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
-import { ArrowLeft, Plus, Trash2, Upload, X } from 'lucide-react'
+import { ArrowLeft, Plus, Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { Button } from '#/components/ui/button'
 import { Input } from '#/components/ui/input'
 import { Textarea } from '#/components/ui/textarea'
 import { Label } from '#/components/ui/label'
-import { SummerCampHero } from '#/features/programs/summer-camp/components/SummerCampHero'
 import { SummerCampOverview } from '#/features/programs/summer-camp/components/SummerCampOverview'
 import { SummerCampDates } from '#/features/programs/summer-camp/components/SummerCampDates'
-import { SummerCampRequirements } from '#/features/programs/summer-camp/components/SummerCampRequirements'
 import {
   getSummerCampContent,
   saveSummerCampContent,
-  uploadSummerCampHeroImage,
   DEFAULT_CONTENT,
   type SummerCampContent,
   type CampSession,
-  type CampRequirement,
 } from './summer-camp-admin.service'
 
 const labelCls = 'text-[11px] font-bold tracking-[1.1px] uppercase'
@@ -29,8 +25,6 @@ export function SummerCampAdminPage() {
   const [content, setContent] = useState<SummerCampContent>(DEFAULT_CONTENT)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
-  const [heroUploading, setHeroUploading] = useState(false)
-  const heroInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     getSummerCampContent()
@@ -40,28 +34,6 @@ export function SummerCampAdminPage() {
   }, [])
 
   // ── Helpers de actualización inmutable ──
-  function setHeroImageUrl(value: string) {
-    setContent(c => ({ ...c, hero_image_url: value }))
-  }
-  async function handleHeroFile(file: File) {
-    if (!file.type.startsWith('image/')) {
-      toast.error('Only image files allowed')
-      return
-    }
-    setHeroUploading(true)
-    try {
-      const url = await uploadSummerCampHeroImage(file)
-      setHeroImageUrl(url)
-    } catch {
-      toast.error('Failed to upload hero image')
-    } finally {
-      setHeroUploading(false)
-    }
-  }
-
-  function setOverviewBody(value: string) {
-    setContent(c => ({ ...c, overview_body: value }))
-  }
   function setDetail<K extends keyof SummerCampContent['details']>(
     key: K,
     value: SummerCampContent['details'][K],
@@ -90,27 +62,6 @@ export function SummerCampAdminPage() {
     setContent(c => ({ ...c, sessions: c.sessions.filter((_, idx) => idx !== i) }))
   }
 
-  // Requirements
-  function addRequirement() {
-    setContent(c => ({
-      ...c,
-      requirements: [...c.requirements, { name: '', note: '', link: '' }],
-    }))
-  }
-  function updateRequirement(i: number, field: keyof CampRequirement, value: string) {
-    setContent(c => {
-      const requirements = [...c.requirements]
-      requirements[i] = { ...requirements[i], [field]: value }
-      return { ...c, requirements }
-    })
-  }
-  function removeRequirement(i: number) {
-    setContent(c => ({
-      ...c,
-      requirements: c.requirements.filter((_, idx) => idx !== i),
-    }))
-  }
-
   async function handleSave() {
     setSaving(true)
     try {
@@ -132,12 +83,6 @@ export function SummerCampAdminPage() {
   }
 
   // Preview: mismos componentes públicos con la nueva forma
-  const previewRequirements = content.requirements.map(r => ({
-    name: r.name,
-    note: r.note || undefined,
-    link: r.link || undefined,
-  }))
-
   return (
     <div className="peer-[.header-fixed]/header:mt-16 flex flex-col flex-1 min-h-0">
 
@@ -167,94 +112,8 @@ export function SummerCampAdminPage() {
         <div className="flex-1 min-h-0 overflow-y-auto">
           <div className="w-full px-8 py-8 space-y-8">
 
-            {/* Hero Image */}
-            <div>
-              <h2 className={sectionTitle}>Hero Image</h2>
-              <p className="text-[12px] text-muted-foreground mb-3">
-                Imagen grande del encabezado de la página. Recomendado 1920×1080 (.webp / .jpg).
-              </p>
-
-              {content.hero_image_url ? (
-                <div className="relative group rounded-[8px] overflow-hidden border border-border">
-                  <img
-                    src={content.hero_image_url}
-                    alt="Hero preview"
-                    className="w-full aspect-[16/9] object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-                  <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button
-                      type="button"
-                      onClick={() => heroInputRef.current?.click()}
-                      disabled={heroUploading}
-                      className="bg-background/90 rounded-md p-1.5 hover:bg-background"
-                      title="Replace"
-                    >
-                      <Upload size={14} />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setHeroImageUrl('')}
-                      className="bg-background/90 rounded-md p-1.5 hover:bg-background"
-                      title="Remove"
-                    >
-                      <X size={14} />
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => heroInputRef.current?.click()}
-                  disabled={heroUploading}
-                  className="w-full aspect-[16/9] flex flex-col items-center justify-center gap-2 border border-dashed border-border rounded-[8px] text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors"
-                >
-                  <Upload size={18} />
-                  <span className="text-[13px]">
-                    {heroUploading ? 'Uploading…' : 'Add hero image'}
-                  </span>
-                </button>
-              )}
-
-              <input
-                ref={heroInputRef}
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={e => {
-                  const f = e.target.files?.[0]
-                  if (f) handleHeroFile(f)
-                  e.target.value = ''
-                }}
-              />
-
-              <div className="mt-3 space-y-1.5">
-                <Label className={labelCls}>Or paste a URL</Label>
-                <Input
-                  value={content.hero_image_url}
-                  onChange={e => setHeroImageUrl(e.target.value)}
-                  placeholder="https://…"
-                />
-              </div>
-            </div>
-
-            {/* Overview body */}
-            <div className={divider}>
-              <h2 className={sectionTitle}>Overview Text</h2>
-              <p className="text-[12px] text-muted-foreground mb-3">
-                Texto libre — doble enter entre párrafos.
-              </p>
-              <Textarea
-                rows={10}
-                value={content.overview_body}
-                onChange={e => setOverviewBody(e.target.value)}
-                placeholder={'Paragraph one…\n\nParagraph two…\n\nParagraph three…'}
-                className="font-mono text-[13px] leading-relaxed resize-y"
-              />
-            </div>
-
             {/* Camp Details */}
-            <div className={divider}>
+            <div>
               <h2 className={sectionTitle}>Camp Details</h2>
               <div className="space-y-4">
                 <div className="space-y-1.5">
@@ -284,14 +143,17 @@ export function SummerCampAdminPage() {
               </div>
             </div>
 
-            {/* Sessions */}
+            {/* Sessions — Mark Your Calendar */}
             <div className={divider}>
               <div className="flex items-center justify-between mb-4">
-                <h2 className={sectionTitle.replace('mb-4', '')}>Sessions</h2>
+                <h2 className={sectionTitle.replace('mb-4', '')}>Mark Your Calendar</h2>
                 <Button variant="outline" size="sm" onClick={addSession}>
                   <Plus size={13} /> Add Session
                 </Button>
               </div>
+              <p className="text-[12px] text-muted-foreground mb-4">
+                Fechas y ubicaciones de cada sesión de Summer Camp.
+              </p>
               <div className="space-y-4">
                 {content.sessions.map((s, i) => (
                   <div key={i} className="border border-border rounded-[8px] p-4 space-y-3">
@@ -363,58 +225,6 @@ export function SummerCampAdminPage() {
               </div>
             </div>
 
-            {/* Requirements */}
-            <div className={divider}>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className={sectionTitle.replace('mb-4', '')}>What to Bring</h2>
-                <Button variant="outline" size="sm" onClick={addRequirement}>
-                  <Plus size={13} /> Add Item
-                </Button>
-              </div>
-              <div className="space-y-3">
-                {content.requirements.map((req, i) => (
-                  <div key={i} className="flex items-start gap-3 border border-border rounded-[8px] p-3">
-                    <div className="grid grid-cols-3 gap-2 flex-1">
-                      <div className="space-y-1">
-                        <Label className={labelCls}>Item *</Label>
-                        <Input
-                          value={req.name}
-                          onChange={e => updateRequirement(i, 'name', e.target.value)}
-                          placeholder="Swim Cap"
-                        />
-                      </div>
-                      <div className="space-y-1">
-                        <Label className={labelCls}>Note</Label>
-                        <Input
-                          value={req.note ?? ''}
-                          onChange={e => updateRequirement(i, 'note', e.target.value)}
-                          placeholder="Optional…"
-                        />
-                      </div>
-                      <div className="space-y-1">
-                        <Label className={labelCls}>Link</Label>
-                        <Input
-                          value={req.link ?? ''}
-                          onChange={e => updateRequirement(i, 'link', e.target.value)}
-                          placeholder="https://…"
-                        />
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => removeRequirement(i)}
-                      className="text-destructive hover:opacity-70 mt-6 shrink-0"
-                    >
-                      <Trash2 size={14} />
-                    </button>
-                  </div>
-                ))}
-                {content.requirements.length === 0 && (
-                  <p className="text-[13px] text-muted-foreground">No items yet.</p>
-                )}
-              </div>
-            </div>
-
           </div>
         </div>
 
@@ -426,9 +236,7 @@ export function SummerCampAdminPage() {
 
           <div className="overflow-hidden">
             <div style={{ zoom: '0.42' }}>
-              <SummerCampHero imageUrl={content.hero_image_url} />
               <SummerCampOverview
-                body={content.overview_body}
                 details={content.details}
                 sessions={content.sessions}
               />
@@ -437,7 +245,6 @@ export function SummerCampAdminPage() {
                 schedule={content.details.schedule}
                 pricePerWeek={content.price_per_week}
               />
-              <SummerCampRequirements requirements={previewRequirements} />
             </div>
           </div>
         </div>

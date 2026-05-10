@@ -1,16 +1,29 @@
-import type { CampRequirement } from '../types'
 import { motion } from 'motion/react'
 
 const vp = { once: true, margin: '-40px' }
 
-interface Props {
-  requirements: CampRequirement[]
+interface Requirement {
+  name: string
+  note?: string
+  link?: string
 }
 
-export function SummerCampRequirements({ requirements }: Props) {
-  const half = Math.ceil(requirements.length / 2)
-  const left = requirements.slice(0, half)
-  const right = requirements.slice(half)
+const REQUIREMENTS: Requirement[] = [
+  { name: 'Swim Suit' },
+  { name: 'Swim Cap' },
+  { name: 'Goggles' },
+  {
+    name: 'Nose Clips',
+    note: 'Recommendations',
+    link: 'https://www.amazon.com/Hurdilen-Swimming-Waterproof-Silica-Multi-Color/dp/B07HH4HQXW',
+  },
+  { name: 'Towel' },
+]
+
+export function SummerCampRequirements() {
+  const half = Math.ceil(REQUIREMENTS.length / 2)
+  const left = REQUIREMENTS.slice(0, half)
+  const right = REQUIREMENTS.slice(half)
 
   return (
     <section
@@ -36,7 +49,7 @@ export function SummerCampRequirements({ requirements }: Props) {
   )
 }
 
-function RequirementList({ items }: { items: CampRequirement[] }) {
+function RequirementList({ items }: { items: Requirement[] }) {
   return (
     <div className="space-y-6">
       {items.map((item, i) => (

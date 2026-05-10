@@ -4,17 +4,13 @@ import type { SummerCampContent } from '#/features/programs/summer-camp'
 export type {
   SummerCampContent,
   CampSession,
-  CampRequirement,
   CampDetails,
 } from '#/features/programs/summer-camp'
 
 export const DEFAULT_CONTENT: SummerCampContent = {
-  hero_image_url: '',
-  overview_body: '',
   details: { ages: '', skill_level: '', schedule: '' },
   sessions: [],
   price_per_week: '',
-  requirements: [],
 }
 
 const TABLE = 'summer_camp'
@@ -46,15 +42,4 @@ export async function getSummerCampContent(): Promise<SummerCampContent> {
 export async function saveSummerCampContent(content: SummerCampContent): Promise<void> {
   const { error } = await sb.from(TABLE).upsert({ id: ROW_ID, content })
   if (error) throw error
-}
-
-const BUCKET = 'summer-camp'
-
-export async function uploadSummerCampHeroImage(file: File): Promise<string> {
-  const ext = file.name.split('.').pop() || 'jpg'
-  const fileName = `hero-${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
-  const { error } = await supabase.storage.from(BUCKET).upload(fileName, file, { upsert: false })
-  if (error) throw error
-  const { data } = supabase.storage.from(BUCKET).getPublicUrl(fileName)
-  return data.publicUrl
 }

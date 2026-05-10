@@ -1,7 +1,23 @@
 import { Link } from "@tanstack/react-router";
+import type { RecreationalSubProgram } from '../types'
 
+const FALLBACK: RecreationalSubProgram = {
+  id: 'dolphins',
+  name: 'Dolphins',
+  ages: '6–12',
+  coach: 'TBD',
+  workout_days_times: 'Not available - TBD',
+  schedule_note: '',
+  duration: '8-week session',
+  cost: '$150 + $15 registration fee',
+  cost_note: '',
+}
 
-export function RecreationalDolphins() {
+interface Props {
+  program?: RecreationalSubProgram
+}
+
+export function RecreationalDolphins({ program = FALLBACK }: Props = {}) {
   return (
     <section className="p-6 md:px-12 lg:p-20 bg-[#F5F5F5]" aria-labelledby="dolphins-heading">
       <div className="max-w-screen-lg mx-auto space-y-12">
@@ -11,7 +27,7 @@ export function RecreationalDolphins() {
               id="dolphins-heading"
               className="font-bold text-primary text-[48px] tracking-[-2.4px] uppercase"
             >
-              Dolphins
+              {program.name}
             </h2>
             <Link
               to="/contact-us"
@@ -34,9 +50,19 @@ export function RecreationalDolphins() {
               Program Details
             </h3>
             <div className="space-y-6">
-              <DetailItem label="Ages" value="6–12" />
-              <DetailItem label="Coach" value="TBD" />
-              <DetailItem label="Workout Days / Times" value="Not available - TBD" />
+              <DetailItem label="Ages" value={program.ages} />
+              <DetailItem label="Coach" value={program.coach} />
+              <div>
+                <h4 className="font-bold text-secondary text-[12px] md:text-[14px] tracking-[1.4px] uppercase mb-2">
+                  Workout Days / Times
+                </h4>
+                <p className="text-secondary text-[16px] md:text-[18px] leading-[26px]">
+                  {program.workout_days_times}
+                </p>
+                {program.schedule_note && (
+                  <p className="text-secondary text-[14px] mt-2">{program.schedule_note}</p>
+                )}
+              </div>
             </div>
           </div>
 
@@ -45,13 +71,25 @@ export function RecreationalDolphins() {
               Required Swimming Skills
             </h3>
             <div className="space-y-6">
-              <DetailItem label="Duration" value="8-week session" />
-              <DetailItem label="Cost" value="$150 + $15 registration fee" />
+              {program.duration && (
+                <DetailItem label="Duration" value={program.duration} />
+              )}
+              <div>
+                <h4 className="font-bold text-secondary text-[12px] md:text-[14px] tracking-[1.4px] uppercase mb-2">
+                  Cost
+                </h4>
+                <p className="text-secondary text-[16px] md:text-[18px] leading-[26px]">
+                  {program.cost}
+                </p>
+                {program.cost_note && (
+                  <p className="text-secondary text-[14px] mt-2">{program.cost_note}</p>
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section >
+    </section>
   )
 }
 

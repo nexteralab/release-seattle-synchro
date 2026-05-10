@@ -28,8 +28,6 @@ create trigger summer_camp_updated_at
 -- Seed inicial (idempotente). El editor del admin sobreescribe este content.
 insert into public.summer_camp (id, content)
 values (1, '{
-  "hero_image_url": "",
-  "overview_body": "Dive into the world of artistic swimming at our recreational summer camp! Join us for a week of fun and creativity as we blend athleticism with artistry in the pool. Designed for swimmers of all levels, our camp offers expert instruction in technique, choreography, and teamwork.\n\nParticipants will learn a routine set to music, develop their swimming skills, and unleash their creativity through water-based performances. Whether you''re a beginner or have some experience, come make a splash with us this summer!\n\nSkills: campers will reinforce swimming technique, learn basic artistic swimming skills and a routine that will be performed at the end of the week.",
   "details": {
     "ages": "6–11 years old",
     "skill_level": "For safety reasons, campers should be able to independently swim two laps of crawl stroke and float on their back.",
@@ -49,14 +47,7 @@ values (1, '{
       "register_url": "https://www.seattlesynchrosst.com/page/system/classreg-shopping"
     }
   ],
-  "price_per_week": "$330 per week",
-  "requirements": [
-    { "name": "Swim Suit" },
-    { "name": "Swim Cap" },
-    { "name": "Goggles" },
-    { "name": "Nose Clips", "note": "Recomendations", "link": "https://www.amazon.com/Hurdilen-Swimming-Waterproof-Silica-Multi-Color/dp/B07HH4HQXW" },
-    { "name": "Towel" }
-  ]
+  "price_per_week": "$330 per week"
 }'::jsonb)
 on conflict (id) do nothing;
 
@@ -74,30 +65,3 @@ create policy "Public read summer camp" on public.summer_camp
 drop policy if exists "Auth full access summer camp" on public.summer_camp;
 create policy "Auth full access summer camp" on public.summer_camp
   for all using (auth.role() = 'authenticated');
-
--- =============================================
--- Storage: bucket "summer-camp" para imagen del hero
--- Crear bucket en Supabase → Storage → New bucket (public: true)
--- =============================================
-drop policy if exists "Public read summer-camp images"   on storage.objects;
-create policy "Public read summer-camp images"
-  on storage.objects for select
-  using (bucket_id = 'summer-camp');
-
-drop policy if exists "Auth upload summer-camp images"   on storage.objects;
-create policy "Auth upload summer-camp images"
-  on storage.objects for insert
-  to authenticated
-  with check (bucket_id = 'summer-camp');
-
-drop policy if exists "Auth update summer-camp images"   on storage.objects;
-create policy "Auth update summer-camp images"
-  on storage.objects for update
-  to authenticated
-  using (bucket_id = 'summer-camp');
-
-drop policy if exists "Auth delete summer-camp images"   on storage.objects;
-create policy "Auth delete summer-camp images"
-  on storage.objects for delete
-  to authenticated
-  using (bucket_id = 'summer-camp');

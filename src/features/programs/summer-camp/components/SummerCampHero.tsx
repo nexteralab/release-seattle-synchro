@@ -7,12 +7,7 @@ const vp = { once: true }
 const HERO_IMAGE_FALLBACK =
   'https://images.unsplash.com/photo-1774009304081-ca87dd2f5d99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzd2ltbWluZyUyMGNvYWNoJTIwcG9vbHNpZGUlMjB0cmFpbmluZ3xlbnwxfHx8fDE3NzUxNzY0NTR8MA&ixlib=rb-4.1.0&q=80&w=1080'
 
-interface Props {
-  imageUrl?: string
-}
-
-export function SummerCampHero({ imageUrl }: Props = {}) {
-  const src = imageUrl?.trim() ? imageUrl : heroImage
+export function SummerCampHero() {
   return (
     <section
       className="relative md:h-screen h-[50vh] flex items-center justify-center overflow-hidden"
@@ -20,7 +15,7 @@ export function SummerCampHero({ imageUrl }: Props = {}) {
     >
       <div className="absolute inset-0">
         <img
-          src={src}
+          src={heroImage}
           alt="Artistic swimming coach training kids poolside"
           className="w-full h-full object-cover"
           onError={(e) => {

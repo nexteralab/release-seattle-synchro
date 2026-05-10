@@ -1,6 +1,13 @@
+import { Fragment } from 'react'
 
+interface Props {
+  coaches: string
+  workoutDays: string
+}
 
-export function Competitive1315() {
+export function Competitive1315({ coaches, workoutDays }: Props) {
+  const coachLines = coaches.split('\n').filter(Boolean)
+
   return (
     <section className="p-6 md:px-20 md:py-24 bg-white" aria-labelledby="group-1315">
       <div className="max-w-screen-lg mx-auto">
@@ -18,9 +25,12 @@ export function Competitive1315() {
               Coaches
             </h3>
             <p className="text-[#737373] text-[16px] leading-[24px]">
-              A Team: Patricia Camaran <br />
-              B Team: Daniela Garmendia <br />
-              C Team: Ivy Huang
+              {coachLines.map((line, i) => (
+                <Fragment key={i}>
+                  {line}
+                  {i < coachLines.length - 1 && <br />}
+                </Fragment>
+              ))}
             </p>
           </div>
           <div className="bg-[#f5f5f5] p-6 md:p-8">
@@ -28,7 +38,7 @@ export function Competitive1315() {
               Workout Days
             </h3>
             <p className="text-[#737373] text-[16px] leading-[26px]">
-              2 Weekdays and Saturday morning
+              {workoutDays}
             </p>
           </div>
         </div>

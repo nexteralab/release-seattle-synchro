@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { CompetitivePage } from '#/features/programs/competitive'
+import { CompetitivePage, getCompetitiveConfig } from '#/features/programs/competitive'
 
 const SITE_URL = 'https://seattlesynchro.com'
 const PAGE_URL = `${SITE_URL}/programs/competitive`
@@ -51,5 +51,11 @@ export const Route = createFileRoute('/_public/programs/competitive')({
     links: [{ rel: 'canonical', href: PAGE_URL }],
     scripts: [{ type: 'application/ld+json', children: SCHEMA_JSONLD }],
   }),
-  component: CompetitivePage,
+  loader: () => getCompetitiveConfig(),
+  component: RouteComponent,
 })
+
+function RouteComponent() {
+  const config = Route.useLoaderData()
+  return <CompetitivePage config={config} />
+}
