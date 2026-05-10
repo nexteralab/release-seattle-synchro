@@ -4,10 +4,15 @@ import { motion } from 'motion/react'
 const t = { duration: 0.35, ease: [0.35, 0.85, 0.25, 1] as [number, number, number, number] }
 const vp = { once: true }
 
-const HERO_IMAGE =
+const HERO_IMAGE_FALLBACK =
   'https://images.unsplash.com/photo-1774009304081-ca87dd2f5d99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzd2ltbWluZyUyMGNvYWNoJTIwcG9vbHNpZGUlMjB0cmFpbmluZ3xlbnwxfHx8fDE3NzUxNzY0NTR8MA&ixlib=rb-4.1.0&q=80&w=1080'
 
-export function SummerCampHero() {
+interface Props {
+  imageUrl?: string
+}
+
+export function SummerCampHero({ imageUrl }: Props = {}) {
+  const src = imageUrl?.trim() ? imageUrl : heroImage
   return (
     <section
       className="relative md:h-screen h-[50vh] flex items-center justify-center overflow-hidden"
@@ -15,11 +20,11 @@ export function SummerCampHero() {
     >
       <div className="absolute inset-0">
         <img
-          src={heroImage}
+          src={src}
           alt="Artistic swimming coach training kids poolside"
           className="w-full h-full object-cover"
           onError={(e) => {
-            e.currentTarget.src = HERO_IMAGE
+            e.currentTarget.src = HERO_IMAGE_FALLBACK
           }}
         />
       </div>

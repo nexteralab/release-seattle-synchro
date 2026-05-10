@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { getSummerCampData, SummerCampPage } from '#/features/programs/summer-camp'
+import { getSummerCampContent, SummerCampPage } from '#/features/programs/summer-camp' 
 
 // Cuando conectes la DB, el loader también traerá el SEO:
 // import { getProgramSeo } from '#/features/programs/seo'
@@ -35,7 +35,7 @@ import { getSummerCampData, SummerCampPage } from '#/features/programs/summer-ca
 // }),
 
 export const Route = createFileRoute('/_public/programs/summer-camp')({
-  loader: () => getSummerCampData(),
+  loader: () => getSummerCampContent(),
   head: () => ({
     meta: [
       { title: 'Summer Camp 2026 | Seattle Synchro' },
@@ -52,5 +52,5 @@ export const Route = createFileRoute('/_public/programs/summer-camp')({
 
 function RouteComponent() {
   const data = Route.useLoaderData()
-  return <SummerCampPage data={data} />
+  return <SummerCampPage content={data} />
 }

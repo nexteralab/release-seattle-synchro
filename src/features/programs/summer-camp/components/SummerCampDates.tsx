@@ -1,16 +1,16 @@
 import { motion } from 'motion/react'
-import type { CampLocation } from '../types'
+import type { CampSession } from '../types'
 
 const vp = { once: true, margin: '-50px' }
 const t  = { duration: 0.4, ease: [0.35, 0.85, 0.25, 1] as [number, number, number, number] }
 
 interface Props {
-  locations: CampLocation[]
+  sessions: CampSession[]
   schedule: string
-  price: string
+  pricePerWeek: string
 }
 
-export function SummerCampDates({ locations, schedule, price }: Props) {
+export function SummerCampDates({ sessions, schedule, pricePerWeek }: Props) {
   return (
     <section
       className="bg-[#0A0A67] px-6 py-16 md:px-20 md:py-24"
@@ -40,13 +40,13 @@ export function SummerCampDates({ locations, schedule, price }: Props) {
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-10">
-          {locations.map((loc, i) => {
-            const [month, ...rest] = loc.dates.split(' ')
+          {sessions.map((s, i) => {
+            const [month, ...rest] = s.dates.split(' ')
             const dateRange = rest.join(' ')
 
             return (
               <motion.div
-                key={loc.name}
+                key={s.name}
                 whileInView={{ opacity: [0, 1], y: [32, 0] }}
                 viewport={vp}
                 transition={{ ...t, delay: 0.1 + i * 0.1 }}
@@ -72,36 +72,36 @@ export function SummerCampDates({ locations, schedule, price }: Props) {
 
                 {/* Info */}
                 <div className="space-y-2 text-[15px]">
-                  <p className="text-white font-semibold">{loc.name}</p>
+                  <p className="text-white font-semibold">{s.name}</p>
                   <p className="text-white/60 whitespace-pre-line text-[14px] leading-[22px]">
-                    {loc.address}
+                    {s.address}
                   </p>
                   <p className="text-white/60 text-[14px]">{schedule}</p>
                 </div>
+
+                {/* Per-session CTA */}
+                <a
+                  href={s.register_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto inline-block bg-[#63AC23] text-white text-center px-6 py-3 font-bold text-[12px] tracking-[2.4px] uppercase hover:bg-[#4d8a18] transition-colors"
+                >
+                  Register
+                </a>
               </motion.div>
             )
           })}
         </div>
 
-        {/* Price + CTA */}
+        {/* Investment */}
         <motion.div
           whileInView={{ opacity: [0, 1], y: [20, 0] }}
           viewport={vp}
           transition={{ ...t, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-t border-white/15 pt-8"
+          className="border-t border-white/15 pt-8"
         >
-          <div>
-            <p className="text-white/50 text-[12px] tracking-[1.2px] uppercase mb-1">Investment</p>
-            <p className="font-bold text-white text-[24px] tracking-[-0.5px]">{price}</p>
-          </div>
-          <a
-            href="https://www.seattlesynchrosst.com/page/system/classreg-shopping"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-[#63AC23] text-white px-10 py-4 font-bold text-[13px] tracking-[2.6px] uppercase hover:bg-[#4d8a18] transition-colors"
-          >
-            Register Now
-          </a>
+          <p className="text-white/50 text-[12px] tracking-[1.2px] uppercase mb-1">Investment</p>
+          <p className="font-bold text-white text-[24px] tracking-[-0.5px]">{pricePerWeek}</p>
         </motion.div>
 
       </div>

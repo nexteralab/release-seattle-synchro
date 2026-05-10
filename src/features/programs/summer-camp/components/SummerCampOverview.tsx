@@ -1,14 +1,18 @@
-import type { CampDetails } from '../types'
+import type { CampDetails, CampSession } from '../types'
 import { motion } from 'motion/react'
 
 const transition = { duration: 0.35, ease: [0.35, 0.85, 0.25, 1] as [number, number, number, number] }
 const viewport = { once: true, margin: '-60px' }
 
 interface Props {
+  body: string
   details: CampDetails
+  sessions: CampSession[]
 }
 
-export function SummerCampOverview({ details }: Props) {
+export function SummerCampOverview({ body, details, sessions }: Props) {
+  const paragraphs = body.split(/\n\s*\n/).filter(Boolean)
+
   return (
     <section className="p-6 md:p-12 md:px-20 md:py-24 bg-white peer-[.header-fixed]/header:mt-16" aria-labelledby="overview-heading">
       <div className="max-w-screen-lg mx-auto">
@@ -29,21 +33,9 @@ export function SummerCampOverview({ details }: Props) {
               transition={{ ...transition, delay: 0.1 }}
               className="space-y-6 text-[#171717] text-[16px] md:text-[18px] leading-[29px]"
             >
-              <p>
-                Dive into the world of artistic swimming at our recreational summer camp! Join us for
-                a week of fun and creativity as we blend athleticism with artistry in the pool.
-                Designed for swimmers of all levels, our camp offers expert instruction in technique,
-                choreography, and teamwork.
-              </p>
-              <p>
-                Participants will learn a routine set to music, develop their swimming skills, and
-                unleash their creativity through water-based performances. Whether you're a beginner
-                or have some experience, come make a splash with us this summer!
-              </p>
-              <p>
-                Skills: campers will reinforce swimming technique, learn basic artistic swimming
-                skills and a routine that will be performed at the end of the week.
-              </p>
+              {paragraphs.map((p, i) => (
+                <p key={i} className="whitespace-pre-line">{p}</p>
+              ))}
             </motion.div>
           </div>
 
@@ -58,7 +50,7 @@ export function SummerCampOverview({ details }: Props) {
             </motion.h3>
             <div className="space-y-6">
               <DetailItem label="Ages" value={details.ages} />
-              <DetailItem label="Skill Level" value={details.skillLevel} />
+              <DetailItem label="Skill Level" value={details.skill_level} />
               <DetailItem label="Daily Schedule" value={details.schedule} />
 
               <motion.div
@@ -70,16 +62,16 @@ export function SummerCampOverview({ details }: Props) {
                   Locations
                 </h4>
                 <div className="space-y-4">
-                  {details.locations.map((loc) => (
-                    <div key={loc.name}>
+                  {sessions.map((s) => (
+                    <div key={s.name}>
                       <p className="font-bold text-secondary mb-1 text-[16px]">
-                        {loc.name}
+                        {s.name}
                       </p>
                       <p className="text-[#737373] text-[16px]">
-                        Dates: {loc.dates}
+                        Dates: {s.dates}
                       </p>
                       <p className="text-[#737373] text-[16px] whitespace-pre-line">
-                        {loc.address}
+                        {s.address}
                       </p>
                     </div>
                   ))}

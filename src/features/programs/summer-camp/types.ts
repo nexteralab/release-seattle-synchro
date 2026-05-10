@@ -1,20 +1,19 @@
-export interface CampLocation {
-  name: string
-  dates: string
-  address: string
-}
-
-export interface CampPricing {
-  perWeek: string
-  note?: string
-}
+/**
+ * Forma del JSONB único `summer_camp.content`.
+ * Una sola fila singleton en Supabase. Kickers/headings se quedan en el código.
+ */
 
 export interface CampDetails {
   ages: string
-  skillLevel: string
+  skill_level: string
   schedule: string
-  locations: CampLocation[]
-  pricing: CampPricing
+}
+
+export interface CampSession {
+  name: string
+  dates: string
+  address: string
+  register_url: string
 }
 
 export interface CampRequirement {
@@ -23,8 +22,13 @@ export interface CampRequirement {
   link?: string
 }
 
-export interface SummerCampData {
-  overviewText?: string   // free text, \n\n = paragraph break
+export interface SummerCampContent {
+  /** Imagen del hero. Si está vacío, se usa la imagen bundled. */
+  hero_image_url: string
+  /** Texto libre. `\n\n` = separador de párrafo. */
+  overview_body: string
   details: CampDetails
+  sessions: CampSession[]
+  price_per_week: string
   requirements: CampRequirement[]
 }

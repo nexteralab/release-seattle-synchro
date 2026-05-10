@@ -57,7 +57,7 @@ export const Route = createFileRoute('/_public/programs/free-try-2026')({
   head: () => ({
     meta: [
       { title: TITLE },
-      { name: 'description', content: "JASJDJASDJAJSDJASDJ" },
+      { name: 'description', content: DESCRIPTION },
       { name: 'robots', content: 'index, follow' },
       {
         name: 'keywords',

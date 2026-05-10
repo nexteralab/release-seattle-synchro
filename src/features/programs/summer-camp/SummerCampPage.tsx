@@ -1,4 +1,4 @@
-import type { SummerCampData } from './types'
+import type { SummerCampContent } from './types'
 import { SummerCampHero } from './components/SummerCampHero'
 import { SummerCampDates } from './components/SummerCampDates'
 import { SummerCampOverview } from './components/SummerCampOverview'
@@ -6,20 +6,24 @@ import { SummerCampRequirements } from './components/SummerCampRequirements'
 import { CtaBanner } from '#/components/CtaBanner'
 
 interface Props {
-  data: SummerCampData
+  content: SummerCampContent
 }
 
-export function SummerCampPage({ data }: Props) {
+export function SummerCampPage({ content }: Props) {
   return (
     <div className="w-full">
-      <SummerCampHero />
-      <SummerCampOverview details={data.details} />
-      <SummerCampDates
-        locations={data.details.locations}
-        schedule={data.details.schedule}
-        price={data.details.pricing.perWeek}
+      <SummerCampHero imageUrl={content.hero_image_url} />
+      <SummerCampOverview
+        body={content.overview_body}
+        details={content.details}
+        sessions={content.sessions}
       />
-      <SummerCampRequirements requirements={data.requirements} />
+      <SummerCampDates
+        sessions={content.sessions}
+        schedule={content.details.schedule}
+        pricePerWeek={content.price_per_week}
+      />
+      <SummerCampRequirements requirements={content.requirements} />
       <CtaBanner
         heading="Ready to Dive In?"
         description="Spots fill up quickly! Register now to secure your place in our 2026 Summer Camp program."
