@@ -70,51 +70,53 @@ export function KnoxingGuide() {
     return (
         <div className="w-full">
             {/* Intro */}
-            <section className="py-24 px-12 md:px-48 bg-white" aria-labelledby="knoxing-intro-heading">
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={vp}
-                    variants={stagger}
-                    className="max-w-screen-2xl mx-auto space-y-8"
-                >
-                    <motion.h2
-                        id="knoxing-intro-heading"
-                        variants={fadeUp}
-                        className="font-bold text-[#0A0A67] uppercase"
-                        style={{
-                            fontFamily: "'Space Grotesk', sans-serif",
-                            fontSize: "clamp(22px, 3.5vw, 42px)",
-                            letterSpacing: "-2.1px",
-                            lineHeight: 1.1,
-                        }}
+            <section className="p-6 md:p-24 bg-white" aria-labelledby="knoxing-intro-heading">
+                <div className="max-w-screen-lg mx-auto">
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={vp}
+                        variants={stagger}
+                        className="max-w-screen-2xl mx-auto space-y-8"
                     >
-                        How to Gel Your Hair<br />for a Synchronized Swimming Meet
-                    </motion.h2>
+                        <motion.h2
+                            id="knoxing-intro-heading"
+                            variants={fadeUp}
+                            className="font-bold text-[#0A0A67] uppercase"
+                            style={{
+                                fontFamily: "'Space Grotesk', sans-serif",
+                                fontSize: "clamp(22px, 3.5vw, 42px)",
+                                letterSpacing: "-2.1px",
+                                lineHeight: 1.1,
+                            }}
+                        >
+                            How to Gel Your Hair<br />for a Synchronized Swimming Meet
+                        </motion.h2>
 
-                    <motion.div variants={fadeUp} className="w-10 h-1 bg-[#0A0A67]" />
+                        <motion.div variants={fadeUp} className="w-10 h-1 bg-[#0A0A67]" />
 
-                    <motion.p
-                        variants={fadeUp}
-                        className="max-w-3xl"
-                        style={{
-                            fontFamily: "'Inter', sans-serif",
-                            fontSize: "16px",
-                            lineHeight: "26px",
-                            color: "#737373",
-                        }}
-                    >
-                        Gelling — or "knoxing" — is an essential skill for every artistic swimmer. A well-set
-                        bun stays secure through an entire routine, keeps hair out of your face, and gives your
-                        performance a polished, competition-ready look. This guide walks you through everything
-                        you need to achieve a rock-solid hold that will last from warm-up to the final bow.
-                    </motion.p>
-                </motion.div>
+                        <motion.p
+                            variants={fadeUp}
+                            className="max-w-3xl"
+                            style={{
+                                fontFamily: "'Inter', sans-serif",
+                                fontSize: "16px",
+                                lineHeight: "26px",
+                                color: "#737373",
+                            }}
+                        >
+                            Gelling — or "knoxing" — is an essential skill for every artistic swimmer. A well-set
+                            bun stays secure through an entire routine, keeps hair out of your face, and gives your
+                            performance a polished, competition-ready look. This guide walks you through everything
+                            you need to achieve a rock-solid hold that will last from warm-up to the final bow.
+                        </motion.p>
+                    </motion.div>
+                </div>
             </section>
 
             {/* What you'll need */}
-            <section className="py-24 px-12 md:px-48 bg-[#f5f5f5]" aria-labelledby="supplies-heading">
-                <div className="max-w-screen-2xl mx-auto space-y-10">
+            <section className="p-6 md:p-24 bg-[#f5f5f5]" aria-labelledby="supplies-heading">
+                <div className="max-w-screen-lg mx-auto space-y-10">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
@@ -184,8 +186,8 @@ export function KnoxingGuide() {
             </section>
 
             {/* Step-by-step */}
-            <section className="py-24 px-12 md:px-48 bg-white" aria-labelledby="steps-heading">
-                <div className="max-w-screen-2xl mx-auto space-y-12">
+            <section className="p-6 md:p-24 bg-white" aria-labelledby="steps-heading">
+                <div className="max-w-screen-lg mx-auto space-y-12">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
@@ -294,8 +296,8 @@ export function KnoxingGuide() {
             </section>
 
             {/* Last but not least */}
-            <section className="py-24 px-12 md:px-48 bg-[#f5f5f5]" aria-labelledby="resources-heading">
-                <div className="max-w-screen-2xl mx-auto space-y-10">
+            <section className="p-6 md:p-24 bg-[#f5f5f5]" aria-labelledby="resources-heading">
+                <div className="max-w-screen-lg mx-auto space-y-10">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"

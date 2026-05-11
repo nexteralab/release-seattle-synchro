@@ -40,6 +40,7 @@ import { Route as PublicProgramsIndexRouteImport } from './routes/_public/progra
 import { Route as AppProgramsSummerCampRouteImport } from './routes/app/programs/summer-camp'
 import { Route as AppProgramsRecreationalRouteImport } from './routes/app/programs/recreational'
 import { Route as AppProgramsFreeTryRouteImport } from './routes/app/programs/free-try'
+import { Route as AppProgramsEliteClinicRouteImport } from './routes/app/programs/elite-clinic'
 import { Route as AppProgramsCompetitiveRouteImport } from './routes/app/programs/competitive'
 import { Route as AppProgramsBeginnerRouteImport } from './routes/app/programs/beginner'
 import { Route as AppNewsCreateRouteImport } from './routes/app/news/create'
@@ -54,6 +55,7 @@ import { Route as PublicProgramsSummerCampRouteImport } from './routes/_public/p
 import { Route as PublicProgramsShowsRouteImport } from './routes/_public/programs/shows'
 import { Route as PublicProgramsRecreationalRouteImport } from './routes/_public/programs/recreational'
 import { Route as PublicProgramsFreeTryRouteImport } from './routes/_public/programs/free-try'
+import { Route as PublicProgramsEliteClinicRouteImport } from './routes/_public/programs/elite-clinic'
 import { Route as PublicProgramsCompetitiveRouteImport } from './routes/_public/programs/competitive'
 import { Route as PublicProgramsBeginnerRouteImport } from './routes/_public/programs/beginner'
 import { Route as PublicBoosterFundraisingRouteImport } from './routes/_public/booster/fundraising'
@@ -222,6 +224,11 @@ const AppProgramsFreeTryRoute = AppProgramsFreeTryRouteImport.update({
   path: '/free-try',
   getParentRoute: () => AppProgramsRouteRoute,
 } as any)
+const AppProgramsEliteClinicRoute = AppProgramsEliteClinicRouteImport.update({
+  id: '/elite-clinic',
+  path: '/elite-clinic',
+  getParentRoute: () => AppProgramsRouteRoute,
+} as any)
 const AppProgramsCompetitiveRoute = AppProgramsCompetitiveRouteImport.update({
   id: '/competitive',
   path: '/competitive',
@@ -294,6 +301,12 @@ const PublicProgramsFreeTryRoute = PublicProgramsFreeTryRouteImport.update({
   path: '/programs/free-try',
   getParentRoute: () => PublicRoute,
 } as any)
+const PublicProgramsEliteClinicRoute =
+  PublicProgramsEliteClinicRouteImport.update({
+    id: '/programs/elite-clinic',
+    path: '/programs/elite-clinic',
+    getParentRoute: () => PublicRoute,
+  } as any)
 const PublicProgramsCompetitiveRoute =
   PublicProgramsCompetitiveRouteImport.update({
     id: '/programs/competitive',
@@ -395,6 +408,7 @@ export interface FileRoutesByFullPath {
   '/booster/fundraising': typeof PublicBoosterFundraisingRoute
   '/programs/beginner': typeof PublicProgramsBeginnerRoute
   '/programs/competitive': typeof PublicProgramsCompetitiveRoute
+  '/programs/elite-clinic': typeof PublicProgramsEliteClinicRoute
   '/programs/free-try': typeof PublicProgramsFreeTryRoute
   '/programs/recreational': typeof PublicProgramsRecreationalRoute
   '/programs/shows': typeof PublicProgramsShowsRoute
@@ -409,6 +423,7 @@ export interface FileRoutesByFullPath {
   '/app/news/create': typeof AppNewsCreateRoute
   '/app/programs/beginner': typeof AppProgramsBeginnerRoute
   '/app/programs/competitive': typeof AppProgramsCompetitiveRoute
+  '/app/programs/elite-clinic': typeof AppProgramsEliteClinicRoute
   '/app/programs/free-try': typeof AppProgramsFreeTryRoute
   '/app/programs/recreational': typeof AppProgramsRecreationalRoute
   '/app/programs/summer-camp': typeof AppProgramsSummerCampRoute
@@ -448,6 +463,7 @@ export interface FileRoutesByTo {
   '/booster/fundraising': typeof PublicBoosterFundraisingRoute
   '/programs/beginner': typeof PublicProgramsBeginnerRoute
   '/programs/competitive': typeof PublicProgramsCompetitiveRoute
+  '/programs/elite-clinic': typeof PublicProgramsEliteClinicRoute
   '/programs/free-try': typeof PublicProgramsFreeTryRoute
   '/programs/recreational': typeof PublicProgramsRecreationalRoute
   '/programs/shows': typeof PublicProgramsShowsRoute
@@ -462,6 +478,7 @@ export interface FileRoutesByTo {
   '/app/news/create': typeof AppNewsCreateRoute
   '/app/programs/beginner': typeof AppProgramsBeginnerRoute
   '/app/programs/competitive': typeof AppProgramsCompetitiveRoute
+  '/app/programs/elite-clinic': typeof AppProgramsEliteClinicRoute
   '/app/programs/free-try': typeof AppProgramsFreeTryRoute
   '/app/programs/recreational': typeof AppProgramsRecreationalRoute
   '/app/programs/summer-camp': typeof AppProgramsSummerCampRoute
@@ -509,6 +526,7 @@ export interface FileRoutesById {
   '/_public/booster/fundraising': typeof PublicBoosterFundraisingRoute
   '/_public/programs/beginner': typeof PublicProgramsBeginnerRoute
   '/_public/programs/competitive': typeof PublicProgramsCompetitiveRoute
+  '/_public/programs/elite-clinic': typeof PublicProgramsEliteClinicRoute
   '/_public/programs/free-try': typeof PublicProgramsFreeTryRoute
   '/_public/programs/recreational': typeof PublicProgramsRecreationalRoute
   '/_public/programs/shows': typeof PublicProgramsShowsRoute
@@ -523,6 +541,7 @@ export interface FileRoutesById {
   '/app/news/create': typeof AppNewsCreateRoute
   '/app/programs/beginner': typeof AppProgramsBeginnerRoute
   '/app/programs/competitive': typeof AppProgramsCompetitiveRoute
+  '/app/programs/elite-clinic': typeof AppProgramsEliteClinicRoute
   '/app/programs/free-try': typeof AppProgramsFreeTryRoute
   '/app/programs/recreational': typeof AppProgramsRecreationalRoute
   '/app/programs/summer-camp': typeof AppProgramsSummerCampRoute
@@ -570,6 +589,7 @@ export interface FileRouteTypes {
     | '/booster/fundraising'
     | '/programs/beginner'
     | '/programs/competitive'
+    | '/programs/elite-clinic'
     | '/programs/free-try'
     | '/programs/recreational'
     | '/programs/shows'
@@ -584,6 +604,7 @@ export interface FileRouteTypes {
     | '/app/news/create'
     | '/app/programs/beginner'
     | '/app/programs/competitive'
+    | '/app/programs/elite-clinic'
     | '/app/programs/free-try'
     | '/app/programs/recreational'
     | '/app/programs/summer-camp'
@@ -623,6 +644,7 @@ export interface FileRouteTypes {
     | '/booster/fundraising'
     | '/programs/beginner'
     | '/programs/competitive'
+    | '/programs/elite-clinic'
     | '/programs/free-try'
     | '/programs/recreational'
     | '/programs/shows'
@@ -637,6 +659,7 @@ export interface FileRouteTypes {
     | '/app/news/create'
     | '/app/programs/beginner'
     | '/app/programs/competitive'
+    | '/app/programs/elite-clinic'
     | '/app/programs/free-try'
     | '/app/programs/recreational'
     | '/app/programs/summer-camp'
@@ -683,6 +706,7 @@ export interface FileRouteTypes {
     | '/_public/booster/fundraising'
     | '/_public/programs/beginner'
     | '/_public/programs/competitive'
+    | '/_public/programs/elite-clinic'
     | '/_public/programs/free-try'
     | '/_public/programs/recreational'
     | '/_public/programs/shows'
@@ -697,6 +721,7 @@ export interface FileRouteTypes {
     | '/app/news/create'
     | '/app/programs/beginner'
     | '/app/programs/competitive'
+    | '/app/programs/elite-clinic'
     | '/app/programs/free-try'
     | '/app/programs/recreational'
     | '/app/programs/summer-camp'
@@ -948,6 +973,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppProgramsFreeTryRouteImport
       parentRoute: typeof AppProgramsRouteRoute
     }
+    '/app/programs/elite-clinic': {
+      id: '/app/programs/elite-clinic'
+      path: '/elite-clinic'
+      fullPath: '/app/programs/elite-clinic'
+      preLoaderRoute: typeof AppProgramsEliteClinicRouteImport
+      parentRoute: typeof AppProgramsRouteRoute
+    }
     '/app/programs/competitive': {
       id: '/app/programs/competitive'
       path: '/competitive'
@@ -1044,6 +1076,13 @@ declare module '@tanstack/react-router' {
       path: '/programs/free-try'
       fullPath: '/programs/free-try'
       preLoaderRoute: typeof PublicProgramsFreeTryRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/programs/elite-clinic': {
+      id: '/_public/programs/elite-clinic'
+      path: '/programs/elite-clinic'
+      fullPath: '/programs/elite-clinic'
+      preLoaderRoute: typeof PublicProgramsEliteClinicRouteImport
       parentRoute: typeof PublicRoute
     }
     '/_public/programs/competitive': {
@@ -1143,6 +1182,7 @@ declare module '@tanstack/react-router' {
 interface AppProgramsRouteRouteChildren {
   AppProgramsBeginnerRoute: typeof AppProgramsBeginnerRoute
   AppProgramsCompetitiveRoute: typeof AppProgramsCompetitiveRoute
+  AppProgramsEliteClinicRoute: typeof AppProgramsEliteClinicRoute
   AppProgramsFreeTryRoute: typeof AppProgramsFreeTryRoute
   AppProgramsRecreationalRoute: typeof AppProgramsRecreationalRoute
   AppProgramsSummerCampRoute: typeof AppProgramsSummerCampRoute
@@ -1152,6 +1192,7 @@ interface AppProgramsRouteRouteChildren {
 const AppProgramsRouteRouteChildren: AppProgramsRouteRouteChildren = {
   AppProgramsBeginnerRoute: AppProgramsBeginnerRoute,
   AppProgramsCompetitiveRoute: AppProgramsCompetitiveRoute,
+  AppProgramsEliteClinicRoute: AppProgramsEliteClinicRoute,
   AppProgramsFreeTryRoute: AppProgramsFreeTryRoute,
   AppProgramsRecreationalRoute: AppProgramsRecreationalRoute,
   AppProgramsSummerCampRoute: AppProgramsSummerCampRoute,
@@ -1253,6 +1294,7 @@ interface PublicRouteChildren {
   PublicBoosterFundraisingRoute: typeof PublicBoosterFundraisingRoute
   PublicProgramsBeginnerRoute: typeof PublicProgramsBeginnerRoute
   PublicProgramsCompetitiveRoute: typeof PublicProgramsCompetitiveRoute
+  PublicProgramsEliteClinicRoute: typeof PublicProgramsEliteClinicRoute
   PublicProgramsFreeTryRoute: typeof PublicProgramsFreeTryRoute
   PublicProgramsRecreationalRoute: typeof PublicProgramsRecreationalRoute
   PublicProgramsShowsRoute: typeof PublicProgramsShowsRoute
@@ -1278,6 +1320,7 @@ const PublicRouteChildren: PublicRouteChildren = {
   PublicBoosterFundraisingRoute: PublicBoosterFundraisingRoute,
   PublicProgramsBeginnerRoute: PublicProgramsBeginnerRoute,
   PublicProgramsCompetitiveRoute: PublicProgramsCompetitiveRoute,
+  PublicProgramsEliteClinicRoute: PublicProgramsEliteClinicRoute,
   PublicProgramsFreeTryRoute: PublicProgramsFreeTryRoute,
   PublicProgramsRecreationalRoute: PublicProgramsRecreationalRoute,
   PublicProgramsShowsRoute: PublicProgramsShowsRoute,

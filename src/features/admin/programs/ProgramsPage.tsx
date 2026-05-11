@@ -1,5 +1,5 @@
 import { useNavigate } from '@tanstack/react-router'
-import { Sun, Trophy, Waves, Dumbbell, Sparkles, Pencil, Lock } from 'lucide-react'
+import { Sun, Trophy, Waves, Dumbbell, Sparkles, Award, Pencil, Lock } from 'lucide-react'
 import { AdminPageHeader } from '#/features/admin/components/AdminPageHeader'
 import { Button } from '#/components/ui/button'
 
@@ -51,6 +51,14 @@ const PROGRAMS: Program[] = [
     name: 'Free Try',
     description: 'Free trial event. Edit date, time, ages, safety note, location and required items.',
     route: '/app/programs/free-try',
+    status: 'active',
+  },
+  {
+    key: 'elite-clinic',
+    icon: Award,
+    name: 'Elite Clinic',
+    description: 'International Elite Clinic. Edit title, dates, pricing, coaches, schedule and registration link.',
+    route: '/app/programs/elite-clinic',
     status: 'active',
   },
 ]
