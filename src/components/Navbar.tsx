@@ -8,10 +8,11 @@ const menuItems = {
   programs: {
     label: "Programs",
     items: [
+      { label: "Summer Camp", path: "/programs/summer-camp" },
+      { label: "Elite Clinic", path: "/programs/elite-clinic" },
       { label: "Competitive", path: "/programs/competitive" },
       { label: "Recreational", path: "/programs/recreational" },
       { label: "Beginner", path: "/programs/beginner" },
-      { label: "Summer Camp", path: "/programs/summer-camp" },
       { label: "Shows", path: "/programs/shows" },
     ],
   },
