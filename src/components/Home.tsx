@@ -3,6 +3,11 @@ import { motion } from "framer-motion";
 import { ArrowRight, ChevronRight, ExternalLink } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import { usePublishedNews } from "#/features/team/news/hooks/use-news-posts";
+import type { NewsItem } from "#/features/admin/news/services/news.service";
+import { usePublishedPosts } from "#/features/team/blog/hooks/use-blog-posts";
+import type { Post } from "#/features/admin/blogs/services/posts.service";
+
 import headerImage from "/images/header.png";
 import summerCampImage from "/images/hader_people.png";
 
@@ -247,96 +252,10 @@ export function Home() {
       </section>
 
       {/* Latest News */}
-      {/* <section aria-label="Últimas Noticias" className="p-12 md:px-20 md:py-24 bg-white">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeInUp}
-          className="max-w-screen-lg mx-auto"
-        >
-          <div className="flex items-center justify-between mb-12">
-            <h2 className="font-bold text-secondary text-[48px] tracking-[-2.4px] uppercase">
-              Latest News
-            </h2>
-            <Link
-              to="/blog"
-              className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase hover:underline inline-flex items-center gap-2"
-            >
-              See All <ArrowRight size={14} />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <article className="bg-white">
-              <figure className="m-0">
-                <img
-                  src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=800&q=80"
-                  alt="Seattle Synchro domina los Campeonatos Regionales"
-                  className="w-full h-80 object-cover"
-                />
-              </figure>
-              <div className="p-8">
-                <time dateTime="2026-03-15" className="font-bold text-secondary text-[12px] tracking-[1.2px] uppercase">
-                  March 15, 2026
-                </time>
-                <h3 className="font-bold text-secondary text-[24px] tracking-[-1.2px] mt-4 mb-4">
-                  Seattle Synchro Dominates Regional Championships
-                </h3>
-                <p className="font-medium text-secondary text-[16px] leading-[26px]">
-                  Our team brought home 8 gold medals from the Pacific Northwest Regional
-                  Championships, showcasing exceptional performances across all age groups.
-                </p>
-              </div>
-            </article>
-
-            <div className="space-y-6">
-              {[
-                {
-                  img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=300&q=80",
-                  alt: "Nueva instalación de entrenamiento",
-                  date: "2026-03-10",
-                  dateLabel: "March 10, 2026",
-                  title: "New Training Facility Opens",
-                  desc: "State-of-the-art pool complex now available for all programs.",
-                },
-                {
-                  img: "https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=300&q=80",
-                  alt: "Inscripción al campamento de verano",
-                  date: "2026-03-05",
-                  dateLabel: "March 5, 2026",
-                  title: "Summer Camp Registration Open",
-                  desc: "Limited spots available for our 2026 summer intensive program.",
-                },
-              ].map((item) => (
-                <article key={item.title} className="bg-white p-6 flex gap-6">
-                  <figure className="m-0 shrink-0">
-                    <img
-                      src={item.img}
-                      alt={item.alt}
-                      className="w-32 h-32 object-cover"
-                    />
-                  </figure>
-                  <div>
-                    <time dateTime={item.date} className="font-bold text-secondary text-[12px] tracking-[1.2px] uppercase">
-                      {item.dateLabel}
-                    </time>
-                    <h3 className="font-bold text-secondary text-[16px] tracking-[-0.8px] mt-2 mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="font-medium text-secondary text-[14px] leading-[22px]">
-                      {item.desc}
-                    </p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </section> */}
+      <LatestNewsSection />
 
       {/* Coaches */}
-      <section aria-label="Nuestros Entrenadores" className="p-6 md:px-20 md:py-24 bg-white">
+      <section aria-label="Nuestros Entrenadores" className="p-6 md:px-20 md:py-24 bg-[#f5f5f5]">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -384,6 +303,9 @@ export function Home() {
       </section>
 
       {/* Blog */}
+      <LatestBlogSection />
+
+      {/* Blog (legacy mock — kept for reference) */}
       {/* <section aria-label="Blog" className="p-12 md:px-20 md:py-24 bg-[#f5f5f5]">
         <motion.div
           initial="hidden"
@@ -461,6 +383,310 @@ export function Home() {
       </section> */}
     </main>
   );
+}
+
+// ─── Latest News (Supabase-backed) ─────────────────────────────────────────
+
+function fmtNewsDate(dateStr: string | null): string {
+  if (!dateStr) return ''
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    month: 'long', day: 'numeric', year: 'numeric',
+  })
+}
+
+function LatestNewsSection() {
+  const { data: newsList, isLoading } = usePublishedNews()
+
+  if (isLoading) return null
+  if (!newsList || newsList.length === 0) return null
+
+  const featured = newsList[0]
+  const rest = newsList.slice(1, 3)
+
+  return (
+    <section aria-label="Latest News" className="p-6 md:px-20 md:py-24 bg-white">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUp}
+        className="max-w-screen-lg mx-auto"
+      >
+        <div className="flex items-end justify-between mb-12 gap-4">
+          <h2 className="font-bold text-secondary text-[50px] md:text-[72px] tracking-[-3.6px] uppercase leading-[1]">
+            Latest<br />News
+          </h2>
+          <Link
+            to="/team/news"
+            className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase hover:underline inline-flex items-center gap-2 shrink-0 pb-2"
+          >
+            See All <ArrowRight size={14} />
+          </Link>
+        </div>
+
+        <div className={`grid grid-cols-1 ${rest.length > 0 ? 'md:grid-cols-2' : ''} gap-8`}>
+          <FeaturedNewsCard news={featured} />
+
+          {rest.length > 0 && (
+            <div className="flex flex-col gap-6">
+              {rest.map((item) => (
+                <SmallNewsCard key={item.id} news={item} />
+              ))}
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </section>
+  )
+}
+
+function FeaturedNewsCard({ news }: { news: NewsItem }) {
+  const label = news.category ?? news.tags?.[0]
+
+  return (
+    <Link
+      to="/team/news/$slug"
+      params={{ slug: news.slug }}
+      className="group bg-white block"
+    >
+      <figure className="m-0 overflow-hidden relative">
+        {news.cover_url ? (
+          <img
+            src={news.cover_url}
+            alt={news.title}
+            className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-80 bg-gradient-to-br from-[#0A0A67]/10 to-[#0A0A67]/5 flex items-center justify-center">
+            <span className="font-bold text-[#0A0A67]/20 text-[96px] uppercase">
+              {news.title.charAt(0)}
+            </span>
+          </div>
+        )}
+        {label && (
+          <div className="absolute top-4 left-4">
+            <span className="bg-white px-3 py-1 font-bold text-[#171717] text-[10px] tracking-[1px] uppercase">
+              {label}
+            </span>
+          </div>
+        )}
+      </figure>
+      <div className="pt-6">
+        {news.published_at && (
+          <time
+            dateTime={news.published_at}
+            className="font-bold text-secondary text-[12px] tracking-[1.2px] uppercase"
+          >
+            {fmtNewsDate(news.published_at)}
+          </time>
+        )}
+        <h3 className="font-bold text-secondary text-[24px] tracking-[-1.2px] mt-4 mb-4 group-hover:text-primary transition-colors line-clamp-2">
+          {news.title}
+        </h3>
+        {news.excerpt && (
+          <p className="font-medium text-[#171717] text-[16px] leading-[26px] line-clamp-3">
+            {news.excerpt}
+          </p>
+        )}
+      </div>
+    </Link>
+  )
+}
+
+function SmallNewsCard({ news }: { news: NewsItem }) {
+  return (
+    <Link
+      to="/team/news/$slug"
+      params={{ slug: news.slug }}
+      className="group bg-white flex gap-6"
+    >
+      <figure className="m-0 shrink-0 overflow-hidden">
+        {news.cover_url ? (
+          <img
+            src={news.cover_url}
+            alt={news.title}
+            className="w-32 h-32 object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-32 h-32 bg-gradient-to-br from-[#0A0A67]/10 to-[#0A0A67]/5 flex items-center justify-center">
+            <span className="font-bold text-[#0A0A67]/20 text-[40px] uppercase">
+              {news.title.charAt(0)}
+            </span>
+          </div>
+        )}
+      </figure>
+      <div className="flex-1 min-w-0">
+        {news.published_at && (
+          <time
+            dateTime={news.published_at}
+            className="font-bold text-secondary text-[12px] tracking-[1.2px] uppercase"
+          >
+            {fmtNewsDate(news.published_at)}
+          </time>
+        )}
+        <h3 className="font-bold text-secondary text-[16px] tracking-[-0.8px] mt-2 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+          {news.title}
+        </h3>
+        {news.excerpt && (
+          <p className="font-medium text-[#171717] text-[14px] leading-[22px] line-clamp-2">
+            {news.excerpt}
+          </p>
+        )}
+      </div>
+    </Link>
+  )
+}
+
+// ─── Latest Blog (Supabase-backed) ─────────────────────────────────────────
+
+function LatestBlogSection() {
+  const { data: posts, isLoading } = usePublishedPosts()
+
+  if (isLoading) return null
+  if (!posts || posts.length === 0) return null
+
+  const featured = posts[0]
+  const rest = posts.slice(1, 3)
+
+  return (
+    <section aria-label="Blog" className="p-6 md:px-20 md:py-24 bg-[#f5f5f5]">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUp}
+        className="max-w-screen-lg mx-auto"
+      >
+        <div className="flex items-end justify-between mb-12 gap-4">
+          <h2 className="font-bold text-secondary text-[50px] md:text-[72px] tracking-[-3.6px] uppercase leading-[1]">
+            Latest from<br />Our Blog
+          </h2>
+          <Link
+            to="/team/blog"
+            className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase hover:underline inline-flex items-center gap-2 shrink-0 pb-2"
+          >
+            View All <ArrowRight size={14} />
+          </Link>
+        </div>
+
+        <div className={`grid grid-cols-1 ${rest.length > 0 ? 'md:grid-cols-2' : ''} gap-8`}>
+          <FeaturedPostCard post={featured} />
+
+          {rest.length > 0 && (
+            <div className="flex flex-col gap-6">
+              {rest.map((p) => (
+                <SmallPostCard key={p.id} post={p} />
+              ))}
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </section>
+  )
+}
+
+function FeaturedPostCard({ post }: { post: Post }) {
+  const label = post.tags?.[0]
+
+  return (
+    <Link
+      to="/team/blog/$slug"
+      params={{ slug: post.slug }}
+      className="group block"
+    >
+      <figure className="m-0 overflow-hidden relative bg-white">
+        {post.cover_url ? (
+          <img
+            src={post.cover_url}
+            alt={post.title}
+            className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-80 bg-gradient-to-br from-[#0A0A67]/10 to-[#0A0A67]/5 flex items-center justify-center">
+            <span className="font-bold text-[#0A0A67]/20 text-[96px] uppercase">
+              {post.title.charAt(0)}
+            </span>
+          </div>
+        )}
+        {label && (
+          <div className="absolute top-4 left-4">
+            <span className="bg-[#0A0A67] text-white px-3 py-1 font-bold text-[10px] tracking-[1px] uppercase">
+              {label}
+            </span>
+          </div>
+        )}
+      </figure>
+      <div className="pt-6">
+        {post.published_at && (
+          <time
+            dateTime={post.published_at}
+            className="font-bold text-secondary text-[12px] tracking-[1.2px] uppercase"
+          >
+            {fmtNewsDate(post.published_at)}
+          </time>
+        )}
+        <h3 className="font-bold text-secondary text-[24px] tracking-[-1.2px] mt-4 mb-4 group-hover:text-primary transition-colors line-clamp-2">
+          {post.title}
+        </h3>
+        {post.excerpt && (
+          <p className="font-medium text-[#171717] text-[16px] leading-[26px] line-clamp-3">
+            {post.excerpt}
+          </p>
+        )}
+        <span className="inline-flex items-center gap-2 mt-4 font-bold text-secondary text-[12px] tracking-[1.2px] uppercase group-hover:gap-3 transition-all">
+          Read More
+          <ArrowRight size={12} />
+        </span>
+      </div>
+    </Link>
+  )
+}
+
+function SmallPostCard({ post }: { post: Post }) {
+  const label = post.tags?.[0]
+
+  return (
+    <Link
+      to="/team/blog/$slug"
+      params={{ slug: post.slug }}
+      className="group flex gap-6"
+    >
+      <figure className="m-0 shrink-0 overflow-hidden bg-white">
+        {post.cover_url ? (
+          <img
+            src={post.cover_url}
+            alt={post.title}
+            className="w-32 h-32 object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-32 h-32 bg-gradient-to-br from-[#0A0A67]/10 to-[#0A0A67]/5 flex items-center justify-center">
+            <span className="font-bold text-[#0A0A67]/20 text-[40px] uppercase">
+              {post.title.charAt(0)}
+            </span>
+          </div>
+        )}
+      </figure>
+      <div className="flex-1 min-w-0">
+        {label && (
+          <span className="inline-block font-bold text-[#0A0A67] text-[10px] tracking-[1px] uppercase mb-1">
+            {label}
+          </span>
+        )}
+        <h3 className="font-bold text-secondary text-[16px] tracking-[-0.8px] mt-1 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+          {post.title}
+        </h3>
+        {post.excerpt && (
+          <p className="font-medium text-[#171717] text-[14px] leading-[22px] line-clamp-2">
+            {post.excerpt}
+          </p>
+        )}
+      </div>
+    </Link>
+  )
 }
 
 // ─── Sponsors horizontal scroll with mobile hint ───────────────────────────
