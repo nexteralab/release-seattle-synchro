@@ -1,5 +1,5 @@
 import { useNavigate } from '@tanstack/react-router'
-import { Sun, Trophy, Waves, Dumbbell, Sparkles, Award, Pencil, Lock } from 'lucide-react'
+import { Sun, Trophy, Waves, Dumbbell, Sparkles, Award, Pencil, Lock, CalendarDays } from 'lucide-react'
 import { AdminPageHeader } from '#/features/admin/components/AdminPageHeader'
 import { Button } from '#/components/ui/button'
 
@@ -8,8 +8,10 @@ interface Program {
   icon: React.ElementType
   name: string
   description: string
+  image: string
   route?: string
   status: 'active' | 'coming-soon'
+  tag?: 'event'
 }
 
 const PROGRAMS: Program[] = [
@@ -18,14 +20,37 @@ const PROGRAMS: Program[] = [
     icon: Sun,
     name: 'Summer Camp',
     description: 'Recreational 1-week camp. Edit sessions, pricing, dates and requirements.',
+    image: '/images/hero_summer.webp',
     route: '/app/programs/summer-camp',
     status: 'active',
+    tag: 'event',
+  },
+  {
+    key: 'free-try',
+    icon: Sparkles,
+    name: 'Free Try',
+    description: 'Free trial event. Edit date, time, ages, safety note, location and required items.',
+    image: '/images/image_free_try.webp',
+    route: '/app/programs/free-try',
+    status: 'active',
+    tag: 'event',
+  },
+  {
+    key: 'elite-clinic',
+    icon: Award,
+    name: 'Elite Clinic',
+    description: 'International Elite Clinic. Edit title, dates, pricing, coaches, schedule and registration link.',
+    image: '/images/elite-clinc.webp',
+    route: '/app/programs/elite-clinic',
+    status: 'active',
+    tag: 'event',
   },
   {
     key: 'competitive',
     icon: Trophy,
     name: 'Competitive',
     description: 'Age group, junior and senior competitive programs.',
+    image: '/images/competitive_hero.webp',
     route: '/app/programs/competitive',
     status: 'active',
   },
@@ -34,6 +59,7 @@ const PROGRAMS: Program[] = [
     icon: Waves,
     name: 'Recreational',
     description: 'Sea Stars, Sharks & Mermaids, and Dolphins sub-programs. Edit details, coaches, schedule and pricing.',
+    image: '/images/recreational_hero.webp',
     route: '/app/programs/recreational',
     status: 'active',
   },
@@ -42,23 +68,8 @@ const PROGRAMS: Program[] = [
     icon: Dumbbell,
     name: 'Beginner',
     description: 'Novice and Intermediate teams. Edit details, coaches, schedule, dates and cost.',
+    image: '/images/beginner.jpg',
     route: '/app/programs/beginner',
-    status: 'active',
-  },
-  {
-    key: 'free-try',
-    icon: Sparkles,
-    name: 'Free Try',
-    description: 'Free trial event. Edit date, time, ages, safety note, location and required items.',
-    route: '/app/programs/free-try',
-    status: 'active',
-  },
-  {
-    key: 'elite-clinic',
-    icon: Award,
-    name: 'Elite Clinic',
-    description: 'International Elite Clinic. Edit title, dates, pricing, coaches, schedule and registration link.',
-    route: '/app/programs/elite-clinic',
     status: 'active',
   },
 ]
@@ -82,38 +93,55 @@ export function ProgramsPage() {
             <div
               key={p.key}
               className={[
-                'bg-card border border-border rounded-[10px] p-5 flex flex-col gap-4',
+                'group relative border border-border rounded-[10px] overflow-hidden flex flex-col min-h-[260px]',
                 !editable && 'opacity-60',
               ].filter(Boolean).join(' ')}
             >
-              <div className="flex items-start justify-between gap-3">
-                <div className="size-10 rounded-[8px] bg-[#0A0A67]/8 flex items-center justify-center shrink-0">
-                  <Icon size={18} className="text-[#0A0A67]" />
+              <img
+                src={p.image}
+                alt=""
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/25" />
+
+              <div className="relative flex flex-col flex-1 p-5 gap-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="size-10 rounded-[8px] bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center shrink-0">
+                    <Icon size={18} className="text-white" />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {p.tag === 'event' && (
+                      <span className="flex items-center gap-1 text-[10px] font-bold tracking-[1px] uppercase text-[#0A0A67] bg-white px-2 py-1 rounded-full shadow-sm">
+                        <CalendarDays size={10} />
+                        Event
+                      </span>
+                    )}
+                    {!editable && (
+                      <span className="flex items-center gap-1 text-[10px] font-bold tracking-[1px] uppercase text-white/90 bg-white/10 backdrop-blur-sm border border-white/20 px-2 py-1 rounded-full">
+                        <Lock size={9} />
+                        Soon
+                      </span>
+                    )}
+                  </div>
                 </div>
-                {!editable && (
-                  <span className="flex items-center gap-1 text-[10px] font-bold tracking-[1px] uppercase text-muted-foreground border border-border px-2 py-1 rounded-full">
-                    <Lock size={9} />
-                    Soon
-                  </span>
+
+                <div className="flex-1 flex flex-col justify-end">
+                  <h3 className="font-bold text-white text-[16px] tracking-[-0.3px] mb-1 drop-shadow-sm">{p.name}</h3>
+                  <p className="text-[13px] text-white/85 leading-[1.55] drop-shadow-sm">{p.description}</p>
+                </div>
+
+                {editable && (
+                  <Button
+                    size="sm"
+                    className="w-full bg-white text-[#0A0A67] hover:bg-white/90"
+                    onClick={() => navigate({ to: p.route as any })}
+                  >
+                    <Pencil size={13} />
+                    Edit Program
+                  </Button>
                 )}
               </div>
-
-              <div className="flex-1">
-                <h3 className="font-bold text-foreground text-[15px] tracking-[-0.3px] mb-1">{p.name}</h3>
-                <p className="text-[13px] text-muted-foreground leading-[1.55]">{p.description}</p>
-              </div>
-
-              {editable && (
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="w-full"
-                  onClick={() => navigate({ to: p.route as any })}
-                >
-                  <Pencil size={13} />
-                  Edit Program
-                </Button>
-              )}
             </div>
           )
         })}

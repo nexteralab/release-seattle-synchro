@@ -3,8 +3,6 @@ import type { EliteClinicData } from '../types'
 import img1 from '/images/elite-clinc.webp'
 
 // Reemplazar esta imagen cuando esté el asset definitivo.
-const HERO_IMAGE =
-  'https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=2000&q=80'
 
 const t = { duration: 0.35, ease: [0.35, 0.85, 0.25, 1] as [number, number, number, number] }
 const vp = { once: true }
@@ -16,7 +14,7 @@ interface Props {
 export function EliteClinicHero({ data }: Props) {
   return (
     <section
-      className="relative md:h-screen h-[60vh] flex items-center justify-center overflow-hidden"
+      className="relative md:h-screen h-[90vh] flex items-center justify-center overflow-hidden"
       aria-label="Elite Clinic hero"
     >
       <div className="absolute inset-0">
