@@ -9,4 +9,5 @@ export interface FreeTryData {
   time: string
   ages: string
   location: FreeTryLocation
+  image: string
 }

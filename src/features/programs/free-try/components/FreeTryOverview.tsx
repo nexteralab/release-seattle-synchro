@@ -1,4 +1,5 @@
 import type { FreeTryData } from '../types'
+import imageFreeTry from '/images/free-try.webp'
 
 const LOCATION_IMAGE =
   'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzd2ltJTIwdGVubmlzJTIwY2x1YiUyMGFlcmlhbHxlbnwxfHx8fDE3NzUxNzY0NTR8MA&ixlib=rb-4.1.0&q=80&w=800'
@@ -64,9 +65,9 @@ export function FreeTryOverview({ data }: Props) {
               </div>
             </div>
             <img
-              src={LOCATION_IMAGE}
+              src={imageFreeTry}
               alt={data.location.name}
-              className="w-full h-[150px] md:h-[200px] object-cover"
+              className="w-full h-[250px] object-cover"
             />
           </div>
 

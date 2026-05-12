@@ -1,5 +1,7 @@
 import { supabase } from '#/utils/supabase'
 import type { FreeTryData } from '../types'
+import imageFreeTry from '/images/free-try.webp'
+
 
 const TABLE = 'free_try_config'
 const ROW_ID = 1
@@ -12,6 +14,7 @@ const FALLBACK: FreeTryData = {
     name: 'Newport Hills',
     address: 'Swim and Tennis Club\nAthletic Excellence Center',
   },
+  image: imageFreeTry,
 }
 
 const sb = supabase as unknown as {
