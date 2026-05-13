@@ -1,6 +1,8 @@
 const SWIMMER_IMAGE =
   'https://images.unsplash.com/photo-1519315901367-f34ff9154487?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800'
 
+const WHAT_WE_DO_IMAGE = '/images/about.webp'
+
 const highlights = [
   'Trains and competes September through June.',
   'Competes locally, regionally and nationally.',
@@ -58,7 +60,7 @@ export function AboutUsWhatWeDo() {
           </div>
           <div className="rounded-sm overflow-hidden shadow-md h-64 md:h-80">
             <img
-              src={SWIMMER_IMAGE}
+              src={WHAT_WE_DO_IMAGE}
               alt="Artistic swimmer in the pool"
               className="w-full h-full object-cover"
             />

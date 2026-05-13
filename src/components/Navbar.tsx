@@ -166,14 +166,20 @@ export function NavbarHomePage() {
               {/* CTA */}
               <Link
                 to="/programs/free-try"
-                className="group inline-flex items-center gap-2 bg-[#0A0A67] text-white px-5 py-2 rounded-full font-['Space_Grotesk'] font-bold text-[12px] tracking-[1.4px] uppercase hover:bg-[#030213] transition-all duration-200"
+                className="group inline-flex items-center gap-2 bg-[#0A0A67] text-white px-5 py-2 rounded-full font-bold text-[12px] tracking-[1.4px] hover:text-primary uppercase transition-all duration-200"
               >
                 Free Try
-                <ArrowRight
-                  size={11}
-                  className="transition-transform duration-200 group-hover:translate-x-0.5"
-                />
               </Link>
+              {/* Portal Members Link */}
+              <a
+                href="https://www.seattlesynchrosst.com/page/home"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 bg-[#F5F5F5] text-[#0A0A67] px-5 py-2 rounded-full font-['Space_Grotesk'] font-bold text-[12px] tracking-[1.4px] uppercase hover:bg-[#e0e7ef] transition-all duration-200 border border-[#0A0A67]/10 ml-2"
+              >
+                Members
+              </a>
+
             </div>
 
             {/* Mobile hamburger */}

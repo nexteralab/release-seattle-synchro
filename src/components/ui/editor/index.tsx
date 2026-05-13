@@ -283,6 +283,8 @@ export function Editor({
   const [isOnImage, setIsOnImage] = useState(false);
   const [imageAlignment, setImageAlignmentState] = useState<string | null>(null);
   const [linkUrl, setLinkUrl] = useState("");
+  const [linkText, setLinkText] = useState("");
+  const [linkSelectionRange, setLinkSelectionRange] = useState<{ from: number; to: number } | null>(null);
   const [imageAltText, setImageAltText] = useState("");
   const bubbleMenuRef = useRef<HTMLDivElement>(null);
   const linkInputRef = useRef<HTMLInputElement>(null);
@@ -305,9 +307,10 @@ export function Editor({
       Link.configure({
         openOnClick: false,
         enableClickSelection: true,
+        defaultProtocol: "https",
         HTMLAttributes: {
-          rel: null,
-          target: null,
+          rel: "noopener noreferrer",
+          target: "_blank",
         },
       }),
       UploadableImage,
@@ -836,7 +839,25 @@ export function Editor({
     }
     const linkAttrs = editor.getAttributes("link");
     const href = typeof linkAttrs["href"] === "string" ? linkAttrs["href"] : "";
+    let { from, to } = editor.state.selection;
+    // If cursor is inside an existing link, expand the range to cover the
+    // whole link so the Text input shows the link's current label.
+    if (editor.isActive("link") && from === to) {
+      const $pos = editor.state.doc.resolve(from);
+      const linkMark = $pos.marks().find((m) => m.type.name === "link");
+      if (linkMark) {
+        let start = from;
+        let end = from;
+        while (start > 0 && editor.state.doc.resolve(start - 1).marks().some((m) => m.eq(linkMark))) start--;
+        while (end < editor.state.doc.content.size && editor.state.doc.resolve(end).marks().some((m) => m.eq(linkMark))) end++;
+        from = start;
+        to = end;
+      }
+    }
+    const selectedText = from === to ? "" : editor.state.doc.textBetween(from, to, " ");
     setLinkUrl(editor.isActive("link") ? href : "");
+    setLinkText(selectedText);
+    setLinkSelectionRange({ from, to });
     setShowLinkInput(true);
     setShowTableActions(false);
     setShowAltInput(false);
@@ -864,9 +885,39 @@ export function Editor({
   };
 
   const applyLink = () => {
-    const trimmed = linkUrl.trim();
-    if (!trimmed) return;
-    editor.chain().focus().extendMarkRange("link").setLink({ href: trimmed }).run();
+    const trimmedUrl = linkUrl.trim();
+    if (!trimmedUrl) return;
+    // Auto-prefix https:// so URLs like "example.com" become absolute
+    // instead of resolving as relative paths in the public view.
+    const href = /^(https?:|mailto:|tel:|\/|#)/i.test(trimmedUrl)
+      ? trimmedUrl
+      : `https://${trimmedUrl}`;
+
+    const range = linkSelectionRange ?? {
+      from: editor.state.selection.from,
+      to: editor.state.selection.to,
+    };
+    const currentText = range.from === range.to
+      ? ""
+      : editor.state.doc.textBetween(range.from, range.to, " ");
+    const desiredText = linkText.trim() || currentText || trimmedUrl;
+
+    if (desiredText !== currentText) {
+      // Replace selection (or insert at cursor) with the new label, then mark it as a link.
+      editor
+        .chain()
+        .focus()
+        .insertContentAt(
+          range.from === range.to ? range.from : { from: range.from, to: range.to },
+          desiredText,
+        )
+        .setTextSelection({ from: range.from, to: range.from + desiredText.length })
+        .setLink({ href })
+        .run();
+    } else {
+      editor.chain().focus().extendMarkRange("link").setLink({ href }).run();
+    }
+    setLinkSelectionRange(null);
     setShowLinkInput(false);
   };
 
@@ -874,6 +925,8 @@ export function Editor({
     editor.chain().focus().extendMarkRange("link").unsetLink().run();
     setShowLinkInput(false);
     setLinkUrl("");
+    setLinkText("");
+    setLinkSelectionRange(null);
   };
 
   const confirmOrRemoveLink = () => {
@@ -1061,38 +1114,69 @@ export function Editor({
           {showLinkInput ? (
             <div
               data-state="open"
-              className="border-border bg-popover data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:slide-in-from-top-1 flex flex-nowrap items-center gap-0.5 overflow-x-auto rounded-md border p-1 shadow-sm duration-200 whitespace-nowrap"
+              className="border-border bg-popover data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:slide-in-from-top-1 flex flex-col gap-1 rounded-md border p-1 shadow-sm duration-200"
             >
-              <input
-                id="link-url"
-                ref={linkInputRef}
-                type="url"
-                placeholder="https://example.com"
-                value={linkUrl}
-                onChange={(event) => setLinkUrl(event.target.value)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter") {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    applyLink();
-                  }
-                }}
-                disabled={disabled}
-                className={`${toolbarInputClass} min-w-56 flex-1`}
-              />
-              {renderIconButton({
-                label: "Set link",
-                icon: Check,
-                onClick: applyLink,
-                disabled: disabled || !linkUrl.trim(),
-              })}
-              {renderIconButton({
-                label: "Remove link",
-                icon: X,
-                onClick: confirmOrRemoveLink,
-                disabled,
-                className: "ml-auto",
-              })}
+              <div className="flex items-center gap-0.5">
+                <label
+                  htmlFor="link-text"
+                  className="text-muted-foreground pl-2 pr-1 text-[10px] font-medium uppercase tracking-[1px] w-12 shrink-0"
+                >
+                  Text
+                </label>
+                <input
+                  id="link-text"
+                  ref={linkInputRef}
+                  type="text"
+                  placeholder="Link label"
+                  value={linkText}
+                  onChange={(event) => setLinkText(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter") {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      applyLink();
+                    }
+                  }}
+                  disabled={disabled}
+                  className={`${toolbarInputClass} min-w-56 flex-1`}
+                />
+              </div>
+              <div className="flex items-center gap-0.5">
+                <label
+                  htmlFor="link-url"
+                  className="text-muted-foreground pl-2 pr-1 text-[10px] font-medium uppercase tracking-[1px] w-12 shrink-0"
+                >
+                  URL
+                </label>
+                <input
+                  id="link-url"
+                  type="url"
+                  placeholder="https://example.com"
+                  value={linkUrl}
+                  onChange={(event) => setLinkUrl(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter") {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      applyLink();
+                    }
+                  }}
+                  disabled={disabled}
+                  className={`${toolbarInputClass} min-w-56 flex-1`}
+                />
+                {renderIconButton({
+                  label: "Set link",
+                  icon: Check,
+                  onClick: applyLink,
+                  disabled: disabled || !linkUrl.trim(),
+                })}
+                {renderIconButton({
+                  label: "Remove link",
+                  icon: X,
+                  onClick: confirmOrRemoveLink,
+                  disabled,
+                })}
+              </div>
             </div>
           ) : null}
           {showAltInput && isOnImage ? (

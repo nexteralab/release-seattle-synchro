@@ -23,9 +23,11 @@ export function SummerCampHero() {
           }}
         />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" /> */}
 
-      <div className="relative z-10 text-center text-white px-12 md:px-48 space-y-10">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A67]/40 via-[#0A0A67]/40 to-[#0A0A67]/50" />
+
+      <div className="relative z-10 text-center text-white md:px-48 space-y-10">
         <div className="bg-primary inline-block px-3 py-1">
           <span className="font-bold text-[#f5f5f5] text-[12px] tracking-[1.2px] uppercase">
             Limited Spots Available
@@ -33,13 +35,13 @@ export function SummerCampHero() {
         </div>
 
         {/* H1 — primary SEO target for this page */}
-        <header className="relative font-bold tracking-[-4.8px] uppercase leading-none flex flex-col items-center">
+        <header className="relative font-bold tracking-[-4.8px] leading-none flex flex-col items-center">
           <div className="relative z-10 flex flex-col items-center">
             <motion.p
               whileInView={{ opacity: [0, 1], x: [-40, 0] }}
               viewport={vp}
               transition={t}
-              className="text-[20px] md:text-[50px] tracking-[1.2px] uppercase"
+              className="text-[20px] md:text-[30px] tracking-[1.2px]"
             >
               Artistic Swimming
             </motion.p>
@@ -47,7 +49,7 @@ export function SummerCampHero() {
               whileInView={{ opacity: [0, 1], x: [-40, 0] }}
               viewport={vp}
               transition={{ ...t, delay: 0.05 }}
-              className="text-[50px] md:text-[96px] uppercase leading-none"
+              className="text-[50px] md:text-[90px] leading-none uppercase"
             >
               Summer Camp
             </motion.h1>
@@ -55,7 +57,7 @@ export function SummerCampHero() {
               whileInView={{ opacity: [0, 1], x: [-40, 0] }}
               viewport={vp}
               transition={{ ...t, delay: 0.1 }}
-              className="text-[20px] md:text-[50px] tracking-[1.2px] uppercase"
+              className="text-[20px] md:text-[30px] tracking-[1.2px]"
             >
               for kids in Washington
             </motion.p>
