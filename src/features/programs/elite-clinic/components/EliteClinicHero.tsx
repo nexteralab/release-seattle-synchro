@@ -51,7 +51,7 @@ export function EliteClinicHero({ data }: Props) {
             whileInView={{ opacity: [0, 1], x: [-40, 0] }}
             viewport={vp}
             transition={{ ...t, delay: 0.05 }}
-            className="text-[50px] md:text-[90px] tracking-[-4.8px] leading-none text-[#a3e635]"
+            className="text-[50px] md:text-[90px] tracking-[-1px] md:tracking-[-3px] leading-none text-[#a3e635]"
           >
             {data.title}
           </motion.h1>
