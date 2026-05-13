@@ -73,7 +73,7 @@
     "react-hook-form": "^7.74.0",
     "react-top-loading-bar": "^3.0.2",
     "recharts": "^3.8.1",
-    "resend": "^6.12.2",
+    "resend": "^6.12.3",
     "shadcn": "^4.6.0",
     "sonner": "^2.0.7",
     "supabase": "^2.96.0",

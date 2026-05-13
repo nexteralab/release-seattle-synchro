@@ -9,6 +9,8 @@ import imgYulia from '/images/health/yulia.png'
 
 const HERO_IMG = 'https://images.unsplash.com/photo-1560272564-c83b66b1ad12?auto=format&fit=crop&w=1920&q=80'
 
+const imageOlimpycs = '/images/olympics.png'
+
 const vp = { once: true, margin: '-40px' } as const
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -86,6 +88,36 @@ export function HallOfFamePage() {
             className="font-medium text-[#737373] text-[16px] md:text-[20px] tracking-[-0.5px] leading-[26px] md:leading-[32px] max-w-2xl mx-auto"
           >
             The Seattle Synchronized Swim Team has produced many fine athletes and coaches over those years, including athletes who have competed internationally for the United States. Thank you to all the great athletes and coaches that have been a part of this team!
+          </motion.p>
+        </motion.div>
+      </section>
+
+      {/* Olympics */}
+      <section className="p-6 md:px-20 md:pt-20 md:pb-12 bg-white">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={vp}
+          variants={stagger}
+          className="relative z-10 text-center space-y-4 md:space-y-6 max-w-screen-lg mx-auto"
+        >
+          <motion.h2
+            variants={fadeUp}
+            className="font-bold text-secondary text-[20px] md:text-[48px] tracking-[-1.8px] uppercase leading-[26px] md:leading-[48px]"
+          >
+            1984 Olympic Gold Medalists
+          </motion.h2>
+          <motion.img
+            variants={fadeUp}
+            src={imageOlimpycs}
+            alt="1984 Olympic Gold Medalists"
+            className="w-1/2 mx-auto object-cover"
+          />
+          <motion.p
+            variants={fadeUp}
+            className="font-medium text-[#737373] text-[16px] md:text-[18px] tracking-[-0.5px] leading-[1.75] max-w-2xl mx-auto"
+          >
+            In 1984, Artistic Swimming reached a historic milestone with its official Olympic debut at the Los Angeles Games. Tracie Ruiz-Conforto and Candy Costie-Burke made history as the first Olympic gold medalists in the duet event, setting a new standard for excellence, athleticism, and artistry in the sport. Their unforgettable performance inspired generations of synchronized swimmers around the world and remains one of the most iconic moments in Artistic Swimming history.
           </motion.p>
         </motion.div>
       </section>
