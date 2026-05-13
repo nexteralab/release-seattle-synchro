@@ -3,7 +3,7 @@
 import { Resend } from 'resend'
 
 const FROM = 'Seattle Synchro <support@thenexteralab.com>'
-const TO = 'thenexteralab@gmail.com'
+const TO = 'info@seattlesynchro.org'
 
 let client: Resend | null = null
 
