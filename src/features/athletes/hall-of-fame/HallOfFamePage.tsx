@@ -1,5 +1,4 @@
 import { motion } from 'motion/react'
-import imgYuki from '/images/coaches/yuki.webp'
 import { CtaBanner } from '#/components/CtaBanner'
 import heroImage from '/images/hall_of_fame.webp'
 
@@ -136,7 +135,7 @@ export function HallOfFamePage() {
               {/* Photo */}
               <motion.img
                 variants={fadeUp}
-                src={imgYuki}
+                src="https://hfyxcakixklryajpnszd.supabase.co/storage/v1/object/public/coaches/1777997779537-1ibplqw0p5.webp"
                 alt="Coach Yuki Maekawa"
                 className="w-full aspect-[4/5] object-cover"
               />
