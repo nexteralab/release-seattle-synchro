@@ -285,7 +285,7 @@ export function NavbarHomePage() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.2 }}
-                className="mt-8"
+                className="mt-8 flex flex-col gap-2"
               >
                 <Link
                   to="/programs/free-try"
@@ -294,6 +294,15 @@ export function NavbarHomePage() {
                   Free Try
                   <ArrowRight size={12} />
                 </Link>
+                <a
+                  href="https://www.seattlesynchrosst.com/page/home"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 bg-[#F5F5F5] text-[#0A0A67] px-5 py-2 border border-[#0A0A67]/10 w-full py-4 font-bold text-[13px] tracking-[2px] uppercase bg-[#F5F5F5] text-[#0A0A67] hover:bg-[#e0e7ef] transition-all duration-200"
+                >
+                  Members
+                  <ArrowRight size={12} />
+                </a>
               </motion.div>
             </div>
           </motion.div>
