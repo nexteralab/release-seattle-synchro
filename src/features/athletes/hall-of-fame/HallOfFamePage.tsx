@@ -111,7 +111,7 @@ export function HallOfFamePage() {
             variants={fadeUp}
             src={imageOlimpycs}
             alt="1984 Olympic Gold Medalists"
-            className="w-1/2 mx-auto object-cover"
+            className="w-full md:w-1/2 mx-auto object-cover"
           />
           <motion.p
             variants={fadeUp}

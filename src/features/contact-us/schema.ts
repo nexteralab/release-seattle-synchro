@@ -12,11 +12,10 @@ export const CONTACT_SUBJECTS = [
 
 export const contactFormSchema = z.object({
   name: z.string().min(1, { message: 'Name is required.' }),
-  phone: z.string().optional().default(''),
+  phone: z.string(),
   email: z
-    .string()
-    .min(1, { message: 'Email is required.' })
-    .email({ message: 'Enter a valid email address.' }),
+    .email({ message: 'Enter a valid email address.' })
+    .min(1, { message: 'Email is required.' }),
   subject: z.string().min(1, { message: 'Please select a subject.' }),
   message: z.string().min(1, { message: 'Message is required.' }),
 })
