@@ -37,7 +37,7 @@ const menuItems = {
     ],
   },
   booster: {
-    label: "Booster",
+    label: "Boosters",
     items: [
       { label: "Donate", path: "/booster/donate" },
       { label: "Fundraising Opportunities", path: "/booster/fundraising" }

@@ -8,9 +8,9 @@ export function ProgramsIndexHero() {
             className="relative bg-secondary text-white overflow-hidden"
             aria-label="Programs intro"
         >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A67] via-secondary to-[#0A0A67]/80" />
-            <div className="absolute -top-20 -right-20 size-[420px] rounded-full bg-primary/10 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 size-[420px] rounded-full bg-primary/10 blur-3xl" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A67] via-secondary to-[#0A0A67]/90" />
+            <div className="absolute -top-20 -right-20 size-[420px] rounded-full bg-primary/10 blur-5xl" />
+            <div className="absolute -bottom-20 -left-20 size-[420px] rounded-full bg-primary/10 blur-5xl" />
 
             <div className="relative max-w-screen-lg mx-auto px-6 md:px-12 py-20 md:py-28 flex flex-col items-start gap-6">
                 <motion.span
@@ -38,7 +38,7 @@ export function ProgramsIndexHero() {
                     className="text-white/80 text-[16px] md:text-[20px] leading-[30px] max-w-2xl"
                 >
                     From your first day in the water to elite competition. Year-round commitment
-                    programs, seasonal camps, and one-on-one coaching — choose the path that fits.
+                    programs, seasonal camps, and one-on-one coaching choose the path that fits.
                 </motion.p>
             </div>
         </section>

@@ -11,30 +11,14 @@ export function ProgramsIndexPage() {
     return (
         <div className="w-full">
             <ProgramsIndexHero />
-
             <YearRoundProgramRow
-                eyebrow="Year-Round · Sept to June"
-                title="Beginner"
-                description="Build foundations. Strokes, sculls, breath control and basic figures in a supportive group setting. Two paths depending on prior skill level."
-                image={beginnerImg}
-                imageAlt="Beginner artistic swimming program"
-                to="/programs/beginner"
-                background="white"
-                imageRight={false}
-                subPrograms={[
-                    { label: "Novice", hash: "novice" },
-                    { label: "Intermediate", hash: "intermediate" },
-                ]}
-            />
-
-            <YearRoundProgramRow
-                eyebrow="Year-Round · Recreational"
+                eyebrow="Year-Round · 8 week sessions"
                 title="Recreational"
                 description="Non-competitive programs for swimmers learning artistic swimming basics. Three age-based groups with rolling sessions throughout the year."
                 image={recreationalImg}
                 imageAlt="Recreational artistic swimming program"
                 to="/programs/recreational"
-                background="muted"
+                background="white"
                 imageRight
                 subPrograms={[
                     { label: "Sea Stars", hash: "sea-stars" },
@@ -44,17 +28,33 @@ export function ProgramsIndexPage() {
             />
 
             <YearRoundProgramRow
-                eyebrow="Year-Round · Competitive"
+                eyebrow="Year-Round · Sept to June"
+                title="Beginner"
+                description="Build foundations. Strokes, sculls, breath control and basic figures in a supportive group setting. Two paths depending on prior skill level."
+                image={beginnerImg}
+                imageAlt="Beginner artistic swimming program"
+                to="/programs/beginner"
+                background="muted"
+                imageRight={false}
+                subPrograms={[
+                    { label: "Novice", hash: "novice" },
+                    { label: "Intermediate", hash: "intermediate" },
+                ]}
+            />
+
+
+            <YearRoundProgramRow
+                eyebrow="Year-Round"
                 title="Competitive"
                 description="Elite training for swimmers aiming at national and international competition. Four age groups, structured by USA Artistic Swimming age categories."
                 image={competitiveImg}
                 imageAlt="Competitive artistic swimming program"
                 to="/programs/competitive"
                 background="white"
-                imageRight={false}
+                imageRight={true}
                 subPrograms={[
                     { label: "12 & Under", hash: "12-under" },
-                    { label: "13 – 15", hash: "13-15" },
+                    { label: "Youth", hash: "youth" },
                     { label: "Junior", hash: "junior" },
                     { label: "Senior", hash: "senior" },
                 ]}
