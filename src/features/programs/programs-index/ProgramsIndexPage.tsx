@@ -21,9 +21,7 @@ export function ProgramsIndexPage() {
                 background="white"
                 imageRight
                 subPrograms={[
-                    { label: "Sea Stars", hash: "sea-stars" },
                     { label: "Sharks & Mermaids", hash: "sharks-mermaids" },
-                    { label: "Dolphins", hash: "dolphins" },
                 ]}
             />
 
