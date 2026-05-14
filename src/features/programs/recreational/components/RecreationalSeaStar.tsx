@@ -33,7 +33,7 @@ interface Props {
 
 export function RecreationalSharksMermaids({ program = SHARKS_MERMAIDS_FALLBACK }: Props = {}) {
   return (
-    <section className="p-6 md:px-12 lg:p-20 bg-white" aria-labelledby="sharks-mermaids-heading">
+    <section id="sharks-mermaids" className="p-6 md:px-12 lg:p-20 bg-white scroll-mt-24" aria-labelledby="sharks-mermaids-heading">
       <div className="max-w-screen-lg mx-auto space-y-12">
         <div className="space-y-6">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
@@ -102,7 +102,7 @@ export function RecreationalSharksMermaids({ program = SHARKS_MERMAIDS_FALLBACK 
 
 export function RecreationalSeaStars({ program = SEA_STARS_FALLBACK }: Props = {}) {
   return (
-    <section className="p-6 md:px-12 lg:p-20 bg-[#F5F5F5]" aria-labelledby="sea-stars-heading">
+    <section id="sea-stars" className="p-6 md:px-12 lg:p-20 bg-[#F5F5F5] scroll-mt-24" aria-labelledby="sea-stars-heading">
       <div className="max-w-screen-lg mx-auto space-y-12">
         <div className="space-y-6">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">

@@ -25,6 +25,7 @@ import sponsorThrive from "/images/sponsor_6.png";
 
 import imageSummerCamp from "/images/image_summer_camp.jpg";
 import { CoachesSpotlight } from "./CoachesSpotlight";
+import { HomeAnnouncementModal } from "./HomeAnnouncementModal";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
@@ -70,6 +71,9 @@ const sponsors = [
 export function Home() {
   return (
     <main className="">
+      {/* Anuncio en home — comenta esta línea para apagarlo */}
+      <HomeAnnouncementModal />
+
       {/* Hero */}
       <section aria-label="Hero" className="relative max-h-[80vh] min-h-[1000px] flex items-center justify-center overflow-hidden">
         <figure className="absolute inset-0 m-0">

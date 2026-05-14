@@ -13,6 +13,7 @@ const menuItems = {
       { label: "Competitive", path: "/programs/competitive" },
       { label: "Recreational", path: "/programs/recreational" },
       { label: "Beginner", path: "/programs/beginner" },
+      { label: "Private Lessons", path: "/programs/private-lessons" },
       { label: "Shows", path: "/programs/shows" },
     ],
   },

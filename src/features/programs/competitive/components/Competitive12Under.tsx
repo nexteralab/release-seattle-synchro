@@ -9,7 +9,7 @@ export function Competitive12Under({ coaches, workoutDays }: Props) {
   const coachLines = coaches.split('\n').filter(Boolean)
 
   return (
-    <section className="p-6 md:px-20 md:py-24 bg-[#f5f5f5]" aria-labelledby="group-12u">
+    <section id="12-under" className="p-6 md:px-20 md:py-24 bg-[#f5f5f5] scroll-mt-24" aria-labelledby="group-12u">
       <div className="max-w-screen-lg mx-auto">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-16 gap-4">
           <h2

@@ -1,3 +1,4 @@
+import ProgramsIndexPage from "#/features/programs/programs-index";
 import { createFileRoute } from "@tanstack/react-router";
 
 const SITE_URL = "https://seattlesynchro.com";
@@ -24,6 +25,8 @@ const SCHEMA_JSONLD = JSON.stringify({
     { "@type": "Course", name: "Beginner", url: `${SITE_URL}/programs/beginner` },
     { "@type": "Event", name: "Summer Camp", url: `${SITE_URL}/programs/summer-camp` },
     { "@type": "Event", name: "Shows", url: `${SITE_URL}/programs/shows` },
+    { "@type": "Event", name: "Elite Clinic", url: `${SITE_URL}/programs/elite-clinic` },
+    { "@type": "Service", name: "Private Lessons", url: `${SITE_URL}/programs/private-lessons` },
     { "@type": "Event", name: "Free Try", url: `${SITE_URL}/programs/free-try` },
   ],
 });
@@ -50,11 +53,5 @@ export const Route = createFileRoute("/_public/programs/")({
     links: [{ rel: "canonical", href: PAGE_URL }],
     scripts: [{ type: "application/ld+json", children: SCHEMA_JSONLD }],
   }),
-  component: () => (
-    <main className="py-24 px-12 md:px-48 max-w-screen-2xl mx-auto">
-      <h1 className="font-['Space_Grotesk'] font-bold text-[#0A0A67] text-[48px] tracking-[-2.4px] uppercase">
-        Programs
-      </h1>
-    </main>
-  ),
+  component: () => <ProgramsIndexPage />,
 });

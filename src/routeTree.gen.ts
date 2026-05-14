@@ -54,6 +54,7 @@ import { Route as PublicTeamAboutUsRouteImport } from './routes/_public/team/abo
 import { Route as PublicProgramsSummerCampRouteImport } from './routes/_public/programs/summer-camp'
 import { Route as PublicProgramsShowsRouteImport } from './routes/_public/programs/shows'
 import { Route as PublicProgramsRecreationalRouteImport } from './routes/_public/programs/recreational'
+import { Route as PublicProgramsPrivateLessonsRouteImport } from './routes/_public/programs/private-lessons'
 import { Route as PublicProgramsFreeTryRouteImport } from './routes/_public/programs/free-try'
 import { Route as PublicProgramsEliteClinicRouteImport } from './routes/_public/programs/elite-clinic'
 import { Route as PublicProgramsCompetitiveRouteImport } from './routes/_public/programs/competitive'
@@ -296,6 +297,12 @@ const PublicProgramsRecreationalRoute =
     path: '/programs/recreational',
     getParentRoute: () => PublicRoute,
   } as any)
+const PublicProgramsPrivateLessonsRoute =
+  PublicProgramsPrivateLessonsRouteImport.update({
+    id: '/programs/private-lessons',
+    path: '/programs/private-lessons',
+    getParentRoute: () => PublicRoute,
+  } as any)
 const PublicProgramsFreeTryRoute = PublicProgramsFreeTryRouteImport.update({
   id: '/programs/free-try',
   path: '/programs/free-try',
@@ -410,6 +417,7 @@ export interface FileRoutesByFullPath {
   '/programs/competitive': typeof PublicProgramsCompetitiveRoute
   '/programs/elite-clinic': typeof PublicProgramsEliteClinicRoute
   '/programs/free-try': typeof PublicProgramsFreeTryRoute
+  '/programs/private-lessons': typeof PublicProgramsPrivateLessonsRoute
   '/programs/recreational': typeof PublicProgramsRecreationalRoute
   '/programs/shows': typeof PublicProgramsShowsRoute
   '/programs/summer-camp': typeof PublicProgramsSummerCampRoute
@@ -465,6 +473,7 @@ export interface FileRoutesByTo {
   '/programs/competitive': typeof PublicProgramsCompetitiveRoute
   '/programs/elite-clinic': typeof PublicProgramsEliteClinicRoute
   '/programs/free-try': typeof PublicProgramsFreeTryRoute
+  '/programs/private-lessons': typeof PublicProgramsPrivateLessonsRoute
   '/programs/recreational': typeof PublicProgramsRecreationalRoute
   '/programs/shows': typeof PublicProgramsShowsRoute
   '/programs/summer-camp': typeof PublicProgramsSummerCampRoute
@@ -528,6 +537,7 @@ export interface FileRoutesById {
   '/_public/programs/competitive': typeof PublicProgramsCompetitiveRoute
   '/_public/programs/elite-clinic': typeof PublicProgramsEliteClinicRoute
   '/_public/programs/free-try': typeof PublicProgramsFreeTryRoute
+  '/_public/programs/private-lessons': typeof PublicProgramsPrivateLessonsRoute
   '/_public/programs/recreational': typeof PublicProgramsRecreationalRoute
   '/_public/programs/shows': typeof PublicProgramsShowsRoute
   '/_public/programs/summer-camp': typeof PublicProgramsSummerCampRoute
@@ -591,6 +601,7 @@ export interface FileRouteTypes {
     | '/programs/competitive'
     | '/programs/elite-clinic'
     | '/programs/free-try'
+    | '/programs/private-lessons'
     | '/programs/recreational'
     | '/programs/shows'
     | '/programs/summer-camp'
@@ -646,6 +657,7 @@ export interface FileRouteTypes {
     | '/programs/competitive'
     | '/programs/elite-clinic'
     | '/programs/free-try'
+    | '/programs/private-lessons'
     | '/programs/recreational'
     | '/programs/shows'
     | '/programs/summer-camp'
@@ -708,6 +720,7 @@ export interface FileRouteTypes {
     | '/_public/programs/competitive'
     | '/_public/programs/elite-clinic'
     | '/_public/programs/free-try'
+    | '/_public/programs/private-lessons'
     | '/_public/programs/recreational'
     | '/_public/programs/shows'
     | '/_public/programs/summer-camp'
@@ -1071,6 +1084,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicProgramsRecreationalRouteImport
       parentRoute: typeof PublicRoute
     }
+    '/_public/programs/private-lessons': {
+      id: '/_public/programs/private-lessons'
+      path: '/programs/private-lessons'
+      fullPath: '/programs/private-lessons'
+      preLoaderRoute: typeof PublicProgramsPrivateLessonsRouteImport
+      parentRoute: typeof PublicRoute
+    }
     '/_public/programs/free-try': {
       id: '/_public/programs/free-try'
       path: '/programs/free-try'
@@ -1296,6 +1316,7 @@ interface PublicRouteChildren {
   PublicProgramsCompetitiveRoute: typeof PublicProgramsCompetitiveRoute
   PublicProgramsEliteClinicRoute: typeof PublicProgramsEliteClinicRoute
   PublicProgramsFreeTryRoute: typeof PublicProgramsFreeTryRoute
+  PublicProgramsPrivateLessonsRoute: typeof PublicProgramsPrivateLessonsRoute
   PublicProgramsRecreationalRoute: typeof PublicProgramsRecreationalRoute
   PublicProgramsShowsRoute: typeof PublicProgramsShowsRoute
   PublicProgramsSummerCampRoute: typeof PublicProgramsSummerCampRoute
@@ -1322,6 +1343,7 @@ const PublicRouteChildren: PublicRouteChildren = {
   PublicProgramsCompetitiveRoute: PublicProgramsCompetitiveRoute,
   PublicProgramsEliteClinicRoute: PublicProgramsEliteClinicRoute,
   PublicProgramsFreeTryRoute: PublicProgramsFreeTryRoute,
+  PublicProgramsPrivateLessonsRoute: PublicProgramsPrivateLessonsRoute,
   PublicProgramsRecreationalRoute: PublicProgramsRecreationalRoute,
   PublicProgramsShowsRoute: PublicProgramsShowsRoute,
   PublicProgramsSummerCampRoute: PublicProgramsSummerCampRoute,

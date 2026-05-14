@@ -23,7 +23,7 @@ interface Props {
 
 export function BeginnerIntermediate({ program = FALLBACK }: Props = {}) {
     return (
-        <section className="p-6 md:px-12 lg:p-20 bg-white space-y-12" aria-labelledby="details-heading">
+        <section id="intermediate" className="p-6 md:px-12 lg:p-20 bg-white space-y-12 scroll-mt-24" aria-labelledby="details-heading">
             <div className="max-w-screen-lg mx-auto pt-8 space-y-10">
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                     <h2 className="font-bold text-primary text-[24px] md:text-[32px] tracking-[-1.2px] md:tracking-[-1.6px] uppercase">

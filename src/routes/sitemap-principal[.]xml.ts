@@ -7,6 +7,7 @@ const STATIC_ROUTES: Array<{ path: string; priority: string; changefreq: string 
   { path: '/contact-us', priority: '0.8', changefreq: 'monthly' },
   // Programs
   { path: '/programs/competitive', priority: '0.9', changefreq: 'monthly' },
+  { path: '/programs/private-lessons', priority: '0.9', changefreq: 'monthly' },
   { path: '/programs/recreational', priority: '0.9', changefreq: 'monthly' },
   { path: '/programs/beginner', priority: '0.9', changefreq: 'monthly' },
   { path: '/programs/summer-camp', priority: '0.8', changefreq: 'monthly' },
