@@ -21,15 +21,11 @@ export const recreationalFormSchema = z.object({
 export type RecreationalFormValues = z.infer<typeof recreationalFormSchema>
 
 export const TABS: { id: RecreationalSubProgramId; label: string }[] = [
-  { id: 'sea-stars', label: 'Sea Stars' },
   { id: 'sharks-mermaids', label: 'Sharks & Mermaids' },
-  { id: 'dolphins', label: 'Dolphins' },
 ]
 
 export const TAB_INDEX: Record<RecreationalSubProgramId, number> = {
-  'sea-stars': 0,
-  'sharks-mermaids': 1,
-  dolphins: 2,
+  'sharks-mermaids': 0,
 }
 
 export const FORM_DEFAULTS: RecreationalFormValues = {

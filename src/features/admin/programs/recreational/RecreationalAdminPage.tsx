@@ -18,15 +18,13 @@ const FIELD_VISIBILITY: Record<
   RecreationalSubProgramId,
   { showScheduleNote: boolean; showDuration: boolean; showCostNote: boolean }
 > = {
-  'sea-stars': { showScheduleNote: true, showDuration: false, showCostNote: true },
   'sharks-mermaids': { showScheduleNote: true, showDuration: false, showCostNote: true },
-  dolphins: { showScheduleNote: false, showDuration: true, showCostNote: false },
 }
 
 export function RecreationalAdminPage() {
   const navigate = useNavigate()
   const { form, save, loading, saving } = useRecreationalForm()
-  const [activeTab, setActiveTab] = useState<RecreationalSubProgramId>('sea-stars')
+  const [activeTab, setActiveTab] = useState<RecreationalSubProgramId>('sharks-mermaids')
 
   const livePrograms = form.watch('sub_programs') as RecreationalSubProgram[]
 

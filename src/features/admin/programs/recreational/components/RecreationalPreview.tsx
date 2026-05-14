@@ -1,8 +1,6 @@
 import {
-  RecreationalSeaStars,
   RecreationalSharksMermaids,
 } from '#/features/programs/recreational/components/RecreationalSeaStar'
-import { RecreationalDolphins } from '#/features/programs/recreational/components/RecreationalDolphins'
 import type {
   RecreationalSubProgram,
   RecreationalSubProgramId,
@@ -30,11 +28,9 @@ export function RecreationalPreview({ activeTab, programs }: Props) {
 
       <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
         <div style={{ zoom: '0.42' }}>
-          {active && activeTab === 'sea-stars' && <RecreationalSeaStars program={active} />}
           {active && activeTab === 'sharks-mermaids' && (
             <RecreationalSharksMermaids program={active} />
           )}
-          {active && activeTab === 'dolphins' && <RecreationalDolphins program={active} />}
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-export type RecreationalSubProgramId = 'sea-stars' | 'sharks-mermaids' | 'dolphins'
+export type RecreationalSubProgramId = 'sharks-mermaids'
 
 export interface RecreationalSubProgram {
   id: RecreationalSubProgramId
