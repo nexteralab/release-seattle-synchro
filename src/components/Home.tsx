@@ -195,12 +195,21 @@ export function Home() {
           className="max-w-screen-lg mx-auto"
 
         >
-          <motion.h2
-            variants={fadeInUp}
-            className="font-bold text-secondary text-[50px] md:text-[72px] tracking-[-3.6px] uppercase mb-16 leading-[72px]"
-          >
-            Our<br />Programs
-          </motion.h2>
+
+          <motion.div className="flex items-end justify-between mb-12 gap-4">
+            <motion.h2
+              className="font-bold text-secondary text-[50px] md:text-[72px] tracking-[-3.6px] uppercase leading-[72px]"
+            >
+              Our<br />Programs
+            </motion.h2>
+            <Link
+              to="/programs"
+              className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase hover:underline inline-flex items-center gap-2 shrink-0 pb-2"
+            >
+              see all <ArrowRight size={14} />
+            </Link>
+          </motion.div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
@@ -308,83 +317,6 @@ export function Home() {
 
       {/* Blog */}
       <LatestBlogSection />
-
-      {/* Blog (legacy mock — kept for reference) */}
-      {/* <section aria-label="Blog" className="p-12 md:px-20 md:py-24 bg-[#f5f5f5]">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={stagger}
-          className="max-w-screen-lg mx-auto"
-        >
-          <div className="flex items-end justify-between mb-16">
-            <div>
-              <motion.h2
-                variants={fadeInUp}
-                className="font-bold text-secondary text-[48px] tracking-[-2.4px] uppercase mb-4"
-              >
-                Latest from<br />Our Blog
-              </motion.h2>
-              <motion.p variants={fadeInUp} className="font-medium text-secondary text-[16px] leading-[26px] max-w-2xl">
-                Discover the fascinating world of artistic swimming, from its rich history to modern training techniques.
-              </motion.p>
-            </div>
-            <Link
-              to="/blog"
-              className="hidden md:inline-flex items-center gap-2 font-bold text-secondary text-[14px] tracking-[1.4px] uppercase hover:gap-3 transition-all"
-            >
-              View All Articles
-              <ArrowRight size={16} />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            {[
-              {
-                tag: "History",
-                tagColor: "bg-[#0A0A67]",
-                title: "The Evolution of Artistic Swimming",
-                desc: "From water ballet to Olympic sport, discover the fascinating journey of artistic swimming through the decades.",
-              },
-              {
-                tag: "Education",
-                tagColor: "bg-[#63ac23]",
-                title: 'Why "Artistic Swimming"?',
-                desc: "Learn why FINA changed the name from synchronized swimming to artistic swimming and what it means for the sport.",
-              },
-            ].map((post) => (
-              <motion.article key={post.title} variants={fadeInUp} className="bg-[#f5f5f5] p-8 group cursor-pointer">
-                <Link to="/blog">
-                  <header className="mb-6">
-                    <span className={`${post.tagColor} text-white px-3 py-1 font-bold text-[10px] tracking-[1px] uppercase`}>
-                      {post.tag}
-                    </span>
-                  </header>
-                  <h3 className="font-bold text-secondary text-[28px] tracking-[-1.4px] uppercase leading-[32px] mb-4 group-hover:text-secondary transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="font-medium text-secondary text-[16px] leading-[26px] mb-6">
-                    {post.desc}
-                  </p>
-                  <span className="inline-flex items-center gap-2 font-bold text-secondary text-[12px] tracking-[1.2px] uppercase group-hover:gap-3 transition-all">
-                    Read More
-                    <ArrowRight size={12} />
-                  </span>
-                </Link>
-              </motion.article>
-            ))}
-          </div>
-
-          <Link
-            to="/blog"
-            className="md:hidden inline-flex items-center gap-2 font-bold text-secondary text-[14px] tracking-[1.4px] uppercase hover:gap-3 transition-all"
-          >
-            View All Articles
-            <ArrowRight size={16} />
-          </Link>
-        </motion.div>
-      </section> */}
     </main>
   );
 }

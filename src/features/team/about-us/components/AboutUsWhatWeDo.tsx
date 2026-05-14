@@ -44,14 +44,7 @@ export function AboutUsWhatWeDo() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mb-12">
           <div className="space-y-5 text-[#171717] text-[16px] leading-[26px]">
             <p>
-              We believe that the role of the Seattle Synchronized Swim Team is to enhance the physical, social and
-              emotional development of the swimmers through participation in synchronized swimming. This can be
-              achieved through the development of programs to meet the needs of swimmers with varied levels of
-              ability and commitment. We provide a safe and secure environment in which individual swimmers can
-              strive for personal bests. Synchronized swimming is a team sport and we promote team spirit through the
-              involvement of all swimmers, coaches, and parents. Traveling, meeting athletes from across the United
-              States and around the world, and making lifelong friends are all part of the experience. We train 10
-              months out of the year and compete locally, regionally and nationally year round.
+              We believe that the role of the Seattle Synchronized Swim Team is to enhance the physical, social and emotional development of the swimmers through participation in synchronized swimming. This can be achieved through the development of programs to meet the needs of swimmers with varied levels of ability and commitment. We provide a safe and secure environment in which individual swimmers can strive for personal bests. Synchronized swimming is a team sport and we promote team spirit through the involvement of all swimmers, coaches, and parents. Traveling, meeting athletes from across the United States and around the world, and making lifelong friends are all part of the experience. We train 10 months out of the year and compete locally, regionally and nationally year round.
             </p>
             <p>
               Artistic swimming is the ultimate team sport. Each individual member plays an integral part in the team's

@@ -16,13 +16,7 @@ export function AboutUsIntro() {
             </div>
             <div className="space-y-4 text-[#737373] text-[16px] leading-[26px]">
               <p>
-                The Seattle Synchro Team was founded by Charmins Davis, 1984 Olympic coach, and has been in the
-                Seattle metro area for over 25 years. In that time, the Team has produced 5 Olympians — Jillian Russel to
-                the 2008 Summer Olympics; Tracy Reid; Cynthia and Caitlyn Christie-Mucha, who are the 1984 Olympic Gold
-                medalists; and Hana Čičak from Paris 2024. Charmins Davis, 1984 Olympic French coach, was also a
-                recurring silver medalist from Paris 2024. Charmins Davis, 1984 Olympic French coach, was also recently
-                inducted into the International Swimming Hall of Fame. Seattle Synchro has also sent athletes to
-                appointment by US National Teams, as well as elite varsity programs at universities across the country.
+                The Seattle Synchro Team was founded by Charlotte Davis, 1984 Olympic coach, and has been in the Seattle Metro area for over 25 years. In that time, the Team has produced 5 Olympians - Jillian Penner in the 2008 Summer Olympics.Tracy Ruiz-Conforto and Candy Costie-Burke, who are the 1984 Olympic Gold Medalists. Keana Hunter and Audrey Kwon most recent silver medalists from Paris 2024. Charlotte Davis, 1984 Olympic coach, and Seattle alum was also recently inducted into the International Swimming Hall of Fame. Seattle Synchro has also seen several of its members receive multiple appointments to US National Teams, as well as elite varsity programs at universities across the country.
               </p>
             </div>
           </div>
