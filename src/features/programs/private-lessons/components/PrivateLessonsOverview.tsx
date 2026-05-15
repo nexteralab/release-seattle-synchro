@@ -25,7 +25,7 @@ export function PrivateLessonsOverview() {
                 </p>
                 <p className="text-[#171717] text-[16px] md:text-[18px] leading-[26px]">
                     Private lessons do not replace the benefits of scheduled practice, however, and
-                    should be used as supplements to proper training — never a substitute.
+                    should be used as supplements to proper training never a substitute.
                 </p>
             </div>
         </section>

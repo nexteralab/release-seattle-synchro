@@ -32,12 +32,14 @@ export function RecreationalSharksMermaids({ program = SHARKS_MERMAIDS_FALLBACK 
             >
               {program.name}
             </h2>
-            <Link
-              to="/contact-us"
+            <a
+              href="https://www.seattlesynchrosst.com/page/system/classreg-shopping"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-secondary text-primary px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-white transition-colors"
             >
               Register Now
-            </Link>
+            </a>
           </div>
           <p className="text-secondary text-[16px] md:text-[18px] leading-[26px]">
             These classes are designed for swimmers who have mastered crawl stroke, breaststroke and backstroke. They should be comfortable floating on their back and swimming.

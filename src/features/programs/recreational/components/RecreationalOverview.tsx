@@ -12,7 +12,7 @@ export function RecreationalOverview() {
           Non-competitive programs designed for fun, fitness, and skill development
         </p>
         <p className="text-secondary text-[16px] md:text-[18px] leading-[26px] mx-auto">
-          Sea Star is our non-competitive/recreational program. Lessons run in 8 week sessions from January-June. This program is for kids who have mastered the basic strokes but have no experience in Artistic Swimming. An athlete should be able to swim two laps of crawl stroke and breaststroke as well as feel comfortable floating on his/her back.
+          Designed for swimmers ages 5–10, this non-competitive program builds a strong foundation in artistic swimming through fun, fitness, and progressive skill development. It's the perfect starting point for young athletes who dream of one day joining a competitive team.
         </p>
       </div>
     </section>

@@ -3,6 +3,7 @@ import { z } from 'zod'
 export const CONTACT_SUBJECTS = [
   'General Inquiry',
   'Program Information',
+  'Private Lessons',
   'Registration',
   'Tryouts',
   'Coaching Staff',
