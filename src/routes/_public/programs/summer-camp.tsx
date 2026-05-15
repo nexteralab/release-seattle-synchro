@@ -18,6 +18,8 @@ const CAMP_JSONLD = JSON.stringify({
   url: PAGE_URL,
   image: OG_IMAGE,
   sport: 'Artistic Swimming',
+  startDate: '2026-07-27T09:00:00-07:00',
+  endDate: '2026-08-07T11:00:00-07:00',
   eventStatus: 'https://schema.org/EventScheduled',
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   location: {
@@ -40,6 +42,48 @@ const CAMP_JSONLD = JSON.stringify({
     suggestedMinAge: 6,
     suggestedMaxAge: 11,
   },
+  subEvent: [
+    {
+      '@type': 'SportsEvent',
+      name: 'July in Bellevue (Newport Hills)',
+      startDate: '2026-07-27T09:00:00-07:00',
+      endDate: '2026-07-31T11:00:00-07:00',
+      eventStatus: 'https://schema.org/EventScheduled',
+      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+      location: {
+        '@type': 'Place',
+        name: 'Newport Swim and Tennis Club',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '5464 119th Ave SE',
+          addressLocality: 'Bellevue',
+          addressRegion: 'WA',
+          postalCode: '98006',
+          addressCountry: 'US',
+        },
+      },
+    },
+    {
+      '@type': 'SportsEvent',
+      name: 'August in Somerset',
+      startDate: '2026-08-03T09:00:00-07:00',
+      endDate: '2026-08-07T11:00:00-07:00',
+      eventStatus: 'https://schema.org/EventScheduled',
+      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+      location: {
+        '@type': 'Place',
+        name: 'Somerset',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '4445 Somerset Blvd SE',
+          addressLocality: 'Bellevue',
+          addressRegion: 'WA',
+          postalCode: '98006',
+          addressCountry: 'US',
+        },
+      },
+    },
+  ],
 })
 
 // Cuando conectes la DB, el loader también traerá el SEO:
