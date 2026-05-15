@@ -14,6 +14,9 @@ export const Route = createFileRoute('/app')({
     const { data: { session } } = await supabase.auth.getSession()
     if (!session) throw redirect({ to: '/login' })
   },
+  head: () => ({
+    meta: [{ name: 'robots', content: 'noindex, nofollow' }],
+  }),
   component: AuthGuard,
   notFoundComponent: NotFoundError,
 })

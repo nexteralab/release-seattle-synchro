@@ -1,8 +1,22 @@
+import { useEffect } from 'react'
 import { useNavigate, useRouter } from '@tanstack/react-router'
 
 export default function NotFoundError() {
   const navigate = useNavigate()
   const { history } = useRouter()
+
+  useEffect(() => {
+    const meta = document.createElement('meta')
+    meta.name = 'robots'
+    meta.content = 'noindex, nofollow'
+    document.head.appendChild(meta)
+    const prevTitle = document.title
+    document.title = '404 — Page Not Found | Seattle Synchro'
+    return () => {
+      document.head.removeChild(meta)
+      document.title = prevTitle
+    }
+  }, [])
 
   return (
     <div className="h-svh w-full bg-[#0A0A67] text-white">

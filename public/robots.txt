@@ -1,5 +1,27 @@
 # https://www.robotstxt.org/robotstxt.html
+# Canonical host: https://seattlesynchro.com (non-www)
+
 User-agent: *
-Disallow:
+
+# Legacy GoMotion & Drupal paths
+Disallow: /page/
+Disallow: /zzssst/
+Disallow: /drupal/
+Disallow: /SubTabGeneric.jsp
+Disallow: /TabGeneric.jsp
+
+# Admin / internal
+Disallow: /app/
+Disallow: /login
+Disallow: /api/
+
+# Error pages
+Disallow: /401
+Disallow: /403
+Disallow: /404
+Disallow: /500
+Disallow: /503
+
+Allow: /
 
 Sitemap: https://seattlesynchro.com/sitemap-principal.xml

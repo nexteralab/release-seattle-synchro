@@ -17,6 +17,12 @@ type LoginForm = z.infer<typeof loginSchema>
 
 export const Route = createFileRoute('/login')({
   validateSearch: z.object({ redirect: z.string().optional() }),
+  head: () => ({
+    meta: [
+      { title: 'Admin Login | Seattle Synchro' },
+      { name: 'robots', content: 'noindex, nofollow' },
+    ],
+  }),
   component: LoginPage,
 })
 
