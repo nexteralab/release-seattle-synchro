@@ -24,7 +24,7 @@ export function CompetitiveJunior({ coaches, workoutDays }: Props) {
           <p className="text-[#171717] text-[18px] leading-[26px] max-w-4xl">
             Our Junior Team competes at high-level meets and trains at an elite level. The junior
             team program is geared towards those who are fully committed to training and competing
-            at an elite level. Swimmers train 11 months of the year, and attend a minimum of 8
+            at an elite level. Swimmers train 10 months of the year, and attend a minimum of 8
             meets a year. Many swimmers go on to train with US National Teams. Minimum age for the
             group is 14.
           </p>
@@ -73,7 +73,7 @@ export function CompetitiveJunior({ coaches, workoutDays }: Props) {
                 >
                   ✓
                 </div>
-                <span>11 months of training per year</span>
+                <span>10 months of training per year</span>
               </li>
               <li className="flex items-start gap-2">
                 <div

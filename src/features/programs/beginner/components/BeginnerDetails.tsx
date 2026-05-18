@@ -55,12 +55,12 @@ export function BeginnerDetails({ program = FALLBACK }: Props = {}) {
                     </Link>
                 </div>
                 <p className="text-[#171717] text-[16px] leading-[26px]">
-                    The Novice team is our beginner level, competitive team. They perfect their swimming and beginner synchro skills.{" "}
-                    <span className="font-semibold">
-                        Swimmers should be able to swim four (4) laps of crawl stroke and 4 breaststroke (1 lap=25 yards) and be comfortable floating on his/her back.
-                    </span>{" "}
-                    Swimmers who have not participated in Sea Stars or a summer camp should schedule an assessment by contacting us at info@seattlesynchrosst.com Members of this team will attend several local competitions, and train from September to June.
+                    The Novice Team is our beginner competitive level. Swimmers learn proper swimming technique, beginner artistic swimming skills, and the fundamentals of competition.
+                    <br />
+                    <br />
+                    Members of the Novice Team attend several local competitions and train from September through June.
                 </p>
+           
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <div className="bg-white p-6 md:p-10">
                         <h3 className="font-bold text-secondary text-[20px] tracking-[-1px] uppercase mb-8">
@@ -160,11 +160,14 @@ export function BeginnerDetails({ program = FALLBACK }: Props = {}) {
                                 <div className="space-y-2">
                                     <p className="font-bold text-white text-[16px] md:text-[18px] tracking-[1px] uppercase mb-3">What to Bring</p>
                                     <ul className="space-y-1 text-white/80 text-[14px] md:text-[16px] leading-[24px]">
-                                        <li>Swim cap & goggles</li>
-                                        <li>Practice suit</li>
-                                        <li>Towel and water bottle</li>
-                                        <li>Yoga mat & minimal clothes</li>
+                                        <li>Swimsuit</li>
+                                        <li>Swim cap</li>
+                                        <li>Goggles</li>
+                                        <li>Nose clips</li>
+                                        <li>Towel</li>
                                         <li>Water bottle</li>
+                                        <li>Yoga Mat</li>
+                                        <li>Elastic shorts for land</li>
                                     </ul>
                                 </div>
                             </div>
@@ -182,7 +185,8 @@ export function BeginnerDetails({ program = FALLBACK }: Props = {}) {
                                 <div className="space-y-2">
                                     <p className="font-bold text-white text-[16px] md:text-[18px] tracking-[1px] uppercase mb-3">What to Expect</p>
                                     <p className="text-white/80 text-[14px] md:text-[16px] leading-[24px]">
-                                        Coaches will lead swimmers at the first practice in sequences. We will spend 1 hour on in-water synchro skills for the second hour of practice. Swimmers progress through act. Then it's a short land session for uniform shirts for the land portion. At the end of practice, coaches will meet swimmers out the front door where parents can pick them up.
+                                        Coaches will introduce swimmers to a head-to-toe warm-up and explain the rules of the class for both structure and safety. Each class includes 1 hour of water skills and 1 hour of land exercises. <br />
+                                        We ask swimmers to arrive on time and for parents to come into the facility promptly at the end of class for pick-up.
                                     </p>
                                 </div>
                             </div>
