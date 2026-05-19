@@ -3,7 +3,7 @@ import type { RecreationalSubProgramId } from '#/features/programs/recreational/
 import { DEFAULT_CONFIG } from './recreational-admin.service'
 
 export const subProgramSchema = z.object({
-  id: z.enum(['sea-stars', 'sharks-mermaids', 'dolphins']),
+  id: z.enum(['sharks-mermaids']),
   name: z.string().min(1),
   ages: z.string().min(1, 'Required'),
   coach: z.string().min(1, 'Required'),

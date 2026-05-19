@@ -20,18 +20,6 @@ export interface RecreationalConfig {
 export const DEFAULT_CONFIG: RecreationalConfig = {
   sub_programs: [
     {
-      id: 'sea-stars',
-      name: 'Sea Stars',
-      ages: '5–10',
-      coach: 'Sophie Lin & Daniela Garmendia',
-      workout_days_times: 'Fridays 4:00-5:00pm',
-      schedule_note: 'No class Friday May 15th. Last class June 5th.',
-      duration: '',
-      cost: '$50 registration fee + $60 March dues',
-      cost_note:
-        'Pool fees should be covered through one payment to the booster club (approximately $280)',
-    },
-    {
       id: 'sharks-mermaids',
       name: 'Sharks & Mermaids',
       ages: '5–10',
@@ -42,17 +30,6 @@ export const DEFAULT_CONFIG: RecreationalConfig = {
       cost: '$50 registration fee + $60 March dues',
       cost_note:
         'Pool fees should be covered through one payment to the booster club (approximately $280)',
-    },
-    {
-      id: 'dolphins',
-      name: 'Dolphins',
-      ages: '6–12',
-      coach: 'TBD',
-      workout_days_times: 'Not available - TBD',
-      schedule_note: '',
-      duration: '8-week session',
-      cost: '$150 + $15 registration fee',
-      cost_note: '',
     },
   ],
 }

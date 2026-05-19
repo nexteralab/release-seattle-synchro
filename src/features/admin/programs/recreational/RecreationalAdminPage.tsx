@@ -75,7 +75,7 @@ export function RecreationalAdminPage() {
               </p>
 
               <Tabs value={activeTab} onValueChange={v => setActiveTab(v as RecreationalSubProgramId)}>
-                <TabsList className="w-full grid grid-cols-3">
+                <TabsList className="w-full grid grid-cols-1">
                   {TABS.map(t => (
                     <TabsTrigger key={t.id} value={t.id}>{t.label}</TabsTrigger>
                   ))}
