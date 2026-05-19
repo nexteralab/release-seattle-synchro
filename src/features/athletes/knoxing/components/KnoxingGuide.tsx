@@ -61,9 +61,11 @@ const steps: { title: string; items: string[] }[] = [
 ];
 
 const resources: { label: string; href: string }[] = [
-    { label: "Knoxing tutorial video", href: "#" },
-    { label: "Recommended gel brands", href: "#" },
-    { label: "Hair care after competition", href: "#" },
+    { label: "Knoxing instructions by Seattle Synchro", href: "https://www.youtube.com/watch?v=-d4TaacVTHc" },
+    { label: "Knox instruction by Desert Mermaids", href: "https://www.youtube.com/watch?v=3DXGjLghRF0" },
+    { label: "Mermaid and Mom on Knoxing", href: "https://www.youtube.com/watch?v=tljtD49-b2o" },
+    { label: "How to do a synchro bun", href: "https://www.youtube.com/watch?v=bcKyMxluy3c" },
+    { label: "Make a Bun for short hair", href: "https://www.youtube.com/watch?v=8QTpBDMO8TU" },
 ];
 
 export function KnoxingGuide() {
