@@ -56,6 +56,18 @@ function RootDocument() {
             `}</style>
           </noscript>
           <HeadContent />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-V7BWXCZKFX"></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-V7BWXCZKFX');
+              `,
+            }}
+          />
+    
         </head>
         <body className="antialiased [overflow-wrap:anywhere]" suppressContentEditableWarning>
           <Outlet />
