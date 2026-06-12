@@ -23,11 +23,11 @@ const SCHEMA_JSONLD = JSON.stringify({
     { "@type": "Course", name: "Competitive", url: `${SITE_URL}/programs/competitive` },
     { "@type": "Course", name: "Recreational", url: `${SITE_URL}/programs/recreational` },
     { "@type": "Course", name: "Beginner", url: `${SITE_URL}/programs/beginner` },
-    { "@type": "Event", name: "Summer Camp", url: `${SITE_URL}/programs/summer-camp` },
-    { "@type": "Event", name: "Shows", url: `${SITE_URL}/programs/shows` },
-    { "@type": "Event", name: "Elite Clinic", url: `${SITE_URL}/programs/elite-clinic` },
+    { "@type": "Course", name: "Summer Camp", url: `${SITE_URL}/programs/summer-camp` },
+    { "@type": "Course", name: "Shows", url: `${SITE_URL}/programs/shows` },
+    { "@type": "Course", name: "Elite Clinic", url: `${SITE_URL}/programs/elite-clinic` },
     { "@type": "Service", name: "Private Lessons", url: `${SITE_URL}/programs/private-lessons` },
-    { "@type": "Event", name: "Free Try", url: `${SITE_URL}/programs/free-try` },
+    { "@type": "Service", name: "Free Try", url: `${SITE_URL}/programs/free-try` },
   ],
 });
 
