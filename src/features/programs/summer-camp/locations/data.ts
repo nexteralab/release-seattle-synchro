@@ -65,7 +65,7 @@ export const LOCATIONS: Record<string, LocationContent> = {
     ...FIXED,
     slug: 'bellevue',
     city: 'Bellevue',
-    heroTitle: 'Synchronized Swimming Summer Camp in Bellevue, Seattle 2026',
+    heroTitle: 'Synchronized Swimming Summer Camp in Bellevue 2026',
     heroSubtitle:
       'A super-fun week of synchronized & artistic swimming summer camp for kids in Bellevue. Swim to music, learn cool tricks with new friends!',
     aboutParagraphs: [
@@ -89,7 +89,7 @@ export const LOCATIONS: Record<string, LocationContent> = {
     slug: 'redmond',
     city: 'Redmond',
     packOffset: 1,
-    heroTitle: "Synchronized Swimming Summer Camp for Kids Near Redmond, Seattle 2026",
+    heroTitle: 'Synchronized Swimming Summer Camp in Redmond 2026',
     heroSubtitle:
       'A playful week of artistic & synchronized swimming for Redmond kids, just a short drive away in Bellevue. Swim to music, master new tricks, and make summer friends!',
     aboutParagraphs: [
@@ -113,7 +113,7 @@ export const LOCATIONS: Record<string, LocationContent> = {
     slug: 'kirkland',
     city: 'Kirkland',
     packOffset: 2,
-    heroTitle: 'Kirkland Synchronized Swimming Summer Camp for Kids — Seattle 2026',
+    heroTitle: 'Synchronized Swimming Summer Camp in Kirkland 2026',
     heroSubtitle:
       'Five sunny mornings of synchronized swimming for Kirkland kids, held a short drive south in Bellevue. Glide to music, learn fun tricks, and team up with new friends!',
     aboutParagraphs: [
@@ -137,7 +137,7 @@ export const LOCATIONS: Record<string, LocationContent> = {
     slug: 'newcastle',
     city: 'Newcastle',
     packOffset: 3,
-    heroTitle: "Newcastle Synchronized Swimming Summer Camp for Kids — Seattle 2026",
+    heroTitle: 'Synchronized Swimming Summer Camp in Newcastle 2026',
     heroSubtitle:
       'A week of artistic & synchronized swimming fun for Newcastle kids, just up the road in Bellevue. Swim to music, pick up cool moves, and make new friends!',
     aboutParagraphs: [
@@ -161,7 +161,7 @@ export const LOCATIONS: Record<string, LocationContent> = {
     slug: 'mercer-island',
     city: 'Mercer Island',
     packOffset: 4,
-    heroTitle: "Mercer Island Synchronized Swimming Summer Camp for Kids — Seattle 2026",
+    heroTitle: 'Synchronized Swimming Summer Camp in Mercer Island 2026',
     heroSubtitle:
       'Five mornings of synchronized swimming for Mercer Island kids, a quick drive over I-90 to Bellevue. Move to music, learn playful tricks, and find new friends!',
     aboutParagraphs: [
