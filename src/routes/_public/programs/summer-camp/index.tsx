@@ -97,7 +97,7 @@ const CAMP_JSONLD = JSON.stringify({
 //   return { data, seo }
 // },
 
-export const Route = createFileRoute('/_public/programs/summer-camp')({
+export const Route = createFileRoute('/_public/programs/summer-camp/')({
   loader: () => getSummerCampContent(),
   head: () => ({
     meta: [

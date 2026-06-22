@@ -51,7 +51,6 @@ import { Route as AppBlogsNewRouteImport } from './routes/app/blogs.new'
 import { Route as AppBlogsPostIdRouteImport } from './routes/app/blogs.$postId'
 import { Route as PublicTeamCoachesRouteImport } from './routes/_public/team/coaches'
 import { Route as PublicTeamAboutUsRouteImport } from './routes/_public/team/about-us'
-import { Route as PublicProgramsSummerCampRouteImport } from './routes/_public/programs/summer-camp'
 import { Route as PublicProgramsShowsRouteImport } from './routes/_public/programs/shows'
 import { Route as PublicProgramsRecreationalRouteImport } from './routes/_public/programs/recreational'
 import { Route as PublicProgramsPrivateLessonsRouteImport } from './routes/_public/programs/private-lessons'
@@ -68,8 +67,10 @@ import { Route as PublicAthletesHealthRouteImport } from './routes/_public/athle
 import { Route as PublicAthletesHallOfFameRouteImport } from './routes/_public/athletes/hall-of-fame'
 import { Route as PublicTeamNewsIndexRouteImport } from './routes/_public/team/news/index'
 import { Route as PublicTeamBlogIndexRouteImport } from './routes/_public/team/blog/index'
+import { Route as PublicProgramsSummerCampIndexRouteImport } from './routes/_public/programs/summer-camp/index'
 import { Route as PublicTeamNewsSlugRouteImport } from './routes/_public/team/news/$slug'
 import { Route as PublicTeamBlogSlugRouteImport } from './routes/_public/team/blog/$slug'
+import { Route as PublicProgramsSummerCampIdRouteRouteImport } from './routes/_public/programs/summer-camp/$id/route'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -280,12 +281,6 @@ const PublicTeamAboutUsRoute = PublicTeamAboutUsRouteImport.update({
   path: '/team/about-us',
   getParentRoute: () => PublicRoute,
 } as any)
-const PublicProgramsSummerCampRoute =
-  PublicProgramsSummerCampRouteImport.update({
-    id: '/programs/summer-camp',
-    path: '/programs/summer-camp',
-    getParentRoute: () => PublicRoute,
-  } as any)
 const PublicProgramsShowsRoute = PublicProgramsShowsRouteImport.update({
   id: '/programs/shows',
   path: '/programs/shows',
@@ -373,6 +368,12 @@ const PublicTeamBlogIndexRoute = PublicTeamBlogIndexRouteImport.update({
   path: '/team/blog/',
   getParentRoute: () => PublicRoute,
 } as any)
+const PublicProgramsSummerCampIndexRoute =
+  PublicProgramsSummerCampIndexRouteImport.update({
+    id: '/programs/summer-camp/',
+    path: '/programs/summer-camp/',
+    getParentRoute: () => PublicRoute,
+  } as any)
 const PublicTeamNewsSlugRoute = PublicTeamNewsSlugRouteImport.update({
   id: '/team/news/$slug',
   path: '/team/news/$slug',
@@ -383,6 +384,12 @@ const PublicTeamBlogSlugRoute = PublicTeamBlogSlugRouteImport.update({
   path: '/team/blog/$slug',
   getParentRoute: () => PublicRoute,
 } as any)
+const PublicProgramsSummerCampIdRouteRoute =
+  PublicProgramsSummerCampIdRouteRouteImport.update({
+    id: '/programs/summer-camp/$id',
+    path: '/programs/summer-camp/$id',
+    getParentRoute: () => PublicRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/app': typeof AppRouteRouteWithChildren
@@ -420,7 +427,6 @@ export interface FileRoutesByFullPath {
   '/programs/private-lessons': typeof PublicProgramsPrivateLessonsRoute
   '/programs/recreational': typeof PublicProgramsRecreationalRoute
   '/programs/shows': typeof PublicProgramsShowsRoute
-  '/programs/summer-camp': typeof PublicProgramsSummerCampRoute
   '/team/about-us': typeof PublicTeamAboutUsRoute
   '/team/coaches': typeof PublicTeamCoachesRoute
   '/app/blogs/$postId': typeof AppBlogsPostIdRoute
@@ -441,8 +447,10 @@ export interface FileRoutesByFullPath {
   '/app/news/': typeof AppNewsIndexRoute
   '/app/programs/': typeof AppProgramsIndexRoute
   '/app/subscriptions/': typeof AppSubscriptionsIndexRoute
+  '/programs/summer-camp/$id': typeof PublicProgramsSummerCampIdRouteRoute
   '/team/blog/$slug': typeof PublicTeamBlogSlugRoute
   '/team/news/$slug': typeof PublicTeamNewsSlugRoute
+  '/programs/summer-camp/': typeof PublicProgramsSummerCampIndexRoute
   '/team/blog/': typeof PublicTeamBlogIndexRoute
   '/team/news/': typeof PublicTeamNewsIndexRoute
 }
@@ -476,7 +484,6 @@ export interface FileRoutesByTo {
   '/programs/private-lessons': typeof PublicProgramsPrivateLessonsRoute
   '/programs/recreational': typeof PublicProgramsRecreationalRoute
   '/programs/shows': typeof PublicProgramsShowsRoute
-  '/programs/summer-camp': typeof PublicProgramsSummerCampRoute
   '/team/about-us': typeof PublicTeamAboutUsRoute
   '/team/coaches': typeof PublicTeamCoachesRoute
   '/app/blogs/$postId': typeof AppBlogsPostIdRoute
@@ -497,8 +504,10 @@ export interface FileRoutesByTo {
   '/app/news': typeof AppNewsIndexRoute
   '/app/programs': typeof AppProgramsIndexRoute
   '/app/subscriptions': typeof AppSubscriptionsIndexRoute
+  '/programs/summer-camp/$id': typeof PublicProgramsSummerCampIdRouteRoute
   '/team/blog/$slug': typeof PublicTeamBlogSlugRoute
   '/team/news/$slug': typeof PublicTeamNewsSlugRoute
+  '/programs/summer-camp': typeof PublicProgramsSummerCampIndexRoute
   '/team/blog': typeof PublicTeamBlogIndexRoute
   '/team/news': typeof PublicTeamNewsIndexRoute
 }
@@ -540,7 +549,6 @@ export interface FileRoutesById {
   '/_public/programs/private-lessons': typeof PublicProgramsPrivateLessonsRoute
   '/_public/programs/recreational': typeof PublicProgramsRecreationalRoute
   '/_public/programs/shows': typeof PublicProgramsShowsRoute
-  '/_public/programs/summer-camp': typeof PublicProgramsSummerCampRoute
   '/_public/team/about-us': typeof PublicTeamAboutUsRoute
   '/_public/team/coaches': typeof PublicTeamCoachesRoute
   '/app/blogs/$postId': typeof AppBlogsPostIdRoute
@@ -561,8 +569,10 @@ export interface FileRoutesById {
   '/app/news/': typeof AppNewsIndexRoute
   '/app/programs/': typeof AppProgramsIndexRoute
   '/app/subscriptions/': typeof AppSubscriptionsIndexRoute
+  '/_public/programs/summer-camp/$id': typeof PublicProgramsSummerCampIdRouteRoute
   '/_public/team/blog/$slug': typeof PublicTeamBlogSlugRoute
   '/_public/team/news/$slug': typeof PublicTeamNewsSlugRoute
+  '/_public/programs/summer-camp/': typeof PublicProgramsSummerCampIndexRoute
   '/_public/team/blog/': typeof PublicTeamBlogIndexRoute
   '/_public/team/news/': typeof PublicTeamNewsIndexRoute
 }
@@ -604,7 +614,6 @@ export interface FileRouteTypes {
     | '/programs/private-lessons'
     | '/programs/recreational'
     | '/programs/shows'
-    | '/programs/summer-camp'
     | '/team/about-us'
     | '/team/coaches'
     | '/app/blogs/$postId'
@@ -625,8 +634,10 @@ export interface FileRouteTypes {
     | '/app/news/'
     | '/app/programs/'
     | '/app/subscriptions/'
+    | '/programs/summer-camp/$id'
     | '/team/blog/$slug'
     | '/team/news/$slug'
+    | '/programs/summer-camp/'
     | '/team/blog/'
     | '/team/news/'
   fileRoutesByTo: FileRoutesByTo
@@ -660,7 +671,6 @@ export interface FileRouteTypes {
     | '/programs/private-lessons'
     | '/programs/recreational'
     | '/programs/shows'
-    | '/programs/summer-camp'
     | '/team/about-us'
     | '/team/coaches'
     | '/app/blogs/$postId'
@@ -681,8 +691,10 @@ export interface FileRouteTypes {
     | '/app/news'
     | '/app/programs'
     | '/app/subscriptions'
+    | '/programs/summer-camp/$id'
     | '/team/blog/$slug'
     | '/team/news/$slug'
+    | '/programs/summer-camp'
     | '/team/blog'
     | '/team/news'
   id:
@@ -723,7 +735,6 @@ export interface FileRouteTypes {
     | '/_public/programs/private-lessons'
     | '/_public/programs/recreational'
     | '/_public/programs/shows'
-    | '/_public/programs/summer-camp'
     | '/_public/team/about-us'
     | '/_public/team/coaches'
     | '/app/blogs/$postId'
@@ -744,8 +755,10 @@ export interface FileRouteTypes {
     | '/app/news/'
     | '/app/programs/'
     | '/app/subscriptions/'
+    | '/_public/programs/summer-camp/$id'
     | '/_public/team/blog/$slug'
     | '/_public/team/news/$slug'
+    | '/_public/programs/summer-camp/'
     | '/_public/team/blog/'
     | '/_public/team/news/'
   fileRoutesById: FileRoutesById
@@ -1063,13 +1076,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicTeamAboutUsRouteImport
       parentRoute: typeof PublicRoute
     }
-    '/_public/programs/summer-camp': {
-      id: '/_public/programs/summer-camp'
-      path: '/programs/summer-camp'
-      fullPath: '/programs/summer-camp'
-      preLoaderRoute: typeof PublicProgramsSummerCampRouteImport
-      parentRoute: typeof PublicRoute
-    }
     '/_public/programs/shows': {
       id: '/_public/programs/shows'
       path: '/programs/shows'
@@ -1182,6 +1188,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicTeamBlogIndexRouteImport
       parentRoute: typeof PublicRoute
     }
+    '/_public/programs/summer-camp/': {
+      id: '/_public/programs/summer-camp/'
+      path: '/programs/summer-camp'
+      fullPath: '/programs/summer-camp/'
+      preLoaderRoute: typeof PublicProgramsSummerCampIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
     '/_public/team/news/$slug': {
       id: '/_public/team/news/$slug'
       path: '/team/news/$slug'
@@ -1194,6 +1207,13 @@ declare module '@tanstack/react-router' {
       path: '/team/blog/$slug'
       fullPath: '/team/blog/$slug'
       preLoaderRoute: typeof PublicTeamBlogSlugRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/programs/summer-camp/$id': {
+      id: '/_public/programs/summer-camp/$id'
+      path: '/programs/summer-camp/$id'
+      fullPath: '/programs/summer-camp/$id'
+      preLoaderRoute: typeof PublicProgramsSummerCampIdRouteRouteImport
       parentRoute: typeof PublicRoute
     }
   }
@@ -1319,12 +1339,13 @@ interface PublicRouteChildren {
   PublicProgramsPrivateLessonsRoute: typeof PublicProgramsPrivateLessonsRoute
   PublicProgramsRecreationalRoute: typeof PublicProgramsRecreationalRoute
   PublicProgramsShowsRoute: typeof PublicProgramsShowsRoute
-  PublicProgramsSummerCampRoute: typeof PublicProgramsSummerCampRoute
   PublicTeamAboutUsRoute: typeof PublicTeamAboutUsRoute
   PublicTeamCoachesRoute: typeof PublicTeamCoachesRoute
   PublicProgramsIndexRoute: typeof PublicProgramsIndexRoute
+  PublicProgramsSummerCampIdRouteRoute: typeof PublicProgramsSummerCampIdRouteRoute
   PublicTeamBlogSlugRoute: typeof PublicTeamBlogSlugRoute
   PublicTeamNewsSlugRoute: typeof PublicTeamNewsSlugRoute
+  PublicProgramsSummerCampIndexRoute: typeof PublicProgramsSummerCampIndexRoute
   PublicTeamBlogIndexRoute: typeof PublicTeamBlogIndexRoute
   PublicTeamNewsIndexRoute: typeof PublicTeamNewsIndexRoute
 }
@@ -1346,12 +1367,13 @@ const PublicRouteChildren: PublicRouteChildren = {
   PublicProgramsPrivateLessonsRoute: PublicProgramsPrivateLessonsRoute,
   PublicProgramsRecreationalRoute: PublicProgramsRecreationalRoute,
   PublicProgramsShowsRoute: PublicProgramsShowsRoute,
-  PublicProgramsSummerCampRoute: PublicProgramsSummerCampRoute,
   PublicTeamAboutUsRoute: PublicTeamAboutUsRoute,
   PublicTeamCoachesRoute: PublicTeamCoachesRoute,
   PublicProgramsIndexRoute: PublicProgramsIndexRoute,
+  PublicProgramsSummerCampIdRouteRoute: PublicProgramsSummerCampIdRouteRoute,
   PublicTeamBlogSlugRoute: PublicTeamBlogSlugRoute,
   PublicTeamNewsSlugRoute: PublicTeamNewsSlugRoute,
+  PublicProgramsSummerCampIndexRoute: PublicProgramsSummerCampIndexRoute,
   PublicTeamBlogIndexRoute: PublicTeamBlogIndexRoute,
   PublicTeamNewsIndexRoute: PublicTeamNewsIndexRoute,
 }

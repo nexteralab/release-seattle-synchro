@@ -3,6 +3,7 @@ import { SummerCampHero } from './components/SummerCampHero'
 import { SummerCampDates } from './components/SummerCampDates'
 import { SummerCampOverview } from './components/SummerCampOverview'
 import { SummerCampRequirements } from './components/SummerCampRequirements'
+import { LocationsSection } from './locations/LocationsSection'
 import { CtaBanner } from '#/components/CtaBanner'
 
 interface Props {
@@ -23,6 +24,7 @@ export function SummerCampPage({ content }: Props) {
         pricePerWeek={content.price_per_week}
       />
       <SummerCampRequirements />
+      <LocationsSection />
       <CtaBanner
         heading="Ready to Dive In?"
         description="Spots fill up quickly! Register now to secure your place in our 2026 Summer Camp program."
