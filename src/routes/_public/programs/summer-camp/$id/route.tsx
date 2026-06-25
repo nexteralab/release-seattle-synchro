@@ -13,7 +13,7 @@ export const Route = createFileRoute('/_public/programs/summer-camp/$id')({
     const loc = loaderData
     if (!loc) return {}
     const url = `${SITE_URL}/programs/summer-camp/${loc.slug}`
-    const title = `${loc.heroTitle} | Seattle Synchro`
+    const title = `${loc.metaTitle} | Seattle Synchro`
     const description = loc.heroSubtitle
     return {
       meta: [

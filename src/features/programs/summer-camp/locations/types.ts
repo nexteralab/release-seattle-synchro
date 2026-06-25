@@ -27,6 +27,7 @@ export interface LocationContent {
   city: string // "Bellevue"
   state: string // "WA"
   // Copy variable por ciudad (SEO):
+  metaTitle: string // título SEO completo (<title>/og); el hero se parte en 3 líneas
   heroTitle: string
   heroTitle1?: string
   heroTitle2?: string
