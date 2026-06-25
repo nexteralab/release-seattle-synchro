@@ -22,6 +22,19 @@ const sg = "'Space Grotesk', sans-serif"
 const mapsLink = (q: string) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`
 
+// Resalta el nombre de la ciudad dentro del título con el primary de Tailwind.
+function highlightCity(text: string, city: string) {
+  const i = text.indexOf(city)
+  if (i === -1) return text
+  return (
+    <>
+      {text.slice(0, i)}
+      <span className="text-primary">{city}</span>
+      {text.slice(i + city.length)}
+    </>
+  )
+}
+
 // Las dos piscinas del camp (fijas para todas las ciudades).
 const POOLS = [
   { name: 'Newport Swim & Tennis Club', area: 'Newport Hills', lng: -122.1778828, lat: 47.5532877 },
@@ -67,10 +80,12 @@ export function LocationCampPage({ content }: Props) {
             <span style={{ display: 'inline-block', background: BLUE, color: '#fff', fontFamily: sg, fontWeight: 700, fontSize: 12, letterSpacing: 1.6, textTransform: 'uppercase', padding: '8px 18px', borderRadius: 999, marginBottom: 22 }}>
               Ages 6–11 · Beginners Welcome
             </span>
-            <h1 style={{ fontFamily: sg, fontWeight: 700, fontSize: 'clamp(40px, 7vw, 72px)', lineHeight: 0.98, letterSpacing: -2, color: BLUE, margin: '0 0 22px' }}>
+            <h1 style={{ fontFamily: sg, fontWeight: 700, fontSize: 'clamp(40px, 7vw, 48px)', lineHeight: 0.98, letterSpacing: -2, color: BLUE, margin: '0 0 22px' }}>
               {content.heroTitle}
+              {content.heroTitle1 && <><br />{content.heroTitle1}</>}
+              {content.heroTitle2 && <><br />{highlightCity(content.heroTitle2, city)}</>}
             </h1>
-            <p style={{ fontSize: 19, lineHeight: 1.65, color: '#5a6b75', maxWidth: 480, margin: '0 0 34px' }}>
+            <p style={{ fontSize: 18, lineHeight: 1.65, color: '#5a6b75', maxWidth: 480, margin: '0 0 34px' }}>
               {content.heroSubtitle}
             </p>
             <a

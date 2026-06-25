@@ -28,6 +28,8 @@ export interface LocationContent {
   state: string // "WA"
   // Copy variable por ciudad (SEO):
   heroTitle: string
+  heroTitle1?: string
+  heroTitle2?: string
   heroSubtitle: string
   aboutParagraphs: string[]
   locationHeading: string // "Two Pools in Bellevue"
