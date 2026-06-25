@@ -51,8 +51,17 @@ interface Props {
 }
 
 export function LocationCampPage({ content }: Props) {
-  const { city, weeks, faqs } = content
+  const { city, weeks } = content
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+
+  // FAQ "near me" generada por ciudad: lenguaje natural para la búsqueda local.
+  const faqs = [
+    ...content.faqs,
+    {
+      q: `Is there a synchronized swimming camp near me in ${city}?`,
+      a: `Yes. Our camp runs at two pools in Bellevue, Newport Hills and Somerset, a short drive for families in ${city} and across greater Seattle. It's a great "synchronized swimming near me" option for the 2026 summer.`,
+    },
+  ]
 
   // Rota el orden de "What to Bring" por ciudad (variedad SEO); contenido idéntico.
   const off = (content.packOffset ?? 0) % SHARED.packItems.length
