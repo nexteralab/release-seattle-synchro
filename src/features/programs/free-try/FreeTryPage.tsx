@@ -6,7 +6,7 @@ import { CtaBanner } from '#/components/CtaBanner'
 
 
 const consultDbDataFreeTry = {
-  "nameProgram": "Free Artistic Swimming Trial",
+  "nameProgram": "Try Out For Novice",
   "description": "Join us on June 7th for a free introduction to the world of artistic swimming.",
   "linkTo": "https://www.seattlesynchrosst.com/page/system/classreg-shopping",
   "linkLabel": "Register Now",

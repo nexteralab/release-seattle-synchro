@@ -1,5 +1,5 @@
 import type { FreeTryData } from '../types'
-import imageFreeTry from '/images/free-try.webp'
+import imageFreeTry from '/images/piscina.webp'
 
 const LOCATION_IMAGE =
   'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzd2ltJTIwdGVubmlzJTIwY2x1YiUyMGFlcmlhbHxlbnwxfHx8fDE3NzUxNzY0NTR8MA&ixlib=rb-4.1.0&q=80&w=800'
@@ -21,9 +21,9 @@ export function FreeTryOverview({ data }: Props) {
           <div>
             <h2
               id="freetry-overview-heading"
-              className="font-bold text-secondary text-[30px] md:text-[48px] tracking-[-2.4px] uppercase mb-3"
+              className="font-bold text-secondary text-[30px] md:text-[42px] tracking-[-2.4px] uppercase mb-3"
             >
-              Come Try Artistic<br />Swimming for Free!
+              Try Out for<br />Synchronized Swimming!
             </h2>
             <p className="font-bold text-secondary text-[12px] md:text-[14px] tracking-[1.4px] uppercase mb-8">
               Designed for Future Champions
@@ -39,7 +39,7 @@ export function FreeTryOverview({ data }: Props) {
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-white text-[20px]">🛡️</span>
                 <h3 className="font-bold text-white text-[14px] tracking-[1.4px] uppercase">
-                  Critical Safety Requirement
+                  Join Seattle Synchro's Novice Team
                 </h3>
               </div>
               <p className="text-white/90 text-[15px] leading-[24px] italic">
