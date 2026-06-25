@@ -169,7 +169,7 @@ export function NavbarHomePage() {
                 to="/programs/free-try"
                 className="group inline-flex items-center gap-2 bg-[#0A0A67] text-white px-5 py-2 rounded-full font-bold text-[12px] tracking-[1.4px] hover:text-primary uppercase transition-all duration-200"
               >
-                Free Try
+                Try Out
               </Link>
               {/* Portal Members Link */}
               <a
@@ -292,7 +292,7 @@ export function NavbarHomePage() {
                   to="/programs/free-try"
                   className="flex items-center justify-center gap-2 w-full py-4 font-bold text-[13px] tracking-[2px] uppercase bg-[#0A0A67] text-white"
                 >
-                  Free Try
+                  Try Out
                   <ArrowRight size={12} />
                 </Link>
                 <a
