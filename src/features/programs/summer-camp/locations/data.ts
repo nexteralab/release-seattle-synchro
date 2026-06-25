@@ -13,7 +13,7 @@ export const SHARED = {
   whyCards: [
     { icon: '♪', tone: 'teal', title: 'Swim to Music', text: 'Learn a routine set to fun songs and move together in the water.' },
     { icon: '★', tone: 'green', title: 'Make New Friends', text: 'Team up with other kids and cheer each other on all week long.' },
-    { icon: '〜', tone: 'teal', title: 'Learn Cool Tricks', text: 'Floats, spins, and sculls — the building blocks of artistic swimming.' },
+    { icon: '〜', tone: 'teal', title: 'Learn Cool Tricks', text: 'Floats, spins, and sculls, the building blocks of artistic swimming.' },
     { icon: '✦', tone: 'green', title: 'Perform a Show', text: 'Show off the routine for family & friends on the last day!' },
   ],
   packItems: [
@@ -65,12 +65,12 @@ export const LOCATIONS: Record<string, LocationContent> = {
     ...FIXED,
     slug: 'bellevue',
     city: 'Bellevue',
-    heroTitle: 'Synchronized Swimming Summer Camp in Bellevue 2026',
+    heroTitle: 'Synchronized Swimming Summer Camp',
     heroSubtitle:
       'A super-fun week of synchronized & artistic swimming summer camp for kids in Bellevue. Swim to music, learn cool tricks with new friends!',
     aboutParagraphs: [
-      'Our recreational summer camp in Bellevue, WA blends athleticism with artistry in the pool. Designed for beginners, kids get expert coaching in technique, choreography, and teamwork — all while having a blast.',
-      "Run by Seattle Synchro — greater Seattle's dedicated synchronized swim team — the camp teaches the basics of synchronized swimming, builds water confidence, and ends with a routine performed for family. Whether they're brand new or have splashed around before, every kid leaves with new skills and big smiles.",
+      'Our recreational summer camp in Bellevue, WA blends athleticism with artistry in the pool. Designed for beginners, kids get expert coaching in technique, choreography, and teamwork, all while having a blast.',
+      "Run by Seattle Synchro, greater Seattle's dedicated synchronized swim team, the camp teaches the basics of synchronized swimming, builds water confidence, and ends with a routine performed for family. Whether they're brand new or have splashed around before, every kid leaves with new skills and big smiles.",
     ],
     locationBlurb:
       'Easy to reach from Newport Hills, Somerset, Factoria, and across greater Seattle.',
@@ -78,7 +78,7 @@ export const LOCATIONS: Record<string, LocationContent> = {
       { q: 'Where is the camp held in Bellevue?', a: 'We run camp at two pools in Bellevue, WA 98006: Newport Swim & Tennis Club in Newport Hills (week of July 27) and Somerset (week of August 3). Both are easy to reach from across greater Seattle.' },
       { q: 'What ages is the artistic swimming camp for?', a: 'The camp is built for beginners ages 6 to 11. Kids are grouped by age and ability so everyone progresses at a comfortable, fun pace.' },
       { q: 'Does my child need swimming experience?', a: 'Some water comfort is required for safety: campers should be able to independently swim two laps of crawl stroke and float on their back. No prior synchronized swimming experience is needed.' },
-      { q: 'What is artistic swimming?', a: 'Artistic swimming — also called synchronized swimming — blends swimming, dance, and gymnastics into routines performed to music. Campers learn the basics and rehearse a routine performed for family on the last day.' },
+      { q: 'What is artistic swimming?', a: 'Artistic swimming, also called synchronized swimming, blends swimming, dance, and gymnastics into routines performed to music. Campers learn the basics and rehearse a routine performed for family on the last day.' },
       { q: 'What should my camper bring each day?', a: 'A swim suit, swim cap, goggles, nose clips, and a towel. Sessions run 9:00–11:00am, so a water bottle and sunscreen are smart too.' },
       { q: 'How do I register?', a: 'Tap any "Register Now" button to reserve a spot, or email info@seattlesynchro.org. Spots are limited and fill quickly, so early registration is recommended!' },
     ],
@@ -89,17 +89,17 @@ export const LOCATIONS: Record<string, LocationContent> = {
     slug: 'redmond',
     city: 'Redmond',
     packOffset: 1,
-    heroTitle: 'Synchronized Swimming Summer Camp in Redmond 2026',
+    heroTitle: 'Synchronized Swimming Summer Camp',
     heroSubtitle:
       'A playful week of artistic & synchronized swimming for Redmond kids, just a short drive away in Bellevue. Swim to music, master new tricks, and make summer friends!',
     aboutParagraphs: [
-      'Families in Redmond, WA are a quick hop from our recreational artistic swimming camp at two Bellevue pools. Built for beginners, each morning mixes athletic skill-building with the artistry of swimming to music — guided by an experienced, encouraging coaching team.',
+      'Families in Redmond, WA are a quick hop from our recreational artistic swimming camp at two Bellevue pools. Built for beginners, each morning mixes athletic skill-building with the artistry of swimming to music, guided by an experienced, encouraging coaching team.',
       'Led by Seattle Synchro, the area\'s dedicated Seattle synchronized swimming team, the camp covers the fundamentals over five mornings, grows water confidence, and ends with a routine on the final day. New to the sport or already comfortable in the water, every Redmond camper goes home with fresh skills and a big smile.',
     ],
     locationBlurb:
-      'An easy drive from Redmond via SR-520 and I-405 — both Bellevue pools are about 15 minutes away.',
+      'An easy drive from Redmond via SR-520 and I-405. Both Bellevue pools are about 15 minutes away.',
     faqs: [
-      { q: 'Where is the Redmond-area camp actually held?', a: 'Camp runs at two pools in Bellevue, WA 98006 — Newport Swim & Tennis Club in Newport Hills (week of July 27) and Somerset (week of August 3). Both sit roughly 15 minutes from Redmond via SR-520 or I-405.' },
+      { q: 'Where is the Redmond-area camp actually held?', a: 'Camp runs at two pools in Bellevue, WA 98006: Newport Swim & Tennis Club in Newport Hills (week of July 27) and Somerset (week of August 3). Both sit roughly 15 minutes from Redmond via SR-520 or I-405.' },
       { q: 'Who can join the camp?', a: "It's designed for beginners ages 6 to 11. Campers are grouped by age and ability so each child moves at a fun, comfortable pace." },
       { q: 'Does my child need to be a strong swimmer?', a: 'Just basic water comfort, for safety: campers should be able to swim two laps of crawl stroke on their own and float on their back. No previous synchronized swimming experience is required.' },
       { q: 'What is artistic swimming?', a: 'Artistic swimming (synchronized swimming) blends swimming, dance, and gymnastics into routines set to music. Campers learn the building blocks and rehearse a short routine they perform for family on the last day.' },
@@ -113,20 +113,20 @@ export const LOCATIONS: Record<string, LocationContent> = {
     slug: 'kirkland',
     city: 'Kirkland',
     packOffset: 2,
-    heroTitle: 'Synchronized Swimming Summer Camp in Kirkland 2026',
+    heroTitle: 'Synchronized Swimming Summer Camp',
     heroSubtitle:
       'Five sunny mornings of synchronized swimming for Kirkland kids, held a short drive south in Bellevue. Glide to music, learn fun tricks, and team up with new friends!',
     aboutParagraphs: [
-      'Just minutes from Kirkland, WA, our recreational summer camp brings athleticism and artistry together in the water across two Bellevue pools. Beginners are welcome — kids get hands-on coaching in technique, choreography, and teamwork while having a ton of fun.',
-      "Coached by Seattle Synchro — a synchronized swim team serving greater Seattle — campers learn the basics of synchronized swimming through the week, build confidence in the water, and rehearse a routine they show off on the final day. Whether it's their first splash or they've swum before, every Kirkland kid leaves with new abilities and great memories.",
+      'Just minutes from Kirkland, WA, our recreational summer camp brings athleticism and artistry together in the water across two Bellevue pools. Beginners are welcome, and kids get hands-on coaching in technique, choreography, and teamwork while having a ton of fun.',
+      "Coached by Seattle Synchro, a synchronized swim team serving greater Seattle, campers learn the basics of synchronized swimming through the week, build confidence in the water, and rehearse a routine they show off on the final day. Whether it's their first splash or they've swum before, every Kirkland kid leaves with new abilities and great memories.",
     ],
     locationBlurb:
-      'A short trip down I-405 from Kirkland — both Bellevue pools are roughly 15 minutes away.',
+      'A short trip down I-405 from Kirkland. Both Bellevue pools are roughly 15 minutes away.',
     faqs: [
-      { q: 'Where does the camp take place for Kirkland families?', a: 'We hold camp at two Bellevue pools in 98006 — Newport Swim & Tennis Club in Newport Hills (week of July 27) and Somerset (week of August 3) — about 15 minutes down I-405 from Kirkland.' },
+      { q: 'Where does the camp take place for Kirkland families?', a: 'We hold camp at two Bellevue pools in 98006: Newport Swim & Tennis Club in Newport Hills (week of July 27) and Somerset (week of August 3), about 15 minutes down I-405 from Kirkland.' },
       { q: 'What age group is the camp for?', a: 'Beginners ages 6 to 11. We group campers by age and skill so everyone progresses comfortably and has fun.' },
       { q: 'Is swimming experience required?', a: 'Only basic water comfort, for safety: kids should be able to swim two laps of crawl stroke unaided and float on their back. No synchronized swimming background is needed.' },
-      { q: 'What is artistic swimming?', a: 'Artistic swimming — better known as synchronized swimming — combines swimming, dance, and gymnastics into routines performed to music. Campers learn the essentials and practice a routine for a family showcase on the last day.' },
+      { q: 'What is artistic swimming?', a: 'Artistic swimming, better known as synchronized swimming, combines swimming, dance, and gymnastics into routines performed to music. Campers learn the essentials and practice a routine for a family showcase on the last day.' },
       { q: 'What should kids bring daily?', a: 'Swim suit, swim cap, goggles, nose clips, and a towel. With 9:00–11:00am sessions, packing a water bottle and sunscreen is a good idea.' },
       { q: 'How can we register?', a: 'Use any "Register Now" button to reserve a place, or email info@seattlesynchro.org. Spots are limited and go quickly, so early sign-up is recommended.' },
     ],
@@ -137,7 +137,7 @@ export const LOCATIONS: Record<string, LocationContent> = {
     slug: 'newcastle',
     city: 'Newcastle',
     packOffset: 3,
-    heroTitle: 'Synchronized Swimming Summer Camp in Newcastle 2026',
+    heroTitle: 'Synchronized Swimming Summer Camp',
     heroSubtitle:
       'A week of artistic & synchronized swimming fun for Newcastle kids, just up the road in Bellevue. Swim to music, pick up cool moves, and make new friends!',
     aboutParagraphs: [
@@ -145,9 +145,9 @@ export const LOCATIONS: Record<string, LocationContent> = {
       'Taught by Seattle Synchro, greater Seattle\'s synchronized swim team, the camp covers synchronized swimming fundamentals across five mornings, builds water confidence, and ends with a routine on the last day. Brand new or already at ease in the pool, each Newcastle camper finishes with new skills and plenty of smiles.',
     ],
     locationBlurb:
-      'Practically next door — both Bellevue pools are only about 10 minutes from Newcastle via Coal Creek Parkway.',
+      'Practically next door. Both Bellevue pools are only about 10 minutes from Newcastle via Coal Creek Parkway.',
     faqs: [
-      { q: 'Where is the camp located for Newcastle kids?', a: 'Camp is at two Bellevue pools in 98006 — Newport Swim & Tennis Club in Newport Hills (week of July 27) and Somerset (week of August 3) — roughly 10 minutes from Newcastle via Coal Creek Parkway.' },
+      { q: 'Where is the camp located for Newcastle kids?', a: 'Camp is at two Bellevue pools in 98006: Newport Swim & Tennis Club in Newport Hills (week of July 27) and Somerset (week of August 3), roughly 10 minutes from Newcastle via Coal Creek Parkway.' },
       { q: 'What ages does the camp serve?', a: "It's for beginners ages 6 to 11, grouped by age and ability so each child learns at a relaxed, enjoyable pace." },
       { q: 'Does my child need prior swim skills?', a: 'Just basic water safety: campers should independently swim two laps of crawl stroke and float on their back. No synchronized swimming experience is necessary.' },
       { q: 'What is artistic swimming?', a: 'Also called synchronized swimming, it weaves swimming, dance, and gymnastics into music-driven routines. Campers master the basics and rehearse a routine to perform for family on the final day.' },
@@ -161,17 +161,17 @@ export const LOCATIONS: Record<string, LocationContent> = {
     slug: 'mercer-island',
     city: 'Mercer Island',
     packOffset: 4,
-    heroTitle: 'Synchronized Swimming Summer Camp in Mercer Island 2026',
+    heroTitle: 'Synchronized Swimming Summer Camp',
     heroSubtitle:
       'Five mornings of synchronized swimming for Mercer Island kids, a quick drive over I-90 to Bellevue. Move to music, learn playful tricks, and find new friends!',
     aboutParagraphs: [
-      'Mercer Island, WA is a short hop over I-90 from our recreational summer camp at two Bellevue pools. Made for beginners, each session pairs real athletic coaching with the artistry of swimming to music — all in a fun, welcoming setting.',
-      'With Seattle Synchro — the dedicated synchronized swim team for greater Seattle — campers spend the week learning synchronized swimming basics, growing their water confidence, and rehearsing a routine they perform on day five. First-timers and confident swimmers alike leave with new skills and big grins.',
+      'Mercer Island, WA is a short hop over I-90 from our recreational summer camp at two Bellevue pools. Made for beginners, each session pairs real athletic coaching with the artistry of swimming to music, all in a fun, welcoming setting.',
+      'With Seattle Synchro, the dedicated synchronized swim team for greater Seattle, campers spend the week learning synchronized swimming basics, growing their water confidence, and rehearsing a routine they perform on day five. First-timers and confident swimmers alike leave with new skills and big grins.',
     ],
     locationBlurb:
-      'A quick drive over I-90 from Mercer Island — both Bellevue pools are about 10–15 minutes away.',
+      'A quick drive over I-90 from Mercer Island. Both Bellevue pools are about 10–15 minutes away.',
     faqs: [
-      { q: 'Where is the camp held for Mercer Island families?', a: 'We run camp at two Bellevue pools in 98006 — Newport Swim & Tennis Club in Newport Hills (week of July 27) and Somerset (week of August 3) — about 10–15 minutes from Mercer Island via I-90.' },
+      { q: 'Where is the camp held for Mercer Island families?', a: 'We run camp at two Bellevue pools in 98006: Newport Swim & Tennis Club in Newport Hills (week of July 27) and Somerset (week of August 3), about 10–15 minutes from Mercer Island via I-90.' },
       { q: 'What ages is it open to?', a: 'Beginners ages 6 to 11. Kids are grouped by age and ability so each one progresses at a fun, comfortable pace.' },
       { q: 'Is previous swimming experience needed?', a: 'Only basic water comfort, for safety: campers should be able to swim two laps of crawl stroke on their own and float on their back. No synchronized swimming experience is required.' },
       { q: 'What is artistic swimming?', a: 'Artistic swimming, also known as synchronized swimming, combines swimming, dance, and gymnastics into routines set to music. Campers learn the fundamentals and prepare a routine to perform for family on the last day.' },

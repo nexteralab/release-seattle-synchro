@@ -3,6 +3,7 @@ import programBeginner from "/images/program_1.png";
 import { REGISTER_URL, SHARED } from './data'
 import type { LocationContent } from './types'
 import { CtaBanner } from '#/components/CtaBanner'
+import { Map, MapMarker, MarkerContent, MarkerLabel, MapControls } from '#/components/ui/map'
 
 const BLUE = '#0A0A67'
 const GREEN = '#6CA80D'
@@ -20,6 +21,17 @@ const sg = "'Space Grotesk', sans-serif"
 
 const mapsLink = (q: string) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`
+
+// Las dos piscinas del camp (fijas para todas las ciudades).
+const POOLS = [
+  { name: 'Newport Swim & Tennis Club', area: 'Newport Hills', lng: -122.1778828, lat: 47.5532877 },
+  { name: 'Somerset Recreation Club', area: 'Somerset', lng: -122.1592734, lat: 47.5658127 },
+]
+// Candado de zoom/paneo: límites alrededor de ambas piscinas.
+const MAP_BOUNDS: [[number, number], [number, number]] = [
+  [-122.21, 47.535],
+  [-122.13, 47.585],
+]
 
 interface Props {
   content: LocationContent
@@ -70,8 +82,8 @@ export function LocationCampPage({ content }: Props) {
               Register Now
             </a>
             <div style={{ display: 'flex', gap: 30, marginTop: 38 }}>
-              <Stat n="5" label="fun mornings" />
-              <Stat n={String(weeks.length)} label={`${city} pools`} border />
+              <Stat n="5" label="Fun mornings" />
+              <Stat n={String(weeks.length)} label={"Pools"} border />
             </div>
           </div>
 
@@ -178,7 +190,7 @@ export function LocationCampPage({ content }: Props) {
           {weeks.map((w, i) => (
             <div key={w.area} style={{ background: BLUE, border: `2px solid ${BLUE}`, borderRadius: 26, padding: '38px 32px', display: 'flex', flexDirection: 'column', boxShadow: w.featured ? '0 20px 44px rgba(10,10,103,0.3)' : 'none' }}>
               <h3 style={{ fontFamily: sg, fontWeight: 700, fontSize: 20, color: '#fff', margin: '0 0 4px' }}>Week {i + 1} · {w.area}</h3>
-              <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', margin: '0 0 22px' }}>{w.dates} · {city}</p>
+              <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', margin: '0 0 22px' }}>{w.dates}</p>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 24 }}>
                 <span style={{ fontFamily: sg, fontWeight: 700, fontSize: 46, letterSpacing: -1.5, color: '#fff' }}>{w.price}</span>
                 <span style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)' }}>/ camper</span>
@@ -212,13 +224,31 @@ export function LocationCampPage({ content }: Props) {
                 </div>
               ))}
             </div>
-            <div style={{ borderRadius: 22, overflow: 'hidden', boxShadow: '0 6px 18px rgba(10,10,103,0.1)', minHeight: 420, background: '#e6e9ee' }}>
-              <iframe
-                title={`Map of ${city}, ${content.state} camp locations`}
-                src={`https://www.google.com/maps?q=${encodeURIComponent(content.mapEmbedQuery)}&z=12&output=embed`}
-                style={{ width: '100%', height: '100%', minHeight: 420, border: 0, display: 'block' }}
-                loading="lazy"
-              />
+            <div
+              role="group"
+              aria-label={`Map of ${city}, ${content.state} camp locations`}
+              style={{ borderRadius: 22, overflow: 'hidden', boxShadow: '0 6px 18px rgba(10,10,103,0.1)', height: 420, background: '#e6e9ee' }}
+            >
+              <Map
+                theme="light"
+                styles={{ light: 'https://tiles.openfreemap.org/styles/liberty' }}
+                center={[-122.1685781, 47.5595502]}
+                zoom={12.6}
+                minZoom={12}
+                maxZoom={17}
+                maxBounds={MAP_BOUNDS}
+                scrollZoom={false}
+              >
+                <MapControls />
+                {POOLS.map((p) => (
+                  <MapMarker key={p.name} longitude={p.lng} latitude={p.lat}>
+                    <MarkerContent>
+                      <div style={{ width: 16, height: 16, borderRadius: '50%', background: BLUE, border: '2px solid #fff', boxShadow: '0 1px 4px rgba(0,0,0,0.4)' }} />
+                    </MarkerContent>
+                    <MarkerLabel className="!text-[11px] bg-white/90 text-[#0A0A67] px-1.5 py-0.5 rounded">{p.area}</MarkerLabel>
+                  </MapMarker>
+                ))}
+              </Map>
             </div>
           </div>
         </div>
