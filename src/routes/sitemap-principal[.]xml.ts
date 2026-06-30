@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { LOCATIONS } from '#/features/programs/summer-camp'
 
 const BASE_URL = import.meta.env.VITE_SITE_URL ?? 'https://seattlesynchro.com'
 
@@ -27,7 +28,13 @@ const STATIC_ROUTES: Array<{ path: string; priority: string; changefreq: string 
   { path: '/athletes/sport-psychology', priority: '0.6', changefreq: 'yearly' },
   // Booster
   { path: '/booster/donate', priority: '0.7', changefreq: 'monthly' },
-  { path: '/booster/fundraising', priority: '0.6', changefreq: 'monthly' }
+  { path: '/booster/fundraising', priority: '0.6', changefreq: 'monthly' },
+  // Citys new sitemap implement 30 of june 2026 (derivadas de LOCATION_LIST)
+  ...Object.values(LOCATIONS).map((loc) => ({
+    path: `/programs/summer-camp/${loc.slug}`,
+    priority: '0.8',
+    changefreq: 'monthly',
+  })),
 ]
 
 function urlEntry(loc: string, lastmod: string, changefreq: string, priority: string) {

@@ -194,6 +194,33 @@ export const LOCATIONS: Record<string, LocationContent> = {
       { q: 'How do we get registered?', a: 'Tap any "Register Now" button to secure a spot, or email info@seattlesynchro.org. Spots are limited and fill quickly, so early registration helps.' },
     ],
   },
+
+  seattle: {
+    ...FIXED,
+    slug: 'seattle',
+    city: 'Seattle',
+    packOffset: 5,
+    metaTitle: 'Synchronized Swimming Summer Camp in Seattle 2026',
+    heroTitle: 'Synchronized Swimming',
+    heroTitle1: 'Summer Camp',
+    heroTitle2: 'In Seattle',
+    heroSubtitle:
+      'A week of artistic & synchronized swimming for Seattle kids, a short hop across the lake to Bellevue. Swim to music, learn cool tricks, and make new friends!',
+    aboutParagraphs: [
+      'Seattle, WA families are a quick drive from our recreational artistic swimming camp at two Bellevue pools. Built for beginners, each morning blends real athletic coaching with the artistry of swimming to music in a fun, welcoming setting.',
+      "Led by Seattle Synchro, the city's dedicated synchronized swim team, the camp covers synchronized swimming fundamentals across five mornings, builds water confidence, and ends with a routine performed for family on the last day. New to the sport or already comfortable in the water, every Seattle camper leaves with new skills and big smiles.",
+    ],
+    locationBlurb:
+      'A short drive east across I-90 or SR-520 from Seattle. Both Bellevue pools are about 15–20 minutes away.',
+    faqs: [
+      { q: 'Where is the camp held for Seattle families?', a: 'Camp runs at two Bellevue pools in 98006: Newport Swim & Tennis Club in Newport Hills (week of July 27) and Somerset (week of August 3), roughly 15–20 minutes from Seattle via I-90 or SR-520.' },
+      { q: 'What ages is the camp for?', a: 'Beginners ages 6 to 11. Campers are grouped by age and ability so each child progresses at a fun, comfortable pace.' },
+      { q: 'Does my child need swimming experience?', a: 'Just basic water comfort, for safety: campers should be able to swim two laps of crawl stroke on their own and float on their back. No prior synchronized swimming experience is needed.' },
+      { q: 'What is artistic swimming?', a: 'Artistic swimming, also called synchronized swimming, blends swimming, dance, and gymnastics into routines performed to music. Campers learn the basics and rehearse a routine they perform for family on the last day.' },
+      { q: 'What should my camper bring each day?', a: 'A swim suit, swim cap, goggles, nose clips, and a towel. Sessions run 9:00–11:00am, so a water bottle and sunscreen are smart too.' },
+      { q: 'How do I register?', a: 'Tap any "Register Now" button to reserve a spot, or email info@seattlesynchro.org. Spots are limited and fill quickly, so early registration is recommended!' },
+    ],
+  },
 }
 
 export function getLocation(slug: string): LocationContent | undefined {

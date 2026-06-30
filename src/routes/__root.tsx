@@ -33,7 +33,6 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         href: appCss,
       },
       { rel: 'icon', type: 'image/png', href: '/favicon.png' },
-      { rel: 'canonical', href: 'https://seattlesynchro.com/' },
     ],
   }),
   component: RootDocument,
