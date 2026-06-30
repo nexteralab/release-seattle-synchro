@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Home } from "#/components/Home";
 
 const SITE_URL = "https://seattlesynchro.com";
-const HOME_URL = `${SITE_URL}/`;
+const HOME_URL = `${SITE_URL}`;
 const OG_IMAGE = `${SITE_URL}/images/header.png`;
 const TITLE = "Seattle Synchro | Premier Artistic Swimming Team";
 const DESCRIPTION =
