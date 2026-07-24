@@ -61,7 +61,7 @@ function RequirementList({ items }: { items: Requirement[] }) {
                 <a
                   href={item.link}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener"
                   className="underline text-[12px] md:text-[14px] hover:text-[#0A0A67] transition-colors"
                 >
                   View on Amazon

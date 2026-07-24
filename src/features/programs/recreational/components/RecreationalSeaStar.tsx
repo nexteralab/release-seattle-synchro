@@ -35,7 +35,7 @@ export function RecreationalSharksMermaids({ program = SHARKS_MERMAIDS_FALLBACK 
             <a
               href="https://www.seattlesynchrosst.com/page/system/classreg-shopping"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               className="bg-secondary text-primary px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-white transition-colors"
             >
               Register Now

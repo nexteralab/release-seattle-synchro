@@ -90,7 +90,7 @@ export function EliteClinicHero({ data }: Props) {
           <a
             href="https://www.seattlesynchrosst.com/page/system/classreg-shopping?classId=492122&subProgId=35900"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             className="inline-block bg-white text-secondary px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:text-primary border border-secondary hover:border-primary transition-colors"
           >
             Register Now

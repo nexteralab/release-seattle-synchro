@@ -83,7 +83,7 @@ export function SummerCampDates({ sessions, schedule, pricePerWeek }: Props) {
                 <a
                   href={s.register_url}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener"
                   className="mt-auto inline-block bg-[#63AC23] text-white text-center px-6 py-3 font-bold text-[12px] tracking-[2.4px] uppercase hover:bg-[#4d8a18] transition-colors"
                 >
                   Register

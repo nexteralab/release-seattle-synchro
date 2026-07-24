@@ -104,13 +104,13 @@ export function HealthWellnessPage() {
                                 More resources:
                                 <ul>
                                     <li>
-                                        View this <a href="https://www.youtube.com/watch?v=KYxWW_Tqr78" target="_blank" rel="noopener noreferrer" className={link}>presentation</a> with Amanda Field and Zara Mecklai on sports nutrition.
+                                        View this <a href="https://www.youtube.com/watch?v=KYxWW_Tqr78" target="_blank" rel="noopener" className={link}>presentation</a> with Amanda Field and Zara Mecklai on sports nutrition.
                                     </li>
                                     <li>
-                                        A <a href="https://www.youtube.com/watch?v=DY1rVhOF6JY" target="_blank" rel="noopener noreferrer" className={link}>video</a> of nutrition advice for artistic swimming by sports dietitian Taylor Maggio.
+                                        A <a href="https://www.youtube.com/watch?v=DY1rVhOF6JY" target="_blank" rel="noopener" className={link}>video</a> of nutrition advice for artistic swimming by sports dietitian Taylor Maggio.
                                     </li>
                                     <li>
-                                        Team USA nutrition <a href="https://www.usopc.org/nutrition" target="_blank" rel="noopener noreferrer" className={link}>information</a>.
+                                        Team USA nutrition <a href="https://www.usopc.org/nutrition" target="_blank" rel="noopener" className={link}>information</a>.
                                     </li>
                                 </ul>
                             </p>

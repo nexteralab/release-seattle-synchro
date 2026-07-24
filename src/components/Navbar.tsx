@@ -175,7 +175,7 @@ export function NavbarHomePage() {
               <a
                 href="https://www.seattlesynchrosst.com/page/home"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 className="group inline-flex items-center gap-2 bg-[#F5F5F5] text-[#0A0A67] px-5 py-2 rounded-full font-['Space_Grotesk'] font-bold text-[12px] tracking-[1.4px] uppercase hover:bg-[#e0e7ef] transition-all duration-200 border border-[#0A0A67]/10 ml-2"
               >
                 Members
@@ -298,7 +298,7 @@ export function NavbarHomePage() {
                 <a
                   href="https://www.seattlesynchrosst.com/page/home"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener"
                   className="flex items-center justify-center gap-2 bg-[#F5F5F5] text-[#0A0A67] px-5 py-2 border border-[#0A0A67]/10 w-full py-4 font-bold text-[13px] tracking-[2px] uppercase bg-[#F5F5F5] text-[#0A0A67] hover:bg-[#e0e7ef] transition-all duration-200"
                 >
                   Members

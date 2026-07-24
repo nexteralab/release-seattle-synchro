@@ -212,7 +212,7 @@ export function FundraisingPartners() {
                             <a
                                 href={partner.href}
                                 target="_blank"
-                                rel="noopener noreferrer"
+                                rel="noopener"
                                 className="inline-flex items-center justify-center bg-[#0A0A67] text-white py-4 hover:bg-[#0A0A67]/90 transition-colors"
                                 style={{
                                     fontFamily: "'Space Grotesk', sans-serif",

@@ -69,7 +69,7 @@ export function CtaBanner({
               <Link
                 to={linkToRegister}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 className={btnClass[linkRegisterVariant]}
               >
                 {linkLabelRegister}

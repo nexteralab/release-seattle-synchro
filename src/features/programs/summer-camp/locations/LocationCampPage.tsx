@@ -100,7 +100,7 @@ export function LocationCampPage({ content }: Props) {
             <a
               href={REGISTER_URL}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               style={{ display: 'inline-block', fontFamily: sg, fontWeight: 700, fontSize: 14, letterSpacing: 1.6, textTransform: 'uppercase', color: '#fff', background: GREEN, padding: '18px 40px', borderRadius: 999, textDecoration: 'none', boxShadow: '0 10px 22px rgba(108,168,13,0.32)' }}
             >
               Register Now
@@ -195,7 +195,7 @@ export function LocationCampPage({ content }: Props) {
                 <div style={{ width: 44, height: 44, borderRadius: 13, background: GREEN, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: 22, margin: '0 auto 16px' }}>✓</div>
                 <p style={{ fontFamily: sg, fontWeight: 600, fontSize: 16, color: BLUE, margin: it.link ? '0 0 4px' : 0 }}>{it.label}</p>
                 {it.link && (
-                  <a href={it.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: '#a1a1a1', textDecoration: 'underline' }}>recommended pick</a>
+                  <a href={it.link} target="_blank" rel="noopener" style={{ fontSize: 12, color: '#a1a1a1', textDecoration: 'underline' }}>recommended pick</a>
                 )}
               </div>
             ))}
@@ -222,7 +222,7 @@ export function LocationCampPage({ content }: Props) {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 30, fontSize: 15, color: 'rgba(255,255,255,0.85)' }}>
                 {SHARED.pricingFeatures.map((f) => (<span key={f}>✓&nbsp;&nbsp;{f}</span>))}
               </div>
-              <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer" style={{ marginTop: 'auto', textAlign: 'center', fontFamily: sg, fontWeight: 700, fontSize: 13, letterSpacing: 1.4, textTransform: 'uppercase', color: BLUE, background: GREEN, padding: 14, borderRadius: 999, textDecoration: 'none' }}>Register</a>
+              <a href={REGISTER_URL} target="_blank" rel="noopener" style={{ marginTop: 'auto', textAlign: 'center', fontFamily: sg, fontWeight: 700, fontSize: 13, letterSpacing: 1.4, textTransform: 'uppercase', color: BLUE, background: GREEN, padding: 14, borderRadius: 999, textDecoration: 'none' }}>Register</a>
             </div>
           ))}
         </div>
@@ -244,7 +244,7 @@ export function LocationCampPage({ content }: Props) {
                   </div>
                   <p style={{ fontSize: 15, lineHeight: 1.6, color: '#6a7680', margin: '0 0 6px' }}>{w.locationName}<br />{w.address}</p>
                   <p style={{ fontFamily: sg, fontWeight: 600, fontSize: 13, color: BLUE, margin: '0 0 14px' }}>{w.dates}</p>
-                  <a href={mapsLink(w.mapQuery)} target="_blank" rel="noopener noreferrer" style={{ fontFamily: sg, fontWeight: 700, fontSize: 12, letterSpacing: 1.2, textTransform: 'uppercase', color: BLUE, textDecoration: 'none', borderBottom: `2px solid ${GREEN}`, paddingBottom: 2 }}>Get Directions →</a>
+                  <a href={mapsLink(w.mapQuery)} target="_blank" rel="noopener" style={{ fontFamily: sg, fontWeight: 700, fontSize: 12, letterSpacing: 1.2, textTransform: 'uppercase', color: BLUE, textDecoration: 'none', borderBottom: `2px solid ${GREEN}`, paddingBottom: 2 }}>Get Directions →</a>
                 </div>
               ))}
             </div>

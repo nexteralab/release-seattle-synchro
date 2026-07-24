@@ -28,19 +28,19 @@ export function StoreFooter() {
                             Empowering athletes through the unique blend of swimming, dance, and gymnastics. Join the Northwest's premier artistic swimming community.
                         </p>
                         <div className="flex gap-6 items-center">
-                            <a href="https://www.instagram.com/seattle_synchro/" target="_blank" rel="noopener noreferrer" className="text-[#737373] hover:text-[#737373] transition-colors">
+                            <a href="https://www.instagram.com/seattle_synchro/" target="_blank" rel="noopener" className="text-[#737373] hover:text-[#737373] transition-colors">
                                 <svg className="size-6" fill="none" viewBox="0 0 24 24">
                                     <path d={svgPaths.p4fdb300} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
                                     <path d={svgPaths.p39557800} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
                                     <path d="M17.5 6.5H17.51" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
                                 </svg>
                             </a>
-                            <a href="https://www.facebook.com/profile.php?id=100034431865593" target="_blank" rel="noopener noreferrer" className="text-[#737373] hover:text-[#737373] transition-colors">
+                            <a href="https://www.facebook.com/profile.php?id=100034431865593" target="_blank" rel="noopener" className="text-[#737373] hover:text-[#737373] transition-colors">
                                 <svg className="size-6" fill="none" viewBox="0 0 24 24">
                                     <path d={svgPaths.p3d19f300} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
                                 </svg>
                             </a>
-                            <a href="https://x.com/SeattleSynchro" target="_blank" rel="noopener noreferrer" className="text-[#737373] hover:text-[#737373] transition-colors">
+                            <a href="https://x.com/SeattleSynchro" target="_blank" rel="noopener" className="text-[#737373] hover:text-[#737373] transition-colors">
                                 <span className="text-[#737373] hover:text-[#737373] transition-colors text-3xl">𝕏</span>
                             </a>
                         </div>
@@ -141,7 +141,7 @@ export function StoreFooter() {
                                 <a
                                     href="https://thenexteralab.com"
                                     target="_blank"
-                                    rel="noopener noreferrer"
+                                    rel="noopener"
                                     className="text-secondary hover:text-secondary/80 transition-colors"
                                     onMouseEnter={(e) => (e.currentTarget.style.color = '#A37E2C')}
                                     onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(163,126,44,0.55)')}

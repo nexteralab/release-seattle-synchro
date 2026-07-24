@@ -113,11 +113,11 @@ export function SafetyPage() {
                 and is based in Denver, CO. Seattle Synchro falls under SafeSport jurisdiction and all Covered
                 Individuals associated with Seattle Synchro undergo mandatory training. For more information,
                 see the{' '}
-                <a href="https://uscenterforsafesport.org/response-and-resolution/safesport-code/" target="_blank" rel="noopener noreferrer" className={link}>
+                <a href="https://uscenterforsafesport.org/response-and-resolution/safesport-code/" target="_blank" rel="noopener" className={link}>
                   SafeSport Code
                 </a>.
               </p>
-              <a href="https://uscenterforsafesport.org/report-a-concern/" target="_blank" rel="noopener noreferrer" className={btn}>
+              <a href="https://uscenterforsafesport.org/report-a-concern/" target="_blank" rel="noopener" className={btn}>
                 Report a Concern <ExternalLink size={11} />
               </a>
             </Protocol>
@@ -129,12 +129,12 @@ export function SafetyPage() {
                 health consequences, it is essential that synchronized swimmers, coaches, parents, and healthcare
                 providers learn the signs and symptoms of concussion and what to do if a concussion occurs. For
                 more information, review this{' '}
-                <a href="https://www.seattlesynchrosst.com/zzssst/UserFiles/File/Safety/synchro-concussions-selina-shah.pdf" target="_blank" rel="noopener noreferrer" className={link}>
+                <a href="https://www.seattlesynchrosst.com/zzssst/UserFiles/File/Safety/synchro-concussions-selina-shah.pdf" target="_blank" rel="noopener" className={link}>
                   fact sheet
                 </a>{' '}
                 from Selina Shah, MD, FACP, Team Physician USC Synchronized Swimming.
               </p>
-              <a href="https://www.seattlesynchrosst.com/zzssst/UserFiles/File/Safety/synchro-concussions-selina-shah.pdf" target="_blank" rel="noopener noreferrer" className={btn}>
+              <a href="https://www.seattlesynchrosst.com/zzssst/UserFiles/File/Safety/synchro-concussions-selina-shah.pdf" target="_blank" rel="noopener" className={btn}>
                 Download Fact Sheet <ExternalLink size={11} />
               </a>
             </Protocol>
@@ -146,7 +146,7 @@ export function SafetyPage() {
                 the US, affecting over 300,000 individuals per year.
               </p>
               <p className="text-[#737373] text-[15px] md:text-[16px] leading-[1.75] mt-3">
-                For more information, see <a href="https://uwmedicine.org/services/sports-cardiology" target="_blank" rel="noopener noreferrer" className={link}>this brochure</a> from the UW Medicine Center for Sports Cardiology, the Washington Interscholastic Activities Association, and the Nick of Time Foundation.
+                For more information, see <a href="https://uwmedicine.org/services/sports-cardiology" target="_blank" rel="noopener" className={link}>this brochure</a> from the UW Medicine Center for Sports Cardiology, the Washington Interscholastic Activities Association, and the Nick of Time Foundation.
               </p>
             </Protocol>
           </div>

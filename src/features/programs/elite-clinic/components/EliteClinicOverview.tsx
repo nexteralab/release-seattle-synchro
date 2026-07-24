@@ -99,7 +99,7 @@ export function EliteClinicOverview({ data }: Props) {
               <a
                 href={data.registerUrl}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 className="block w-full text-center bg-[#a3e635] text-[#0A0A67] px-6 py-3.5 font-bold text-[13px] tracking-[2px] uppercase hover:bg-white transition-colors"
               >
                 Secure Your Spot

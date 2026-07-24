@@ -47,7 +47,7 @@ export function FreeTryHero({ nameProgram }: Props) {
         <a
           href="https://www.gomotionapp.com/team/zzssst/controller/cms/admin/index#/classreg-shopping"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           className="inline-block bg-white text-secondary px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:text-primary border border-secondary hover:border-primary transition-colors"
         >
           Sign Up For Free
