@@ -55,6 +55,7 @@ export const Route = createFileRoute('/_public/programs/competitive')({
   component: RouteComponent,
 })
 
+
 function RouteComponent() {
   const config = Route.useLoaderData()
   return <CompetitivePage config={config} />
