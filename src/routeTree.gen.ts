@@ -51,6 +51,7 @@ import { Route as AppBlogsNewRouteImport } from './routes/app/blogs.new'
 import { Route as AppBlogsPostIdRouteImport } from './routes/app/blogs.$postId'
 import { Route as PublicTeamCoachesRouteImport } from './routes/_public/team/coaches'
 import { Route as PublicTeamAboutUsRouteImport } from './routes/_public/team/about-us'
+import { Route as PublicProgramsTryOutRouteImport } from './routes/_public/programs/try-out'
 import { Route as PublicProgramsShowsRouteImport } from './routes/_public/programs/shows'
 import { Route as PublicProgramsRecreationalRouteImport } from './routes/_public/programs/recreational'
 import { Route as PublicProgramsPrivateLessonsRouteImport } from './routes/_public/programs/private-lessons'
@@ -281,6 +282,11 @@ const PublicTeamAboutUsRoute = PublicTeamAboutUsRouteImport.update({
   path: '/team/about-us',
   getParentRoute: () => PublicRoute,
 } as any)
+const PublicProgramsTryOutRoute = PublicProgramsTryOutRouteImport.update({
+  id: '/programs/try-out',
+  path: '/programs/try-out',
+  getParentRoute: () => PublicRoute,
+} as any)
 const PublicProgramsShowsRoute = PublicProgramsShowsRouteImport.update({
   id: '/programs/shows',
   path: '/programs/shows',
@@ -427,6 +433,7 @@ export interface FileRoutesByFullPath {
   '/programs/private-lessons': typeof PublicProgramsPrivateLessonsRoute
   '/programs/recreational': typeof PublicProgramsRecreationalRoute
   '/programs/shows': typeof PublicProgramsShowsRoute
+  '/programs/try-out': typeof PublicProgramsTryOutRoute
   '/team/about-us': typeof PublicTeamAboutUsRoute
   '/team/coaches': typeof PublicTeamCoachesRoute
   '/app/blogs/$postId': typeof AppBlogsPostIdRoute
@@ -484,6 +491,7 @@ export interface FileRoutesByTo {
   '/programs/private-lessons': typeof PublicProgramsPrivateLessonsRoute
   '/programs/recreational': typeof PublicProgramsRecreationalRoute
   '/programs/shows': typeof PublicProgramsShowsRoute
+  '/programs/try-out': typeof PublicProgramsTryOutRoute
   '/team/about-us': typeof PublicTeamAboutUsRoute
   '/team/coaches': typeof PublicTeamCoachesRoute
   '/app/blogs/$postId': typeof AppBlogsPostIdRoute
@@ -549,6 +557,7 @@ export interface FileRoutesById {
   '/_public/programs/private-lessons': typeof PublicProgramsPrivateLessonsRoute
   '/_public/programs/recreational': typeof PublicProgramsRecreationalRoute
   '/_public/programs/shows': typeof PublicProgramsShowsRoute
+  '/_public/programs/try-out': typeof PublicProgramsTryOutRoute
   '/_public/team/about-us': typeof PublicTeamAboutUsRoute
   '/_public/team/coaches': typeof PublicTeamCoachesRoute
   '/app/blogs/$postId': typeof AppBlogsPostIdRoute
@@ -614,6 +623,7 @@ export interface FileRouteTypes {
     | '/programs/private-lessons'
     | '/programs/recreational'
     | '/programs/shows'
+    | '/programs/try-out'
     | '/team/about-us'
     | '/team/coaches'
     | '/app/blogs/$postId'
@@ -671,6 +681,7 @@ export interface FileRouteTypes {
     | '/programs/private-lessons'
     | '/programs/recreational'
     | '/programs/shows'
+    | '/programs/try-out'
     | '/team/about-us'
     | '/team/coaches'
     | '/app/blogs/$postId'
@@ -735,6 +746,7 @@ export interface FileRouteTypes {
     | '/_public/programs/private-lessons'
     | '/_public/programs/recreational'
     | '/_public/programs/shows'
+    | '/_public/programs/try-out'
     | '/_public/team/about-us'
     | '/_public/team/coaches'
     | '/app/blogs/$postId'
@@ -1076,6 +1088,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicTeamAboutUsRouteImport
       parentRoute: typeof PublicRoute
     }
+    '/_public/programs/try-out': {
+      id: '/_public/programs/try-out'
+      path: '/programs/try-out'
+      fullPath: '/programs/try-out'
+      preLoaderRoute: typeof PublicProgramsTryOutRouteImport
+      parentRoute: typeof PublicRoute
+    }
     '/_public/programs/shows': {
       id: '/_public/programs/shows'
       path: '/programs/shows'
@@ -1339,6 +1358,7 @@ interface PublicRouteChildren {
   PublicProgramsPrivateLessonsRoute: typeof PublicProgramsPrivateLessonsRoute
   PublicProgramsRecreationalRoute: typeof PublicProgramsRecreationalRoute
   PublicProgramsShowsRoute: typeof PublicProgramsShowsRoute
+  PublicProgramsTryOutRoute: typeof PublicProgramsTryOutRoute
   PublicTeamAboutUsRoute: typeof PublicTeamAboutUsRoute
   PublicTeamCoachesRoute: typeof PublicTeamCoachesRoute
   PublicProgramsIndexRoute: typeof PublicProgramsIndexRoute
@@ -1367,6 +1387,7 @@ const PublicRouteChildren: PublicRouteChildren = {
   PublicProgramsPrivateLessonsRoute: PublicProgramsPrivateLessonsRoute,
   PublicProgramsRecreationalRoute: PublicProgramsRecreationalRoute,
   PublicProgramsShowsRoute: PublicProgramsShowsRoute,
+  PublicProgramsTryOutRoute: PublicProgramsTryOutRoute,
   PublicTeamAboutUsRoute: PublicTeamAboutUsRoute,
   PublicTeamCoachesRoute: PublicTeamCoachesRoute,
   PublicProgramsIndexRoute: PublicProgramsIndexRoute,

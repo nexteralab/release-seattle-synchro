@@ -3,13 +3,6 @@
 
 User-agent: *
 
-# Legacy GoMotion & Drupal paths
-Disallow: /page/
-Disallow: /zzssst/
-Disallow: /drupal/
-Disallow: /SubTabGeneric.jsp
-Disallow: /TabGeneric.jsp
-
 # Admin / internal
 Disallow: /app/
 Disallow: /login
