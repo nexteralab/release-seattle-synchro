@@ -22,8 +22,8 @@ export function RecreationalComparisonTable() {
           to enjoy the sport.
         </p>
 
-        <div className="mt-8 bg-white rounded-3xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.1)]">
-          <table className="w-full border-collapse">
+        <div className="mt-8 bg-white rounded-3xl shadow-[0_1px_3px_rgba(0,0,0,0.1)] overflow-x-auto">
+          <table className="w-full min-w-[560px] border-collapse">
             <thead>
               <tr>
                 <th className="text-left px-5 md:px-7 py-5 border-b border-black/[0.08]" />
