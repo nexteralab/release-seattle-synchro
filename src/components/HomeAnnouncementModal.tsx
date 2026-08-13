@@ -108,7 +108,7 @@ export function HomeAnnouncementModal() {
 
                             {/* Content */}
                             <div className="p-7 md:p-10 flex flex-col gap-5 justify-center">
-                                <div className="inline-block self-start px-3 py-1 bg-[#63ac23]">
+                                <div className="inline-block self-start rounded-full px-3 py-1 bg-[#63ac23]">
                                     <span className="font-bold text-white text-[12px] tracking-[1.4px] uppercase">
                                         {EYEBROW}
                                     </span>
@@ -129,7 +129,7 @@ export function HomeAnnouncementModal() {
                                     <Link
                                         to={CTA_TO}
                                         onClick={dismiss}
-                                        className="inline-flex items-center gap-2 bg-primary text-white px-7 py-3 font-bold text-[13px] tracking-[1.4px] uppercase hover:bg-primary/90 transition-colors"
+                                        className="inline-flex items-center gap-2 bg-primary text-white rounded-full px-7 py-3 font-bold text-[13px] tracking-[1.4px] uppercase hover:bg-primary/90 transition-colors"
                                     >
                                         {CTA_LABEL}
                                         <ArrowRight size={14} />
