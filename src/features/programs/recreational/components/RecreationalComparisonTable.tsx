@@ -26,7 +26,7 @@ export function RecreationalComparisonTable() {
           <table className="w-full min-w-[560px] border-collapse">
             <thead>
               <tr>
-                <th className="text-left px-5 md:px-7 py-5 border-b border-black/[0.08]" />
+                <th className="text-left px-5 md:px-7 py-5 border-b border-black/[0.08] w-[190px] md:w-[260px]" />
                 <th className="text-left px-5 md:px-7 py-5 font-bold text-primary text-[12px] md:text-[13px] tracking-[1.4px] uppercase border-b border-black/[0.08]">
                   Recreational
                 </th>
@@ -38,7 +38,7 @@ export function RecreationalComparisonTable() {
             <tbody>
               {ROWS.map(([label, rec, comp], i) => (
                 <tr key={label} className={i % 2 === 1 ? 'bg-[#fafafc]' : undefined}>
-                  <td className="px-5 md:px-7 py-4 text-secondary font-semibold text-[15px] md:text-[17px] border-b border-black/[0.06]">
+                  <td className="px-5 md:px-7 py-4 text-secondary font-semibold text-[15px] md:text-[17px] border-b border-black/[0.06] whitespace-nowrap">
                     {label}
                   </td>
                   <td className="px-5 md:px-7 py-4 text-[#737373] text-[15px] md:text-[17px] leading-[26px] border-b border-black/[0.06]">
