@@ -7,51 +7,61 @@ const HERO_FALLBACK =
 const t = { duration: 0.35, ease: [0.35, 0.85, 0.25, 1] as [number, number, number, number] }
 const vp = { once: true }
 
-
 interface Props {
   nameProgram: string
+  description: string
+  date: string
+  time: string
+  linkToRegister: string
+  linkLabelRegister: string
 }
 
-export function FreeTryHero({ nameProgram }: Props) {
+export function FreeTryHero({ nameProgram, description, date, time, linkToRegister, linkLabelRegister }: Props) {
   return (
-    <section
-      className="relative md:h-screen h-[50vh] flex items-center justify-center overflow-hidden"
-      aria-label="Free Try hero"
-    >
-      <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Artistic swimming coach training kids poolside"
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            e.currentTarget.src = HERO_FALLBACK
-          }}
-        />
+    <section className="bg-white" aria-label="Free Try hero">
+      <div className="p-6 pt-10 md:p-12 md:px-20 md:pt-16">
+        <div className="relative w-full h-[42vh] md:h-[58vh] rounded-lg overflow-hidden max-w-screen-xl mx-auto">
+          <img
+            src={heroImage}
+            alt="Artistic swimming coach training kids poolside"
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.src = HERO_FALLBACK
+            }}
+          />
+        </div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
 
       <motion.div
-        whileInView={{ opacity: [0, 1], x: [-40, 0] }}
+        whileInView={{ opacity: [0, 1], y: [40, 0] }}
         viewport={vp}
         transition={t}
-        className="relative z-10 text-center text-white px-12 md:px-48 space-y-6 md:space-y-10"
+        className="max-w-screen-md mx-auto text-center px-6 md:px-12 pb-16 md:pb-24 space-y-6"
       >
-        <div className="bg-primary inline-block px-3 py-1">
-          <span className="font-bold text-[#f5f5f5] text-[12px] tracking-[1.2px] uppercase">
-            open house
+        <div className="bg-primary/15 inline-block px-5 py-2">
+          <span className="font-bold text-primary text-[12px] tracking-[2.2px] uppercase">
+            Open House
           </span>
         </div>
-        <h1 className="font-bold text-[50px] md:text-[96px] tracking-[-1px] md:tracking-[-3.2px] uppercase leading-none">
+        <h1 className="font-bold text-secondary text-[38px] md:text-[64px] tracking-[-1.8px] uppercase leading-[1.08]">
           {nameProgram}
         </h1>
-        <a
-          href="https://www.gomotionapp.com/team/zzssst/controller/cms/admin/index#/classreg-shopping"
-          target="_blank"
-          rel="noopener"
-          className="inline-block bg-white text-secondary px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:text-primary border border-secondary hover:border-primary transition-colors"
-        >
-          Sign Up For Free
-        </a>
+        <p className="text-[#737373] text-[18px] leading-[30px]">
+          {description}
+        </p>
+        <div className="pt-4 flex flex-col items-center gap-4">
+          <a
+            href={linkToRegister}
+            target="_blank"
+            rel="noopener"
+            className="inline-block bg-secondary text-white px-12 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:bg-secondary/90 transition-colors"
+          >
+            {linkLabelRegister}
+          </a>
+          <p className="text-[#a1a1a1] text-[14px] font-medium tracking-[0.4px]">
+            Next free trial: {date} · {time}
+          </p>
+        </div>
       </motion.div>
     </section>
   )

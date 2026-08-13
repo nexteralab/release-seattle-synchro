@@ -1,7 +1,9 @@
 import type { FreeTryData } from './types'
 import { FreeTryHero } from './components/FreeTryHero'
 import { FreeTryOverview } from './components/FreeTryOverview'
+import { FreeTrySafety } from './components/FreeTrySafety'
 import { FreeTryRequirements } from './components/FreeTryRequirements'
+import { FreeTryFaq } from './components/FreeTryFaq'
 import { CtaBanner } from '#/components/CtaBanner'
 
 
@@ -23,9 +25,18 @@ interface Props {
 export function FreeTryPage({ data }: Props) {
   return (
     <div className="w-full">
-      <FreeTryHero nameProgram={consultDbDataFreeTry.nameProgram} />
+      <FreeTryHero
+        nameProgram={consultDbDataFreeTry.nameProgram}
+        description={consultDbDataFreeTry.description}
+        date={data.date}
+        time={data.time}
+        linkToRegister={consultDbDataFreeTry.linkToRegister}
+        linkLabelRegister={consultDbDataFreeTry.linkLabelRegister}
+      />
       <FreeTryOverview data={data} />
+      <FreeTrySafety />
       <FreeTryRequirements />
+      <FreeTryFaq />
       <CtaBanner
         heading="Ready to Dive In?"
         description="Spots are limited! Join us on June 7th for a free introduction to the world of artistic swimming."
