@@ -28,7 +28,7 @@ export function NewsCard({ news, index = 0 }: Props) {
       <Link
         to="/team/news/$slug"
         params={{ slug: news.slug }}
-        className="group block bg-white overflow-hidden hover:shadow-[0_10px_40px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1"
+        className="group block bg-white rounded-3xl overflow-hidden hover:shadow-[0_10px_40px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1"
       >
         {/* Cover */}
         <div className="aspect-[16/9] overflow-hidden bg-[#ececf0]">
@@ -53,14 +53,14 @@ export function NewsCard({ news, index = 0 }: Props) {
           {/* Category + Tags */}
           <div className="flex flex-wrap gap-2 mb-3">
             {news.category && (
-              <span className="font-['Space_Grotesk',sans-serif] font-bold text-[10px] tracking-[1.4px] uppercase text-white bg-[#0A0A67] px-2.5 py-1">
+              <span className="font-['Space_Grotesk',sans-serif] font-bold text-[10px] tracking-[1.4px] uppercase text-white bg-[#0A0A67] rounded-full px-2.5 py-1">
                 {news.category}
               </span>
             )}
             {news.tags?.slice(0, news.category ? 1 : 2).map(tag => (
               <span
                 key={tag}
-                className="font-['Space_Grotesk',sans-serif] font-bold text-[10px] tracking-[1.4px] uppercase text-[#0A0A67] bg-[#0A0A67]/8 px-2.5 py-1"
+                className="font-['Space_Grotesk',sans-serif] font-bold text-[10px] tracking-[1.4px] uppercase text-[#0A0A67] bg-[#0A0A67]/8 rounded-full px-2.5 py-1"
               >
                 {tag}
               </span>

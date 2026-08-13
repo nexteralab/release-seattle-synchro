@@ -11,7 +11,7 @@ const BENEFITS = [
 export function PrivateLessonsBenefits() {
     return (
         <section className="p-6 md:px-12 md:py-24 bg-white" aria-labelledby="benefits-heading">
-            <div className="relative bg-[#0A0A67] p-6 md:p-8 text-white max-w-screen-lg mx-auto overflow-hidden">
+            <div className="relative bg-[#0A0A67] rounded-3xl p-6 md:p-8 text-white max-w-screen-lg mx-auto overflow-hidden">
                 <div className="relative z-10 flex flex-col gap-4 md:w-[55%]">
                     <h2
                         id="benefits-heading"

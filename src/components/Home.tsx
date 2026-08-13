@@ -25,7 +25,6 @@ import sponsorThrive from "/images/sponsor_6.png";
 
 import imageSummerCamp from "/images/image_summer_camp.jpg";
 import { CoachesSpotlight } from "./CoachesSpotlight";
-import { HomeAnnouncementModal } from "./HomeAnnouncementModal";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
@@ -71,8 +70,6 @@ const sponsors = [
 export function Home() {
   return (
     <main className="">
-      {/* Anuncio en home — comenta esta línea para apagarlo */}
-      <HomeAnnouncementModal />
 
       {/* Hero */}
       <section aria-label="Hero" className="relative max-h-[80vh] min-h-[1000px] flex items-center justify-center overflow-hidden">
@@ -94,7 +91,7 @@ export function Home() {
               variants={fadeInLeft}
               className="flex flex-col items-center md:items-start gap-6"
             >
-              <div className="inline-block px-3 py-1 mb-6 bg-[#63AC2354]">
+              <div className="inline-block rounded-full px-3 py-1 mb-6 bg-[#63AC2354]">
                 <span className="font-bold text-white text-[14px] tracking-[1.4px] uppercase">
                   Washington - est 2001
                 </span>
@@ -110,7 +107,7 @@ export function Home() {
               <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
                 <Link
                   to="/contact-us"
-                  className="bg-white text-secondary px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:text-primary border border-secondary hover:border-primary transition-colors inline-flex items-center gap-2"
+                  className="bg-white text-secondary rounded-full px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:text-primary border border-secondary hover:border-primary transition-colors inline-flex items-center gap-2"
                 >
                   Contact Us
                   <ArrowRight size={16} />
@@ -147,7 +144,7 @@ export function Home() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="inline-block px-3 py-1 mb-6 bg-[#63ac23]">
+              <div className="inline-block rounded-full px-3 py-1 mb-6 bg-[#63ac23]">
                 <span className="font-bold text-white text-[14px] tracking-[1.4px] uppercase">
                   Limited Spots Available
                 </span>
@@ -162,13 +159,13 @@ export function Home() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   to="/programs/summer-camp"
-                  className="inline-block bg-secondary text-primary px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-primary transition-colors rounded-sm"
+                  className="inline-block bg-secondary text-primary rounded-full px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-primary transition-colors"
                 >
                   Learn More
                 </Link>
                 <a
                   href="https://www.seattlesynchrosst.com/page/system/classreg-shopping" target="_blank" rel="noopener"
-                  className="inline-block bg-white border border-secondary text-secondary px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:border-primary hover:text-primary transition-colors"
+                  className="inline-block bg-white border border-secondary text-secondary rounded-full px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:border-primary hover:text-primary transition-colors"
                 >
                   Register Now
                 </a>
@@ -234,7 +231,7 @@ export function Home() {
                 to: "/programs/competitive",
               },
             ].map((program) => (
-              <motion.article key={program.title} variants={fadeInUp} className="bg-white">
+              <motion.article key={program.title} variants={fadeInUp} className="bg-white rounded-3xl overflow-hidden">
                 <figure className="m-0 overflow-hidden relative">
                   <img
                     src={program.img}
@@ -306,7 +303,7 @@ export function Home() {
               href="https://www.seattlesynchrosst.com/page/donate"
               target="_blank"
               rel="noopener"
-              className="bg-secondary text-primary px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-white transition-colors"
+              className="bg-secondary text-primary rounded-full px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-white transition-colors"
             >
               Donate
             </a>
@@ -385,7 +382,7 @@ function FeaturedNewsCard({ news }: { news: NewsItem }) {
       params={{ slug: news.slug }}
       className="group bg-white block"
     >
-      <figure className="m-0 overflow-hidden relative">
+      <figure className="m-0 overflow-hidden relative rounded-3xl">
         {news.cover_url ? (
           <img
             src={news.cover_url}
@@ -402,7 +399,7 @@ function FeaturedNewsCard({ news }: { news: NewsItem }) {
         )}
         {label && (
           <div className="absolute top-4 left-4">
-            <span className="bg-white px-3 py-1 font-bold text-[#171717] text-[10px] tracking-[1px] uppercase">
+            <span className="bg-white rounded-full px-3 py-1 font-bold text-[#171717] text-[10px] tracking-[1px] uppercase">
               {label}
             </span>
           </div>
@@ -437,7 +434,7 @@ function SmallNewsCard({ news }: { news: NewsItem }) {
       params={{ slug: news.slug }}
       className="group bg-white flex gap-6"
     >
-      <figure className="m-0 shrink-0 overflow-hidden">
+      <figure className="m-0 shrink-0 overflow-hidden rounded-2xl">
         {news.cover_url ? (
           <img
             src={news.cover_url}
@@ -532,7 +529,7 @@ function FeaturedPostCard({ post }: { post: Post }) {
       params={{ slug: post.slug }}
       className="group block"
     >
-      <figure className="m-0 overflow-hidden relative bg-white">
+      <figure className="m-0 overflow-hidden relative rounded-3xl bg-white">
         {post.cover_url ? (
           <img
             src={post.cover_url}
@@ -549,7 +546,7 @@ function FeaturedPostCard({ post }: { post: Post }) {
         )}
         {label && (
           <div className="absolute top-4 left-4">
-            <span className="bg-[#0A0A67] text-white px-3 py-1 font-bold text-[10px] tracking-[1px] uppercase">
+            <span className="bg-[#0A0A67] text-white rounded-full px-3 py-1 font-bold text-[10px] tracking-[1px] uppercase">
               {label}
             </span>
           </div>
@@ -590,7 +587,7 @@ function SmallPostCard({ post }: { post: Post }) {
       params={{ slug: post.slug }}
       className="group flex gap-6"
     >
-      <figure className="m-0 shrink-0 overflow-hidden bg-white">
+      <figure className="m-0 shrink-0 overflow-hidden rounded-2xl bg-white">
         {post.cover_url ? (
           <img
             src={post.cover_url}

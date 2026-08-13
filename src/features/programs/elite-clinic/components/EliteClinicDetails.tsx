@@ -33,7 +33,7 @@ export function EliteClinicDetails({ data }: Props) {
             whileInView={{ opacity: [0, 1], y: [20, 0] }}
             viewport={viewport}
             transition={{ ...transition, delay: 0.1 }}
-            className="bg-white p-6 md:p-8 rounded-sm"
+            className="bg-white p-6 md:p-8 rounded-3xl"
           >
             <div className="flex items-center gap-2 text-secondary mb-4">
               <Mail size={16} />
@@ -58,7 +58,7 @@ export function EliteClinicDetails({ data }: Props) {
             whileInView={{ opacity: [0, 1], y: [20, 0] }}
             viewport={viewport}
             transition={{ ...transition, delay: 0.15 }}
-            className="bg-white p-6 md:p-8 rounded-sm"
+            className="bg-white p-6 md:p-8 rounded-3xl"
           >
             <div className="flex items-center gap-2 text-secondary mb-4">
               <MapPin size={16} />
@@ -85,7 +85,7 @@ export function EliteClinicDetails({ data }: Props) {
             whileInView={{ opacity: [0, 1], y: [20, 0] }}
             viewport={viewport}
             transition={{ ...transition, delay: 0.2 }}
-            className="bg-white p-6 md:p-8 rounded-sm"
+            className="bg-white p-6 md:p-8 rounded-3xl"
           >
             <div className="flex items-center gap-2 text-secondary mb-4">
               <Package size={16} />

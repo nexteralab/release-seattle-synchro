@@ -138,7 +138,7 @@ export function CoachesPage() {
                     <img
                       src={coach.image_url ?? undefined}
                       alt={coach.name}
-                      className="w-full h-[600px] object-cover"
+                      className="w-full h-[600px] object-cover rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.1)]"
                     />
                   </motion.div>
 
@@ -176,7 +176,7 @@ export function CoachesPage() {
                         </h3>
                         <div className="flex flex-wrap gap-2">
                           {coach.specialties.map((specialty, i) => (
-                            <span key={i} className="bg-[#F5F5F5] px-4 py-2 font-medium text-[#171717] text-[12px] md:text-[14px]">
+                            <span key={i} className="bg-[#F5F5F5] rounded-full px-4 py-2 font-medium text-[#171717] text-[12px] md:text-[14px]">
                               {specialty}
                             </span>
                           ))}

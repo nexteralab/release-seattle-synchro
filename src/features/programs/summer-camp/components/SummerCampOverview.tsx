@@ -42,7 +42,7 @@ export function SummerCampOverview({ details, sessions }: Props) {
             </motion.div>
           </div>
 
-          <div className="bg-[#f5f5f5] p-6 md:p-12">
+          <div className="bg-[#f5f5f5] rounded-3xl p-6 md:p-12">
             <motion.h3
               whileInView={{ opacity: [0, 1], x: [-40, 0] }}
               viewport={viewport}

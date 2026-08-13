@@ -21,7 +21,7 @@ export function Competitive12Under({ coaches, workoutDays }: Props) {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-white p-8">
+          <div className="bg-white rounded-3xl p-8">
             <h3 className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase mb-4">
               Coaches
             </h3>
@@ -34,7 +34,7 @@ export function Competitive12Under({ coaches, workoutDays }: Props) {
               ))}
             </p>
           </div>
-          <div className="bg-white p-8">
+          <div className="bg-white rounded-3xl p-8">
             <h3 className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase mb-4">
               Workout Days
             </h3>

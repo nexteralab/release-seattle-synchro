@@ -8,6 +8,7 @@ const menuItems = {
   programs: {
     label: "Programs",
     items: [
+      { label: "Free Try", path: "/programs/free-try" },
       { label: "Summer Camp", path: "/programs/summer-camp" },
       { label: "Elite Clinic", path: "/programs/elite-clinic" },
       { label: "Competitive", path: "/programs/competitive" },

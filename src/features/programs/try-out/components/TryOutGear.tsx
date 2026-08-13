@@ -41,7 +41,7 @@ export function TryOutGear() {
               whileInView={{ opacity: [0, 1], y: [16, 0] }}
               viewport={vp}
               transition={{ duration: 0.3, ease: [0.35, 0.85, 0.25, 1], delay: i * 0.06 }}
-              className="flex gap-4 items-center bg-white border border-black/[0.08] rounded-lg p-5 transition-transform hover:-translate-y-1 hover:shadow-lg"
+              className="flex gap-4 items-center bg-white border border-black/[0.08] rounded-3xl p-5 transition-transform hover:-translate-y-1 hover:shadow-lg"
             >
               <div
                 className="bg-[#6FBE44] text-white size-7 shrink-0 rounded-full flex items-center justify-center font-bold"

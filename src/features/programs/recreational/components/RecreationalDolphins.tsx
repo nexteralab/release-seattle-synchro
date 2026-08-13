@@ -31,7 +31,7 @@ export function RecreationalDolphins({ program = FALLBACK }: Props = {}) {
             </h2>
             <Link
               to="/contact-us"
-              className="bg-secondary text-primary px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-white transition-colors"
+              className="bg-secondary text-primary rounded-full px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-white transition-colors"
             >
               Contact Us
             </Link>
@@ -45,7 +45,7 @@ export function RecreationalDolphins({ program = FALLBACK }: Props = {}) {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="bg-white p-6 md:p-10">
+          <div className="bg-white rounded-3xl p-6 md:p-10">
             <h3 className="font-bold text-secondary text-[16px] md:text-[20px] tracking-[-1px] uppercase mb-8">
               Program Details
             </h3>
@@ -66,7 +66,7 @@ export function RecreationalDolphins({ program = FALLBACK }: Props = {}) {
             </div>
           </div>
 
-          <div className="bg-white p-6 md:p-10">
+          <div className="bg-white rounded-3xl p-6 md:p-10">
             <h3 className="font-bold text-secondary text-[16px] md:text-[20px] tracking-[-1px] uppercase mb-8">
               Required Swimming Skills
             </h3>

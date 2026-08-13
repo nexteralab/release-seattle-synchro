@@ -28,7 +28,7 @@ export function BlogCard({ post, index = 0 }: Props) {
       <Link
         to="/team/blog/$slug"
         params={{ slug: post.slug }}
-        className="group block bg-white overflow-hidden hover:shadow-[0_10px_40px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1"
+        className="group block bg-white rounded-3xl overflow-hidden hover:shadow-[0_10px_40px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1"
       >
         {/* Cover */}
         <div className="aspect-[16/9] overflow-hidden bg-[#ececf0]">
@@ -56,7 +56,7 @@ export function BlogCard({ post, index = 0 }: Props) {
               {post.tags.slice(0, 2).map(tag => (
                 <span
                   key={tag}
-                  className="font-bold text-[10px] tracking-[1.4px] uppercase text-[#0A0A67] bg-[#0A0A67]/8 px-2.5 py-1"
+                  className="font-bold text-[10px] tracking-[1.4px] uppercase text-[#0A0A67] bg-[#0A0A67]/8 rounded-full px-2.5 py-1"
                 >
                   {tag}
                 </span>

@@ -60,7 +60,7 @@ export function BlogPostPage({ post }: Props) {
               {post.tags.map(tag => (
                 <span
                   key={tag}
-                  className="font-bold text-[10px] tracking-[1.4px] uppercase text-[#0A0A67] bg-[#0A0A67]/8 px-3 py-1.5"
+                  className="font-bold text-[10px] tracking-[1.4px] uppercase text-[#0A0A67] bg-[#0A0A67]/8 rounded-full px-3 py-1.5"
                 >
                   {tag}
                 </span>
@@ -123,7 +123,7 @@ export function BlogPostPage({ post }: Props) {
               initial="hidden"
               animate="visible"
               variants={kenBurnsSlow}
-              className="w-full h-[480px] md:h-[560px] overflow-hidden bg-[#030213] mb-12"
+              className="w-full h-[480px] md:h-[560px] overflow-hidden rounded-3xl bg-[#030213] mb-12"
             >
               <img
                 src={post.cover_url}

@@ -34,7 +34,7 @@ export function DonateSupportTeam() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-3xl mx-auto">
-          <div className="bg-secondary text-white p-8 md:p-10 flex flex-col items-center text-center gap-4">
+          <div className="bg-secondary text-white rounded-3xl p-8 md:p-10 flex flex-col items-center text-center gap-4">
             <Mail className="size-10 text-white" strokeWidth={1.5} aria-hidden="true" />
             <p className="font-bold text-white text-[16px] md:text-[18px] leading-[26px] mt-2">
               Donate by mailing a check to the club at
@@ -46,7 +46,7 @@ export function DonateSupportTeam() {
             </address>
           </div>
 
-          <div className="bg-secondary text-white p-8 md:p-10 flex flex-col items-center text-center gap-4">
+          <div className="bg-secondary text-white rounded-3xl p-8 md:p-10 flex flex-col items-center text-center gap-4">
             <div className="flex items-center gap-3" aria-hidden="true">
               <CreditCard className="size-10 text-white" strokeWidth={1.5} />
             </div>
@@ -56,7 +56,7 @@ export function DonateSupportTeam() {
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="inline-block bg-white text-primary px-8 py-3 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-white/90 transition-colors mt-2"
+              className="inline-block bg-white text-primary rounded-full px-8 py-3 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-white/90 transition-colors mt-2"
             >
               Donate Now!
             </button>

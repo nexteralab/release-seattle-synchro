@@ -48,7 +48,7 @@ export function AboutUsValues() {
           {values.map((value, i) => (
             <div
               key={i}
-              className="border-l-4 border-secondary p-5 bg-white flex flex-row gap-2"
+              className="border-l-4 border-secondary p-5 bg-white rounded-2xl flex flex-row gap-2"
             >
               <div className="text-secondary mb-1">{value.icon}</div>
               <div className="flex flex-col items-start gap-2">

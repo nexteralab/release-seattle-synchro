@@ -119,7 +119,7 @@ export function HallOfFamePage() {
                   {medals.map((m, i) => {
                     const s = medalStyle[m.type]
                     return (
-                      <div key={i} className="flex items-center gap-3 bg-[#F5F5F5] p-3">
+                      <div key={i} className="flex items-center gap-3 bg-[#F5F5F5] p-3 rounded-2xl">
                         <div
                           className="size-10 rounded-full flex items-center justify-center shrink-0 font-bold text-[16px] md:text-[18px]"
                           style={{ background: s.bg, color: s.text }}
@@ -169,7 +169,7 @@ export function HallOfFamePage() {
             >
               {/* Badge + name */}
               <motion.div variants={fadeUp}>
-                <span className="inline-block font-bold text-[10px] tracking-[2px] uppercase bg-primary text-white px-3 py-1.5 mb-4">
+                <span className="inline-block font-bold text-[10px] tracking-[2px] uppercase bg-primary text-white px-3 py-1.5 mb-4 rounded-full">
                   1970-2026
                 </span>
                 <h2 className=" font-bold text-[#0A0A67] text-[40px] md:text-[56px] tracking-[-2px] uppercase leading-[1] mb-5">
@@ -268,7 +268,7 @@ export function HallOfFamePage() {
                   {medalsKeanaAudrei.map((m, i) => {
                     const s = medalStyle[m.type]
                     return (
-                      <div key={i} className="flex items-center gap-3 bg-[#F5F5F5] p-3">
+                      <div key={i} className="flex items-center gap-3 bg-[#F5F5F5] p-3 rounded-2xl">
                         <div
                           className="size-10 rounded-full flex items-center justify-center shrink-0 font-bold text-[16px] md:text-[18px]"
                           style={{ background: s.bg, color: s.text }}
@@ -318,7 +318,7 @@ export function HallOfFamePage() {
             >
               {/* Badge + name */}
               <motion.div variants={fadeUp}>
-                <span className="inline-block font-bold text-[10px] tracking-[2px] uppercase bg-primary text-white px-3 py-1.5 mb-4">
+                <span className="inline-block font-bold text-[10px] tracking-[2px] uppercase bg-primary text-white px-3 py-1.5 mb-4 rounded-full">
                   2024
                 </span>
                 <h2 className=" font-bold text-[#0A0A67] text-[40px] md:text-[56px] tracking-[-2px] uppercase leading-[1] mb-5">
@@ -361,7 +361,7 @@ export function HallOfFamePage() {
                   {medalsKeanaAudrei.map((m, i) => {
                     const s = medalStyle[m.type]
                     return (
-                      <div key={i} className="flex items-center gap-3 bg-[#F5F5F5] p-3">
+                      <div key={i} className="flex items-center gap-3 bg-[#F5F5F5] p-3 rounded-2xl">
                         <div
                           className="size-10 rounded-full flex items-center justify-center shrink-0 font-bold text-[16px] md:text-[18px]"
                           style={{ background: s.bg, color: s.text }}
@@ -411,7 +411,7 @@ export function HallOfFamePage() {
             >
               {/* Badge + name */}
               <motion.div variants={fadeUp}>
-                <span className="inline-block font-bold text-[10px] tracking-[2px] uppercase bg-primary text-white px-3 py-1.5 mb-4">
+                <span className="inline-block font-bold text-[10px] tracking-[2px] uppercase bg-primary text-white px-3 py-1.5 mb-4 rounded-full">
                   2024
                 </span>
                 <h2 className=" font-bold text-[#0A0A67] text-[40px] md:text-[56px] tracking-[-2px] uppercase leading-[1] mb-5">
@@ -454,7 +454,7 @@ export function HallOfFamePage() {
             >
               {/* Badge + name */}
               <motion.div variants={fadeUp}>
-                <span className="inline-block font-bold text-[10px] tracking-[2px] uppercase bg-primary text-white px-3 py-1.5 mb-4">
+                <span className="inline-block font-bold text-[10px] tracking-[2px] uppercase bg-primary text-white px-3 py-1.5 mb-4 rounded-full">
                   2024
                 </span>
                 <h2 className=" font-bold text-[#0A0A67] text-[40px] md:text-[56px] tracking-[-2px] uppercase leading-[1] mb-5">
@@ -526,7 +526,7 @@ export function HallOfFamePage() {
             Team Achievements
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="bg-white p-8 text-center">
+            <div className="bg-white p-8 text-center rounded-3xl">
               <div className="font-bold text-[#171717] text-[64px] tracking-[-3.2px] mb-2">
                 24
               </div>
@@ -534,7 +534,7 @@ export function HallOfFamePage() {
                 National Championships
               </p>
             </div>
-            <div className="bg-white p-8 text-center">
+            <div className="bg-white p-8 text-center rounded-3xl">
               <div className="font-bold text-[#171717] text-[64px] tracking-[-3.2px] mb-2">
                 8
               </div>
@@ -542,7 +542,7 @@ export function HallOfFamePage() {
                 International Medals
               </p>
             </div>
-            <div className="bg-white p-8 text-center">
+            <div className="bg-white p-8 text-center rounded-3xl">
               <div className="font-bold text-[#171717] text-[64px] tracking-[-3.2px] mb-2">
                 5
               </div>
@@ -550,7 +550,7 @@ export function HallOfFamePage() {
                 Olympic Athletes
               </p>
             </div>
-            <div className="bg-white p-8 text-center">
+            <div className="bg-white p-8 text-center rounded-3xl">
               <div className="font-bold text-[#171717] text-[64px] tracking-[-3.2px] mb-2">
                 15
               </div>

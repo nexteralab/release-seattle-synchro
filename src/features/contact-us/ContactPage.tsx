@@ -12,7 +12,7 @@ export function ContactPage() {
             <div className="lg:col-span-2">
               <ContactInfoPanel />
             </div>
-            <div className="lg:col-span-3 bg-white p-8 md:p-10">
+            <div className="lg:col-span-3 bg-white rounded-3xl p-8 md:p-10">
               <h2
                 className="font-bold text-secondary text-[22px] tracking-[-1px] uppercase mb-8"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}

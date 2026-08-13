@@ -13,7 +13,7 @@ export function PrivateLessonsOverview() {
                     </h1>
                     <Link
                         to="/contact-us"
-                        className="bg-secondary text-primary px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-white transition-colors"
+                        className="bg-secondary text-primary rounded-full px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-white transition-colors"
                     >
                         Request a Lesson
                     </Link>

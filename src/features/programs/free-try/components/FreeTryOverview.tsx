@@ -43,7 +43,7 @@ export function FreeTryOverview({ data }: Props) {
 
           {/* Right: info cards */}
           <div className="flex flex-col gap-6">
-            <div className="bg-white rounded-sm p-6 md:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.1)]">
+            <div className="bg-white rounded-3xl p-6 md:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.1)]">
               <div className="flex items-center gap-2 text-secondary mb-6">
                 <Award size={20} strokeWidth={2} />
                 <span className="font-bold text-[14px] tracking-[1.4px] uppercase">
@@ -62,7 +62,7 @@ export function FreeTryOverview({ data }: Props) {
               </div>
             </div>
 
-            <div className="bg-white rounded-sm p-6 md:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.1)]">
+            <div className="bg-white rounded-3xl p-6 md:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.1)]">
               <div className="flex items-center gap-2 text-secondary mb-6">
                 <Calendar size={20} strokeWidth={2} />
                 <span className="font-bold text-[14px] tracking-[1.4px] uppercase">Upcoming Session</span>
@@ -75,7 +75,7 @@ export function FreeTryOverview({ data }: Props) {
               </p>
             </div>
 
-            <div className="bg-[#f5f5f5] rounded-sm overflow-hidden">
+            <div className="bg-[#f5f5f5] rounded-3xl overflow-hidden">
               <div className="p-6 md:p-8">
                 <div className="flex items-center gap-2 text-secondary mb-4">
                   <MapPin size={18} strokeWidth={2} />

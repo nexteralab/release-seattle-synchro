@@ -117,7 +117,7 @@ export function TryOutReviews() {
           </div>
         </div>
 
-        <div className="mt-10 bg-white rounded-lg shadow-sm p-6 md:p-12">
+        <div className="mt-10 bg-white rounded-3xl shadow-sm p-6 md:p-12">
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
@@ -155,8 +155,8 @@ export function TryOutReviews() {
                       key={photo.src}
                       className={
                         review.photos!.length > 1
-                          ? 'relative w-full aspect-[3/5] rounded-lg overflow-hidden bg-[#ececf0]'
-                          : 'relative w-full h-full min-h-[240px] rounded-lg overflow-hidden bg-[#ececf0]'
+                          ? 'relative w-full aspect-[3/5] rounded-2xl overflow-hidden bg-[#ececf0]'
+                          : 'relative w-full h-full min-h-[240px] rounded-3xl overflow-hidden bg-[#ececf0]'
                       }
                     >
                       <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover" />
@@ -170,7 +170,7 @@ export function TryOutReviews() {
 
         <div className="mt-10 flex justify-center">
           <a
-            href="https://www.google.com/search?q=seattle+synchro+reviews"
+            href="https://www.google.com/search?q=seattle+synchro&sca_esv=c2d76b9b33058453&rlz=1C1VDKB_enUS1052US1052&sxsrf=APpeQnuPw_HOrZ6TDlDsUY7Q-5kSdIpYzQ%3A1786404500535&ei=lF56av-XII6E0PEPpdLv8QY&ved=0ahUKEwj_sbetm5eWAxUOAjQIHSXpO24Q4dUDCBA&uact=5&oq=seattle+synchro&gs_lp=Egxnd3Mtd2l6LXNlcnAiD3NlYXR0bGUgc3luY2hybzIEECMYJzIEECMYJzIEECMYJzIFEAAYgAQyBRAAGIAEMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHkjqBVCTBFiTBHABeACQAQCYAWGgAawBqgEBMrgBA8gBAPgBAZgCAqACccICChAAGEcY1gQYsAOYAwCIBgGQBgSSBwMxLjGgB4AKsgcDMC4xuAdowgcDMi0yyAcKgAgB&sclient=gws-wiz-serp#lrd=0x248366a32682053f:0xe452efe5526d6780,1,,,,"
             target="_blank"
             rel="noopener"
             className="inline-flex items-center gap-2 h-14 px-10 rounded-full bg-white border border-secondary text-secondary font-bold text-[14px] tracking-[2.2px] uppercase transition-colors hover:bg-secondary hover:text-white"

@@ -26,7 +26,7 @@ function fmtDate(dateStr: string | null): string {
 function SkeletonFeatured() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center animate-pulse">
-      <div className="w-full h-[500px] bg-[#ececf0]" />
+      <div className="w-full h-[500px] bg-[#ececf0] rounded-3xl" />
       <div className="space-y-4">
         <div className="h-3 w-24 bg-[#ececf0]" />
         <div className="h-10 w-full bg-[#ececf0]" />
@@ -45,7 +45,7 @@ function SkeletonFeatured() {
 
 function SkeletonCard() {
   return (
-    <div className="bg-white overflow-hidden animate-pulse">
+    <div className="bg-white rounded-3xl overflow-hidden animate-pulse">
       <div className="h-[300px] bg-[#ececf0]" />
       <div className="p-6 space-y-3">
         <div className="h-3 w-20 bg-[#ececf0]" />
@@ -65,7 +65,7 @@ function FeaturedArticle({ post }: { post: Post }) {
   return (
     <section className="p-6 md:p-12 bg-white">
       <div className="max-w-screen-2xl mx-auto">
-        <div className="inline-block px-3 py-1 mb-8 bg-[#0A0A67]">
+        <div className="inline-block rounded-full px-3 py-1 mb-8 bg-[#0A0A67]">
           <span className="font-bold text-white text-[11px] tracking-[1.4px] uppercase">
             Featured Article
           </span>
@@ -73,7 +73,7 @@ function FeaturedArticle({ post }: { post: Post }) {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
-            className="overflow-hidden"
+            className="overflow-hidden rounded-3xl"
             initial="hidden"
             whileInView="visible"
             viewport={DEFAULT_VIEWPORT}
@@ -134,7 +134,7 @@ function FeaturedArticle({ post }: { post: Post }) {
             <Link
               to="/team/blog/$slug"
               params={{ slug: post.slug }}
-              className="inline-block bg-[#021521] text-white px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:bg-[#0A0A67] transition-colors"
+              className="inline-block bg-[#021521] text-white rounded-full px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:bg-[#0A0A67] transition-colors"
             >
               Read Article
             </Link>
@@ -152,7 +152,7 @@ function ArticleCard({ post }: { post: Post }) {
   return (
     <motion.article
       variants={scaleIn}
-      className="bg-white overflow-hidden group cursor-pointer"
+      className="bg-white rounded-3xl overflow-hidden group cursor-pointer"
     >
       <Link to="/team/blog/$slug" params={{ slug: post.slug }}>
         <div className="relative h-[300px] overflow-hidden bg-[#ececf0]">
@@ -172,7 +172,7 @@ function ArticleCard({ post }: { post: Post }) {
           )}
           {category && (
             <div className="absolute top-4 left-4">
-              <span className="bg-white px-3 py-1 font-bold text-[#171717] text-[10px] tracking-[1px] uppercase">
+              <span className="bg-white rounded-full px-3 py-1 font-bold text-[#171717] text-[10px] tracking-[1px] uppercase">
                 {category}
               </span>
             </div>

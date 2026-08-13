@@ -35,7 +35,7 @@ export function TryOutHero({ data }: Props) {
               <DetailItem label="When" value={data.when} />
             </div>
 
-            <div className="bg-secondary p-4 md:p-6 rounded-sm">
+            <div className="bg-secondary p-4 md:p-6 rounded-3xl">
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-white text-[20px]">🛡️</span>
                 <h2 className="font-bold text-white text-[14px] tracking-[1.4px] uppercase">
@@ -54,7 +54,7 @@ export function TryOutHero({ data }: Props) {
             whileInView={{ opacity: [0, 1], x: [40, 0] }}
             viewport={vp}
             transition={t}
-            className="bg-[#f5f5f5] rounded-sm overflow-hidden"
+            className="bg-[#f5f5f5] rounded-3xl overflow-hidden"
           >
             <div className="p-6 md:p-8">
               <p className="font-bold text-secondary text-[12px] tracking-[1.4px] uppercase mb-4">

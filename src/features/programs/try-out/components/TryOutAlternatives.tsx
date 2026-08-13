@@ -43,7 +43,7 @@ export function TryOutAlternatives() {
               whileInView={{ opacity: [0, 1], y: [16, 0] }}
               viewport={vp}
               transition={{ duration: 0.3, ease: [0.35, 0.85, 0.25, 1], delay: i * 0.08 }}
-              className="bg-white border-t-4 border-[#6FBE44] rounded-lg p-6 md:p-8 shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg"
+              className="bg-white border-t-4 border-[#6FBE44] rounded-3xl p-6 md:p-8 shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg"
             >
               <h3 className="font-bold text-secondary text-[20px] md:text-[22px] tracking-[-0.4px]">
                 {item.title}

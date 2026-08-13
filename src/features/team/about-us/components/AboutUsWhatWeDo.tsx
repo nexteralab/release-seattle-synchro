@@ -51,7 +51,7 @@ export function AboutUsWhatWeDo() {
               ultimate success. Seattle Artistic Swim Team.
             </p>
           </div>
-          <div className="rounded-sm overflow-hidden shadow-md h-64 md:h-80">
+          <div className="rounded-3xl overflow-hidden shadow-md h-64 md:h-80">
             <img
               src={WHAT_WE_DO_IMAGE}
               alt="Artistic swimmer in the pool"

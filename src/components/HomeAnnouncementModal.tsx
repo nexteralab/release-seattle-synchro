@@ -3,21 +3,21 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import announcementImage from "/images/hero_summer.webp";
+import announcementImage from "/images/recreational_hero.webp";
 
 // ─── Configuración del anuncio ─────────────────────────────────────────────
 // Edita aquí cuando cambie el anuncio. Cambia STORAGE_KEY (sufijo de versión)
 // para que vuelva a aparecer a quienes ya lo cerraron antes.
-const STORAGE_KEY = "ss-announcement-dismissed:summer-camp-2026-v1";
+const STORAGE_KEY = "ss-announcement-dismissed:recreational-2026-v1";
 const SHOW_DELAY_MS = 1500;
 
-const EYEBROW = "Limited Spots Available";
-const TITLE = "Summer Camp 2026";
+const EYEBROW = "Ages 5 to 10";
+const TITLE = "Recreational Programs";
 const DESCRIPTION =
-    "Experience the magic of artistic swimming this summer. World-class coaching for all skill levels in the Pacific Northwest.";
+    "Non-competitive classes built for fun, fitness, and skill development. No judges, no scores, no pressure to win — just artistic swimming.";
 const CTA_LABEL = "Learn More";
-const CTA_TO = "/programs/summer-camp";
-const IMAGE_ALT = "Seattle Synchro Summer Camp 2026";
+const CTA_TO = "/programs/recreational";
+const IMAGE_ALT = "Seattle Synchro Recreational Programs";
 // ───────────────────────────────────────────────────────────────────────────
 
 export function HomeAnnouncementModal() {

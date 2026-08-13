@@ -31,7 +31,7 @@ export function CompetitiveJunior({ coaches, workoutDays }: Props) {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-white p-6 md:p-8">
+          <div className="bg-white rounded-3xl p-6 md:p-8">
             <h3 className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase mb-4">
               Coaches
             </h3>
@@ -44,7 +44,7 @@ export function CompetitiveJunior({ coaches, workoutDays }: Props) {
               ))}
             </p>
           </div>
-          <div className="bg-white p-6 md:p-8">
+          <div className="bg-white rounded-3xl p-6 md:p-8">
             <h3 className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase mb-4">
               Workout Days
             </h3>
@@ -54,7 +54,7 @@ export function CompetitiveJunior({ coaches, workoutDays }: Props) {
           </div>
         </div>
 
-        <div className="relative overflow-hidden bg-[#0A0A67] text-white">
+        <div className="relative overflow-hidden rounded-3xl bg-[#0A0A67] text-white">
           <img
             src={readyToJoin}
             alt=""

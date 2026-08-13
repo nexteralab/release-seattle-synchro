@@ -54,7 +54,7 @@ export function DonateDialog({ open, onClose }: Props) {
         className="absolute inset-0 bg-black/60"
       />
 
-      <div className="relative bg-white w-full max-w-md p-6 md:p-8 shadow-xl">
+      <div className="relative bg-white w-full max-w-md rounded-3xl p-6 md:p-8 shadow-xl">
         <button
           type="button"
           onClick={onClose}
@@ -86,7 +86,7 @@ export function DonateDialog({ open, onClose }: Props) {
                   setCustom('')
                 }}
                 className={
-                  'py-3 font-bold text-[16px] tracking-[1px] uppercase border transition-colors ' +
+                  'rounded-full py-3 font-bold text-[16px] tracking-[1px] uppercase border transition-colors ' +
                   (active
                     ? 'bg-primary text-white border-primary'
                     : 'bg-white text-primary border-primary/30 hover:border-primary')
@@ -126,7 +126,7 @@ export function DonateDialog({ open, onClose }: Props) {
           type="button"
           disabled={!isValid}
           onClick={handleContinue}
-          className="w-full bg-primary text-white py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+          className="w-full bg-primary text-white rounded-full py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Continue to PayPal
         </button>

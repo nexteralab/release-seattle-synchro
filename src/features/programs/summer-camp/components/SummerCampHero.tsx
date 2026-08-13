@@ -28,7 +28,7 @@ export function SummerCampHero() {
       <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A67]/40 via-[#0A0A67]/40 to-[#0A0A67]/50" />
 
       <div className="relative z-10 text-center text-white md:px-48 space-y-10">
-        <div className="bg-primary inline-block px-3 py-1">
+        <div className="bg-primary rounded-full inline-block px-3 py-1">
           <span className="font-bold text-[#f5f5f5] text-[12px] tracking-[1.2px] uppercase">
             Limited Spots Available
           </span>
@@ -68,7 +68,7 @@ export function SummerCampHero() {
           href="https://www.seattlesynchrosst.com/page/system/classreg-shopping"
           target="_blank"
           rel="noopener"
-          className="inline-block bg-white text-secondary px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:text-primary border border-secondary hover:border-primary transition-colors"
+          className="inline-block bg-white text-secondary rounded-full px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:text-primary border border-secondary hover:border-primary transition-colors"
         >
           Register Now
         </a>

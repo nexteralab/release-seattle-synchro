@@ -50,7 +50,7 @@ export function SummerCampDates({ sessions, schedule, pricePerWeek }: Props) {
                 whileInView={{ opacity: [0, 1], y: [32, 0] }}
                 viewport={vp}
                 transition={{ ...t, delay: 0.1 + i * 0.1 }}
-                className="border border-white/20 p-8 md:p-10 flex flex-col gap-6 hover:border-[#63AC23] transition-colors duration-300"
+                className="border border-white/20 rounded-3xl p-8 md:p-10 flex flex-col gap-6 hover:border-[#63AC23] transition-colors duration-300"
               >
                 {/* Session número */}
                 <span className="font-bold text-[#63AC23] text-[11px] tracking-[2.2px] uppercase">
@@ -84,7 +84,7 @@ export function SummerCampDates({ sessions, schedule, pricePerWeek }: Props) {
                   href={s.register_url}
                   target="_blank"
                   rel="noopener"
-                  className="mt-auto inline-block bg-[#63AC23] text-white text-center px-6 py-3 font-bold text-[12px] tracking-[2.4px] uppercase hover:bg-[#4d8a18] transition-colors"
+                  className="mt-auto inline-block bg-[#63AC23] text-white rounded-full text-center px-6 py-3 font-bold text-[12px] tracking-[2.4px] uppercase hover:bg-[#4d8a18] transition-colors"
                 >
                   Register
                 </a>

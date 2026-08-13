@@ -20,7 +20,7 @@ export function Competitive1315({ coaches, workoutDays }: Props) {
           </h2>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-[#f5f5f5] p-6 md:p-8">
+          <div className="bg-[#f5f5f5] rounded-3xl p-6 md:p-8">
             <h3 className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase mb-4">
               Coaches
             </h3>
@@ -33,7 +33,7 @@ export function Competitive1315({ coaches, workoutDays }: Props) {
               ))}
             </p>
           </div>
-          <div className="bg-[#f5f5f5] p-6 md:p-8">
+          <div className="bg-[#f5f5f5] rounded-3xl p-6 md:p-8">
             <h3 className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase mb-4">
               Workout Days
             </h3>

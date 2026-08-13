@@ -16,7 +16,7 @@ export function AboutUsMission() {
             Mission
           </h2>
         </div>
-        <div className="bg-white p-6 rounded-sm shadow-md">
+        <div className="bg-white p-6 rounded-3xl shadow-md">
           <p className="text-secondary text-[16px] md:text-[18px] leading-[28px] max-w-4xl">
             Seattle Synchro's mission is to develop well-rounded and accomplished individuals
             through a competitive athletic environment in artistic swimming, while striving for

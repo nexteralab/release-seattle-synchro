@@ -69,7 +69,7 @@ export function EliteClinicCoaches({ data }: Props) {
                 <motion.div
                   key={coach.name}
                   variants={itemVariants}
-                  className="flex items-center gap-3 bg-secondary px-5 py-3 rounded-sm"
+                  className="flex items-center gap-3 bg-secondary px-5 py-3 rounded-full"
                 >
                   <span className="text-white text-[18px]" aria-hidden="true">
                     ›
@@ -101,8 +101,8 @@ function CoachCard({
       variants={itemVariants}
       className={
         primary
-          ? 'bg-secondary p-6 md:p-8 rounded-sm'
-          : 'bg-white p-6 md:p-8 rounded-sm'
+          ? 'bg-secondary p-6 md:p-8 rounded-3xl'
+          : 'bg-white p-6 md:p-8 rounded-3xl'
       }
     >
       <p

@@ -48,7 +48,7 @@ export function FreeTryFaq() {
           Frequently Asked Questions
         </h2>
 
-        <div className="bg-white rounded-sm shadow-[0_1px_3px_rgba(0,0,0,0.1)] px-6 md:px-10">
+        <div className="bg-white rounded-3xl shadow-[0_1px_3px_rgba(0,0,0,0.1)] px-6 md:px-10">
           {FAQS.map(([q, a], i) => (
             <div key={q} className={i > 0 ? 'border-t border-black/10' : ''}>
               <button

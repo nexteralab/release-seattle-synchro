@@ -16,7 +16,7 @@ export function DonateBouster() {
                         Boosters
                     </h2>
                 </div>
-                <div className="bg-white p-6 rounded-sm shadow-md text-center space-y-6 p-12">
+                <div className="bg-white p-6 rounded-3xl shadow-md text-center space-y-6 p-12">
                     <p className="text-[#171717] text-[16px] md:text-[18px] leading-[28px] max-w-4xl">
                         The Seattle Synchro Booster Club is an IRS-approved 501(c)(3) charitable organization and donations to the club are tax-deductible. Donations qualify for corporate matching funds, and volunteer hours count towards corporate volunteer rewards.
                     </p>

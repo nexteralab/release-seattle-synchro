@@ -9,7 +9,7 @@ export function FreeTrySafety() {
     <section className="p-6 md:p-12 md:px-20 md:py-24 bg-white" aria-label="Safety requirement and contact">
       <div className="max-w-screen-lg mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
 
-        <div className="bg-secondary rounded-sm p-8 md:p-10 flex flex-col">
+        <div className="bg-secondary rounded-3xl p-8 md:p-10 flex flex-col">
           <div className="flex items-center gap-2 text-white mb-6">
             <ShieldAlert size={20} strokeWidth={2} />
             <span className="font-bold text-[14px] tracking-[1.4px] uppercase">
@@ -21,7 +21,7 @@ export function FreeTrySafety() {
           </p>
         </div>
 
-        <div className="bg-white border border-black/10 rounded-sm p-8 md:p-10 flex flex-col items-start">
+        <div className="bg-white border border-black/10 rounded-3xl p-8 md:p-10 flex flex-col items-start">
           <div className="flex items-center gap-2 text-secondary mb-6">
             <MessageCircleQuestion size={20} strokeWidth={2} />
             <span className="font-bold text-[14px] tracking-[1.4px] uppercase">Got Questions?</span>
@@ -34,7 +34,7 @@ export function FreeTrySafety() {
           </p>
           <Link
             to="/contact-us"
-            className="inline-block mt-6 bg-white border border-secondary text-secondary px-8 py-3 font-bold text-[13px] tracking-[1.8px] uppercase hover:bg-secondary hover:text-white transition-colors"
+            className="inline-block mt-6 bg-white border border-secondary text-secondary rounded-full px-8 py-3 font-bold text-[13px] tracking-[1.8px] uppercase hover:bg-secondary hover:text-white transition-colors"
           >
             Contact Us
           </Link>

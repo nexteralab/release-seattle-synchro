@@ -31,7 +31,7 @@ export function BeginnerIntermediate({ program = FALLBACK }: Props = {}) {
                     </h2>
                     <Link
                         to="/contact-us"
-                        className="inline-block bg-secondary text-primary px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-primary transition-colors rounded-xs"
+                        className="inline-block bg-secondary text-primary px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-primary transition-colors rounded-full"
                     >
                         Contact Us
                     </Link>
@@ -49,7 +49,7 @@ export function BeginnerIntermediate({ program = FALLBACK }: Props = {}) {
                 </p>
             </div>
             <div className="max-w-screen-lg mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div className="bg-[#F5F5F5] p-6 md:p-10">
+                <div className="bg-[#F5F5F5] rounded-3xl p-6 md:p-10">
                     <h3 className="font-bold text-secondary text-[20px] tracking-[-1px] uppercase mb-8">
                         Program Details
                     </h3>
@@ -61,7 +61,7 @@ export function BeginnerIntermediate({ program = FALLBACK }: Props = {}) {
                     </div>
                 </div>
 
-                <div className="bg-[#F5F5F5] p-6 md:p-10">
+                <div className="bg-[#F5F5F5] rounded-3xl p-6 md:p-10">
                     <h3 className="font-bold text-secondary text-[20px] tracking-[-1px] uppercase mb-8">
                         Session Information
                     </h3>

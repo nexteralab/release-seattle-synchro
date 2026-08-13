@@ -21,7 +21,7 @@ export function PrivateLessonsHowItWorks() {
                     {STEPS.map((step) => (
                         <li
                             key={step.title}
-                            className="bg-white p-6 md:p-8 border border-black/[0.06] rounded-lg flex flex-col gap-3"
+                            className="bg-white p-6 md:p-8 border border-black/[0.06] rounded-3xl flex flex-col gap-3"
                         >
                             <h3 className="font-bold text-secondary text-[18px] md:text-[20px] tracking-[-0.6px]">
                                 {step.title}

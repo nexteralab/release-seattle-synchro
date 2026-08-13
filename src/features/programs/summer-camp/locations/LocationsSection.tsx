@@ -11,7 +11,7 @@ export function LocationsSection() {
     <section className="bg-white p-6 md:px-12 md:py-24" aria-labelledby="locations-heading">
       <div className="max-w-screen-lg mx-auto space-y-12">
         <div className="space-y-4 max-w-2xl">
-          <span className="inline-block px-3 py-1 bg-secondary text-white font-bold text-[12px] tracking-[1.4px] uppercase">
+          <span className="inline-block rounded-full px-3 py-1 bg-secondary text-white font-bold text-[12px] tracking-[1.4px] uppercase">
             Camps Near You
           </span>
           <h2
@@ -38,7 +38,7 @@ export function LocationsSection() {
               <Link
                 to="/programs/summer-camp/$id"
                 params={{ id: loc.slug }}
-                className="group flex items-center justify-between gap-4 bg-[#f5f5f5] hover:bg-primary p-6 transition-colors"
+                className="group flex items-center justify-between gap-4 bg-[#f5f5f5] hover:bg-primary rounded-3xl p-6 transition-colors"
               >
                 <div className="flex items-start gap-3">
                   <MapPin size={20} className="text-primary group-hover:text-white shrink-0 mt-0.5 transition-colors" />

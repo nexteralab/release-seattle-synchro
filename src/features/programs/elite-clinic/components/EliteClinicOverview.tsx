@@ -63,7 +63,7 @@ export function EliteClinicOverview({ data }: Props) {
             whileInView={{ opacity: [0, 1], x: [40, 0] }}
             viewport={viewport}
             transition={{ ...transition, delay: 0.1 }}
-            className="bg-[#0A0A67] text-white p-6 md:p-10 rounded-sm space-y-6"
+            className="bg-[#0A0A67] text-white p-6 md:p-10 rounded-3xl space-y-6"
           >
             <div>
               <p className="font-bold text-[#a3e635] text-[12px] tracking-[1.6px] uppercase mb-3">
@@ -100,7 +100,7 @@ export function EliteClinicOverview({ data }: Props) {
                 href={data.registerUrl}
                 target="_blank"
                 rel="noopener"
-                className="block w-full text-center bg-[#a3e635] text-[#0A0A67] px-6 py-3.5 font-bold text-[13px] tracking-[2px] uppercase hover:bg-white transition-colors"
+                className="block w-full text-center bg-[#a3e635] text-[#0A0A67] rounded-full px-6 py-3.5 font-bold text-[13px] tracking-[2px] uppercase hover:bg-white transition-colors"
               >
                 Secure Your Spot
               </a>
@@ -115,7 +115,7 @@ export function EliteClinicOverview({ data }: Props) {
 
 function Objective({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div className="flex items-center gap-3 bg-[#f5f5f5] px-4 py-3 rounded-sm">
+    <div className="flex items-center gap-3 bg-[#f5f5f5] px-4 py-3 rounded-full">
       <span className="text-secondary shrink-0">{icon}</span>
       <span className="text-secondary text-[14px] md:text-[15px] font-medium">{text}</span>
     </div>
@@ -136,7 +136,7 @@ function DiscountRow({
   return (
     <div className="flex items-start gap-4">
       <span
-        className="shrink-0 inline-block px-2.5 py-1 font-bold text-[11px] tracking-[1.2px] uppercase rounded-sm"
+        className="shrink-0 inline-block px-2.5 py-1 font-bold text-[11px] tracking-[1.2px] uppercase rounded-full"
         style={{
           background: accent === '#a3e635' ? '#a3e635' : 'rgba(255,255,255,0.12)',
           color: accent === '#a3e635' ? '#0A0A67' : 'white',

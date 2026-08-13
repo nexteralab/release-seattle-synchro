@@ -31,7 +31,7 @@ export function EliteClinicHero({ data }: Props) {
           whileInView={{ opacity: [0, 1], y: [-10, 0] }}
           viewport={vp}
           transition={t}
-          className="inline-block bg-[#a3e635] text-[#0A0A67] px-4 py-1.5"
+          className="inline-block bg-[#a3e635] text-[#0A0A67] rounded-full px-4 py-1.5"
         >
           <span className="font-bold text-[12px] md:text-[14px] tracking-[2px] uppercase">
             International · Limited Spots Available
@@ -69,7 +69,7 @@ export function EliteClinicHero({ data }: Props) {
           whileInView={{ opacity: [0, 1], y: [20, 0] }}
           viewport={vp}
           transition={{ ...t, delay: 0.15 }}
-          className="inline-flex flex-col items-center gap-2 bg-[#a3e635]/15 border border-[#a3e635]/40 backdrop-blur-sm px-6 md:px-10 py-4 md:py-5 rounded-sm"
+          className="inline-flex flex-col items-center gap-2 bg-[#a3e635]/15 border border-[#a3e635]/40 backdrop-blur-sm px-6 md:px-10 py-4 md:py-5 rounded-3xl"
         >
           <p className="font-bold text-white text-[18px] md:text-[24px] tracking-[-0.4px]">
             {data.dates} · {data.time}
@@ -91,7 +91,7 @@ export function EliteClinicHero({ data }: Props) {
             href="https://www.seattlesynchrosst.com/page/system/classreg-shopping?classId=492122&subProgId=35900"
             target="_blank"
             rel="noopener"
-            className="inline-block bg-white text-secondary px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:text-primary border border-secondary hover:border-primary transition-colors"
+            className="inline-block bg-white text-secondary rounded-full px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:text-primary border border-secondary hover:border-primary transition-colors"
           >
             Register Now
           </a>

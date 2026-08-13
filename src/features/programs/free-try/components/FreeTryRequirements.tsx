@@ -61,7 +61,7 @@ export function FreeTryRequirements() {
           {REQUIREMENTS.map((item) => (
             <div
               key={item.name}
-              className="bg-white rounded-sm p-6 md:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-[0_10px_25px_rgba(0,0,0,0.15)] hover:-translate-y-1"
+              className="bg-white rounded-3xl p-6 md:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-[0_10px_25px_rgba(0,0,0,0.15)] hover:-translate-y-1"
             >
               <div className="size-11 rounded-full bg-primary/15 text-primary flex items-center justify-center">
                 <item.icon size={22} strokeWidth={2} />

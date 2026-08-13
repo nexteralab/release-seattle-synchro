@@ -137,7 +137,7 @@ export function FundraisingPartners() {
                         <motion.article
                             key={partner.name}
                             variants={fadeUp}
-                            className="group flex flex-col rounded-[10px] border border-[rgba(0,0,0,0.1)] bg-white p-6 gap-6 hover:border-[#0A0A67]/40 hover:shadow-[0_10px_25px_rgba(10,10,103,0.08)] hover:-translate-y-1 transition-all duration-300"
+                            className="group flex flex-col rounded-3xl border border-[rgba(0,0,0,0.1)] bg-white p-6 gap-6 hover:border-[#0A0A67]/40 hover:shadow-[0_10px_25px_rgba(10,10,103,0.08)] hover:-translate-y-1 transition-all duration-300"
                         >
                             <div className="flex items-center justify-center h-20">
                                 <img
@@ -160,7 +160,7 @@ export function FundraisingPartners() {
                                 {partner.description}
                             </p>
 
-                            <div className="rounded-[8px] border border-[rgba(0,0,0,0.12)] px-5 py-4 flex flex-col gap-2 mt-auto">
+                            <div className="rounded-2xl border border-[rgba(0,0,0,0.12)] px-5 py-4 flex flex-col gap-2 mt-auto">
                                 <span
                                     className="text-[#021521] uppercase font-bold"
                                     style={{
@@ -213,7 +213,7 @@ export function FundraisingPartners() {
                                 href={partner.href}
                                 target="_blank"
                                 rel="noopener"
-                                className="inline-flex items-center justify-center bg-[#0A0A67] text-white py-4 hover:bg-[#0A0A67]/90 transition-colors"
+                                className="inline-flex items-center justify-center rounded-full bg-[#0A0A67] text-white py-4 hover:bg-[#0A0A67]/90 transition-colors"
                                 style={{
                                     fontFamily: "'Space Grotesk', sans-serif",
                                     fontWeight: 700,

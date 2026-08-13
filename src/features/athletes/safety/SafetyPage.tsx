@@ -6,7 +6,7 @@ const transition = { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as [number, numbe
 const viewport = { once: true, margin: '-40px' }
 
 const link = 'text-[#0A0A67] underline underline-offset-2 decoration-[#0A0A67]/40 hover:decoration-[#0A0A67] transition-all'
-const btn = 'inline-flex items-center gap-2 mt-5 rounded-xs text-[#0A0A67] font-bold text-[11px] tracking-[1.8px] uppercase px-5 py-2.5 bg-secondary text-white hover:text-primary transition-colors'
+const btn = 'inline-flex items-center gap-2 mt-5 rounded-full text-[#0A0A67] font-bold text-[11px] tracking-[1.8px] uppercase px-5 py-2.5 bg-secondary text-white hover:text-primary transition-colors'
 
 function Protocol({ title, children }: { title: string; children: React.ReactNode }) {
   return (

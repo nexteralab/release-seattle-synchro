@@ -6,6 +6,7 @@ import { QueryClientProvider, type QueryClient } from '@tanstack/react-query'
 import GeneralError from '#/components/errors/general-error'
 import NotFoundError from '#/components/errors/not-found-error'
 import { Toaster } from 'sonner'
+import { HomeAnnouncementModal } from '#/components/HomeAnnouncementModal'
 
 interface MyRouterContext {
   queryClient: QueryClient
@@ -74,6 +75,7 @@ function RootDocument() {
             position="bottom-right"
             richColors
           />
+          <HomeAnnouncementModal />
           <Scripts />
         </body>
       </html>

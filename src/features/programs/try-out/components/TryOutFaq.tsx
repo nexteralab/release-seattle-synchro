@@ -80,7 +80,7 @@ export function TryOutFaq() {
           </div>
         </div>
 
-        <div className="relative w-full h-[280px] lg:h-[420px] rounded-lg overflow-hidden">
+        <div className="relative w-full h-[280px] lg:h-[420px] rounded-3xl overflow-hidden">
           <img
             src={faqImage}
             alt="Team training session"

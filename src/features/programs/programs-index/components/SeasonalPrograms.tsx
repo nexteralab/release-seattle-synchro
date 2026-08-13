@@ -73,7 +73,7 @@ export function SeasonalPrograms() {
         <section className="bg-[#f5f5f5] p-6 md:px-12 md:py-24" aria-labelledby="seasonal-heading">
             <div className="max-w-screen-lg mx-auto space-y-12">
                 <div className="space-y-4 max-w-2xl">
-                    <span className="inline-block px-3 py-1 bg-secondary text-white font-bold text-[12px] tracking-[1.4px] uppercase">
+                    <span className="inline-block rounded-full px-3 py-1 bg-secondary text-white font-bold text-[12px] tracking-[1.4px] uppercase">
                         Seasonal & Special
                     </span>
                     <h2
@@ -96,7 +96,7 @@ export function SeasonalPrograms() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={vp}
                             transition={{ ...t, delay: idx * 0.06 }}
-                            className="bg-white group flex flex-col"
+                            className="bg-white rounded-3xl overflow-hidden group flex flex-col"
                         >
                             <Link to={p.to} className="block">
                                 <figure className="m-0 relative overflow-hidden">
@@ -107,7 +107,7 @@ export function SeasonalPrograms() {
                                         loading="lazy"
                                     />
                                     {p.badge && (
-                                        <span className="absolute top-3 left-3 bg-white text-secondary px-2.5 py-1 text-[10px] tracking-[1.2px] uppercase font-bold">
+                                        <span className="absolute top-3 left-3 bg-white text-secondary rounded-full px-2.5 py-1 text-[10px] tracking-[1.2px] uppercase font-bold">
                                             {p.badge}
                                         </span>
                                     )}

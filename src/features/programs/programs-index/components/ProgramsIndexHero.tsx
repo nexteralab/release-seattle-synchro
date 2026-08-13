@@ -17,7 +17,7 @@ export function ProgramsIndexHero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={t}
-                    className="inline-block px-3 py-1 bg-primary text-white font-bold text-[12px] tracking-[1.4px] uppercase"
+                    className="inline-block rounded-full px-3 py-1 bg-primary text-white font-bold text-[12px] tracking-[1.4px] uppercase"
                 >
                     Pathways for every swimmer
                 </motion.span>

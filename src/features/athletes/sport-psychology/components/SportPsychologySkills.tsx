@@ -145,7 +145,7 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
             variants={cardVariant}
             whileHover={{ y: -4, boxShadow: "0 10px 25px rgba(0,0,0,0.12)" }}
             transition={{ type: "tween", duration: 0.2 }}
-            className="bg-white rounded-[10px] p-8 border border-[rgba(0,0,0,0.08)] shadow-[0_1px_3px_rgba(0,0,0,0.07)] flex flex-col gap-6"
+            className="bg-white rounded-3xl p-8 border border-[rgba(0,0,0,0.08)] shadow-[0_1px_3px_rgba(0,0,0,0.07)] flex flex-col gap-6"
         >
             <div className="flex items-start gap-4">
                 <div

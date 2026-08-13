@@ -68,7 +68,7 @@ export function YearRoundProgramRow({
                         transition={{ ...t, delay: 0.1 }}
                         className="flex flex-col gap-5"
                     >
-                        <span className="inline-block self-start px-3 py-1 bg-primary text-white font-bold text-[12px] tracking-[1.4px] uppercase">
+                        <span className="inline-block self-start rounded-full px-3 py-1 bg-primary text-white font-bold text-[12px] tracking-[1.4px] uppercase">
                             {eyebrow}
                         </span>
 
@@ -86,7 +86,7 @@ export function YearRoundProgramRow({
                                     <Link
                                         to={to}
                                         hash={sp.hash}
-                                        className="group inline-flex items-center gap-2 border border-secondary/15 hover:border-primary bg-white px-4 py-2 text-secondary hover:text-primary text-[13px] tracking-[0.5px] font-medium transition-colors"
+                                        className="group inline-flex items-center gap-2 rounded-full border border-secondary/15 hover:border-primary bg-white px-4 py-2 text-secondary hover:text-primary text-[13px] tracking-[0.5px] font-medium transition-colors"
                                     >
                                         {sp.label}
                                         <ArrowRight
@@ -101,7 +101,7 @@ export function YearRoundProgramRow({
                         <div className="pt-3">
                             <Link
                                 to={to}
-                                className="inline-flex items-center gap-2 bg-secondary text-primary px-8 py-4 font-bold text-[13px] tracking-[1.4px] uppercase hover:bg-primary hover:text-white transition-colors"
+                                className="inline-flex items-center gap-2 rounded-full bg-secondary text-primary px-8 py-4 font-bold text-[13px] tracking-[1.4px] uppercase hover:bg-primary hover:text-white transition-colors"
                             >
                                 Learn More
                                 <ArrowRight size={14} />

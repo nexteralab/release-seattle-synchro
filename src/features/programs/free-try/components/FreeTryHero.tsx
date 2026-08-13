@@ -20,7 +20,7 @@ export function FreeTryHero({ nameProgram, description, date, time, linkToRegist
   return (
     <section className="bg-white" aria-label="Free Try hero">
       <div className="p-6 pt-10 md:p-12 md:px-20 md:pt-16">
-        <div className="relative w-full h-[42vh] md:h-[58vh] rounded-lg overflow-hidden max-w-screen-xl mx-auto">
+        <div className="relative w-full h-[42vh] md:h-[58vh] rounded-3xl overflow-hidden max-w-screen-xl mx-auto">
           <img
             src={heroImage}
             alt="Artistic swimming coach training kids poolside"
@@ -38,7 +38,7 @@ export function FreeTryHero({ nameProgram, description, date, time, linkToRegist
         transition={t}
         className="max-w-screen-md mx-auto text-center px-6 md:px-12 pb-16 md:pb-24 space-y-6"
       >
-        <div className="bg-primary/15 inline-block px-5 py-2">
+        <div className="bg-primary/15 inline-block rounded-full px-5 py-2">
           <span className="font-bold text-primary text-[12px] tracking-[2.2px] uppercase">
             Open House
           </span>
@@ -54,7 +54,7 @@ export function FreeTryHero({ nameProgram, description, date, time, linkToRegist
             href={linkToRegister}
             target="_blank"
             rel="noopener"
-            className="inline-block bg-secondary text-white px-12 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:bg-secondary/90 transition-colors"
+            className="inline-block bg-secondary text-white rounded-full px-12 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:bg-secondary/90 transition-colors"
           >
             {linkLabelRegister}
           </a>

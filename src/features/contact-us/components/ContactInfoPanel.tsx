@@ -21,7 +21,7 @@ export function ContactInfoPanel() {
         lines={['(206) 596-1899']}
         href="tel:+12065961899"
       />
-      <div className="bg-white p-6 space-y-4">
+      <div className="bg-white rounded-3xl p-6 space-y-4">
         <div className="flex items-center gap-3 text-secondary">
           <Clock size={18} strokeWidth={1.75} />
           <span
@@ -68,7 +68,7 @@ function ContactCard({
   return (
     <a
       href={href}
-      className="flex items-start gap-4 bg-white p-6 hover:shadow-md transition-shadow group"
+      className="flex items-start gap-4 bg-white rounded-3xl p-6 hover:shadow-md transition-shadow group"
     >
       <span className="text-secondary mt-0.5">{icon}</span>
       <div>

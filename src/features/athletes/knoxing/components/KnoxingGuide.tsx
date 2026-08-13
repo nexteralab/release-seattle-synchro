@@ -158,7 +158,7 @@ export function KnoxingGuide() {
                             <motion.li
                                 key={i}
                                 variants={fadeUp}
-                                className="flex items-start gap-3 bg-white rounded-[10px] px-5 py-4 border border-[rgba(0,0,0,0.07)] shadow-[0_1px_3px_rgba(0,0,0,0.05)]"
+                                className="flex items-start gap-3 bg-white rounded-2xl px-5 py-4 border border-[rgba(0,0,0,0.07)] shadow-[0_1px_3px_rgba(0,0,0,0.05)]"
                             >
                                 <span
                                     className="flex-shrink-0 font-bold text-[#0A0A67]/25 leading-none mt-0.5"
@@ -229,7 +229,7 @@ export function KnoxingGuide() {
                             <motion.div
                                 key={step.title}
                                 variants={fadeUp}
-                                className="rounded-[10px] border border-[rgba(0,0,0,0.08)] overflow-hidden"
+                                className="rounded-3xl border border-[rgba(0,0,0,0.08)] overflow-hidden"
                             >
                                 {/* Step header */}
                                 <div
