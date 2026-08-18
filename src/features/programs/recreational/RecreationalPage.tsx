@@ -38,7 +38,7 @@ export function RecreationalPage({ config }: Props) {
   return (
     <div className="w-full">
       <RecreationalHero />
-      <RecreationalOverview />
+      <RecreationalOverview program={sharksMermaids} />
       <RecreationalSharksMermaids program={sharksMermaids} />
       <RecreationalClassLook />
       <RecreationalWhoFor />

@@ -1,6 +1,6 @@
 import type { RecreationalSubProgram } from '../types'
 
-const SHARKS_MERMAIDS_FALLBACK: RecreationalSubProgram = {
+export const SHARKS_MERMAIDS_FALLBACK: RecreationalSubProgram = {
   id: 'sharks-mermaids',
   name: 'Sharks & Mermaids',
   ages: '5–10',

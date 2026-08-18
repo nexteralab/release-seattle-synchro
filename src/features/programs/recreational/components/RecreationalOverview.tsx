@@ -1,10 +1,17 @@
-export function RecreationalOverview() {
+import type { RecreationalSubProgram } from '../types'
+import { SHARKS_MERMAIDS_FALLBACK } from './RecreationalSeaStar'
+
+interface Props {
+  program?: RecreationalSubProgram
+}
+
+export function RecreationalOverview({ program = SHARKS_MERMAIDS_FALLBACK }: Props = {}) {
   return (
     <section className="p-6 md:px-12 lg:p-20 bg-white" aria-labelledby="recreational-heading">
       <div className="max-w-screen-md mx-auto text-center">
         <div className="bg-primary/15 inline-block rounded-full px-5 py-2">
           <span className="font-bold text-primary text-[12px] tracking-[2.2px] uppercase">
-            Ages 5 to 10
+            Ages {program.ages}
           </span>
         </div>
         <h1
@@ -17,7 +24,7 @@ export function RecreationalOverview() {
           Non-competitive programs designed for fun, fitness, and skill development
         </p>
         <p className="mt-8 text-[#737373] text-[16px] md:text-[18px] leading-[28px] md:leading-[30px]">
-          Designed for swimmers ages 5 to 10, this non-competitive program builds a strong
+          Designed for swimmers ages {program.ages}, this non-competitive program builds a strong
           foundation in <strong className="text-secondary font-semibold">artistic swimming</strong>,
           the Olympic sport also known as{' '}
           <strong className="text-secondary font-semibold">synchronized swimming</strong>, through
