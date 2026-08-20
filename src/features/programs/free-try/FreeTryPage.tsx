@@ -8,8 +8,8 @@ import { CtaBanner } from '#/components/CtaBanner'
 
 
 const consultDbDataFreeTry = {
-  "nameProgram": "Try Out For Novice",
-  "description": "Join us on June 7th for a free introduction to the world of artistic swimming.",
+  "nameProgram": "Free try",
+  "description": "Join us for a free introduction to the world of artistic swimming.",
   "linkTo": "https://www.seattlesynchrosst.com/page/system/classreg-shopping",
   "linkLabel": "Register Now",
   "linkVariant": "secondary",
@@ -39,7 +39,7 @@ export function FreeTryPage({ data }: Props) {
       <FreeTryFaq />
       <CtaBanner
         heading="Ready to Dive In?"
-        description="Spots are limited! Join us on June 7th for a free introduction to the world of artistic swimming."
+        description="Spots are limited! Join us for a free introduction to the world of artistic swimming."
         linkToContact="/contact-us"
         linkLabelContact="Contact Us"
         linkVariantContact="secondary"
