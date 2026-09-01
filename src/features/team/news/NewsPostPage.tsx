@@ -11,7 +11,7 @@ import {
   kenBurnsSlow,
   slideLeft,
   staggerContainer,
-  DEFAULT_VIEWPORT,
+  STAGGER_VIEWPORT,
 } from '#/lib/animations'
 
 interface Props {
@@ -143,7 +143,7 @@ export function NewsPostPage({ news }: Props) {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={DEFAULT_VIEWPORT}
+            viewport={STAGGER_VIEWPORT}
             variants={staggerContainer(0.1)}
           >
             <motion.div variants={blurUp}>

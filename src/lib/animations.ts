@@ -41,6 +41,12 @@ export const SPRING_GENTLE = {
 export const DEFAULT_VIEWPORT = { once: true, amount: 0.2 } as const
 export const LARGE_VIEWPORT = { once: true, amount: 0.3 } as const
 export const EAGER_VIEWPORT = { once: true, amount: 0.1 } as const
+/**
+ * Para contenedores muy altos (grids que en móvil son 1 columna): con `amount > 0`
+ * el IntersectionObserver nunca alcanza el threshold si el elemento es más alto
+ * que ~1/amount viewports, y los hijos se quedan en `hidden` (sección en blanco).
+ */
+export const STAGGER_VIEWPORT = { once: true, amount: 0 } as const
 /** Re-anima cada vez que entra al viewport. NO usar en imágenes pesadas. */
 export const REPLAY_VIEWPORT = { once: false, amount: 0.15 } as const
 

@@ -11,6 +11,7 @@ import {
   scaleIn,
   slideRight,
   staggerContainer,
+  STAGGER_VIEWPORT,
   DEFAULT_VIEWPORT,
   EAGER_VIEWPORT,
 } from '#/lib/animations'
@@ -303,7 +304,7 @@ export function NewsListPage() {
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={EAGER_VIEWPORT}
+              viewport={STAGGER_VIEWPORT}
               variants={staggerContainer(0.08)}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >

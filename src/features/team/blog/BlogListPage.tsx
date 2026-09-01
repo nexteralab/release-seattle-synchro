@@ -11,6 +11,7 @@ import {
   scaleIn,
   slideRight,
   staggerContainer,
+  STAGGER_VIEWPORT,
   DEFAULT_VIEWPORT,
   EAGER_VIEWPORT,
 } from '#/lib/animations'
@@ -289,8 +290,8 @@ export function BlogListPage() {
 
       {/* All articles grid */}
       {!isLoading && !isError && rest.length > 0 && (
-        <section className="py-12 px-12 md:px-48 bg-[#f5f5f5]">
-          <div className="max-w-screen-2xl mx-auto">
+        <section className="p-6 md:px-20 md:py-24 bg-white">
+          <div className="max-w-screen-lg mx-auto">
             <motion.h2
               initial="hidden"
               whileInView="visible"
@@ -303,7 +304,7 @@ export function BlogListPage() {
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={EAGER_VIEWPORT}
+              viewport={STAGGER_VIEWPORT}
               variants={staggerContainer(0.08)}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
