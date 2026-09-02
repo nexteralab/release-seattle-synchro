@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import { Link } from '@tanstack/react-router'
+import { Info } from 'lucide-react'
 import type { BeginnerSubProgram } from '../types'
 
 const swimmingSkills = [
@@ -134,6 +135,32 @@ export function BeginnerDetails({ program = FALLBACK }: Props = {}) {
                                 ))}
                             </ul>
                         </div>
+                    </div>
+                </div>
+
+                {/* El tryout es la puerta de entrada al equipo: quien lee los
+                    requisitos necesita saber a dónde ir después. */}
+                <div className="max-w-screen-lg mx-auto bg-[#0A0A67] rounded-3xl p-6 md:p-10">
+                    <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+                        <div className="flex-1">
+                            <div className="flex items-center gap-2 text-white mb-4">
+                                <Info size={16} strokeWidth={2} />
+                                <span className="font-bold text-[12px] tracking-[1.4px] uppercase">
+                                    Before You Join
+                                </span>
+                            </div>
+                            <p className="text-white/85 text-[15px] md:text-[16px] leading-[26px] max-w-xl">
+                                To join the team, swimmers must first complete the tryout. It is free,
+                                and it is how our coaches confirm swim readiness and find the right
+                                team placement.
+                            </p>
+                        </div>
+                        <Link
+                            to="/programs/try-out"
+                            className="shrink-0 self-start md:self-auto inline-block bg-white text-[#0A0A67] px-8 py-4 font-bold text-[13px] tracking-[1.8px] uppercase hover:bg-white/90 transition-colors rounded-full"
+                        >
+                            Go to Tryouts
+                        </Link>
                     </div>
                 </div>
 

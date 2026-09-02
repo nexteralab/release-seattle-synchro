@@ -5,21 +5,19 @@ const HERO_IMAGE =
 
 export function BeginnerHero() {
     return (
-        <section
-            className="relative md:h-[80vh] h-[40vh] flex items-center justify-center overflow-hidden"
-            aria-label="Beginner hero"
-        >
-            <div className="absolute inset-0">
-                <img
-                    src={imgBeginnerHero}
-                    alt="Seattle Synchro beginner"
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                        e.currentTarget.src = HERO_IMAGE
-                    }}
-                />
+        <section className="bg-white" aria-label="Beginner hero">
+            <div className="p-6 pt-10 md:p-12 md:px-20 md:pt-16">
+                <div className="relative w-full h-[30vh] md:h-[40vh] lg:h-[50vh] rounded-3xl overflow-hidden max-w-screen-xl mx-auto">
+                    <img
+                        src={imgBeginnerHero}
+                        alt="Seattle Synchro beginner"
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                            e.currentTarget.src = HERO_IMAGE
+                        }}
+                    />
+                </div>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/20" />
         </section>
     )
 }
