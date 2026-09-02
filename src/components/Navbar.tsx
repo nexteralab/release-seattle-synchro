@@ -5,27 +5,27 @@ import { motion, AnimatePresence } from "framer-motion";
 import logo from "/images/logo.png";
 
 // El panel del menú muestra título + descripción por ítem.
-// OJO: las descripciones marcadas con [revisar] son un primer borrador — no
+// OJO: las descripciones marcadas con son un primer borrador — no
 // están sacadas del contenido real de esas páginas. Corrígelas aquí.
 const menuItems = {
   programs: {
     label: "Programs",
     items: [
-      { label: "Beginner", path: "/programs/beginner", description: "First strokes and basic figures. [revisar]" },
+      { label: "Beginner", path: "/programs/beginner", description: "First strokes and basic figures." },
       { label: "Recreational", path: "/programs/recreational", description: "Weekly practice for swimmers new to the sport." },
       { label: "Competitive", path: "/programs/competitive", description: "Team training and competition by age group." },
       { label: "Elite Clinic", path: "/programs/elite-clinic", description: "Intensive training with visiting head coaches." },
-      { label: "Private Lessons", path: "/programs/private-lessons", description: "One-on-one coaching on the skills you pick. [revisar]" },
+      { label: "Private Lessons", path: "/programs/private-lessons", description: "One-on-one coaching on the skills you pick." },
       { label: "Free Trial Class", path: "/programs/free-try", description: "A fun, no-pressure introduction." },
       { label: "Summer Camp", path: "/programs/summer-camp", description: "Summer sessions at our Bellevue pools." },
-      { label: "Performance", path: "/programs/shows", description: "Season performances and how to attend. [revisar]" },
+      { label: "Performance", path: "/programs/shows", description: "Season performances and how to attend." },
       { label: "Try Out", path: "/programs/try-out", description: "Evaluate swim readiness and find team placement." },
     ],
   },
   about: {
     label: "About Us",
     items: [
-      { label: "About Us", path: "/team/about-us", description: "Who we are and how the club started. [revisar]" },
+      { label: "About Us", path: "/team/about-us", description: "Who we are and how the club started." },
       { label: "Coaches", path: "/team/coaches", description: "Meet the staff and their credentials." },
       { label: "Hall of Fame", path: "/athletes/hall-of-fame", description: "Athletes who marked the club's history." },
       { label: "News", path: "/team/news", description: "Results, announcements and events." },
@@ -35,17 +35,17 @@ const menuItems = {
   support: {
     label: "Support Us",
     items: [
-      { label: "Donate", path: "/booster/donate", description: "Support the club with a donation. [revisar]" },
-      { label: "Fundraising Opportunities", path: "/booster/fundraising", description: "Ways families can raise funds for the season. [revisar]" },
+      { label: "Donate", path: "/booster/donate", description: "Support the club with a donation." },
+      { label: "Fundraising Opportunities", path: "/booster/fundraising", description: "Ways families can raise funds for the season." },
     ],
   },
   resources: {
     label: "Athlete Resources",
     items: [
-      { label: "Safety", path: "/athletes/safety", description: "Policies for a safe training environment. [revisar]" },
-      { label: "Health", path: "/athletes/health", description: "Nutrition, recovery and wellbeing. [revisar]" },
+      { label: "Safety", path: "/athletes/safety", description: "Policies for a safe training environment." },
+      { label: "Health", path: "/athletes/health", description: "Nutrition, recovery and wellbeing." },
       { label: "Hair & Knoxing Guide", path: "/athletes/knoxing", description: "Hair preparation for artistic swimmers." },
-      { label: "Sport Psychology", path: "/athletes/sport-psychology", description: "Mental preparation for training and competition. [revisar]" },
+      { label: "Sport Psychology", path: "/athletes/sport-psychology", description: "Mental preparation for training and competition." },
     ],
   }
 };
@@ -67,6 +67,17 @@ export function NavbarHomePage() {
     setMobileOpen(false);
     setMobileExpanded(null);
   }, [location.pathname]);
+
+  // El panel móvil es `fixed inset-0`: sin esto la página de atrás sigue
+  // scrolleando por debajo y al cerrar el menú quedás en otra posición.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [mobileOpen]);
 
   const isActive = (path: string) => {
     if (path === "/" && location.pathname === "/") return true;
@@ -90,7 +101,11 @@ export function NavbarHomePage() {
               Rejilla y no flex con justify-between: con las columnas laterales
               a 1fr, la navegación queda centrada respecto al contenedor y no
               respecto al hueco que dejan logo y botones, que miden distinto. */}
-          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 h-[68px]">
+          {/* Flex en móvil y rejilla solo desde lg: el bloque central es
+              `hidden lg:block`, y `display:none` lo saca de la rejilla, así que
+              en móvil el hamburger caía en la columna del medio y la tercera
+              quedaba vacía. */}
+          <div className="flex items-center justify-between gap-4 h-[68px] lg:grid lg:grid-cols-[1fr_auto_1fr]">
 
             {/* Logo */}
             <Link to="/" className="flex items-center shrink-0 group">
@@ -239,7 +254,7 @@ export function NavbarHomePage() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
-            className="fixed inset-0 z-40 bg-white pt-[71px] overflow-y-auto lg:hidden"
+            className="fixed inset-0 z-40 bg-white pt-[68px] overflow-y-auto lg:hidden"
           >
             <div className="px-8 py-6 flex flex-col">
               {Object.entries(menuItems).map(([key, menu], index) => (
@@ -313,7 +328,7 @@ export function NavbarHomePage() {
                   href="https://www.seattlesynchrosst.com/page/home"
                   target="_blank"
                   rel="noopener"
-                  className="flex items-center justify-center gap-2 bg-[#F5F5F5] text-[#0A0A67] px-5 py-2 border border-[#0A0A67]/10 w-full py-4 font-bold text-[13px] tracking-[2px] uppercase bg-[#F5F5F5] text-[#0A0A67] hover:bg-[#e0e7ef] transition-all duration-200"
+                  className="flex items-center justify-center gap-2 w-full py-4 font-bold text-[13px] tracking-[2px] uppercase bg-[#F5F5F5] text-[#0A0A67] border border-[#0A0A67]/10 hover:bg-[#e0e7ef] transition-colors duration-200"
                 >
                   Members
                   <ArrowRight size={12} />

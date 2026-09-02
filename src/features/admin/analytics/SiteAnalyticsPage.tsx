@@ -1,9 +1,10 @@
 import {
-  Eye, Users, Clock, Target, Repeat, Bot, ArrowRight,
+  Eye, Users, Clock, Target, Repeat, Bot, ArrowRight, RefreshCw,
 } from 'lucide-react'
 import { EvilAreaChart } from '#/components/evilcharts/charts/area-chart'
 import { type ChartConfig } from '#/components/evilcharts/ui/chart'
 import { Badge } from '#/components/ui/badge'
+import { Button } from '#/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/ui/card'
 import { Skeleton } from '#/components/ui/skeleton'
 import { AdminPageHeader } from '#/features/admin/components/AdminPageHeader'
@@ -11,6 +12,7 @@ import { CountriesMap } from './components/CountriesMap'
 import { DevicesChart } from './components/DevicesChart'
 import { SourceIcon } from './components/SourceIcon'
 import { sourceLabel } from './components/source-icons'
+import { useIsFetching, useQueryClient } from '@tanstack/react-query'
 import { parseAsInteger, useQueryState } from 'nuqs'
 import { TODAY } from './services/reports.service'
 import {
@@ -133,6 +135,11 @@ export function SiteAnalyticsPage() {
   const { data: conversions } = useConversions(days)
   const { data: funnel } = useFunnel(days)
 
+  const queryClient = useQueryClient()
+  // Cuenta de peticiones en vuelo de este dashboard: mueve el icono mientras
+  // dura la recarga, sin necesidad de estado propio.
+  const fetching = useIsFetching({ queryKey: ['site-analytics'] })
+
   const totalConversions = overview?.conversions ?? 0
   const conversionRate =
     overview?.sessions ? (totalConversions / overview.sessions) * 100 : 0
@@ -143,6 +150,7 @@ export function SiteAnalyticsPage() {
         title="Site analytics"
         description="Traffic, acquisition and conversions across the whole site"
         action={
+          <div className="flex items-center gap-2">
           <div className="flex gap-1 rounded-lg border border-border p-0.5">
             {RANGES.map((r) => (
               <button
@@ -157,6 +165,19 @@ export function SiteAnalyticsPage() {
                 {r.label}
               </button>
             ))}
+          </div>
+
+          <Button
+            variant="outline"
+            size="icon"
+            className="size-8 shrink-0"
+            onClick={() => queryClient.invalidateQueries({ queryKey: ['site-analytics'] })}
+            disabled={fetching > 0}
+            aria-label="Refresh analytics"
+            title="Refresh"
+          >
+            <RefreshCw className={`size-3.5 ${fetching > 0 ? 'animate-spin' : ''}`} />
+          </Button>
           </div>
         }
       />

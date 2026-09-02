@@ -28,56 +28,56 @@ export function CoachListSkeleton() {
   return (
     <div className="w-full animate-pulse">
       {/* Header */}
-      <div className="border-b border-[#f0f0f0] flex items-center gap-4 px-4 py-2.5">
+      <div className="border-b border-border flex items-center gap-4 px-4 py-2.5">
         <div className="w-8 shrink-0" />
-        <div className="h-3 w-14 bg-[#f0f0f0] rounded" />
-        <div className="h-3 w-12 bg-[#f0f0f0] rounded ml-28" />
-        <div className="h-3 w-20 bg-[#f0f0f0] rounded ml-24" />
-        <div className="h-3 w-10 bg-[#f0f0f0] rounded ml-auto mr-8" />
+        <div className="h-3 w-14 bg-muted rounded" />
+        <div className="h-3 w-12 bg-muted rounded ml-28" />
+        <div className="h-3 w-20 bg-muted rounded ml-24" />
+        <div className="h-3 w-10 bg-muted rounded ml-auto mr-8" />
       </div>
 
       {/* Rows */}
       {Array.from({ length: 6 }).map((_, i) => (
-        <div key={i} className="border-b border-[#f5f5f5] flex items-center gap-4 px-4 py-3">
+        <div key={i} className="border-b border-border flex items-center gap-4 px-4 py-3">
           {/* Drag handle */}
           <div className="w-8 shrink-0 flex justify-center">
-            <div className="h-4 w-3 bg-[#ececec] rounded" />
+            <div className="h-4 w-3 bg-muted/60 rounded" />
           </div>
 
           {/* Avatar + name */}
           <div className="flex items-center gap-3 min-w-0 w-[200px] shrink-0">
-            <div className="w-9 h-9 rounded-md bg-[#ececec] shrink-0" />
+            <div className="w-9 h-9 rounded-md bg-muted/60 shrink-0" />
             <div className="space-y-1.5 flex-1 min-w-0">
-              <div className="h-3 bg-[#ececec] rounded" style={{ width: `${55 + (i % 3) * 15}%` }} />
-              <div className="h-2.5 bg-[#f0f0f0] rounded w-3/5" />
+              <div className="h-3 bg-muted/60 rounded" style={{ width: `${55 + (i % 3) * 15}%` }} />
+              <div className="h-2.5 bg-muted rounded w-3/5" />
             </div>
           </div>
 
           {/* Email */}
           <div className="w-[180px] shrink-0">
-            <div className="h-2.5 bg-[#f0f0f0] rounded" style={{ width: `${60 + (i % 2) * 20}%` }} />
+            <div className="h-2.5 bg-muted rounded" style={{ width: `${60 + (i % 2) * 20}%` }} />
           </div>
 
           {/* Specialties */}
           <div className="flex gap-1.5 flex-1">
-            <div className="h-5 w-16 bg-[#f0f0f0] rounded-full" />
-            <div className="h-5 w-20 bg-[#f0f0f0] rounded-full" />
+            <div className="h-5 w-16 bg-muted rounded-full" />
+            <div className="h-5 w-20 bg-muted rounded-full" />
           </div>
 
           {/* Toggle */}
-          <div className="w-9 h-5 bg-[#ececec] rounded-full shrink-0" />
+          <div className="w-9 h-5 bg-muted/60 rounded-full shrink-0" />
 
           {/* Actions */}
           <div className="flex gap-1 shrink-0 pr-2">
-            <div className="w-7 h-7 bg-[#f0f0f0] rounded-md" />
-            <div className="w-7 h-7 bg-[#f0f0f0] rounded-md" />
+            <div className="w-7 h-7 bg-muted rounded-md" />
+            <div className="w-7 h-7 bg-muted rounded-md" />
           </div>
         </div>
       ))}
 
       {/* Footer */}
       <div className="px-4 py-2.5">
-        <div className="h-2.5 w-16 bg-[#f0f0f0] rounded" />
+        <div className="h-2.5 w-16 bg-muted rounded" />
       </div>
     </div>
   )
@@ -110,7 +110,7 @@ function SortableRow({
     <tr
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition }}
-      className={`border-b border-[#f5f5f5] transition-colors ${isDragging ? 'opacity-50 bg-[#f8f8ff]' : 'hover:bg-card'}`}
+      className={`border-b border-border transition-colors ${isDragging ? 'opacity-50 bg-muted' : 'hover:bg-card'}`}
       data-drag-attributes={JSON.stringify(attributes)}
       data-drag-listeners={JSON.stringify(listeners)}
     >
@@ -118,7 +118,7 @@ function SortableRow({
         <button
           {...attributes}
           {...listeners}
-          className="p-1 rounded text-[#ccc] hover:text-[#888] cursor-grab active:cursor-grabbing touch-none"
+          className="p-1 rounded text-muted-foreground/50 hover:text-foreground cursor-grab active:cursor-grabbing touch-none"
           aria-label="Drag to reorder"
         >
           <GripVertical size={15} />
@@ -191,8 +191,8 @@ export function CoachList({ onEdit, onDelete }: Props) {
           <div className="flex items-center gap-3">
             <Avatar coach={c} />
             <div className="min-w-0">
-              <p className="font-medium text-[#111] text-[13px] truncate">{c.name}</p>
-              <p className="text-[#999] text-[12px] truncate">{c.title}</p>
+              <p className="font-medium text-foreground text-[13px] truncate">{c.name}</p>
+              <p className="text-muted-foreground text-[12px] truncate">{c.title}</p>
             </div>
           </div>
         )
@@ -203,10 +203,10 @@ export function CoachList({ onEdit, onDelete }: Props) {
       header: 'Email',
       cell: ({ row }) => {
         const email = row.original.email
-        if (!email) return <span className="text-[#ddd] text-[12px]">—</span>
+        if (!email) return <span className="text-muted-foreground/40 text-[12px]">—</span>
         return (
           <a href={`mailto:${email}`} onClick={e => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 text-[#999] text-[12px] hover:text-primary transition-colors">
+            className="inline-flex items-center gap-1.5 text-muted-foreground text-[12px] hover:text-primary transition-colors">
             <Mail size={11} />
             {email}
           </a>
@@ -218,16 +218,16 @@ export function CoachList({ onEdit, onDelete }: Props) {
       header: 'Specialties',
       cell: ({ row }) => {
         const items = row.original.specialties
-        if (!items.length) return <span className="text-[#ddd] text-[12px]">—</span>
+        if (!items.length) return <span className="text-muted-foreground/40 text-[12px]">—</span>
         return (
           <div className="flex flex-wrap gap-1">
             {items.slice(0, 2).map(s => (
-              <span key={s} className="text-[11px] font-medium text-[#555] bg-[#f0f0f0] px-2 py-0.5 rounded-full">
+              <span key={s} className="text-[11px] font-medium text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
                 {s}
               </span>
             ))}
             {items.length > 2 && (
-              <span className="text-[11px] text-[#aaa]">+{items.length - 2}</span>
+              <span className="text-[11px] text-muted-foreground/70">+{items.length - 2}</span>
             )}
           </div>
         )
@@ -255,11 +255,11 @@ export function CoachList({ onEdit, onDelete }: Props) {
         return (
           <div className="flex items-center gap-0.5 justify-end pr-2">
             <button onClick={() => onEdit(c)}
-              className="p-1.5 rounded-md text-[#bbb] hover:text-primary hover:bg-[#f0f0f6] transition-colors">
+              className="p-1.5 rounded-md text-muted-foreground/60 hover:text-primary hover:bg-muted/40 transition-colors">
               <Pencil size={13} />
             </button>
             <button onClick={() => onDelete(c)}
-              className="p-1.5 rounded-md text-[#bbb] hover:text-red-500 hover:bg-red-50 transition-colors">
+              className="p-1.5 rounded-md text-muted-foreground/60 hover:text-destructive hover:bg-destructive/10 transition-colors">
               <Trash2 size={13} />
             </button>
           </div>
@@ -275,7 +275,7 @@ export function CoachList({ onEdit, onDelete }: Props) {
   })
 
   if (isLoading) return <CoachListSkeleton />
-  if (isError)   return <div className="py-16 text-center text-red-400 text-[13px]">Failed to load.</div>
+  if (isError)   return <div className="py-16 text-center text-destructive text-[13px]">Failed to load.</div>
   if (!coaches.length) return null
 
   return (
@@ -290,11 +290,11 @@ export function CoachList({ onEdit, onDelete }: Props) {
         <table className="w-full">
           <thead>
             {table.getHeaderGroups().map(hg => (
-              <tr key={hg.id} className="border-b border-[#f0f0f0]">
+              <tr key={hg.id} className="border-b border-border">
                 <th className="w-8 pl-3" />
                 {hg.headers.map(header => (
                   <th key={header.id}
-                    className="px-4 py-2.5 text-left text-[11px] font-semibold text-[#bbb] uppercase tracking-wide whitespace-nowrap">
+                    className="px-4 py-2.5 text-left text-[11px] font-semibold text-muted-foreground uppercase tracking-wide whitespace-nowrap">
                     {flexRender(header.column.columnDef.header, header.getContext())}
                   </th>
                 ))}
@@ -319,7 +319,7 @@ export function CoachList({ onEdit, onDelete }: Props) {
           </tbody>
         </table>
 
-        <div className="px-4 py-2.5 text-[11px] text-[#ccc]">
+        <div className="px-4 py-2.5 text-[11px] text-muted-foreground/50">
           {coaches.length} {coaches.length === 1 ? 'coach' : 'coaches'}
         </div>
       </div>
