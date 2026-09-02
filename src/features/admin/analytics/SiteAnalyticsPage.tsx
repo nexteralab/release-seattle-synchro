@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
   Eye, Users, Clock, Target, Repeat, Bot, ArrowRight,
 } from 'lucide-react'
@@ -12,6 +11,7 @@ import { CountriesMap } from './components/CountriesMap'
 import { DevicesChart } from './components/DevicesChart'
 import { SourceIcon } from './components/SourceIcon'
 import { sourceLabel } from './components/source-icons'
+import { parseAsInteger, useQueryState } from 'nuqs'
 import { TODAY } from './services/reports.service'
 import {
   useAcquisition, useAudience, useConversions, useFunnel,
@@ -118,7 +118,12 @@ function RankedList({
 }
 
 export function SiteAnalyticsPage() {
-  const [days, setDays] = useState(30)
+  // El rango vive en la URL (?range=…): sobrevive al refresco y el enlace se
+  // puede compartir. Por defecto, hoy.
+  const [days, setDays] = useQueryState(
+    'range',
+    parseAsInteger.withDefault(TODAY).withOptions({ history: 'replace' }),
+  )
 
   const { data: overview, isLoading: loadingOv } = useOverview(days)
   const { data: series } = useTimeseries(days)

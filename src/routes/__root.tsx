@@ -1,4 +1,5 @@
 import { HeadContent, Outlet, Scripts, createRootRouteWithContext } from '@tanstack/react-router'
+import { NuqsAdapter } from 'nuqs/adapters/tanstack-router'
 
 import appCss from '../styles.css?url'
 
@@ -70,7 +71,11 @@ function RootDocument() {
     
         </head>
         <body className="antialiased [overflow-wrap:anywhere]" suppressContentEditableWarning>
-          <Outlet />
+          {/* nuqs guarda el estado de los filtros en la URL: sobrevive al
+              refresco y el enlace se puede compartir tal cual. */}
+          <NuqsAdapter>
+            <Outlet />
+          </NuqsAdapter>
           <Toaster
             position="bottom-right"
             richColors
