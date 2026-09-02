@@ -34,7 +34,13 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         rel: 'stylesheet',
         href: appCss,
       },
-      { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+      // Google prefiere el icono más grande y cuadrado que encuentre, y prueba
+      // /favicon.ico en la raíz aunque no esté enlazado. Por eso se declaran
+      // todos y se enlaza el manifest.
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico', sizes: '48x48' },
+      { rel: 'icon', type: 'image/png', href: '/icon-192.png', sizes: '192x192' },
+      { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' },
+      { rel: 'manifest', href: '/manifest.json' },
     ],
   }),
   component: RootDocument,
