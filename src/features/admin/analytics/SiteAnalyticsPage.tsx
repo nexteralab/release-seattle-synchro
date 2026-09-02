@@ -12,12 +12,14 @@ import { CountriesMap } from './components/CountriesMap'
 import { DevicesChart } from './components/DevicesChart'
 import { SourceIcon } from './components/SourceIcon'
 import { sourceLabel } from './components/source-icons'
+import { TODAY } from './services/reports.service'
 import {
   useAcquisition, useAudience, useConversions, useFunnel,
   useOverview, useTimeseries, useTopPages,
 } from './hooks/use-reports'
 
 const RANGES = [
+  { label: 'Today', value: TODAY },
   { label: '7d', value: 7 },
   { label: '30d', value: 30 },
   { label: '90d', value: 90 },

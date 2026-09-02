@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRouterState } from '@tanstack/react-router'
 import { CONSENT_CHANGE_EVENT } from '#/hooks/use-cookie-consent'
-import { getConsent, isPostPath, trackPageview } from './client'
+import { getConsent, isPostPath, isTrackablePath, trackPageview } from './client'
 
 /**
  * Un pageview por navegación, en TODO el sitio. Se monta una sola vez en el
@@ -22,6 +22,7 @@ export function usePageAnalytics(): void {
 
   useEffect(() => {
     if (getConsent() === 'pending') return
+    if (!isTrackablePath(pathname)) return
     // Los posts emiten su pageview desde usePostAnalytics, con post_id.
     if (isPostPath(pathname)) return
     if (lastPath.current === pathname) return

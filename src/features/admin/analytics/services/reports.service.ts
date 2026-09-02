@@ -5,9 +5,19 @@ import { adminOnly } from '#/lib/auth-guard'
 
 // `created_at` es TEXT ISO: el corte se calcula en JS para que la comparación
 // de strings sea exacta y no dependa del datetime() de SQLite.
-// days = 0 → desde siempre.
-const cutoff = (days: number) =>
-  days > 0 ? new Date(Date.now() - days * 86400_000).toISOString() : '0000'
+//   days > 0  → últimos N días
+//   days = 0  → desde siempre
+//   days < 0  → solo hoy, desde medianoche UTC
+//
+// 'YYYY-MM-DD' funciona como corte porque los timestamps ISO empiezan por la
+// fecha: '2026-09-02T04:23…' >= '2026-09-02' se compara bien como texto.
+export const TODAY = -1
+
+const cutoff = (days: number) => {
+  if (days === 0) return '0000'
+  if (days < 0) return new Date().toISOString().slice(0, 10)
+  return new Date(Date.now() - days * 86400_000).toISOString()
+}
 
 // Los bots se excluyen SIEMPRE. Sin esto los números no significan nada:
 // un sitio pequeño recibe más crawlers que personas.

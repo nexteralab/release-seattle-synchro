@@ -86,10 +86,20 @@ export function getTrackingBase(): Base | null {
 }
 
 /**
+ * Rutas que nunca se registran. El hook vive en el layout público, pero
+ * durante una navegación hacia fuera el layout sigue montado un instante y
+ * `useRouterState` ya reporta la ruta nueva: sin esto, entrar al panel se
+ * contaba como tráfico del sitio.
+ */
+const PRIVATE_PREFIXES = ['/app', '/login', '/api']
+
+export function isTrackablePath(path: string): boolean {
+  return !PRIVATE_PREFIXES.some((p) => path === p || path.startsWith(`${p}/`))
+}
+
+/**
  * Las páginas de post emiten su propio pageview (enriquecido con post_id) desde
  * `usePostAnalytics`, así que el layout las salta para no contar doble.
- * Regla explícita a propósito: es más fácil de leer que depender del orden en
- * que React ejecuta los efectos de hijo y padre.
  */
 export function isPostPath(path: string): boolean {
   return /^\/team\/(blog|news)\/[^/]+$/.test(path)
