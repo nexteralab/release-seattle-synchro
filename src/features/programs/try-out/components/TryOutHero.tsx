@@ -24,72 +24,74 @@ export function TryOutHero({ data }: Props) {
         </div>
       </div>
 
-      <div className="max-w-screen-lg mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 items-start">
+      <div className="p-6 md:p-12 md:px-20 md:py-24 bg-white">
+        <div className="max-w-screen-lg mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 items-start">
 
-          {/* Left: info */}
-          <motion.div
-            whileInView={{ opacity: [0, 1], x: [-40, 0] }}
-            viewport={vp}
-            transition={t}
-          >
-            <h1
-              id="tryout-hero-heading"
-              className="font-bold text-secondary text-[30px] md:text-[44px] tracking-[-2.4px] uppercase mb-3"
+            {/* Left: info */}
+            <motion.div
+              whileInView={{ opacity: [0, 1], x: [-40, 0] }}
+              viewport={vp}
+              transition={t}
             >
-              How to join the team!
-            </h1>
-            <p className="font-bold text-secondary text-[12px] md:text-[14px] tracking-[1.4px] uppercase mb-8">
-              Designed for Future Champions
-            </p>
+              <h1
+                id="tryout-hero-heading"
+                className="font-bold text-secondary text-[30px] md:text-[44px] tracking-[-2.4px] uppercase mb-3"
+              >
+                How to join the team!
+              </h1>
+              <p className="font-bold text-secondary text-[12px] md:text-[14px] tracking-[1.4px] uppercase mb-8">
+                Designed for Future Champions
+              </p>
 
-            <div className="space-y-6 mb-10">
-              <DetailItem label="Ages" value={data.ages} />
-              <DetailItem label="When" value={data.when} />
-            </div>
-
-            <div className="bg-secondary p-4 md:p-6 rounded-3xl">
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-white text-[20px]">🛡️</span>
-                <h2 className="font-bold text-white text-[14px] tracking-[1.4px] uppercase">
-                  Join Seattle Synchro's Novice Team
-                </h2>
+              <div className="space-y-6 mb-10">
+                <DetailItem label="Ages" value={data.ages} />
+                <DetailItem label="When" value={data.when} />
               </div>
-              <p className="text-white/90 text-[15px] leading-[24px] italic">
-                "Safety is our priority. Participants MUST be able to swim 4 laps of crawl stroke,
-                breaststroke and backstroke unassisted. See the full requirements below."
-              </p>
-            </div>
-          </motion.div>
 
-          {/* Right: location card */}
-          <motion.div
-            whileInView={{ opacity: [0, 1], x: [40, 0] }}
-            viewport={vp}
-            transition={t}
-            className="bg-[#f5f5f5] rounded-3xl overflow-hidden"
-          >
-            <div className="p-6 md:p-8">
-              <p className="font-bold text-secondary text-[12px] tracking-[1.4px] uppercase mb-4">
-                Location Details
-              </p>
-              <div className="flex items-start gap-3 mb-4">
-                <span className="text-secondary text-[18px] mt-0.5">📍</span>
-                <div>
-                  <p className="font-bold text-secondary text-[14px] md:text-[16px] mb-1">{data.location.name}</p>
-                  <p className="text-[#737373] text-[14px] md:text-[16px] leading-[24px]">
-                    {data.location.address}
-                  </p>
+              <div className="bg-secondary p-4 md:p-6 rounded-3xl">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-white text-[20px]">🛡️</span>
+                  <h2 className="font-bold text-white text-[14px] tracking-[1.4px] uppercase">
+                    Join Seattle Synchro's Novice Team
+                  </h2>
+                </div>
+                <p className="text-white/90 text-[15px] leading-[24px] italic">
+                  "Safety is our priority. Participants MUST be able to swim 4 laps of crawl stroke,
+                  breaststroke and backstroke unassisted. See the full requirements below."
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Right: location card */}
+            <motion.div
+              whileInView={{ opacity: [0, 1], x: [40, 0] }}
+              viewport={vp}
+              transition={t}
+              className="bg-[#f5f5f5] rounded-3xl overflow-hidden"
+            >
+              <div className="p-6 md:p-8">
+                <p className="font-bold text-secondary text-[12px] tracking-[1.4px] uppercase mb-4">
+                  Location Details
+                </p>
+                <div className="flex items-start gap-3 mb-4">
+                  <span className="text-secondary text-[18px] mt-0.5">📍</span>
+                  <div>
+                    <p className="font-bold text-secondary text-[14px] md:text-[16px] mb-1">{data.location.name}</p>
+                    <p className="text-[#737373] text-[14px] md:text-[16px] leading-[24px]">
+                      {data.location.address}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <img
-              src={data.heroImage}
-              alt={data.location.name}
-              className="w-full h-[250px] object-cover"
-            />
-          </motion.div>
+              <img
+                src={data.heroImage}
+                alt={data.location.name}
+                className="w-full h-[250px] object-cover"
+              />
+            </motion.div>
 
+          </div>
         </div>
       </div>
     </section>
