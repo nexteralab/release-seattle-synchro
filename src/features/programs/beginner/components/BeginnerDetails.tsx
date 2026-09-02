@@ -47,12 +47,24 @@ export function BeginnerDetails({ program = FALLBACK }: Props = {}) {
                     <h2 className="font-bold text-primary text-[32px] tracking-[-1.6px] uppercase">
                         {program.name}
                     </h2>
-                    <Link
-                        to="/contact-us"
-                        className="inline-block bg-secondary text-primary px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-primary transition-colors rounded-full"
-                    >
-                        Contact Us
-                    </Link>
+                    <div className="flex flex-wrap items-center gap-3">
+                        {/* Lleva a Free Try, donde están las opciones de prueba.
+                            Navy explícito, no `bg-primary`: en el sitio público
+                            --primary es el verde de marca, el navy solo es
+                            primario dentro del admin. */}
+                        <Link
+                            to="/programs/free-try"
+                            className="inline-block bg-[#0A0A67] text-white px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-[#0A0A67]/90 transition-colors rounded-full"
+                        >
+                            Try for Free
+                        </Link>
+                        <Link
+                            to="/contact-us"
+                            className="inline-block bg-secondary text-primary px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-primary transition-colors rounded-full"
+                        >
+                            Contact Us
+                        </Link>
+                    </div>
                 </div>
                 <p className="text-[#171717] text-[16px] leading-[26px]">
                     The Novice Team is our beginner competitive level. Swimmers learn proper swimming technique, beginner artistic swimming skills, and the fundamentals of competition.

@@ -9,7 +9,7 @@
       "@/*": ["./src/*"]
     },
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["vite/client", "geojson"],
+    "types": ["vite/client", "geojson", "./worker-configuration.d.ts"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",

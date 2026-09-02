@@ -1,10 +1,7 @@
-import { supabase } from '#/utils/supabase'
+import { getConfig } from '#/features/programs/config.service'
 import type { SummerCampContent } from '../types'
 
 const REGISTER_URL = 'https://www.seattlesynchrosst.com/page/system/classreg-shopping'
-const TABLE = 'summer_camp'
-const ROW_ID = 1
-
 // Fallback estático — se usa si la tabla está vacía o aún no existe.
 const FALLBACK: SummerCampContent = {
   details: {
@@ -31,26 +28,8 @@ const FALLBACK: SummerCampContent = {
 }
 
 // `summer_camp` aún no está en database.types.ts.
-const sb = supabase as unknown as {
-  from: (t: string) => {
-    select: (cols: string) => {
-      eq: (k: string, v: unknown) => {
-        maybeSingle: () => Promise<{
-          data: { content: SummerCampContent } | null
-          error: unknown
-        }>
-      }
-    }
-  }
-}
 
 export async function getSummerCampContent(): Promise<SummerCampContent> {
-  const { data, error } = await sb
-    .from(TABLE)
-    .select('content')
-    .eq('id', ROW_ID)
-    .maybeSingle()
-
-  if (error || !data?.content) return FALLBACK
-  return data.content
+  const stored = await getConfig<{ content?: SummerCampContent }>('summer-camp')
+  return stored?.content ?? FALLBACK
 }

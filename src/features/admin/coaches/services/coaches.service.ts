@@ -1,100 +1,72 @@
-import { supabase } from '#/utils/supabase'
+import { createServerFn } from '@tanstack/react-start'
+import { asc, eq, inArray, sql } from 'drizzle-orm'
+import { db } from '#/db'
+import { coaches } from '#/db/schema'
+import type { Coach } from '#/db/schema'
+import { adminOnly } from '#/lib/auth-guard'
+import { uploadMedia, deleteMedia } from '#/lib/media'
 
-export interface Coach {
-  id: string
-  name: string
-  title: string
-  email: string | null
-  bio: string
-  specialties: string[]
-  certifications: string[]
-  image_url: string | null
-  active: boolean
-  sort_order: number
-  created_at: string
-  updated_at: string
-}
-
+export type { Coach }
 export type CoachInsert = Omit<Coach, 'id' | 'created_at' | 'updated_at'>
 export type CoachUpdate = Partial<CoachInsert>
 
-const TABLE = 'coaches'
+const getCoachesFn = createServerFn({ method: 'GET' }).handler(() =>
+  db.select().from(coaches).orderBy(asc(coaches.sort_order), asc(coaches.created_at)).all(),
+)
 
-export async function getCoaches(): Promise<Coach[]> {
-  const { data, error } = await supabase
-    .from(TABLE)
-    .select('*')
-    .order('sort_order', { ascending: true })
-    .order('created_at', { ascending: true })
+const createCoachFn = createServerFn({ method: 'POST' })
+  .middleware([adminOnly])
+  .inputValidator((payload: CoachInsert) => payload)
+  .handler(({ data }) => db.insert(coaches).values(data).returning().get())
 
-  if (error) throw error
-  return data as Coach[]
-}
-
-export async function createCoach(payload: CoachInsert): Promise<Coach> {
-  const { data, error } = await supabase
-    .from(TABLE)
-    .insert(payload)
-    .select()
-    .single()
-
-  if (error) throw error
-  return data as Coach
-}
-
-export async function updateCoach(id: string, payload: CoachUpdate): Promise<Coach> {
-  const { data, error } = await supabase
-    .from(TABLE)
-    .update(payload)
-    .eq('id', id)
-    .select()
-    .single()
-
-  if (error) throw error
-  return data as Coach
-}
-
-export async function deleteCoach(id: string): Promise<void> {
-  const { error } = await supabase
-    .from(TABLE)
-    .delete()
-    .eq('id', id)
-
-  if (error) throw error
-}
-
-export async function toggleCoachActive(id: string, active: boolean): Promise<void> {
-  const { error } = await supabase
-    .from(TABLE)
-    .update({ active })
-    .eq('id', id)
-
-  if (error) throw error
-}
-
-export async function reorderCoaches(ordered: { id: string; sort_order: number }[]): Promise<void> {
-  const updates = ordered.map(({ id, sort_order }) =>
-    supabase.from(TABLE).update({ sort_order }).eq('id', id)
+const updateCoachFn = createServerFn({ method: 'POST' })
+  .middleware([adminOnly])
+  .inputValidator((input: { id: string; payload: CoachUpdate }) => input)
+  .handler(({ data }) =>
+    db
+      .update(coaches)
+      .set({ ...data.payload, updated_at: new Date().toISOString() })
+      .where(eq(coaches.id, data.id))
+      .returning()
+      .get(),
   )
-  await Promise.all(updates)
-}
 
-export async function uploadCoachImage(file: File): Promise<string> {
-  const ext = file.name.split('.').pop()
-  const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
+const deleteCoachFn = createServerFn({ method: 'POST' })
+  .middleware([adminOnly])
+  .inputValidator((id: string) => id)
+  .handler(async ({ data }) => {
+    await db.delete(coaches).where(eq(coaches.id, data))
+  })
 
-  const { error } = await supabase.storage
-    .from('coaches')
-    .upload(fileName, file, { upsert: false })
+const toggleActiveFn = createServerFn({ method: 'POST' })
+  .middleware([adminOnly])
+  .inputValidator((input: { id: string; active: boolean }) => input)
+  .handler(async ({ data }) => {
+    await db.update(coaches).set({ active: data.active }).where(eq(coaches.id, data.id))
+  })
 
-  if (error) throw error
+const reorderFn = createServerFn({ method: 'POST' })
+  .middleware([adminOnly])
+  .inputValidator((ordered: { id: string; sort_order: number }[]) => ordered)
+  .handler(async ({ data }) => {
+    if (!data.length) return
+    // Un solo UPDATE con CASE en vez de N round-trips a D1.
+    const cases = sql.join(
+      data.map((c) => sql`WHEN ${coaches.id} = ${c.id} THEN ${c.sort_order}`),
+      sql` `,
+    )
+    await db
+      .update(coaches)
+      .set({ sort_order: sql`CASE ${cases} ELSE ${coaches.sort_order} END` })
+      .where(inArray(coaches.id, data.map((c) => c.id)))
+  })
 
-  const { data } = supabase.storage.from('coaches').getPublicUrl(fileName)
-  return data.publicUrl
-}
+export const getCoaches = () => getCoachesFn()
+export const createCoach = (payload: CoachInsert) => createCoachFn({ data: payload })
+export const updateCoach = (id: string, payload: CoachUpdate) => updateCoachFn({ data: { id, payload } })
+export const deleteCoach = (id: string) => deleteCoachFn({ data: id })
+export const toggleCoachActive = (id: string, active: boolean) => toggleActiveFn({ data: { id, active } })
+export const reorderCoaches = (ordered: { id: string; sort_order: number }[]) => reorderFn({ data: ordered })
 
-export async function deleteCoachImage(url: string): Promise<void> {
-  const path = url.split('/coaches/').pop()
-  if (!path) return
-  await supabase.storage.from('coaches').remove([path])
-}
+export const uploadCoachImage = (file: File) => uploadMedia('coaches', file)
+export const deleteCoachImage = (url: string) => deleteMedia(url)

@@ -1,6 +1,7 @@
 // Server-only: do NOT import from client components. Use it from a
 // `createServerFn` handler, a server route, or any other server-side module.
 import { Resend } from 'resend'
+import { env } from 'cloudflare:workers'
 
 const FROM = 'Seattle Synchro <support@thenexteralab.com>'
 const TO = 'coachpaty@seattlesynchro.com'
@@ -9,7 +10,7 @@ let client: Resend | null = null
 
 function getClient() {
   if (client) return client
-  const apiKey = process.env.RESEND_API_KEY
+  const apiKey = env.RESEND_API_KEY
   if (!apiKey) throw new Error('RESEND_API_KEY is not set')
   client = new Resend(apiKey)
   return client

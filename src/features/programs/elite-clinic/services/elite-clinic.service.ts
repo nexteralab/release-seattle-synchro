@@ -1,8 +1,5 @@
-import { supabase } from '#/utils/supabase'
+import { getConfig } from '#/features/programs/config.service'
 import type { EliteClinicData } from '../types'
-
-const TABLE = 'elite_clinic_config'
-const ROW_ID = 1
 
 const FALLBACK: EliteClinicData = {
   title: 'Elite Clinic 2026',
@@ -56,26 +53,7 @@ const FALLBACK: EliteClinicData = {
   registerUrl: 'https://www.seattlesynchrosst.com/page/system/classreg-shopping',
 }
 
-const sb = supabase as unknown as {
-  from: (t: string) => {
-    select: (cols: string) => {
-      eq: (k: string, v: unknown) => {
-        maybeSingle: () => Promise<{
-          data: { content: EliteClinicData } | null
-          error: unknown
-        }>
-      }
-    }
-  }
-}
-
 export async function getEliteClinicData(): Promise<EliteClinicData> {
-  const { data, error } = await sb
-    .from(TABLE)
-    .select('content')
-    .eq('id', ROW_ID)
-    .maybeSingle()
-
-  if (error || !data?.content) return FALLBACK
-  return data.content
+  const stored = await getConfig<{ content?: EliteClinicData }>('elite-clinic')
+  return stored?.content ?? FALLBACK
 }

@@ -1,7 +1,5 @@
-import { supabase } from '#/utils/supabase'
+import { getConfig, setConfig } from '#/features/programs/config.service'
 import type { AgeGroup, AgeGroupId, CompetitiveConfig } from '#/features/programs/competitive/types'
-
-const db = supabase as any
 
 // Re-exportamos los tipos públicos como SSOT
 export type { AgeGroup, AgeGroupId, CompetitiveConfig }
@@ -30,28 +28,10 @@ export const DEFAULT_CONFIG: CompetitiveConfig = {
   ],
 }
 
-const TABLE = 'competitive_config'
-
 export async function getCompetitiveConfig(): Promise<CompetitiveConfig> {
-  const { data } = await db
-    .from(TABLE)
-    .select('id, age_groups, updated_at')
-    .order('updated_at', { ascending: false })
-    .limit(1)
-    .maybeSingle()
-
-  if (!data) return DEFAULT_CONFIG
-  return data as CompetitiveConfig
+  return (await getConfig<CompetitiveConfig>('competitive')) ?? DEFAULT_CONFIG
 }
 
 export async function saveCompetitiveConfig(config: CompetitiveConfig): Promise<void> {
-  const payload = { age_groups: config.age_groups }
-
-  if (config.id) {
-    const { error } = await db.from(TABLE).update(payload).eq('id', config.id)
-    if (error) throw error
-  } else {
-    const { error } = await db.from(TABLE).insert(payload)
-    if (error) throw error
-  }
+  await setConfig('competitive', { age_groups: config.age_groups })
 }

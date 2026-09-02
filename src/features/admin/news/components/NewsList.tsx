@@ -171,7 +171,7 @@ export function NewsList({ onEdit, onDelete }: Props) {
           <div className="flex items-center gap-0.5 justify-end pr-2">
             <button
               onClick={() => onEdit(item)}
-              className="p-1.5 rounded-md text-[#bbb] hover:text-[#0A0A67] hover:bg-[#f0f0f6] transition-colors"
+              className="p-1.5 rounded-md text-[#bbb] hover:text-primary hover:bg-[#f0f0f6] transition-colors"
             >
               <Pencil size={13} />
             </button>

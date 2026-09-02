@@ -17,7 +17,7 @@ export function RegisterField() {
   return (
     <div className={cardCls}>
       <h3 className={cardTitle}>
-        <Link2 size={13} className="text-[#0A0A67]" />
+        <Link2 size={13} className="text-primary" />
         Registration
       </h3>
       <FormField

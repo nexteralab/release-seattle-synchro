@@ -17,7 +17,7 @@ export function BasicsFields() {
   return (
     <div className={cardCls}>
       <h3 className={cardTitle}>
-        <Calendar size={13} className="text-[#0A0A67]" />
+        <Calendar size={13} className="text-primary" />
         Event Basics
       </h3>
       <div className="space-y-4">

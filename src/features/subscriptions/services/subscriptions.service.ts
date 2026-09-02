@@ -1,32 +1,45 @@
-import { supabase } from '#/utils/supabase'
+import { createServerFn } from '@tanstack/react-start'
+import { and, eq } from 'drizzle-orm'
+import { db } from '#/db'
+import { subscriptions } from '#/db/schema'
 
 export type SubscriptionSource = 'blog' | 'news' | 'general'
-
-const db = supabase as any
 
 export class AlreadySubscribedError extends Error {
   constructor() { super('already_subscribed') }
 }
 
+const subscribeFn = createServerFn({ method: 'POST' })
+  .inputValidator((input: { email: string; source: SubscriptionSource }) => {
+    const email = input.email.trim().toLowerCase()
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) throw new Error('invalid_email')
+    if (!['blog', 'news', 'general'].includes(input.source)) throw new Error('invalid_source')
+    return { email, source: input.source }
+  })
+  .handler(async ({ data }) => {
+    const existing = await db
+      .select({ id: subscriptions.id })
+      .from(subscriptions)
+      .where(and(eq(subscriptions.email, data.email), eq(subscriptions.source, data.source)))
+      .get()
+    if (existing) return { already: true }
+    await db.insert(subscriptions).values({ ...data, status: 'active' })
+    return { already: false }
+  })
+
+const unsubscribeFn = createServerFn({ method: 'POST' })
+  .inputValidator((input: { email: string; source: SubscriptionSource }) => input)
+  .handler(async ({ data }) => {
+    await db
+      .update(subscriptions)
+      .set({ status: 'unsubscribed', unsubscribed_at: new Date().toISOString() })
+      .where(and(eq(subscriptions.email, data.email), eq(subscriptions.source, data.source)))
+  })
+
 export async function subscribe(email: string, source: SubscriptionSource): Promise<void> {
-  const { error } = await db
-    .from('subscriptions')
-    .insert({ email, source, status: 'active' })
-
-  if (!error) return
-
-  // 23505 = unique_violation: email+source ya existe para este source
-  if (error.code === '23505') throw new AlreadySubscribedError()
-
-  throw error
+  const { already } = await subscribeFn({ data: { email, source } })
+  if (already) throw new AlreadySubscribedError()
 }
 
-export async function unsubscribe(email: string, source: SubscriptionSource): Promise<void> {
-  const { error } = await db
-    .from('subscriptions')
-    .update({ status: 'unsubscribed', unsubscribed_at: new Date().toISOString() })
-    .eq('email', email)
-    .eq('source', source)
-
-  if (error) throw error
-}
+export const unsubscribe = (email: string, source: SubscriptionSource) =>
+  unsubscribeFn({ data: { email, source } })

@@ -1,3 +1,4 @@
+import { trackConversion } from '#/features/analytics/client'
 import { motion } from 'motion/react'
 import { Sparkles, TrendingUp, Tag } from 'lucide-react'
 import type { EliteClinicData } from '../types'
@@ -98,6 +99,7 @@ export function EliteClinicOverview({ data }: Props) {
             <div className="pt-2">
               <a
                 href={data.registerUrl}
+                onClick={() => trackConversion('register_click')}
                 target="_blank"
                 rel="noopener"
                 className="block w-full text-center bg-[#a3e635] text-[#0A0A67] rounded-full px-6 py-3.5 font-bold text-[13px] tracking-[2px] uppercase hover:bg-white transition-colors"

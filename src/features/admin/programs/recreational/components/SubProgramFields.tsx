@@ -35,7 +35,7 @@ export function SubProgramFields({
       {/* Card 1: Basics */}
       <div className={cardCls}>
         <h3 className={cardTitle}>
-          <Users size={13} className="text-[#0A0A67]" />
+          <Users size={13} className="text-primary" />
           Team
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-4">
@@ -47,7 +47,7 @@ export function SubProgramFields({
       {/* Card 2: Schedule */}
       <div className={cardCls}>
         <h3 className={cardTitle}>
-          <Calendar size={13} className="text-[#0A0A67]" />
+          <Calendar size={13} className="text-primary" />
           Schedule
         </h3>
         <div className="space-y-4">
@@ -81,7 +81,7 @@ export function SubProgramFields({
       {/* Card 3: Cost */}
       <div className={cardCls}>
         <h3 className={cardTitle}>
-          <DollarSign size={13} className="text-[#0A0A67]" />
+          <DollarSign size={13} className="text-primary" />
           Cost
         </h3>
         <div className="space-y-4">

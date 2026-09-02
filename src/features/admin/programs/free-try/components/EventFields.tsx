@@ -16,7 +16,7 @@ export function EventFields() {
   return (
     <div className={cardCls}>
       <h3 className={cardTitle}>
-        <Calendar size={13} className="text-[#0A0A67]" />
+        <Calendar size={13} className="text-primary" />
         Event Details
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

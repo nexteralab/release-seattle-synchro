@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Eye, Users, Clock, CheckCircle2, BarChart2, Smartphone, Tablet, Monitor } from 'lucide-react'
+import { Eye, Users, Clock, CheckCircle2, BarChart2, Smartphone, Tablet, Monitor, ImageOff } from 'lucide-react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts'
 import { EvilAreaChart } from '#/components/evilcharts/charts/area-chart'
 import { EvilPieChart } from '#/components/evilcharts/charts/pie-chart'
@@ -214,7 +214,23 @@ export function AnalyticsDashboard({ postType }: Props) {
                       {(topPosts ?? []).map((p, i) => (
                         <tr key={p.postId} className={i % 2 === 1 ? 'bg-muted/40' : ''}>
                           <td className="px-5 py-2.5 font-medium text-foreground">
-                            <span className="truncate block max-w-[160px]">Post {p.postId.slice(0, 8)}…</span>
+                            <div className="flex items-center gap-2.5">
+                              {p.coverUrl ? (
+                                <img
+                                  src={p.coverUrl}
+                                  alt=""
+                                  loading="lazy"
+                                  className="size-9 shrink-0 rounded-[5px] object-cover"
+                                />
+                              ) : (
+                                <div className="flex size-9 shrink-0 items-center justify-center rounded-[5px] bg-muted">
+                                  <ImageOff className="size-3.5 text-muted-foreground/50" />
+                                </div>
+                              )}
+                              <span className="line-clamp-2 max-w-[220px] leading-tight" title={p.title}>
+                                {p.title}
+                              </span>
+                            </div>
                           </td>
                           <td className="px-5 py-2.5 tabular-nums font-semibold">{fmtNum(p.views)}</td>
                           <td className="px-5 py-2.5 tabular-nums text-muted-foreground">{fmtNum(p.uniqueVisitors)}</td>

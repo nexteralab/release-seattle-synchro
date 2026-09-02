@@ -1,8 +1,8 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { Outlet, useLocation, useNavigate } from '@tanstack/react-router'
-import { supabase } from '#/utils/supabase'
 import { useAdminAuth } from '#/features/admin/auth/use-admin-auth'
+import { adminLogout } from '#/features/admin/auth/auth-store'
 import { AppSidebar } from '#/features/admin/layout/AppSidebar'
 import { cn } from '#/lib/utils'
 import { SidebarProvider } from '#/components/ui/sidebar'
@@ -27,12 +27,18 @@ export function AdminLayout({ children }: { children?: React.ReactNode }) {
   }
 
   async function handleLogout() {
-    await supabase.auth.signOut()
+    await adminLogout()
     navigate({ to: '/login' })
   }
 
   return (
-    <SidebarProvider open={sidebarOpen} onOpenChange={handleSidebarChange}>
+    // `admin-surface` activa la paleta del panel (ver styles.css). Está aquí y
+    // no en :root para que el sitio público no herede nada de esto.
+    <SidebarProvider
+      open={sidebarOpen}
+      onOpenChange={handleSidebarChange}
+      className="admin-surface bg-background"
+    >
       <AppSidebar
         session={session}
         pathname={location.pathname}
@@ -42,11 +48,11 @@ export function AdminLayout({ children }: { children?: React.ReactNode }) {
       <div
         id="content"
         className={cn(
-          'ml-auto w-full max-w-full',
+          'ml-auto w-full max-w-full bg-background',
           'peer-data-[state=collapsed]:w-[calc(100%-var(--sidebar-width-icon)-1rem)]',
           'peer-data-[state=expanded]:w-[calc(100%-var(--sidebar-width))]',
           'sm:transition-[width] sm:duration-200 sm:ease-linear',
-          'flex h-svh flex-col',
+          'flex h-svh flex-col overflow-y-auto',
           'group-data-[scroll-locked=1]/body:h-full',
           'has-[main.fixed-main]:group-data-[scroll-locked=1]/body:h-svh'
         )}

@@ -1,8 +1,5 @@
-import { supabase } from '#/utils/supabase'
+import { getConfig } from '#/features/programs/config.service'
 import type { RecreationalSubProgram } from '../types'
-
-const db = supabase as any
-const TABLE = 'recreational_config'
 
 export interface RecreationalConfig {
   id?: string
@@ -28,13 +25,5 @@ const FALLBACK: RecreationalConfig = {
 }
 
 export async function getRecreationalConfig(): Promise<RecreationalConfig> {
-  const { data, error } = await db
-    .from(TABLE)
-    .select('id, sub_programs, updated_at')
-    .order('updated_at', { ascending: false })
-    .limit(1)
-    .maybeSingle()
-
-  if (error || !data) return FALLBACK
-  return data as RecreationalConfig
+  return (await getConfig<RecreationalConfig>('recreational')) ?? FALLBACK
 }

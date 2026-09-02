@@ -17,7 +17,7 @@ export function PricingFields() {
   return (
     <div className={cardCls}>
       <h3 className={cardTitle}>
-        <DollarSign size={13} className="text-[#0A0A67]" />
+        <DollarSign size={13} className="text-primary" />
         Pricing
       </h3>
       <div className="space-y-4">

@@ -1,8 +1,5 @@
-import { supabase } from '#/utils/supabase'
+import { getConfig } from '#/features/programs/config.service'
 import type { CompetitiveConfig } from '../types'
-
-const db = supabase as any
-const TABLE = 'competitive_config'
 
 // Fallback estático — se usa si la tabla está vacía o aún no existe.
 const FALLBACK: CompetitiveConfig = {
@@ -29,13 +26,5 @@ const FALLBACK: CompetitiveConfig = {
 }
 
 export async function getCompetitiveConfig(): Promise<CompetitiveConfig> {
-  const { data, error } = await db
-    .from(TABLE)
-    .select('id, age_groups, updated_at')
-    .order('updated_at', { ascending: false })
-    .limit(1)
-    .maybeSingle()
-
-  if (error || !data) return FALLBACK
-  return data as CompetitiveConfig
+  return (await getConfig<CompetitiveConfig>('competitive')) ?? FALLBACK
 }

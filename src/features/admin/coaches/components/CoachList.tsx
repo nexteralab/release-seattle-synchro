@@ -91,7 +91,7 @@ function Avatar({ coach }: { coach: Coach }) {
     )
   }
   return (
-    <div className="w-9 h-9 rounded-md bg-[#0A0A67] flex items-center justify-center font-semibold text-white text-[13px] shrink-0">
+    <div className="w-9 h-9 rounded-md bg-primary flex items-center justify-center font-semibold text-white text-[13px] shrink-0">
       {coach.name.charAt(0)}
     </div>
   )
@@ -110,7 +110,7 @@ function SortableRow({
     <tr
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition }}
-      className={`border-b border-[#f5f5f5] transition-colors ${isDragging ? 'opacity-50 bg-[#f8f8ff]' : 'hover:bg-white'}`}
+      className={`border-b border-[#f5f5f5] transition-colors ${isDragging ? 'opacity-50 bg-[#f8f8ff]' : 'hover:bg-card'}`}
       data-drag-attributes={JSON.stringify(attributes)}
       data-drag-listeners={JSON.stringify(listeners)}
     >
@@ -206,7 +206,7 @@ export function CoachList({ onEdit, onDelete }: Props) {
         if (!email) return <span className="text-[#ddd] text-[12px]">—</span>
         return (
           <a href={`mailto:${email}`} onClick={e => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 text-[#999] text-[12px] hover:text-[#0A0A67] transition-colors">
+            className="inline-flex items-center gap-1.5 text-[#999] text-[12px] hover:text-primary transition-colors">
             <Mail size={11} />
             {email}
           </a>
@@ -255,7 +255,7 @@ export function CoachList({ onEdit, onDelete }: Props) {
         return (
           <div className="flex items-center gap-0.5 justify-end pr-2">
             <button onClick={() => onEdit(c)}
-              className="p-1.5 rounded-md text-[#bbb] hover:text-[#0A0A67] hover:bg-[#f0f0f6] transition-colors">
+              className="p-1.5 rounded-md text-[#bbb] hover:text-primary hover:bg-[#f0f0f6] transition-colors">
               <Pencil size={13} />
             </button>
             <button onClick={() => onDelete(c)}

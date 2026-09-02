@@ -17,7 +17,7 @@ export function DescriptionField() {
   return (
     <div className={cardCls}>
       <h3 className={cardTitle}>
-        <FileText size={13} className="text-[#0A0A67]" />
+        <FileText size={13} className="text-primary" />
         Description
       </h3>
       <FormField

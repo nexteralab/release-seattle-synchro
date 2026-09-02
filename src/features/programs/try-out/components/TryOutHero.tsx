@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
 import type { TryOutData } from '../types'
+import heroImage from '/images/programs/tryout.webp'
 
 const t = { duration: 0.35, ease: [0.35, 0.85, 0.25, 1] as [number, number, number, number] }
 const vp = { once: true }
@@ -10,7 +11,19 @@ interface Props {
 
 export function TryOutHero({ data }: Props) {
   return (
-    <section className="p-6 md:p-12 md:px-20 md:py-24 bg-white" aria-labelledby="tryout-hero-heading">
+    <section className="bg-white" aria-labelledby="tryout-hero-heading">
+      {/* Imagen principal — mismo layout contenido que Free Try, Summer Camp
+          y Elite Clinic: con margen, esquinas redondeadas y sin pantalla completa. */}
+      <div className="p-6 pt-10 md:p-12 md:px-20 md:pt-16">
+        <div className="relative w-full h-[30vh] md:h-[40vh] lg:h-[50vh] rounded-3xl overflow-hidden max-w-screen-xl mx-auto">
+          <img
+            src={heroImage}
+            alt="Seattle Synchro swimmers at a tryout session"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
       <div className="max-w-screen-lg mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 items-start">
 
@@ -22,9 +35,9 @@ export function TryOutHero({ data }: Props) {
           >
             <h1
               id="tryout-hero-heading"
-              className="font-bold text-secondary text-[30px] md:text-[48px] tracking-[-2.4px] uppercase mb-3"
+              className="font-bold text-secondary text-[30px] md:text-[44px] tracking-[-2.4px] uppercase mb-3"
             >
-              Try Out for<br />Synchronized Swimming!
+              How to join the team!
             </h1>
             <p className="font-bold text-secondary text-[12px] md:text-[14px] tracking-[1.4px] uppercase mb-8">
               Designed for Future Champions

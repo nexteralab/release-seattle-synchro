@@ -13,12 +13,12 @@ const REQUIREMENTS: Requirement[] = [
     icon: Shirt,
     name: 'Swim Suit',
     description:
-      'A one-piece practice suit works best. Skip the two-piece, since swimmers spend a lot of time upside down.',
+      'A one-piece practice suit works best. Two-piece is accepted.',
   },
   {
     icon: CircleDot,
     name: 'Swim Cap',
-    description: 'Silicone or latex, either is fine. It keeps hair out of the face during figures.',
+    description: 'Silicone or latex, either is fine. It keeps hair out of the faces.',
   },
   {
     icon: Glasses,

@@ -1,4 +1,4 @@
-import { supabase } from '#/utils/supabase'
+import { getConfig, setConfig } from '#/features/programs/config.service'
 import type {
   EliteClinicData,
   EliteClinicManager,
@@ -84,35 +84,13 @@ export const DEFAULT_EDITABLE: EliteClinicEditableContent = {
   registerUrl: 'https://www.seattlesynchrosst.com/page/system/classreg-shopping',
 }
 
-const TABLE = 'elite_clinic_config'
-const ROW_ID = 1
-
-const sb = supabase as unknown as {
-  from: (t: string) => {
-    select: (cols: string) => {
-      eq: (k: string, v: unknown) => {
-        maybeSingle: () => Promise<{
-          data: { content: EliteClinicData } | null
-          error: unknown
-        }>
-      }
-    }
-    upsert: (row: { id: number; content: EliteClinicData }) => Promise<{ error: unknown }>
-  }
-}
+/** Lee el `content` completo y devuelve solo la parte editable. */
 
 /** Lee el `content` completo y devuelve solo la parte editable. */
 export async function getEliteClinicConfig(): Promise<EliteClinicEditableContent> {
-  const { data, error } = await sb
-    .from(TABLE)
-    .select('content')
-    .eq('id', ROW_ID)
-    .maybeSingle()
-  if (error) throw error
-  if (!data?.content) return DEFAULT_EDITABLE
-
-  // Extract only editable fields del content full
-  const c = data.content
+  const stored = await getConfig<{ content?: EliteClinicData }>('elite-clinic')
+  const c = stored?.content
+  if (!c) return DEFAULT_EDITABLE
   return {
     title: c.title ?? DEFAULT_EDITABLE.title,
     description: c.description ?? DEFAULT_EDITABLE.description,
@@ -130,10 +108,6 @@ export async function getEliteClinicConfig(): Promise<EliteClinicEditableContent
 export async function saveEliteClinicConfig(
   editable: EliteClinicEditableContent,
 ): Promise<void> {
-  const fullPayload: EliteClinicData = {
-    ...editable,
-    ...HARDCODED_DEFAULTS,
-  }
-  const { error } = await sb.from(TABLE).upsert({ id: ROW_ID, content: fullPayload })
-  if (error) throw error
+  const content: EliteClinicData = { ...editable, ...HARDCODED_DEFAULTS }
+  await setConfig('elite-clinic', { content })
 }

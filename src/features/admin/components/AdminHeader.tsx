@@ -31,9 +31,14 @@ export const AdminHeader = ({
   return (
     <header
       className={cn(
-        'bg-background flex h-16 items-center gap-3 p-4 sm:gap-4',
+        'flex h-16 items-center gap-3 p-4 sm:gap-4',
+        // Translúcido con blur: al hacer scroll el contenido pasa por debajo
+        // en vez de cortarse contra un bloque opaco.
+        'bg-background/85 backdrop-blur-md',
         fixed && 'header-fixed peer/header fixed z-50 w-[inherit] rounded-md',
-        offset > 10 && fixed ? 'shadow-sm' : 'shadow-none',
+        offset > 10 && fixed
+          ? 'border-b border-border shadow-[0_1px_3px_oklch(0.25_0.045_266/0.06)]'
+          : 'border-b border-transparent shadow-none',
         className
       )}
       {...props}

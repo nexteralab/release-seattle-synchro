@@ -5,18 +5,7 @@ import { FreeTrySafety } from './components/FreeTrySafety'
 import { FreeTryRequirements } from './components/FreeTryRequirements'
 import { FreeTryFaq } from './components/FreeTryFaq'
 import { CtaBanner } from '#/components/CtaBanner'
-
-
-const consultDbDataFreeTry = {
-  "nameProgram": "Free try",
-  "description": "Join us for a free introduction to the world of artistic swimming.",
-  "linkTo": "https://www.seattlesynchrosst.com/page/system/classreg-shopping",
-  "linkLabel": "Register Now",
-  "linkVariant": "secondary",
-  "linkToRegister": "https://www.seattlesynchrosst.com/page/system/classreg-shopping",
-  "linkLabelRegister": "Register Now",
-  "image": "4",
-}
+import { ProgramCompare } from '#/components/ProgramCompare'
 
 interface Props {
   data: FreeTryData
@@ -25,28 +14,22 @@ interface Props {
 export function FreeTryPage({ data }: Props) {
   return (
     <div className="w-full">
-      <FreeTryHero
-        nameProgram={consultDbDataFreeTry.nameProgram}
-        description={consultDbDataFreeTry.description}
-        date={data.date}
-        time={data.time}
-        linkToRegister={consultDbDataFreeTry.linkToRegister}
-        linkLabelRegister={consultDbDataFreeTry.linkLabelRegister}
-      />
+      <FreeTryHero hero={data.hero} />
       <FreeTryOverview data={data} />
-      <FreeTrySafety />
+      <FreeTrySafety safety={data.safety} />
       <FreeTryRequirements />
-      <FreeTryFaq />
+      <ProgramCompare active="free-try" />
+      <FreeTryFaq faqs={data.faq} />
       <CtaBanner
-        heading="Ready to Dive In?"
-        description="Spots are limited! Join us for a free introduction to the world of artistic swimming."
+        heading={data.banner.heading}
+        description={data.banner.description}
         linkToContact="/contact-us"
-        linkLabelContact="Contact Us"
+        linkLabelContact={data.banner.contactLabel}
         linkVariantContact="secondary"
-        linkToRegister="https://www.seattlesynchrosst.com/page/system/classreg-shopping"
-        linkLabelRegister="Register Now"
-        image="4"
-        alt="Ready to Dive In? Free Try 2026 banner"
+        linkToRegister={data.banner.registerUrl}
+        linkLabelRegister={data.banner.registerLabel}
+        image={data.banner.image}
+        alt={data.banner.heading}
       />
     </div>
   )

@@ -4,7 +4,7 @@ import { toast } from 'sonner'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '#/components/ui/dialog'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '#/components/ui/tabs'
 import { Button } from '#/components/ui/button'
-import { supabase } from '#/utils/supabase'
+import { listMedia, type MediaFolder } from '#/lib/media'
 
 interface LibraryImage {
   name: string
@@ -16,7 +16,7 @@ interface Props {
   onClose: () => void
   onSelect: (url: string) => void
   onUpload: (file: File) => Promise<string>
-  bucket: string
+  bucket: MediaFolder
   title?: string
   defaultTab?: 'upload' | 'library'
 }
@@ -49,18 +49,7 @@ export function ImagePickerDialog({
   async function loadLibrary() {
     setLoadingLibrary(true)
     try {
-      const { data, error } = await supabase.storage.from(bucket).list('', {
-        limit: 200,
-        sortBy: { column: 'created_at', order: 'desc' },
-      })
-      if (error) throw error
-      const imgs = (data ?? [])
-        .filter(f => /\.(png|jpg|jpeg|webp|gif)$/i.test(f.name))
-        .map(f => ({
-          name: f.name,
-          url: supabase.storage.from(bucket).getPublicUrl(f.name).data.publicUrl,
-        }))
-      setImages(imgs)
+      setImages(await listMedia(bucket))
     } catch {
       toast.error('Failed to load library')
     } finally {

@@ -7,6 +7,7 @@ import { TryOutAlternatives } from './components/TryOutAlternatives'
 import { TryOutReviews } from './components/TryOutReviews'
 import { TryOutFaq } from './components/TryOutFaq'
 import { CtaBanner } from '#/components/CtaBanner'
+import { ProgramCompare } from '#/components/ProgramCompare'
 
 interface Props {
   data: TryOutData
@@ -17,6 +18,7 @@ export function TryOutPage({ data }: Props) {
     <div className="w-full">
       <TryOutHero data={data} />
       <TryOutSteps />
+      <ProgramCompare active="try-out" />
       <TryOutRequirements />
       <TryOutGear />
       <TryOutAlternatives />

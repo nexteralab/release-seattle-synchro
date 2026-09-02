@@ -16,7 +16,7 @@ export function ManagerFields() {
   return (
     <div className={cardCls}>
       <h3 className={cardTitle}>
-        <UserCheck size={13} className="text-[#0A0A67]" />
+        <UserCheck size={13} className="text-primary" />
         Camp Manager
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

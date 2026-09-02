@@ -1,47 +1,19 @@
-import { supabase } from '#/utils/supabase'
+import { setConfig } from '#/features/programs/config.service'
+import { getFreeTryData } from '#/features/programs/free-try/services/free-try.service'
 import type { FreeTryData } from '#/features/programs/free-try/types'
 
 // Re-export el tipo público como SSOT
 export type { FreeTryData, FreeTryLocation } from '#/features/programs/free-try'
 
-export const DEFAULT_CONTENT: FreeTryData = {
-  date: 'June 7th, 2026',
-  time: '11:30 am – 12:00 pm',
-  ages: '7 – 11 years old',
-  location: {
-    name: 'Newport Hills',
-    address: 'Swim and Tennis Club\nAthletic Excellence Center',
-  },
-}
-
-const TABLE = 'free_try_config'
-const ROW_ID = 1
-
-const sb = supabase as unknown as {
-  from: (t: string) => {
-    select: (cols: string) => {
-      eq: (k: string, v: unknown) => {
-        maybeSingle: () => Promise<{
-          data: { content: FreeTryData } | null
-          error: unknown
-        }>
-      }
-    }
-    upsert: (row: { id: number; content: FreeTryData }) => Promise<{ error: unknown }>
-  }
-}
+// Los defaults viven en el servicio público: una sola copia para la página y
+// para el formulario, así no pueden divergir.
+export { FREE_TRY_DEFAULTS as DEFAULT_CONTENT } from '#/features/programs/free-try/services/free-try.service'
 
 export async function getFreeTryConfig(): Promise<FreeTryData> {
-  const { data, error } = await sb
-    .from(TABLE)
-    .select('content')
-    .eq('id', ROW_ID)
-    .maybeSingle()
-  if (error) throw error
-  return data?.content ?? DEFAULT_CONTENT
+  // Reutiliza el mismo relleno de defaults que la página pública.
+  return getFreeTryData()
 }
 
 export async function saveFreeTryConfig(content: FreeTryData): Promise<void> {
-  const { error } = await sb.from(TABLE).upsert({ id: ROW_ID, content })
-  if (error) throw error
+  await setConfig('free-try', { content })
 }

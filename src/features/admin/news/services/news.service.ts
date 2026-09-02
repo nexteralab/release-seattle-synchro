@@ -1,83 +1,60 @@
-import { supabase } from '#/utils/supabase'
+import { createServerFn } from '@tanstack/react-start'
+import { desc, eq } from 'drizzle-orm'
+import { db } from '#/db'
+import { news } from '#/db/schema'
+import type { News } from '#/db/schema'
+import { adminOnly } from '#/lib/auth-guard'
+import { uploadMedia, deleteMedia } from '#/lib/media'
 
-export interface NewsItem {
-  id: string
-  title: string
-  slug: string
-  excerpt: string
-  content: string
-  cover_url: string | null
-  category: string | null
-  author: string
-  user_id: string | null
-  tags: string[]
-  meta_title: string | null
-  meta_description: string | null
-  read_time_minutes: number | null
-  published: boolean
-  published_at: string | null
-  created_at: string
-  updated_at: string
-}
-
+export type NewsItem = News
 export type NewsInsert = Omit<NewsItem, 'id' | 'created_at' | 'updated_at'>
 export type NewsUpdate = Partial<NewsInsert>
 
-const TABLE = 'news'
+const getNewsFn = createServerFn({ method: 'GET' })
+  .middleware([adminOnly])
+  .handler(() => db.select().from(news).orderBy(desc(news.created_at)).all())
 
-export async function getNews(): Promise<NewsItem[]> {
-  const { data, error } = await supabase
-    .from(TABLE)
-    .select('*')
-    .order('created_at', { ascending: false })
-  if (error) throw error
-  return data as NewsItem[]
-}
+const getNewsItemFn = createServerFn({ method: 'GET' })
+  .middleware([adminOnly])
+  .inputValidator((id: string) => id)
+  .handler(async ({ data }) => {
+    const row = await db.select().from(news).where(eq(news.id, data)).get()
+    if (!row) throw new Error('News item not found')
+    return row
+  })
 
-export async function getNewsItem(id: string): Promise<NewsItem> {
-  const { data, error } = await supabase
-    .from(TABLE)
-    .select('*')
-    .eq('id', id)
-    .single()
-  if (error) throw error
-  return data as NewsItem
-}
+const createNewsFn = createServerFn({ method: 'POST' })
+  .middleware([adminOnly])
+  .inputValidator((payload: NewsInsert) => payload)
+  .handler(({ data }) => db.insert(news).values(data).returning().get())
 
-export async function createNewsItem(payload: NewsInsert): Promise<NewsItem> {
-  const { data, error } = await supabase
-    .from(TABLE)
-    .insert(payload)
-    .select()
-    .single()
-  if (error) throw error
-  return data as NewsItem
-}
+const updateNewsFn = createServerFn({ method: 'POST' })
+  .middleware([adminOnly])
+  .inputValidator((input: { id: string; payload: NewsUpdate }) => input)
+  .handler(({ data }) =>
+    db
+      .update(news)
+      .set({ ...data.payload, updated_at: new Date().toISOString() })
+      .where(eq(news.id, data.id))
+      .returning()
+      .get(),
+  )
 
-export async function updateNewsItem(id: string, payload: NewsUpdate): Promise<NewsItem> {
-  const { data, error } = await supabase
-    .from(TABLE)
-    .update(payload)
-    .eq('id', id)
-    .select()
-    .single()
-  if (error) throw error
-  return data as NewsItem
-}
+const deleteNewsFn = createServerFn({ method: 'POST' })
+  .middleware([adminOnly])
+  .inputValidator((id: string) => id)
+  .handler(async ({ data }) => {
+    await db.delete(news).where(eq(news.id, data))
+  })
 
-export async function deleteNewsItem(id: string): Promise<void> {
-  const { error } = await supabase.from(TABLE).delete().eq('id', id)
-  if (error) throw error
-}
+export const getNews = () => getNewsFn()
+export const getNewsItem = (id: string) => getNewsItemFn({ data: id })
+export const createNewsItem = (payload: NewsInsert) => createNewsFn({ data: payload })
+export const updateNewsItem = (id: string, payload: NewsUpdate) => updateNewsFn({ data: { id, payload } })
+export const deleteNewsItem = (id: string) => deleteNewsFn({ data: id })
 
-export async function uploadNewsCoverImage(file: File): Promise<string> {
-  const ext = file.name.split('.').pop()
-  const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
-  const { error } = await supabase.storage.from('news').upload(fileName, file, { upsert: false })
-  if (error) throw error
-  const { data } = supabase.storage.from('news').getPublicUrl(fileName)
-  return data.publicUrl
-}
+export const uploadNewsCoverImage = (file: File) => uploadMedia('news', file)
+export const deleteNewsCoverImage = (url: string) => deleteMedia(url)
 
 export function calcReadTime(content: string): number {
   const words = content.trim().split(/\s+/).length

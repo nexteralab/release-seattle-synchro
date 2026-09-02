@@ -107,18 +107,18 @@ export function ProgramsPage() {
 
               <div className="relative flex flex-col flex-1 p-5 gap-4">
                 <div className="flex items-start justify-between gap-3">
-                  <div className="size-10 rounded-[8px] bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center shrink-0">
+                  <div className="size-10 rounded-[8px] bg-card/15 backdrop-blur-sm border border-white/20 flex items-center justify-center shrink-0">
                     <Icon size={18} className="text-white" />
                   </div>
                   <div className="flex items-center gap-2">
                     {p.tag === 'event' && (
-                      <span className="flex items-center gap-1 text-[10px] font-bold tracking-[1px] uppercase text-[#0A0A67] bg-white px-2 py-1 rounded-full shadow-sm">
+                      <span className="flex items-center gap-1 text-[10px] font-bold tracking-[1px] uppercase text-primary bg-card px-2 py-1 rounded-full shadow-sm">
                         <CalendarDays size={10} />
                         Event
                       </span>
                     )}
                     {!editable && (
-                      <span className="flex items-center gap-1 text-[10px] font-bold tracking-[1px] uppercase text-white/90 bg-white/10 backdrop-blur-sm border border-white/20 px-2 py-1 rounded-full">
+                      <span className="flex items-center gap-1 text-[10px] font-bold tracking-[1px] uppercase text-white/90 bg-card/10 backdrop-blur-sm border border-white/20 px-2 py-1 rounded-full">
                         <Lock size={9} />
                         Soon
                       </span>
@@ -134,7 +134,7 @@ export function ProgramsPage() {
                 {editable && (
                   <Button
                     size="sm"
-                    className="w-full bg-white text-[#0A0A67] hover:bg-white/90"
+                    className="w-full bg-card text-primary hover:bg-card/90"
                     onClick={() => navigate({ to: p.route as any })}
                   >
                     <Pencil size={13} />

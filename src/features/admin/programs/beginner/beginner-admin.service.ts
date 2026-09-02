@@ -1,7 +1,5 @@
-import { supabase } from '#/utils/supabase'
+import { getConfig, setConfig } from '#/features/programs/config.service'
 import type { BeginnerSubProgram, BeginnerSubProgramId } from '#/features/programs/beginner/types'
-
-const db = supabase as any
 
 // ── Types ────────────────────────────────────────────────────
 export type SubProgramId = BeginnerSubProgramId
@@ -48,28 +46,10 @@ export const DEFAULT_CONFIG: BeginnerConfig = {
   ],
 }
 
-const TABLE = 'beginner_config'
-
 export async function getBeginnerConfig(): Promise<BeginnerConfig> {
-  const { data } = await db
-    .from(TABLE)
-    .select('id, sub_programs, updated_at')
-    .order('updated_at', { ascending: false })
-    .limit(1)
-    .maybeSingle()
-
-  if (!data) return DEFAULT_CONFIG
-  return data as BeginnerConfig
+  return (await getConfig<BeginnerConfig>('beginner')) ?? DEFAULT_CONFIG
 }
 
 export async function saveBeginnerConfig(config: BeginnerConfig): Promise<void> {
-  const payload = { sub_programs: config.sub_programs }
-
-  if (config.id) {
-    const { error } = await db.from(TABLE).update(payload).eq('id', config.id)
-    if (error) throw error
-  } else {
-    const { error } = await db.from(TABLE).insert(payload)
-    if (error) throw error
-  }
+  await setConfig('beginner', { sub_programs: config.sub_programs })
 }

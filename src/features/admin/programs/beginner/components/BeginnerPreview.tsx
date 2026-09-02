@@ -24,7 +24,7 @@ export function BeginnerPreview({ activeTab, novice, intermediate }: Props) {
       </div>
 
       <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
-        <div style={{ zoom: '0.42' }}>
+        <div className="brand-surface" style={{ zoom: '0.42' }}>
           {activeTab === 'novice' ? (
             <BeginnerDetails program={novice} />
           ) : (

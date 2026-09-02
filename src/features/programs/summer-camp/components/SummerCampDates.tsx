@@ -1,3 +1,4 @@
+import { trackConversion } from '#/features/analytics/client'
 import { motion } from 'motion/react'
 import type { CampSession } from '../types'
 
@@ -82,6 +83,7 @@ export function SummerCampDates({ sessions, schedule, pricePerWeek }: Props) {
                 {/* Per-session CTA */}
                 <a
                   href={s.register_url}
+                  onClick={() => trackConversion('register_click')}
                   target="_blank"
                   rel="noopener"
                   className="mt-auto inline-block bg-[#63AC23] text-white rounded-full text-center px-6 py-3 font-bold text-[12px] tracking-[2.4px] uppercase hover:bg-[#4d8a18] transition-colors"

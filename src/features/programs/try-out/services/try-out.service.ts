@@ -1,9 +1,6 @@
-import { supabase } from '#/utils/supabase'
+import { getConfig } from '#/features/programs/config.service'
 import type { TryOutData } from '../types'
 import heroImage from '/images/programs/try-out/hero.webp'
-
-const TABLE = 'try_out_config'
-const ROW_ID = 1
 
 const FALLBACK: TryOutData = {
   ages: '6 – 11 years old',
@@ -15,26 +12,7 @@ const FALLBACK: TryOutData = {
   heroImage: heroImage,
 }
 
-const sb = supabase as unknown as {
-  from: (t: string) => {
-    select: (cols: string) => {
-      eq: (k: string, v: unknown) => {
-        maybeSingle: () => Promise<{
-          data: { content: TryOutData } | null
-          error: unknown
-        }>
-      }
-    }
-  }
-}
-
 export async function getTryOutData(): Promise<TryOutData> {
-  const { data, error } = await sb
-    .from(TABLE)
-    .select('content')
-    .eq('id', ROW_ID)
-    .maybeSingle()
-
-  if (error || !data?.content) return FALLBACK
-  return data.content
+  const stored = await getConfig<{ content?: TryOutData }>('try-out')
+  return stored?.content ?? FALLBACK
 }

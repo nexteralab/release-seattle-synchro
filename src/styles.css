@@ -38,6 +38,7 @@
   font-display: swap;
 }
 
+@import '@fontsource-variable/inter';
 @import 'tailwindcss';
 @import "tw-animate-css";
 @plugin '@tailwindcss/typography';
@@ -161,6 +162,146 @@
   --sidebar-accent-foreground: oklch(0.98 0 0);
   --sidebar-border: oklch(0.22 0.1 264);
   --sidebar-ring: var(--ring);
+}
+
+/* ═════════════════════════════════════════════════════════════
+   ADMIN — refresco visual, aislado del sitio público.
+
+   Se activa con `.admin-surface` en la raíz de /app, así que el
+   público conserva su diseño de marca intacto pase lo que pase aquí.
+
+   Dos decisiones de fondo:
+
+   1. TRES niveles de superficie donde antes había uno. `--background`
+      y `--card` eran ambos blanco puro (oklch(1 0 0)), y `--sidebar`
+      apuntaba a `--background`: sidebar, página y tarjetas eran el
+      mismo blanco. De ahí que el panel se viera plano y lavado.
+      Ahora: fondo hundido → tarjeta blanca elevada → rail navy.
+
+   2. Ningún neutro es gris muerto. Todos llevan algo de croma azul
+      en el tono del navy de marca — luz atravesando agua, que es el
+      mundo del cliente. Es lo que separa esto de un shadcn de fábrica.
+
+   También se corrige una deriva: `--primary` era verde (hue 131)
+   mientras la marca dice navy, y el sidebar tenía el navy hardcodeado
+   peleándose con el token. El verde pasa a ser acento, no primario.
+   ═════════════════════════════════════════════════════════════ */
+.admin-surface {
+  --background: oklch(0.966 0.006 266);
+  --foreground: oklch(0.25 0.045 266);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.25 0.045 266);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.25 0.045 266);
+
+  --primary: oklch(0.26 0.16 277);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.94 0.012 266);
+  --secondary-foreground: oklch(0.26 0.16 277);
+
+  --muted: oklch(0.935 0.01 266);
+  --muted-foreground: oklch(0.53 0.03 266);
+  --accent: oklch(0.93 0.02 266);
+  --accent-foreground: oklch(0.26 0.16 277);
+
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.9 0.012 266);
+  --input: oklch(0.88 0.014 266);
+  --ring: oklch(0.55 0.12 277);
+
+  --chart-1: oklch(0.32 0.15 277);
+  --chart-2: oklch(0.64 0.185 131);
+  --chart-3: oklch(0.55 0.12 277);
+  --chart-4: oklch(0.75 0.1 240);
+  --chart-5: oklch(0.85 0.03 266);
+
+  /* El rail navy: el ancla estructural del panel. */
+  --sidebar: oklch(0.185 0.09 277);
+  --sidebar-foreground: oklch(0.9 0.02 277);
+  --sidebar-primary: oklch(0.99 0 0);
+  --sidebar-primary-foreground: oklch(0.26 0.16 277);
+  --sidebar-accent: oklch(0.26 0.09 277);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.27 0.07 277);
+  --sidebar-ring: oklch(0.6 0.12 277);
+}
+
+.dark .admin-surface {
+  --background: oklch(0.155 0.035 270);
+  --foreground: oklch(0.95 0.012 270);
+  --card: oklch(0.198 0.042 270);
+  --card-foreground: oklch(0.95 0.012 270);
+  --popover: oklch(0.198 0.042 270);
+  --popover-foreground: oklch(0.95 0.012 270);
+
+  /* En oscuro el navy no se ve sobre navy: el primario sube a periwinkle. */
+  --primary: oklch(0.72 0.13 274);
+  --primary-foreground: oklch(0.16 0.06 274);
+  --secondary: oklch(0.26 0.045 270);
+  --secondary-foreground: oklch(0.95 0.012 270);
+
+  --muted: oklch(0.25 0.04 270);
+  --muted-foreground: oklch(0.68 0.03 270);
+  --accent: oklch(0.28 0.05 270);
+  --accent-foreground: oklch(0.97 0 0);
+
+  --destructive: oklch(0.62 0.2 25);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.29 0.04 270);
+  --input: oklch(0.31 0.04 270);
+  --ring: oklch(0.6 0.12 274);
+
+  --chart-1: oklch(0.72 0.13 274);
+  --chart-2: oklch(0.7 0.2 131);
+  --chart-3: oklch(0.6 0.11 250);
+  --chart-4: oklch(0.8 0.09 240);
+  --chart-5: oklch(0.4 0.05 270);
+
+  --sidebar: oklch(0.128 0.038 275);
+  --sidebar-foreground: oklch(0.88 0.02 275);
+  --sidebar-primary: oklch(0.72 0.13 274);
+  --sidebar-primary-foreground: oklch(0.14 0.05 274);
+  --sidebar-accent: oklch(0.23 0.05 275);
+  --sidebar-accent-foreground: oklch(0.97 0 0);
+  --sidebar-border: oklch(0.24 0.045 275);
+  --sidebar-ring: oklch(0.6 0.12 274);
+}
+
+/* ═════════════════════════════════════════════════════════════
+   PREVIEW DEL ADMIN — devuelve la paleta de marca.
+
+   Los previews del panel renderizan componentes del sitio público dentro de
+   `.admin-surface`, así que heredaban los tokens del admin: `--primary` es
+   verde en el sitio y navy en el panel, y `--secondary` al revés. Resultado:
+   titulares y distintivos con los colores cambiados, sin parecerse a la
+   página real.
+
+   Va DESPUÉS de los bloques del admin a propósito: empata en especificidad
+   con `.dark .admin-surface` y gana por orden de aparición.
+   ═════════════════════════════════════════════════════════════ */
+.brand-surface,
+.dark .brand-surface {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.16 0.16 264);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0.16 264);
+  --primary: oklch(0.637 0.185 131);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: var(--brand-navy);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.93 0 0);
+  --muted-foreground: oklch(0.55 0.04 264);
+  --accent: oklch(0.93 0.02 131);
+  --accent-foreground: oklch(0.16 0.16 264);
+  --border: oklch(0.88 0 0);
+  --input: oklch(0.88 0 0);
+  --ring: oklch(0.637 0.185 131);
+
+  /* El sitio público es Space Grotesk en todo, no Inter como el panel. */
+  font-family: var(--font-sans);
 }
 
 @theme inline {
@@ -383,5 +524,56 @@
   .cn-editor .tiptap .selectedCell::selection,
   .cn-editor .tiptap .selectedCell *::selection {
     @apply bg-accent text-foreground!;
+  }
+}
+/* ═════════════════════════════════════════════════════════════
+   ADMIN — tipografía y detalle de superficie.
+   Todo bajo .admin-surface: el sitio público no se entera.
+   ═════════════════════════════════════════════════════════════ */
+@layer components {
+
+  /* Space Grotesk es una geométrica de display: excelente en títulos,
+     cansada en texto corrido. Antes lo era TODO (--font-sans global),
+     y sin contraste tipográfico el panel se lee monótono. En el admin
+     el cuerpo pasa a Inter y Space Grotesk queda para títulos y cifras,
+     que es lo que manda la guía de marca. */
+  .admin-surface {
+    font-family: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: 'cv05' 1, 'ss01' 1;
+  }
+
+  .admin-surface h1,
+  .admin-surface h2,
+  .admin-surface h3,
+  .admin-surface h4,
+  .admin-surface .font-display {
+    font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.022em;
+  }
+
+  /* El editor escribe contenido que se publica en el sitio público, donde el
+     cuerpo es Space Grotesk. Se le devuelve la fuente del sitio para que lo
+     que escribes se parezca a lo que se publica. */
+  .admin-surface .tiptap {
+    font-family: var(--font-sans);
+  }
+
+  /* Cifras alineadas en columna: en tablas y KPIs los dígitos de ancho
+     variable bailan al actualizarse y se leen peor. */
+  .admin-surface table,
+  .admin-surface .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Las tarjetas ahora flotan sobre el fondo hundido: una sombra muy
+     corta basta para separarlas, sin el look de "caja con relieve". */
+  .admin-surface [data-slot='card'] {
+    box-shadow:
+      0 1px 2px -1px oklch(0.25 0.045 266 / 0.08),
+      0 1px 3px oklch(0.25 0.045 266 / 0.04);
+  }
+
+  .dark .admin-surface [data-slot='card'] {
+    box-shadow: 0 1px 3px oklch(0 0 0 / 0.32);
   }
 }

@@ -1,27 +1,40 @@
-import { supabase } from '#/utils/supabase'
+import { createServerFn } from '@tanstack/react-start'
+import { and, desc, eq } from 'drizzle-orm'
+import { db } from '#/db'
+import { news } from '#/db/schema'
 import type { NewsItem } from '#/features/admin/news/services/news.service'
 
-const db = supabase as any
+const listFn = createServerFn({ method: 'GET' }).handler(() =>
+  db
+    .select({
+      id: news.id,
+      title: news.title,
+      slug: news.slug,
+      excerpt: news.excerpt,
+      cover_url: news.cover_url,
+      category: news.category,
+      author: news.author,
+      tags: news.tags,
+      read_time_minutes: news.read_time_minutes,
+      published_at: news.published_at,
+      created_at: news.created_at,
+    })
+    .from(news)
+    .where(eq(news.published, true))
+    .orderBy(desc(news.published_at))
+    .all(),
+)
 
-export async function getPublishedNews(): Promise<NewsItem[]> {
-  const { data, error } = await db
-    .from('news')
-    .select('id, title, slug, excerpt, cover_url, category, author, tags, read_time_minutes, published_at, created_at')
-    .eq('published', true)
-    .order('published_at', { ascending: false })
+const bySlugFn = createServerFn({ method: 'GET' })
+  .inputValidator((slug: string) => slug)
+  .handler(async ({ data }) => {
+    const row = await db
+      .select()
+      .from(news)
+      .where(and(eq(news.slug, data), eq(news.published, true)))
+      .get()
+    return row ?? null
+  })
 
-  if (error) throw error
-  return (data ?? []) as NewsItem[]
-}
-
-export async function getNewsBySlug(slug: string): Promise<NewsItem | null> {
-  const { data, error } = await db
-    .from('news')
-    .select('*')
-    .eq('slug', slug)
-    .eq('published', true)
-    .maybeSingle()
-
-  if (error) throw error
-  return data as NewsItem | null
-}
+export const getPublishedNews = () => listFn() as Promise<NewsItem[]>
+export const getNewsBySlug = (slug: string) => bySlugFn({ data: slug })

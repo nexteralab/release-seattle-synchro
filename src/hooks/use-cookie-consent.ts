@@ -7,10 +7,17 @@ const CONSENT_KEY = 'ss_consent'
 const VISITOR_KEY = 'ss_vid'
 const EXPIRES_DAYS = 365
 
+/** Otros hooks (analytics) escuchan esto para reaccionar al aceptar/rechazar. */
+export const CONSENT_CHANGE_EVENT = 'ss-consent-change'
+
 function readConsent(): ConsentState {
   const v = Cookies.get(CONSENT_KEY)
   if (v === 'accepted' || v === 'declined') return v
   return 'pending'
+}
+
+function notifyConsentChange() {
+  window.dispatchEvent(new Event(CONSENT_CHANGE_EVENT))
 }
 
 export function getVisitorId(): string | null {
@@ -33,12 +40,14 @@ export function useCookieConsent() {
       Cookies.set(VISITOR_KEY, crypto.randomUUID(), { expires: EXPIRES_DAYS, sameSite: 'lax' })
     }
     setConsent('accepted')
+    notifyConsentChange()
   }, [])
 
   const decline = useCallback(() => {
     Cookies.set(CONSENT_KEY, 'declined', { expires: EXPIRES_DAYS, sameSite: 'lax' })
     Cookies.remove(VISITOR_KEY)
     setConsent('declined')
+    notifyConsentChange()
   }, [])
 
   return { consent, accept, decline }

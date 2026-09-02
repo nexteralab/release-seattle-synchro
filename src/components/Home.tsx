@@ -150,7 +150,7 @@ export function Home() {
                 </span>
               </div>
               <h2 className="font-bold text-secondary text-[50px] md:text-[72px] tracking-[-3.6px] uppercase leading-[1] mb-6">
-                Summer Camp<br />2026
+                Summer Camp
               </h2>
               <p className="font-regular text-[#171717] text-[20px] leading-[32px] mb-8 max-w-lg">
                 Experience the magic of artistic swimming this summer. Our intensive camp

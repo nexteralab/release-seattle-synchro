@@ -1,10 +1,8 @@
-import { supabase } from '#/utils/supabase'
+import { getConfig, setConfig } from '#/features/programs/config.service'
 import type {
   RecreationalSubProgram,
   RecreationalSubProgramId,
 } from '#/features/programs/recreational/types'
-
-const db = supabase as any
 
 // Re-exportamos los tipos públicos como SSOT
 export type SubProgramId = RecreationalSubProgramId
@@ -34,28 +32,10 @@ export const DEFAULT_CONFIG: RecreationalConfig = {
   ],
 }
 
-const TABLE = 'recreational_config'
-
 export async function getRecreationalConfig(): Promise<RecreationalConfig> {
-  const { data } = await db
-    .from(TABLE)
-    .select('id, sub_programs, updated_at')
-    .order('updated_at', { ascending: false })
-    .limit(1)
-    .maybeSingle()
-
-  if (!data) return DEFAULT_CONFIG
-  return data as RecreationalConfig
+  return (await getConfig<RecreationalConfig>('recreational')) ?? DEFAULT_CONFIG
 }
 
 export async function saveRecreationalConfig(config: RecreationalConfig): Promise<void> {
-  const payload = { sub_programs: config.sub_programs }
-
-  if (config.id) {
-    const { error } = await db.from(TABLE).update(payload).eq('id', config.id)
-    if (error) throw error
-  } else {
-    const { error } = await db.from(TABLE).insert(payload)
-    if (error) throw error
-  }
+  await setConfig('recreational', { sub_programs: config.sub_programs })
 }

@@ -1,5 +1,7 @@
-import { drizzle } from 'drizzle-orm/node-postgres'
+import { drizzle } from 'drizzle-orm/d1'
+import { env } from 'cloudflare:workers'
+import * as appSchema from './schema'
+import * as authSchema from './auth.schema'
 
-import * as schema from './schema.ts'
-
-export const db = drizzle(process.env.DATABASE_URL!, { schema })
+export const schema = { ...appSchema, ...authSchema }
+export const db = drizzle(env.DB, { schema })

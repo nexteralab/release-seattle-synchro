@@ -17,7 +17,7 @@ export function LocationFields() {
   return (
     <div className={cardCls}>
       <h3 className={cardTitle}>
-        <MapPin size={13} className="text-[#0A0A67]" />
+        <MapPin size={13} className="text-primary" />
         Location
       </h3>
       <div className="space-y-4">

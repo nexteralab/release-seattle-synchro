@@ -13,20 +13,20 @@ interface Props {
 
 export function EliteClinicHero({ data }: Props) {
   return (
-    <section
-      className="relative md:h-screen h-[90vh] flex items-center justify-center overflow-hidden"
-      aria-label="Elite Clinic hero"
-    >
-      <div className="absolute inset-0">
-        <img
-          src={img1}
-          alt="Elite Clinic 2026"
-          className="w-full h-full object-cover"
-        />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A67]/40 via-[#0A0A67]/40 to-[#0A0A67]/50" />
+    <section className="bg-white" aria-label="Elite Clinic hero">
+      <div className="p-6 pt-10 md:p-12 md:px-20 md:pt-16">
+        {/* Imagen contenida como en Summer Camp y Free Try, con el texto dentro.
+            min-h y no h: este hero lleva bastante más contenido (tarjeta de
+            fechas incluida) y con altura fija se recortaría en pantallas bajas. */}
+        <div className="relative w-full min-h-[42vh] md:min-h-[58vh] rounded-3xl overflow-hidden max-w-screen-xl mx-auto flex items-center justify-center">
+          <img
+            src={img1}
+            alt="Elite Clinic 2026"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A67]/40 via-[#0A0A67]/40 to-[#0A0A67]/50" />
 
-      <div className="relative z-10 text-center text-white px-12 md:px-48 space-y-8 max-w-5xl">
+          <div className="relative z-10 text-center text-white px-6 md:px-16 py-12 md:py-16 space-y-8 max-w-5xl">
         <motion.div
           whileInView={{ opacity: [0, 1], y: [-10, 0] }}
           viewport={vp}
@@ -51,7 +51,7 @@ export function EliteClinicHero({ data }: Props) {
             whileInView={{ opacity: [0, 1], x: [-40, 0] }}
             viewport={vp}
             transition={{ ...t, delay: 0.05 }}
-            className="text-[50px] md:text-[90px] tracking-[-1px] md:tracking-[-3px] leading-none text-[#a3e635]"
+            className="text-[46px] md:text-[80px] tracking-[-1px] md:tracking-[-3px] leading-none text-[#a3e635]"
           >
             {data.title}
           </motion.h1>
@@ -95,7 +95,9 @@ export function EliteClinicHero({ data }: Props) {
           >
             Register Now
           </a>
-        </motion.div>
+          </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   )

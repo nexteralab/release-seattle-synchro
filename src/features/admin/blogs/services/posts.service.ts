@@ -1,88 +1,60 @@
-import { supabase } from '#/utils/supabase'
+import { createServerFn } from '@tanstack/react-start'
+import { desc, eq } from 'drizzle-orm'
+import { db } from '#/db'
+import { posts } from '#/db/schema'
+import type { Post } from '#/db/schema'
+import { adminOnly } from '#/lib/auth-guard'
+import { uploadMedia, deleteMedia } from '#/lib/media'
 
-export interface Post {
-  id: string
-  title: string
-  slug: string
-  excerpt: string
-  content: string
-  cover_url: string | null
-  author: string
-  user_id: string | null
-  tags: string[]
-  meta_title: string | null
-  meta_description: string | null
-  read_time_minutes: number | null
-  published: boolean
-  published_at: string | null
-  created_at: string
-  updated_at: string
-}
-
+export type { Post }
 export type PostInsert = Omit<Post, 'id' | 'created_at' | 'updated_at'>
 export type PostUpdate = Partial<PostInsert>
 
-const TABLE = 'posts'
+const getPostsFn = createServerFn({ method: 'GET' })
+  .middleware([adminOnly])
+  .handler(() => db.select().from(posts).orderBy(desc(posts.created_at)).all())
 
-export async function getPosts(): Promise<Post[]> {
-  const { data, error } = await supabase
-    .from(TABLE)
-    .select('*')
-    .order('created_at', { ascending: false })
-  if (error) throw error
-  return data as Post[]
-}
+const getPostFn = createServerFn({ method: 'GET' })
+  .middleware([adminOnly])
+  .inputValidator((id: string) => id)
+  .handler(async ({ data }) => {
+    const row = await db.select().from(posts).where(eq(posts.id, data)).get()
+    if (!row) throw new Error('Post not found')
+    return row
+  })
 
-export async function getPost(id: string): Promise<Post> {
-  const { data, error } = await supabase
-    .from(TABLE)
-    .select('*')
-    .eq('id', id)
-    .single()
-  if (error) throw error
-  return data as Post
-}
+const createPostFn = createServerFn({ method: 'POST' })
+  .middleware([adminOnly])
+  .inputValidator((payload: PostInsert) => payload)
+  .handler(({ data }) => db.insert(posts).values(data).returning().get())
 
-export async function createPost(payload: PostInsert): Promise<Post> {
-  const { data, error } = await supabase
-    .from(TABLE)
-    .insert(payload)
-    .select()
-    .single()
-  if (error) throw error
-  return data as Post
-}
+const updatePostFn = createServerFn({ method: 'POST' })
+  .middleware([adminOnly])
+  .inputValidator((input: { id: string; payload: PostUpdate }) => input)
+  .handler(({ data }) =>
+    db
+      .update(posts)
+      .set({ ...data.payload, updated_at: new Date().toISOString() })
+      .where(eq(posts.id, data.id))
+      .returning()
+      .get(),
+  )
 
-export async function updatePost(id: string, payload: PostUpdate): Promise<Post> {
-  const { data, error } = await supabase
-    .from(TABLE)
-    .update(payload)
-    .eq('id', id)
-    .select()
-    .single()
-  if (error) throw error
-  return data as Post
-}
+const deletePostFn = createServerFn({ method: 'POST' })
+  .middleware([adminOnly])
+  .inputValidator((id: string) => id)
+  .handler(async ({ data }) => {
+    await db.delete(posts).where(eq(posts.id, data))
+  })
 
-export async function deletePost(id: string): Promise<void> {
-  const { error } = await supabase.from(TABLE).delete().eq('id', id)
-  if (error) throw error
-}
+export const getPosts = () => getPostsFn()
+export const getPost = (id: string) => getPostFn({ data: id })
+export const createPost = (payload: PostInsert) => createPostFn({ data: payload })
+export const updatePost = (id: string, payload: PostUpdate) => updatePostFn({ data: { id, payload } })
+export const deletePost = (id: string) => deletePostFn({ data: id })
 
-export async function uploadCoverImage(file: File): Promise<string> {
-  const ext = file.name.split('.').pop()
-  const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
-  const { error } = await supabase.storage.from('blog').upload(fileName, file, { upsert: false })
-  if (error) throw error
-  const { data } = supabase.storage.from('blog').getPublicUrl(fileName)
-  return data.publicUrl
-}
-
-export async function deleteCoverImage(url: string): Promise<void> {
-  const path = url.split('/blog/').pop()
-  if (!path) return
-  await supabase.storage.from('blog').remove([path])
-}
+export const uploadCoverImage = (file: File) => uploadMedia('blog', file)
+export const deleteCoverImage = (url: string) => deleteMedia(url)
 
 // Calcula minutos de lectura estimados basado en palabras
 export function calcReadTime(content: string): number {

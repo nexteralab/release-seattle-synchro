@@ -2,18 +2,37 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "release-seattle-synchro",
   "compatibility_date": "2025-09-02",
-  "observability": {
-    "enabled": true
-  },
-  "compatibility_flags": [
-    "nodejs_compat"
+  "compatibility_flags": ["nodejs_compat"],
+  // Entry propio en vez de "@tanstack/react-start/server-entry": ese archivo
+  // importa createStartHandler a través de dos `export *` que se rompen con
+  // HMR. Ver el comentario en src/server.ts.
+  "main": "./src/server.ts",
+  "observability": { "enabled": true },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "seattle-synchro-db",
+      "database_id": "436d6810-4f00-4e55-86cb-bfe9505ad020",
+      "migrations_dir": "drizzle"
+    }
   ],
-  "main": "@tanstack/react-start/server-entry",
+
+  "r2_buckets": [
+    {
+      "binding": "MEDIA",
+      "bucket_name": "seattle-synchro-media"
+    }
+  ],
+
+  // Solo configuración pública. OJO: `wrangler deploy` REEMPLAZA las vars del
+  // worker con lo que haya aquí — cualquier variable de tipo "Texto" creada a
+  // mano en el dashboard desaparece en el siguiente deploy.
+  // Los secretos NO van aquí: se ponen como "Secreto" en el dashboard o con
+  // `npx wrangler secret put`, y esos sí sobreviven a los deploys.
+  //   Secretos requeridos: BETTER_AUTH_SECRET, RESEND_API_KEY
+  //   En local, ambos salen de .dev.vars (gitignored).
   "vars": {
-    "VITE_SUPABASE_URL": "https://hfyxcakixklryajpnszd.supabase.co",
-    "VITE_SUPABASE_PUBLISHABLE_KEY": "sb_publishable_cvhspBXyNwefAaSNSon2qA_BsoxOuhi",
-    "VITE_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmeXhjYWtpeGtscnlhanBuc3pkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0MjEwNjIsImV4cCI6MjA5Mjk5NzA2Mn0.qx15jkjGBVBXQQUyZcUIwNy6peQjL3-FxtJhmh-ofwo",
-    "DATABASE_URL": "postgresql://postgres.ejryrstehkituvqvyhdi:nd3R2Ny7kqlubZWc@aws-1-us-east-2.pooler.supabase.com:6543/postgres",
-    "RESEND_API_KEY": "re_bimPEmH4_AtyNGqj89Sh7JM6MLyqrrbhg"
+    "MEDIA_URL": "https://pub-899945239f104dcb964d2cb3d4abac38.r2.dev"
   }
 }

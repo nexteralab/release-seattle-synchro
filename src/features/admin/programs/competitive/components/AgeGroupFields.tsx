@@ -26,7 +26,7 @@ export function AgeGroupFields({ index }: Props) {
       {/* Card 1: Coaches */}
       <div className={cardCls}>
         <h3 className={cardTitle}>
-          <Users size={13} className="text-[#0A0A67]" />
+          <Users size={13} className="text-primary" />
           Coaches
         </h3>
         <FormField
@@ -54,7 +54,7 @@ export function AgeGroupFields({ index }: Props) {
       {/* Card 2: Workout days */}
       <div className={cardCls}>
         <h3 className={cardTitle}>
-          <Calendar size={13} className="text-[#0A0A67]" />
+          <Calendar size={13} className="text-primary" />
           Schedule
         </h3>
         <FormField

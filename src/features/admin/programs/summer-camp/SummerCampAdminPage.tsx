@@ -229,7 +229,7 @@ export function SummerCampAdminPage() {
         </div>
 
         {/* ── Preview ── */}
-        <div className="max-w-xl w-full shrink-0 border-l border-border bg-white overflow-y-auto">
+        <div className="max-w-xl w-full shrink-0 border-l border-border bg-card overflow-y-auto">
           <div className="px-4 pt-5 pb-2 border-b border-border">
             <p className="text-[10px] font-bold tracking-[1.4px] uppercase text-muted-foreground">Preview</p>
           </div>

@@ -1,24 +1,13 @@
-import { useEffect, useState } from 'react'
-import type { Session } from '@supabase/supabase-js'
-import { supabase } from '#/utils/supabase'
+import { authClient } from '#/lib/auth-client'
 import { adminLogout } from './auth-store'
 
 export function useAdminAuth() {
-  const [session, setSession] = useState<Session | null>(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-      setLoading(false)
-    })
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-
-    return () => subscription.unsubscribe()
-  }, [])
-
-  return { session, isAuthenticated: !!session, loading, adminLogout }
+  const { data, isPending } = authClient.useSession()
+  return {
+    session: data ?? null,
+    user: data?.user ?? null,
+    isAuthenticated: !!data,
+    loading: isPending,
+    adminLogout,
+  }
 }

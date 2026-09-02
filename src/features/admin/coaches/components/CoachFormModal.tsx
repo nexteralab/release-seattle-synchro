@@ -27,8 +27,8 @@ interface Props {
   coach?: Coach | null
 }
 
-const inputCls = 'w-full border border-black/[0.12] rounded-[6px] px-3 py-2 text-[14px] text-[#171717] placeholder:text-[#a1a1a1] focus:outline-none focus:border-[#0A0A67] focus:ring-1 focus:ring-[#0A0A67]/20 transition-all'
-const labelCls = 'block font-bold text-[#171717] text-[11px] tracking-[1.1px] uppercase mb-1.5'
+const inputCls = 'w-full border border-input rounded-[6px] px-3 py-2 text-[14px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all'
+const labelCls = 'block font-bold text-foreground text-[11px] tracking-[1.1px] uppercase mb-1.5'
 const errorCls = 'text-red-500 text-[12px] mt-1'
 
 export function CoachFormModal({ open, onClose, coach }: Props) {
@@ -95,7 +95,7 @@ export function CoachFormModal({ open, onClose, coach }: Props) {
 
           {/* Formulario */}
           <div className="flex-1 flex flex-col min-w-0">
-            <DialogHeader className="px-6 pt-6 pb-4 border-b border-black/[0.06]">
+            <DialogHeader className="px-6 pt-6 pb-4 border-b border-border">
               <DialogTitle>{isEdit ? 'Edit Coach' : 'Add Coach'}</DialogTitle>
             </DialogHeader>
 
@@ -145,13 +145,13 @@ export function CoachFormModal({ open, onClose, coach }: Props) {
                 />
               </div>
 
-              <div className="flex justify-end gap-3 px-6 py-4 border-t border-black/[0.06]">
+              <div className="flex justify-end gap-3 px-6 py-4 border-t border-border">
                 <button type="button" onClick={onClose}
-                  className="px-4 py-2 text-[13px] font-bold text-[#737373] hover:text-[#171717] transition-colors">
+                  className="px-4 py-2 text-[13px] font-bold text-muted-foreground hover:text-foreground transition-colors">
                   Cancel
                 </button>
                 <button type="submit" disabled={isSubmitting}
-                  className="flex items-center gap-2 bg-[#0A0A67] text-white px-5 py-2 rounded-[6px] text-[13px] font-bold tracking-[0.6px] uppercase hover:bg-[#0A0A67]/90 transition-colors disabled:opacity-50">
+                  className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2 rounded-[6px] text-[13px] font-bold tracking-[0.6px] uppercase hover:bg-primary/90 transition-colors disabled:opacity-50">
                   {isSubmitting ? 'Saving...' : isEdit ? 'Save Changes' : 'Add Coach'}
                 </button>
               </div>
@@ -159,15 +159,15 @@ export function CoachFormModal({ open, onClose, coach }: Props) {
           </div>
 
           {/* Preview */}
-          <div className="w-72 shrink-0 border-l border-black/[0.06] bg-[#f5f5f5] flex flex-col overflow-hidden">
-            <div className="px-4 pt-6 pb-3 border-b border-black/[0.06]">
-              <p className="text-[10px] font-bold tracking-[1.4px] uppercase text-[#a1a1a1]">Preview</p>
+          <div className="w-72 shrink-0 border-l border-border bg-muted flex flex-col overflow-hidden">
+            <div className="px-4 pt-6 pb-3 border-b border-border">
+              <p className="text-[10px] font-bold tracking-[1.4px] uppercase text-muted-foreground/70">Preview</p>
             </div>
 
             <div className="flex-1 overflow-y-auto p-4">
-              <div className="bg-white shadow-sm overflow-hidden">
+              <div className="bg-card shadow-sm overflow-hidden">
                 {/* Foto */}
-                <div className="w-full aspect-[3/4] bg-[#ececf0] flex items-center justify-center overflow-hidden">
+                <div className="w-full aspect-[3/4] bg-muted flex items-center justify-center overflow-hidden">
                   {imageUrl
                     ? <img src={imageUrl} alt="preview" className="w-full h-full object-cover" />
                     : <UserCircle2 className="size-16 text-[#d4d4d4]" />
@@ -177,29 +177,29 @@ export function CoachFormModal({ open, onClose, coach }: Props) {
                 {/* Info */}
                 <div className="p-4 space-y-3">
                   <div>
-                    <h3 className="font-bold text-[#0A0A67] text-[15px] tracking-[-0.5px] uppercase leading-tight">
+                    <h3 className="font-bold text-primary text-[15px] tracking-[-0.5px] uppercase leading-tight">
                       {watched.name || <span className="text-[#d4d4d4]">Coach Name</span>}
                     </h3>
-                    <p className="text-[#737373] text-[12px] mt-0.5">
+                    <p className="text-muted-foreground text-[12px] mt-0.5">
                       {watched.title || <span className="text-[#d4d4d4]">Title</span>}
                     </p>
                     {watched.email && (
-                      <p className="text-[#0A0A67] text-[11px] mt-0.5 truncate">{watched.email}</p>
+                      <p className="text-primary text-[11px] mt-0.5 truncate">{watched.email}</p>
                     )}
                   </div>
 
                   {watched.bio && (
-                    <p className="text-[#171717] text-[11px] leading-[17px] line-clamp-4">
+                    <p className="text-foreground text-[11px] leading-[17px] line-clamp-4">
                       {watched.bio}
                     </p>
                   )}
 
                   {specialties.length > 0 && (
                     <div>
-                      <p className="text-[9px] font-bold tracking-[1.2px] uppercase text-[#171717] mb-1.5">Specialties</p>
+                      <p className="text-[9px] font-bold tracking-[1.2px] uppercase text-foreground mb-1.5">Specialties</p>
                       <div className="flex flex-wrap gap-1">
                         {specialties.map((s, i) => (
-                          <span key={i} className="bg-[#f5f5f5] px-2 py-0.5 text-[10px] font-medium text-[#171717]">{s}</span>
+                          <span key={i} className="bg-muted px-2 py-0.5 text-[10px] font-medium text-foreground">{s}</span>
                         ))}
                       </div>
                     </div>
@@ -207,11 +207,11 @@ export function CoachFormModal({ open, onClose, coach }: Props) {
 
                   {certifications.length > 0 && (
                     <div>
-                      <p className="text-[9px] font-bold tracking-[1.2px] uppercase text-[#171717] mb-1.5">Certifications</p>
+                      <p className="text-[9px] font-bold tracking-[1.2px] uppercase text-foreground mb-1.5">Certifications</p>
                       <ul className="space-y-1">
                         {certifications.map((c, i) => (
-                          <li key={i} className="text-[#737373] text-[10px] leading-[15px] flex items-start gap-1">
-                            <span className="text-[#171717] shrink-0">•</span>{c}
+                          <li key={i} className="text-muted-foreground text-[10px] leading-[15px] flex items-start gap-1">
+                            <span className="text-foreground shrink-0">•</span>{c}
                           </li>
                         ))}
                       </ul>

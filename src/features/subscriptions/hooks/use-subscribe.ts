@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { trackConversion } from '#/features/analytics/client'
 import { subscribe, AlreadySubscribedError, type SubscriptionSource } from '../services/subscriptions.service'
 
 type Status = 'idle' | 'loading' | 'success' | 'error' | 'duplicate'
@@ -10,6 +11,7 @@ export function useSubscribe(source: SubscriptionSource) {
     setStatus('loading')
     try {
       await subscribe(email, source)
+      trackConversion('subscribe')
       setStatus('success')
     } catch (err) {
       if (err instanceof AlreadySubscribedError) {

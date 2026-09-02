@@ -11,7 +11,7 @@ export const MainLayout = ({ fixed, className, ...props }: MainProps) => {
     <main
       className={cn(
         'peer-[.header-fixed]/header:mt-12',
-        'px-4 py-6',
+        'px-4 py-6 md:px-8 md:py-8',
         fixed && 'fixed-main flex grow flex-col overflow-hidden',
         className
       )}

@@ -6,7 +6,7 @@
     "#/*": "./src/*"
   },
   "scripts": {
-    "dev": "vite dev --port 3000",
+    "dev": "vite dev --port 4000",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
@@ -37,9 +37,11 @@
     "@tanstack/react-router-devtools": "latest",
     "@tanstack/react-router-ssr-query": "latest",
     "@tanstack/react-start": "latest",
+    "@tanstack/react-start-server": "1.166.45",
     "@tanstack/react-store": "latest",
     "@tanstack/react-table": "^8.21.3",
     "@tanstack/router-plugin": "^1.132.0",
+    "@tanstack/start-server-core": "1.167.23",
     "@tanstack/store": "latest",
     "@tiptap/core": "^3.22.5",
     "@tiptap/extension-image": "^3.22.5",
@@ -55,6 +57,7 @@
     "@tiptap/react": "^3.22.5",
     "@tiptap/starter-kit": "^3.22.5",
     "@tiptap/suggestion": "^3.22.5",
+    "better-auth": "^1.7.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "drizzle-kit": "^0.31.9",

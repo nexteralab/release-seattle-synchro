@@ -105,7 +105,7 @@ export function HallOfFamePage() {
               {/* Photo */}
               <motion.img
                 variants={fadeUp}
-                src="https://hfyxcakixklryajpnszd.supabase.co/storage/v1/object/public/coaches/1778644513067-x3fanh9c4b.webp"
+                src="https://pub-899945239f104dcb964d2cb3d4abac38.r2.dev/coaches/1778644513067-x3fanh9c4b.webp"
                 alt="Coach Yuki Maekawa"
                 className="w-full aspect-[4/5] object-cover"
               />

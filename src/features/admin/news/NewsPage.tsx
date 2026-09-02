@@ -51,7 +51,7 @@ export function NewsPage() {
         </TabsList>
 
         <TabsContent value="posts">
-          <div className="bg-white rounded-[10px] border border-black/[0.06] overflow-hidden">
+          <div className="bg-card rounded-[10px] border border-border overflow-hidden">
             {isLoading ? (
               <NewsListSkeleton />
             ) : isError ? (

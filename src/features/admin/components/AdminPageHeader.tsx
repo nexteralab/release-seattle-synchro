@@ -6,16 +6,14 @@ interface AdminPageHeaderProps {
 
 export function AdminPageHeader({ title, description, action }: AdminPageHeaderProps) {
   return (
-    <div className="flex items-center justify-between">
-      <div>
-        <h1 className="font-bold text-foreground text-[22px] tracking-[-0.6px]">
-          {title}
-        </h1>
+    <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-5">
+      <div className="min-w-0">
+        <h1 className="text-[26px] font-bold leading-none text-foreground">{title}</h1>
         {description && (
-          <p className="text-[#737373] text-[13px] mt-0.5">{description}</p>
+          <p className="mt-2 text-[13px] leading-snug text-muted-foreground">{description}</p>
         )}
       </div>
-      {action && <div>{action}</div>}
+      {action && <div className="shrink-0">{action}</div>}
     </div>
   )
 }

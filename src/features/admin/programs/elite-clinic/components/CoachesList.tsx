@@ -38,7 +38,7 @@ export function CoachesList() {
     <div className={cardCls}>
       <div className="flex items-center justify-between mb-4">
         <h3 className={cardTitle.replace('mb-4', '')}>
-          <Users size={13} className="text-[#0A0A67]" />
+          <Users size={13} className="text-primary" />
           Coaches
         </h3>
         <Button

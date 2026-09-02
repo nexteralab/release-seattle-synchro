@@ -29,7 +29,7 @@ export function ProgramFields({ path, showFirstPractice }: Props) {
       {/* Card 1: Team & ages */}
       <div className={cardCls}>
         <h3 className={cardTitle}>
-          <Users size={13} className="text-[#0A0A67]" />
+          <Users size={13} className="text-primary" />
           Team
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-4">
@@ -49,7 +49,7 @@ export function ProgramFields({ path, showFirstPractice }: Props) {
       {/* Card 2: Schedule & location */}
       <div className={cardCls}>
         <h3 className={cardTitle}>
-          <MapPin size={13} className="text-[#0A0A67]" />
+          <MapPin size={13} className="text-primary" />
           Schedule & Location
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -73,7 +73,7 @@ export function ProgramFields({ path, showFirstPractice }: Props) {
       {/* Card 3: Session info */}
       <div className={cardCls}>
         <h3 className={cardTitle}>
-          <Calendar size={13} className="text-[#0A0A67]" />
+          <Calendar size={13} className="text-primary" />
           Session Information
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -98,7 +98,7 @@ export function ProgramFields({ path, showFirstPractice }: Props) {
       {/* Card 4: Cost */}
       <div className={cardCls}>
         <h3 className={cardTitle}>
-          <DollarSign size={13} className="text-[#0A0A67]" />
+          <DollarSign size={13} className="text-primary" />
           Cost
         </h3>
         <TextAreaField
@@ -115,7 +115,7 @@ export function ProgramFields({ path, showFirstPractice }: Props) {
       {showFirstPractice && (
         <div className={cardCls}>
           <h3 className={cardTitle}>
-            <Sparkles size={13} className="text-[#0A0A67]" />
+            <Sparkles size={13} className="text-primary" />
             First Practice
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

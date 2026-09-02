@@ -43,7 +43,7 @@ export function EliteClinicPreview({ activeTab, values }: Props) {
       </div>
 
       <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
-        <div style={{ zoom: '0.42' }}>
+        <div className="brand-surface" style={{ zoom: '0.42' }}>
           {activeTab === 'hero' && <EliteClinicHero data={data} />}
           {activeTab === 'overview' && <EliteClinicOverview data={data} />}
           {activeTab === 'details' && <EliteClinicDetails data={data} />}
