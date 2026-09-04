@@ -4,9 +4,9 @@ import { TryOutSteps } from './components/TryOutSteps'
 import { TryOutRequirements } from './components/TryOutRequirements'
 import { TryOutGear } from './components/TryOutGear'
 import { TryOutAlternatives } from './components/TryOutAlternatives'
-import { TryOutReviews } from './components/TryOutReviews'
 import { TryOutFaq } from './components/TryOutFaq'
 import { CtaBanner } from '#/components/CtaBanner'
+import { Reviews } from '#/components/Reviews'
 import { ProgramCompare } from '#/components/ProgramCompare'
 
 interface Props {
@@ -22,7 +22,7 @@ export function TryOutPage({ data }: Props) {
       <TryOutRequirements />
       <TryOutGear />
       <TryOutAlternatives />
-      <TryOutReviews />
+      <Reviews />
       <TryOutFaq />
       <CtaBanner
         heading="Ready to Try Out?"

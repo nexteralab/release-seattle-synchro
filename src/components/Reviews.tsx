@@ -73,7 +73,12 @@ function initialsOf(name: string) {
     .toUpperCase()
 }
 
-export function TryOutReviews() {
+interface ReviewsProps {
+  /** Fondo de la sección — alterna con la sección anterior de cada página */
+  bg?: 'light' | 'white'
+}
+
+export function Reviews({ bg = 'light' }: ReviewsProps) {
   const [index, setIndex] = useState(0)
   const review = REVIEWS[index]
 
@@ -82,13 +87,17 @@ export function TryOutReviews() {
   }
 
   return (
-    <section id="reviews" className="p-6 md:p-12 md:px-20 md:py-24 bg-[#f5f5f5]" aria-labelledby="tryout-reviews-heading">
+    <section
+      id="reviews"
+      className={`p-6 md:p-12 md:px-20 md:py-24 ${bg === 'white' ? 'bg-white' : 'bg-[#f5f5f5]'}`}
+      aria-labelledby="reviews-heading"
+    >
       <div className="max-w-screen-lg mx-auto">
         <div className="flex items-end justify-between gap-8 flex-wrap">
           <div>
             <p className="font-bold text-[13px] tracking-[2.2px] uppercase text-primary/60">Reviews</p>
             <motion.h2
-              id="tryout-reviews-heading"
+              id="reviews-heading"
               whileInView={{ opacity: [0, 1], x: [-40, 0] }}
               viewport={vp}
               transition={{ duration: 0.35, ease: [0.35, 0.85, 0.25, 1] }}
@@ -117,7 +126,7 @@ export function TryOutReviews() {
           </div>
         </div>
 
-        <div className="mt-10 bg-white rounded-3xl shadow-sm p-6 md:p-12">
+        <div className={`mt-10 rounded-3xl shadow-sm p-6 md:p-12 ${bg === 'white' ? 'bg-[#f5f5f5]' : 'bg-white'}`}>
           <AnimatePresence mode="wait">
             <motion.div
               key={index}

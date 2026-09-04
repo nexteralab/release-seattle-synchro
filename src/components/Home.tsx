@@ -25,6 +25,7 @@ import sponsorThrive from "/images/sponsor_6.png";
 
 import imageSummerCamp from "/images/image_summer_camp.jpg";
 import { CoachesSpotlight } from "./CoachesSpotlight";
+import { Reviews } from "./Reviews";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
@@ -314,6 +315,9 @@ export function Home() {
 
       {/* Blog */}
       <LatestBlogSection />
+
+      {/* Reviews */}
+      <Reviews bg="white" />
     </main>
   );
 }

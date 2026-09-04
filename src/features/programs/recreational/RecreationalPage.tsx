@@ -8,6 +8,7 @@ import { RecreationalComparisonTable } from './components/RecreationalComparison
 import { RecreationalSummerCampFit } from './components/RecreationalSummerCampFit'
 import { RecreationalFaq } from './components/RecreationalFaq'
 import { CtaBanner } from '#/components/CtaBanner'
+import { Reviews } from '#/components/Reviews'
 import type { RecreationalConfig } from './services/recreational.service'
 import type { RecreationalSubProgram, RecreationalSubProgramId } from './types'
 
@@ -46,6 +47,7 @@ export function RecreationalPage({ config }: Props) {
       <RecreationalComparisonTable />
       <RecreationalSummerCampFit />
       <RecreationalFaq />
+      <Reviews bg="white" />
       <CtaBanner
         heading="Ready to Join?"
         description="Sign up for one of our recreational programs and discover the joy of artistic swimming."
