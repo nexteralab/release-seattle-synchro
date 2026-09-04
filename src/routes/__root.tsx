@@ -74,7 +74,12 @@ function RootDocument() {
               `,
             }}
           />
-    
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.traks=window.traks||function(){(window.traks.q=window.traks.q||[]).push(arguments)}`,
+            }}
+          />
+          <script defer data-site="pb_live_aizr3txpzmgjs48vqiyc8d8x" src="https://traks-collect.nexteralab.workers.dev/t.js"></script>
         </head>
         <body className="antialiased [overflow-wrap:anywhere]" suppressContentEditableWarning>
           {/* nuqs guarda el estado de los filtros en la URL: sobrevive al
