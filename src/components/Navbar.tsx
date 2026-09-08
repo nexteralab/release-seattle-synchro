@@ -40,7 +40,7 @@ const menuItems = {
     ],
   },
   resources: {
-    label: "Athlete Resources",
+    label: "Athlete",
     items: [
       { label: "Safety", path: "/athletes/safety", description: "Policies for a safe training environment." },
       { label: "Health", path: "/athletes/health", description: "Nutrition, recovery and wellbeing." },

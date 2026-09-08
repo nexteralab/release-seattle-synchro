@@ -1,6 +1,5 @@
 import type { TryOutData } from './types'
 import { TryOutHero } from './components/TryOutHero'
-import { TryOutSteps } from './components/TryOutSteps'
 import { TryOutRequirements } from './components/TryOutRequirements'
 import { TryOutGear } from './components/TryOutGear'
 import { TryOutAlternatives } from './components/TryOutAlternatives'
@@ -17,7 +16,6 @@ export function TryOutPage({ data }: Props) {
   return (
     <div className="w-full">
       <TryOutHero data={data} />
-      <TryOutSteps />
       <ProgramCompare active="try-out" />
       <TryOutRequirements />
       <TryOutGear />

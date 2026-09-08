@@ -110,8 +110,11 @@ export function StoreFooter() {
                                     <path d="M2 6.66667H14" stroke="#021521" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.33333" />
                                 </svg>
                                 <span className="font-medium text-[#737373] text-[14px] leading-[20px]">
-                                    Mon - Fri: 8:00 AM - 4:00 PM<br />
-                                    Sat - Sun: Closed
+                                    Monday: 7:00 AM - 12:00 PM<br />
+                                    Tue - Thu: 5:00 PM - 9:00 PM<br />
+                                    Friday: 5:00 PM - 9:00 PM<br />
+                                    Saturday: 7:00 AM - 3:00 PM<br />
+                                    Sunday: Closed
                                 </span>
                             </li>
 
