@@ -38,10 +38,12 @@ export function TryOutHero({ data }: Props) {
                 id="tryout-hero-heading"
                 className="font-bold text-secondary text-[30px] md:text-[44px] tracking-[-2.4px] uppercase mb-3"
               >
-                How to join the team!
+                Tryouts
+                <span className="block normal-case">How to join the team!</span>
               </h1>
-              <p className="font-bold text-secondary text-[12px] md:text-[14px] tracking-[1.4px] uppercase mb-8">
-                Designed for Future Champions
+              <p className="text-[#737373] text-[15px] md:text-[16px] leading-[26px] mb-8">
+                Attending a tryout is how your athlete joins the team. It is a short evaluation
+                session where our coaches determine her/his level.
               </p>
 
               <div className="space-y-6 mb-10">

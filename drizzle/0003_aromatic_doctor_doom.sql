@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX `subscriptions_email_source_idx` ON `subscriptions` (`email`,`source`);

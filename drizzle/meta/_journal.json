@@ -1,0 +1,62 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1788293967839,
+      "tag": "0000_bent_slipstream",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1788294173252,
+      "tag": "0001_noisy_arclight",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1788294479730,
+      "tag": "0002_regular_layla_miller",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1788295527532,
+      "tag": "0003_aromatic_doctor_doom",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1788297923489,
+      "tag": "0004_complete_bloodscream",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1788300034664,
+      "tag": "0005_drop_post_analytics",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1788300046764,
+      "tag": "0006_analytics_events",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1788302414153,
+      "tag": "0007_user_last_login",
+      "breakpoints": true
+    }
+  ]
+}
