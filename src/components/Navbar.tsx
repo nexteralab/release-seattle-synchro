@@ -1,7 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import logo from "/images/logo.png";
 
 // El panel del menú muestra título + descripción por ítem.
@@ -10,42 +9,46 @@ import logo from "/images/logo.png";
 const menuItems = {
   programs: {
     label: "Programs",
+    blurb: "From first strokes to competitive routines — a track for every swimmer.",
     items: [
-      { label: "Beginner", path: "/programs/beginner", description: "First strokes and basic figures." },
-      { label: "Recreational", path: "/programs/recreational", description: "Weekly practice for swimmers new to the sport." },
-      { label: "Competitive", path: "/programs/competitive", description: "Team training and competition by age group." },
-      { label: "Elite Clinic", path: "/programs/elite-clinic", description: "Intensive training with visiting head coaches." },
-      { label: "Private Lessons", path: "/programs/private-lessons", description: "One-on-one coaching on the skills you pick." },
-      { label: "Free Trial Class", path: "/programs/free-try", description: "A fun, no-pressure introduction." },
-      { label: "Summer Camp", path: "/programs/summer-camp", description: "Summer sessions at our Bellevue pools." },
-      { label: "Performance", path: "/programs/shows", description: "Season performances and how to attend." },
-      { label: "Try Out", path: "/programs/try-out", description: "Evaluate swim readiness and find team placement." },
+      { label: "Recreational", path: "/programs/recreational", description: "Weekly practice for swimmers new to the sport.", image: "/images/nav/recreational_hero.jpg" },
+      { label: "Beginner", path: "/programs/beginner", description: "First strokes and basic figures.", image: "/images/nav/beginner_hero.jpg" },
+      { label: "Competitive", path: "/programs/competitive", description: "Team training and competition by age group.", image: "/images/nav/competitive_hero.jpg" },
+      { label: "Elite Clinic", path: "/programs/elite-clinic", description: "Intensive training with visiting head coaches.", image: "/images/nav/elite-clinc.jpg" },
+      { label: "Private Lessons", path: "/programs/private-lessons", description: "One-on-one coaching on the skills you pick.", image: "/images/nav/piscina.jpg" },
+      { label: "Free Trial Class", path: "/programs/free-try", description: "A fun, no-pressure introduction.", image: "/images/nav/image_free_try.jpg" },
+      { label: "Summer Camp", path: "/programs/summer-camp", description: "Summer sessions at our Bellevue pools.", image: "/images/nav/hero_summer.jpg" },
+      { label: "Performance", path: "/programs/shows", description: "Season performances and how to attend.", image: "/images/nav/shows_hero.jpg" },
+      { label: "Try Out", path: "/programs/try-out", description: "Evaluate swim readiness and find team placement.", image: "/images/nav/tryout.jpg" },
     ],
   },
   about: {
     label: "About Us",
+    blurb: "The club, the staff and everything happening this season.",
     items: [
-      { label: "About Us", path: "/team/about-us", description: "Who we are and how the club started." },
-      { label: "Coaches", path: "/team/coaches", description: "Meet the staff and their credentials." },
-      { label: "Hall of Fame", path: "/athletes/hall-of-fame", description: "Athletes who marked the club's history." },
-      { label: "News", path: "/team/news", description: "Results, announcements and events." },
-      { label: "Blog", path: "/team/blog", description: "Training tips and stories from the team." },
+      { label: "About Us", path: "/team/about-us", description: "Who we are and how the club started.", image: "/images/nav/about_us_hero.jpg" },
+      { label: "Coaches", path: "/team/coaches", description: "Meet the staff and their credentials.", image: "/images/nav/hero.jpg" },
+      { label: "Hall of Fame", path: "/athletes/hall-of-fame", description: "Athletes who marked the club's history.", image: "/images/nav/hall_of_fame.jpg" },
+      { label: "News", path: "/team/news", description: "Results, announcements and events.", image: "/images/nav/content.jpg" },
+      { label: "Blog", path: "/team/blog", description: "Training tips and stories from the team.", image: "/images/nav/program_3.jpg" },
     ],
   },
   support: {
     label: "Support Us",
+    blurb: "Every season runs on the families and friends behind the team.",
     items: [
-      { label: "Donate", path: "/booster/donate", description: "Support the club with a donation." },
-      { label: "Fundraising Opportunities", path: "/booster/fundraising", description: "Ways families can raise funds for the season." },
+      { label: "Donate", path: "/booster/donate", description: "Support the club with a donation.", image: "/images/nav/hero_donate.jpg" },
+      { label: "Fundraising Opportunities", path: "/booster/fundraising", description: "Ways families can raise funds for the season.", image: "/images/nav/program_1.jpg" },
     ],
   },
   resources: {
     label: "Athlete",
+    blurb: "Practical guides for training, health and competition days.",
     items: [
-      { label: "Safety", path: "/athletes/safety", description: "Policies for a safe training environment." },
-      { label: "Health", path: "/athletes/health", description: "Nutrition, recovery and wellbeing." },
-      { label: "Hair & Knoxing Guide", path: "/athletes/knoxing", description: "Hair preparation for artistic swimmers." },
-      { label: "Sport Psychology", path: "/athletes/sport-psychology", description: "Mental preparation for training and competition." },
+      { label: "Safety", path: "/athletes/safety", description: "Policies for a safe training environment.", image: "/images/nav/team.jpg" },
+      { label: "Health", path: "/athletes/health", description: "Nutrition, recovery and wellbeing.", image: "/images/nav/health_1.jpg" },
+      { label: "Hair & Knoxing Guide", path: "/athletes/knoxing", description: "Hair preparation for artistic swimmers.", image: "/images/nav/health_2.jpg" },
+      { label: "Sport Psychology", path: "/athletes/sport-psychology", description: "Mental preparation for training and competition.", image: "/images/nav/program_2.jpg" },
     ],
   }
 };
@@ -53,6 +56,7 @@ const menuItems = {
 export function NavbarHomePage() {
   const location = useLocation();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [hoveredPath, setHoveredPath] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -132,8 +136,8 @@ export function NavbarHomePage() {
                   return (
                     <button
                       key={key}
-                      onMouseEnter={() => setActiveDropdown(key)}
-                      onFocus={() => setActiveDropdown(key)}
+                      onMouseEnter={() => { setActiveDropdown(key); setHoveredPath(null); }}
+                      onFocus={() => { setActiveDropdown(key); setHoveredPath(null); }}
                       aria-expanded={open}
                       className={`inline-flex shrink-0 whitespace-nowrap items-center gap-1.5 rounded-full px-4 py-2 font-bold text-[12px] tracking-[1.6px] uppercase transition-colors duration-200 ${open || active
                         ? "bg-black/[0.05] text-[#0A0A67]"
@@ -151,45 +155,89 @@ export function NavbarHomePage() {
                 })}
               </div>
 
-              <AnimatePresence>
-                {activeDropdown && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -6, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -6, scale: 0.98 }}
-                    transition={{ duration: 0.18, ease: [0.25, 0.1, 0.25, 1] }}
-                    // pt-3 y no mt-3: el hueco entre la navegación y el panel
-                    // queda dentro del área hoverable, si no se cierra al cruzarlo.
-                    className="absolute top-full left-1/2 z-10 w-[min(720px,88vw)] -translate-x-1/2 pt-3"
-                  >
-                    <div className="rounded-2xl border border-black/[0.06] bg-white/95 p-6 shadow-[0_16px_48px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] backdrop-blur-sm">
-                      <div className="grid grid-cols-2 gap-x-8 gap-y-1">
-                        {menuItems[activeDropdown as keyof typeof menuItems].items.map((item) => (
+              {activeDropdown && (() => {
+                const menu = menuItems[activeDropdown as keyof typeof menuItems];
+                // El preview cae al primer ítem mientras no haya hover:
+                // el panel nunca aparece con la columna derecha vacía.
+                const preview =
+                  menu.items.find((i) => i.path === hoveredPath) ?? menu.items[0];
+                return (
+                  // pt-3 y no mt-3: el hueco entre la navegación y el panel
+                  // queda dentro del área hoverable, si no se cierra al cruzarlo.
+                  <div className="absolute top-full left-1/2 z-10 w-[min(880px,92vw)] -translate-x-1/2 pt-3">
+                    <div className="grid grid-cols-[200px_1fr_260px] overflow-hidden rounded-2xl border border-black/[0.06] bg-white shadow-[0_16px_48px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)]">
+
+                      {/* Intro de la sección */}
+                      <div className="bg-[#0A0A67]/[0.04] p-6">
+                        <p className="font-bold text-[#0A0A67] text-[20px] tracking-[-0.6px]">
+                          {menu.label}
+                        </p>
+                        <p className="mt-2 text-[13px] leading-[20px] text-[#737373]">
+                          {menu.blurb}
+                        </p>
+                      </div>
+
+                      {/* Lista de ítems */}
+                      <div className="p-3">
+                        {menu.items.map((item) => (
                           <Link
                             key={item.path}
                             to={item.path}
+                            onMouseEnter={() => setHoveredPath(item.path)}
+                            onFocus={() => setHoveredPath(item.path)}
                             onClick={() => setActiveDropdown(null)}
-                            className={`group/item rounded-lg px-3 py-2.5 transition-colors duration-150 ${isActive(item.path) ? "bg-[#0A0A67]/[0.06]" : "hover:bg-black/[0.03]"
+                            className={`flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-[14px] font-semibold leading-snug ${preview.path === item.path
+                                ? "bg-[#0A0A67]/[0.06] text-[#0A0A67]"
+                                : "text-[#171717]"
                               }`}
                           >
-                            <span
-                              className={`block text-[14px] font-semibold leading-snug ${isActive(item.path) ? "text-[#0A0A67]" : "text-[#171717]"
-                                }`}
-                            >
-                              {item.label}
-                            </span>
-                            {item.description && (
-                              <span className="mt-0.5 block text-[13px] leading-snug text-[#737373]">
-                                {item.description}
-                              </span>
-                            )}
+                            {item.label}
+                            <ArrowRight
+                              size={14}
+                              className={preview.path === item.path ? "shrink-0" : "hidden"}
+                            />
                           </Link>
                         ))}
                       </div>
+
+                      {/* Preview del ítem apuntado.
+                          Se pintan todas las imágenes de la sección y solo se
+                          alterna cuál es visible: si se montara una sola, cada
+                          hover dispararía una descarga y el panel parpadearía. */}
+                      <div className="p-3">
+                        <Link
+                          to={preview.path}
+                          onClick={() => setActiveDropdown(null)}
+                          className="block overflow-hidden rounded-xl bg-[#f5f5f5]"
+                        >
+                          <div className="relative h-[150px] w-full">
+                            {menu.items.map((item) => (
+                              <img
+                                key={item.path}
+                                src={item.image}
+                                alt={item.label}
+                                width={420}
+                                height={280}
+                                className={`absolute inset-0 h-full w-full object-cover ${preview.path === item.path ? "" : "invisible"
+                                  }`}
+                              />
+                            ))}
+                          </div>
+                          <div className="p-3">
+                            <p className="text-[13px] font-semibold text-[#0A0A67]">
+                              {preview.label}
+                            </p>
+                            <p className="mt-1 text-[12px] leading-[18px] text-[#737373]">
+                              {preview.description}
+                            </p>
+                          </div>
+                        </Link>
+                      </div>
+
                     </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                  </div>
+                );
+              })()}
             </div>
 
             {/* 3 — CTAs. Ya no hace falta el separador que había entre la
@@ -211,133 +259,101 @@ export function NavbarHomePage() {
                 Members
               </a>
 
-            {/* Mobile hamburger */}
-            <button
-              className="lg:hidden text-[#0A0A67]"
-              onClick={() => setMobileOpen((v) => !v)}
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                {mobileOpen ? (
-                  <motion.span
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.15 }}
-                  >
-                    <X size={22} strokeWidth={1.5} />
-                  </motion.span>
-                ) : (
-                  <motion.span
-                    key="open"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.15 }}
-                  >
-                    <Menu size={22} strokeWidth={1.5} />
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </button>
+              {/* Mobile hamburger */}
+              <button
+                className="lg:hidden text-[#0A0A67]"
+                onClick={() => setMobileOpen((v) => !v)}
+                aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              >
+                {mobileOpen ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
+              </button>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Mobile menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
-            className="fixed inset-0 z-40 bg-white pt-[68px] overflow-y-auto lg:hidden"
-          >
-            <div className="px-8 py-6 flex flex-col">
-              {Object.entries(menuItems).map(([key, menu], index) => (
-                <motion.div
-                  key={key}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05, duration: 0.2 }}
-                  className="border-b border-[#ececf0]"
+      {mobileOpen && (
+        <div className="fixed inset-0 z-40 bg-white pt-[68px] overflow-y-auto lg:hidden">
+          <div className="px-8 py-6 flex flex-col">
+            {Object.entries(menuItems).map(([key, menu]) => (
+              <div key={key} className="border-b border-[#ececf0]">
+                <button
+                  onClick={() =>
+                    setMobileExpanded(mobileExpanded === key ? null : key)
+                  }
+                  className="w-full flex items-center justify-between py-4 font-['Space_Grotesk'] font-bold text-[13px] tracking-[1.8px] uppercase text-[#0A0A67]"
                 >
-                  <button
-                    onClick={() =>
-                      setMobileExpanded(mobileExpanded === key ? null : key)
-                    }
-                    className="w-full flex items-center justify-between py-4 font-['Space_Grotesk'] font-bold text-[13px] tracking-[1.8px] uppercase text-[#0A0A67]"
-                  >
-                    {menu.label}
-                    <ChevronDown
-                      size={14}
-                      strokeWidth={2}
-                      className={`transition-transform duration-200 ${mobileExpanded === key ? "rotate-180" : ""}`}
-                    />
-                  </button>
+                  {menu.label}
+                  <ChevronDown
+                    size={14}
+                    strokeWidth={2}
+                    className={`transition-transform duration-200 ${mobileExpanded === key ? "rotate-180" : ""}`}
+                  />
+                </button>
 
-                  <AnimatePresence>
-                    {mobileExpanded === key && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="pb-4 flex flex-col gap-0.5 pl-0">
-                          {menu.items.map((item) => (
-                            <Link
-                              key={item.path}
-                              to={item.path}
-                              className={`flex items-center gap-2 py-2 text-[14px] transition-colors ${isActive(item.path)
-                                ? "text-[#0A0A67] font-semibold"
-                                : "text-[#737373]"
-                                }`}
-                            >
-                              {isActive(item.path) && (
-                                <span className="w-1 h-1 rounded-full bg-[#0A0A67] shrink-0" />
-                              )}
+                {/* grid-rows 0fr→1fr: despliegue con transición CSS sin
+                      medir alturas en JS. */}
+                <div
+                  className={`grid overflow-hidden transition-[grid-template-rows] duration-200 ${mobileExpanded === key ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+                >
+                  <div className="min-h-0">
+                    <div className="pb-4 flex flex-col gap-2">
+                      <p className="text-[13px] leading-[20px] text-[#737373]">
+                        {menu.blurb}
+                      </p>
+                      {menu.items.map((item) => (
+                        <Link
+                          key={item.path}
+                          to={item.path}
+                          className={`flex items-center gap-3 rounded-xl p-2 pr-3 transition-colors ${isActive(item.path)
+                            ? "bg-[#0A0A67]/[0.06]"
+                            : "bg-[#f5f5f5]"
+                            }`}
+                        >
+                          <img
+                            src={item.image}
+                            alt=""
+                            loading="lazy"
+                            className="size-11 shrink-0 rounded-lg object-cover"
+                          />
+                          <span className="min-w-0">
+                            <span className={`block text-[14px] font-semibold ${isActive(item.path) ? "text-[#0A0A67]" : "text-[#171717]"}`}>
                               {item.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
+                            </span>
+                            <span className="block text-[12px] leading-[17px] text-[#737373]">
+                              {item.description}
+                            </span>
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
 
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.2 }}
-                className="mt-8 flex flex-col gap-2"
+            <div className="mt-8 flex flex-col gap-2">
+              <Link
+                to="/contact-us"
+                className="flex items-center justify-center gap-2 w-full py-4 font-bold text-[13px] tracking-[2px] uppercase bg-[#0A0A67] text-white"
               >
-                <Link
-                  to="/contact-us"
-                  className="flex items-center justify-center gap-2 w-full py-4 font-bold text-[13px] tracking-[2px] uppercase bg-[#0A0A67] text-white"
-                >
-                  Contact Us
-                  <ArrowRight size={12} />
-                </Link>
-                <a
-                  href="https://www.seattlesynchrosst.com/page/home"
-                  target="_blank"
-                  rel="noopener"
-                  className="flex items-center justify-center gap-2 w-full py-4 font-bold text-[13px] tracking-[2px] uppercase bg-[#F5F5F5] text-[#0A0A67] border border-[#0A0A67]/10 hover:bg-[#e0e7ef] transition-colors duration-200"
-                >
-                  Members
-                  <ArrowRight size={12} />
-                </a>
-              </motion.div>
+                Contact Us
+                <ArrowRight size={12} />
+              </Link>
+              <a
+                href="https://www.seattlesynchrosst.com/page/home"
+                target="_blank"
+                rel="noopener"
+                className="flex items-center justify-center gap-2 w-full py-4 font-bold text-[13px] tracking-[2px] uppercase bg-[#F5F5F5] text-[#0A0A67] border border-[#0A0A67]/10 hover:bg-[#e0e7ef] transition-colors duration-200"
+              >
+                Members
+                <ArrowRight size={12} />
+              </a>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
     </>
   );
 }
