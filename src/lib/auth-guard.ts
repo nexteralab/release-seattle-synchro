@@ -5,8 +5,17 @@ import { auth } from './auth'
 /**
  * Middleware para server functions del admin. Antes esto lo cubría RLS de
  * Supabase; con D1 la autorización es nuestra, así que TODA mutación del admin
- * debe llevar `.middleware([adminOnly])`.
+ * debe llevar `.middleware([authed])` o `.middleware([adminOnly])`.
+ *
+ * `authed` = cualquier usuario del panel (contenido: blogs, news, coaches…).
+ * `adminOnly` = funciones reservadas a admin (Analytics de sitio, Users).
  */
+export const authed = createMiddleware({ type: 'function' }).server(async ({ next }) => {
+  const session = await auth.api.getSession({ headers: getRequest().headers })
+  if (!session) throw new Error('Unauthorized')
+  return next({ context: { user: session.user } })
+})
+
 export const adminOnly = createMiddleware({ type: 'function' }).server(async ({ next }) => {
   const session = await auth.api.getSession({ headers: getRequest().headers })
   if (!session) throw new Error('Unauthorized')

@@ -3,7 +3,7 @@ import { desc, eq } from 'drizzle-orm'
 import { db } from '#/db'
 import { posts } from '#/db/schema'
 import type { Post } from '#/db/schema'
-import { adminOnly } from '#/lib/auth-guard'
+import { authed } from '#/lib/auth-guard'
 import { uploadMedia, deleteMedia } from '#/lib/media'
 
 export type { Post }
@@ -11,11 +11,11 @@ export type PostInsert = Omit<Post, 'id' | 'created_at' | 'updated_at'>
 export type PostUpdate = Partial<PostInsert>
 
 const getPostsFn = createServerFn({ method: 'GET' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .handler(() => db.select().from(posts).orderBy(desc(posts.created_at)).all())
 
 const getPostFn = createServerFn({ method: 'GET' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator((id: string) => id)
   .handler(async ({ data }) => {
     const row = await db.select().from(posts).where(eq(posts.id, data)).get()
@@ -24,12 +24,12 @@ const getPostFn = createServerFn({ method: 'GET' })
   })
 
 const createPostFn = createServerFn({ method: 'POST' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator((payload: PostInsert) => payload)
   .handler(({ data }) => db.insert(posts).values(data).returning().get())
 
 const updatePostFn = createServerFn({ method: 'POST' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator((input: { id: string; payload: PostUpdate }) => input)
   .handler(({ data }) =>
     db
@@ -41,7 +41,7 @@ const updatePostFn = createServerFn({ method: 'POST' })
   )
 
 const deletePostFn = createServerFn({ method: 'POST' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator((id: string) => id)
   .handler(async ({ data }) => {
     await db.delete(posts).where(eq(posts.id, data))

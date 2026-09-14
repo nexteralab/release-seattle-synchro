@@ -1,6 +1,6 @@
 import { createServerFn } from '@tanstack/react-start'
 import { env } from 'cloudflare:workers'
-import { adminOnly } from './auth-guard'
+import { authed } from './auth-guard'
 
 // Todo vive en un solo bucket R2 con prefijos.
 export type MediaFolder = 'blog' | 'news' | 'coaches' | 'programs/free-try'
@@ -23,7 +23,7 @@ const publicUrl = (key: string) => `${baseUrl()}/${key}`
 const keyFromUrl = (url: string) => url.replace(`${baseUrl()}/`, '')
 
 const uploadFn = createServerFn({ method: 'POST' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator((data: FormData) => data)
   .handler(async ({ data }) => {
     const file = data.get('file') as File | null
@@ -44,7 +44,7 @@ const uploadFn = createServerFn({ method: 'POST' })
   })
 
 const deleteFn = createServerFn({ method: 'POST' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator((url: string) => url)
   .handler(async ({ data }) => {
     const key = keyFromUrl(data)
@@ -54,7 +54,7 @@ const deleteFn = createServerFn({ method: 'POST' })
   })
 
 const listFn = createServerFn({ method: 'GET' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator((folder: MediaFolder) => folder)
   .handler(async ({ data }) => {
     const { objects } = await env.MEDIA.list({ prefix: `${data}/`, limit: 200 })

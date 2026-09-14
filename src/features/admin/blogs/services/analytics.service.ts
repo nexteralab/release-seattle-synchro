@@ -1,7 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { sql } from 'drizzle-orm'
 import { db } from '#/db'
-import { adminOnly } from '#/lib/auth-guard'
+import { authed } from '#/lib/auth-guard'
 
 // ============================================================
 // Interfaces
@@ -50,7 +50,7 @@ const args = (input: Args) => input
 // ============================================================
 
 const overviewFn = createServerFn({ method: 'GET' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator(args)
   .handler(async ({ data }) => {
     const rows = await db.all<{
@@ -73,7 +73,7 @@ const overviewFn = createServerFn({ method: 'GET' })
   })
 
 const timeseriesFn = createServerFn({ method: 'GET' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator(args)
   .handler(({ data }) =>
     db.all<{ day: string; views: number; unique_visitors: number }>(sql`
@@ -91,7 +91,7 @@ const timeseriesFn = createServerFn({ method: 'GET' })
   )
 
 const topPostsFn = createServerFn({ method: 'GET' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator(args)
   .handler(({ data }) =>
     db.all<{
@@ -135,7 +135,7 @@ const topPostsFn = createServerFn({ method: 'GET' })
   )
 
 const breakdownFn = createServerFn({ method: 'GET' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator(args)
   .handler(({ data }) =>
     db.all<{ dimension: string; value: string | null; count: number }>(sql`

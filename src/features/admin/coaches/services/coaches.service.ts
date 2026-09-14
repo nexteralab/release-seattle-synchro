@@ -3,7 +3,7 @@ import { asc, eq, inArray, sql } from 'drizzle-orm'
 import { db } from '#/db'
 import { coaches } from '#/db/schema'
 import type { Coach } from '#/db/schema'
-import { adminOnly } from '#/lib/auth-guard'
+import { authed } from '#/lib/auth-guard'
 import { uploadMedia, deleteMedia } from '#/lib/media'
 
 export type { Coach }
@@ -15,12 +15,12 @@ const getCoachesFn = createServerFn({ method: 'GET' }).handler(() =>
 )
 
 const createCoachFn = createServerFn({ method: 'POST' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator((payload: CoachInsert) => payload)
   .handler(({ data }) => db.insert(coaches).values(data).returning().get())
 
 const updateCoachFn = createServerFn({ method: 'POST' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator((input: { id: string; payload: CoachUpdate }) => input)
   .handler(({ data }) =>
     db
@@ -32,21 +32,21 @@ const updateCoachFn = createServerFn({ method: 'POST' })
   )
 
 const deleteCoachFn = createServerFn({ method: 'POST' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator((id: string) => id)
   .handler(async ({ data }) => {
     await db.delete(coaches).where(eq(coaches.id, data))
   })
 
 const toggleActiveFn = createServerFn({ method: 'POST' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator((input: { id: string; active: boolean }) => input)
   .handler(async ({ data }) => {
     await db.update(coaches).set({ active: data.active }).where(eq(coaches.id, data.id))
   })
 
 const reorderFn = createServerFn({ method: 'POST' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator((ordered: { id: string; sort_order: number }[]) => ordered)
   .handler(async ({ data }) => {
     if (!data.length) return

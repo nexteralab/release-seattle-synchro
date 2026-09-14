@@ -10,7 +10,9 @@ export const Route = createFileRoute('/app')({
   beforeLoad: async () => {
     // Corre también en SSR: la sesión de Better Auth vive en una cookie httpOnly.
     const session = await getAdminSession()
-    if (session?.user.role !== 'admin') throw redirect({ to: '/login' })
+    // Cualquier usuario autenticado entra al admin. Lo que es solo-admin
+    // (Analytics, Users) lo filtra `requireAdmin` en su propia ruta.
+    if (!session) throw redirect({ to: '/login' })
   },
   head: () => ({
     meta: [{ name: 'robots', content: 'noindex, nofollow' }],

@@ -14,13 +14,14 @@ export const getAdminSession = createServerFn({ method: 'GET' }).handler(async (
 })
 
 /**
- * Guard reutilizable para el `beforeLoad` de rutas del admin.
+ * Guard para las rutas SOLO-admin (Analytics, Users). El resto de /app no lo
+ * usa: basta con estar autenticado (ver src/routes/app/route.tsx).
  *
  * - Sin sesión → redirige a /login.
  * - Con sesión pero sin rol admin → deja pasar con `isAdmin: false`, para que
  *   la ruta pinte <NotAuthorized /> en vez de un redirect mudo.
  *
- * Esto es UX. La seguridad real está en el middleware `adminOnly` que llevan
+ * Esto es UX. La seguridad real está en los middlewares `authed` y `adminOnly` que llevan
  * todas las server functions del admin.
  */
 export async function requireAdmin() {

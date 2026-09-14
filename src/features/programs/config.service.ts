@@ -2,7 +2,7 @@ import { createServerFn } from '@tanstack/react-start'
 import { eq } from 'drizzle-orm'
 import { db } from '#/db'
 import { config } from '#/db/schema'
-import { adminOnly } from '#/lib/auth-guard'
+import { authed } from '#/lib/auth-guard'
 
 /**
  * Las 7 tablas `*_config` de una sola fila que había en Supabase son ahora
@@ -20,7 +20,7 @@ const getFn = createServerFn({ method: 'GET' })
   })
 
 const setFn = createServerFn({ method: 'POST' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator((input: { key: ConfigKey; value: unknown }) => input)
   .handler(async ({ data }) => {
     await db

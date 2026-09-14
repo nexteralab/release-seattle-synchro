@@ -3,23 +3,23 @@ import { desc, eq } from 'drizzle-orm'
 import { db } from '#/db'
 import { subscriptions } from '#/db/schema'
 import type { Subscription } from '#/db/schema'
-import { adminOnly } from '#/lib/auth-guard'
+import { authed } from '#/lib/auth-guard'
 
 export type { Subscription }
 
 const listFn = createServerFn({ method: 'GET' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .handler(() => db.select().from(subscriptions).orderBy(desc(subscriptions.created_at)).all())
 
 const deleteFn = createServerFn({ method: 'POST' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator((id: string) => id)
   .handler(async ({ data }) => {
     await db.delete(subscriptions).where(eq(subscriptions.id, data))
   })
 
 const unsubscribeFn = createServerFn({ method: 'POST' })
-  .middleware([adminOnly])
+  .middleware([authed])
   .inputValidator((id: string) => id)
   .handler(async ({ data }) => {
     await db
