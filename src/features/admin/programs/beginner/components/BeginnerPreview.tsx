@@ -1,35 +1,28 @@
-import { BeginnerDetails } from '#/features/programs/beginner/components/BeginnerDetails'
-import { BeginnerIntermediate } from '#/features/programs/beginner/components/BeginnerIntermediate'
-import type { BeginnerSubProgram } from '#/features/programs/beginner/types'
-import type { ProgramPath } from '../schema'
+import { BeginnerPage } from '#/features/programs/beginner/BeginnerPage'
+import type { BeginnerData } from '#/features/programs/beginner/types'
 
 interface Props {
-  activeTab: ProgramPath
-  novice: BeginnerSubProgram
-  intermediate: BeginnerSubProgram
+  data: BeginnerData
 }
 
-export function BeginnerPreview({ activeTab, novice, intermediate }: Props) {
-  const activeName = activeTab === 'novice' ? novice.name : intermediate.name
-
+export function BeginnerPreview({ data }: Props) {
+  // self-start: sin esto el panel es un flex item con align-items:stretch y
+  // toma la altura de la fila (la del formulario), no la suya.
   return (
-    <div className="hidden lg:flex max-w-xl w-full shrink-0 border-l border-border bg-white flex-col">
+    <div className="hidden lg:flex self-start max-w-xl w-full shrink-0 border-l border-border bg-white flex-col">
       <div className="px-4 pt-5 pb-2 border-b border-border flex items-center justify-between shrink-0">
         <p className="text-[10px] font-bold tracking-[1.4px] uppercase text-muted-foreground">
           Preview
         </p>
         <p className="text-[10px] font-bold tracking-[1.4px] uppercase text-[#0A0A67]">
-          {activeName}
+          Beginner
         </p>
       </div>
 
-      <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
+      {/* Sin overflow-y propio: el preview se mueve con el scroll principal del admin. */}
+      <div className="overflow-x-hidden">
         <div className="brand-surface" style={{ zoom: '0.42' }}>
-          {activeTab === 'novice' ? (
-            <BeginnerDetails program={novice} />
-          ) : (
-            <BeginnerIntermediate program={intermediate} />
-          )}
+          <BeginnerPage data={data} />
         </div>
       </div>
     </div>

@@ -1,46 +1,16 @@
 import { Fragment } from 'react'
 import { Link } from '@tanstack/react-router'
 import { Info } from 'lucide-react'
-import type { BeginnerSubProgram } from '../types'
-
-const swimmingSkills = [
-    "4 laps of crawl",
-    "4 laps of a backstroke (with the appropriate kick)",
-    "4 laps of backstroke",
-    "1 lap of eggbeater",
-    "1 lap of butterfly",
-    "Must be able to independently float on back for 30 seconds",
-    "Must be able to tread water for 30 seconds",
-    "Must be able to follow instructions",
-];
-
-const personalQualities = [
-    "Coachability — openness to feedback, willingness to try corrections, and eagerness to improve",
-    "Focus and listening — ability to follow directions in a group setting",
-    "Respectful behavior — toward coaches, teammates, and the space",
-];
-
-const FALLBACK: BeginnerSubProgram = {
-    id: 'novice',
-    name: 'Novice',
-    ages: '5–10',
-    coaches: 'Maya Reistad\nSophie Lin\nGiordana Ventura',
-    workout_days_times: 'Wednesday and Fridays\n5:00-7:00pm',
-    location:
-        "Bellevue Aquatic Center\n(Outdoor pool, please be aware and prepare for Seattle's weather). If you believe your swimmer will be too cold, we always recommend getting a wetsuit.",
-    dates: 'March 28th\nApril 4th, 11th, 18th, 25th\nMay 2nd, 9th',
-    cost:
-        '$TBD monthly fee\nOne time registration fee\nThree quarterly pledges to the Booster Club (each around $250)\nOutfitting costs later during the season',
-    registration: 'We will open registration soon during the first week of September.',
-    first_practice_date_time: 'Wednesday, September 3rd\n6:00pm – 7:30pm',
-    first_practice_address: 'Bellevue Aquatic Center\n601 143rd Ave NE, Bellevue, WA, 98007',
-}
+import type { BeginnerData } from '../types'
 
 interface Props {
-    program?: BeginnerSubProgram
+    data: BeginnerData
 }
 
-export function BeginnerDetails({ program = FALLBACK }: Props = {}) {
+export function BeginnerDetails({ data }: Props) {
+    const program = data.novice
+    const { tryouts, first_practice } = data
+    const paragraphs = splitParagraphs(program.description)
     return (
         <section id="novice" className="p-6 md:px-12 lg:p-20 bg-[#F5F5F5] space-y-12 scroll-mt-24" aria-labelledby="details-heading">
             <div className="max-w-screen-lg mx-auto pt-8 space-y-10">
@@ -58,10 +28,12 @@ export function BeginnerDetails({ program = FALLBACK }: Props = {}) {
                     </div>
                 </div>
                 <p className="text-[#171717] text-[16px] leading-[26px]">
-                    The Novice Team is our beginner competitive level. Swimmers learn proper swimming technique, beginner artistic swimming skills, and the fundamentals of competition.
-                    <br />
-                    <br />
-                    Members of the Novice Team attend several local competitions and train from September through June.
+                    {paragraphs.map((para, i) => (
+                        <Fragment key={i}>
+                            {para}
+                            {i < paragraphs.length - 1 && <><br /><br /></>}
+                        </Fragment>
+                    ))}
                 </p>
            
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -104,7 +76,7 @@ export function BeginnerDetails({ program = FALLBACK }: Props = {}) {
                                 Swimming Skills
                             </h4>
                             <ul className="space-y-3">
-                                {swimmingSkills.map((skill) => (
+                                {tryouts.swimming_skills.map((skill) => (
                                     <li key={skill} className="flex items-start gap-3">
                                         <div
                                             className="text-secondary size-6 flex items-center justify-center font-bold shrink-0 rounded-full text-[20px] mt-0.5"
@@ -122,7 +94,7 @@ export function BeginnerDetails({ program = FALLBACK }: Props = {}) {
                                 Personal Qualities
                             </h4>
                             <ul className="space-y-3">
-                                {personalQualities.map((quality) => (
+                                {tryouts.personal_qualities.map((quality) => (
                                     <li key={quality} className="flex items-start gap-3">
                                         <div
                                             className="text-secondary size-6 flex items-center justify-center font-bold shrink-0 rounded-full text-[20px] mt-0.5"
@@ -150,9 +122,7 @@ export function BeginnerDetails({ program = FALLBACK }: Props = {}) {
                                 </span>
                             </div>
                             <p className="text-white/85 text-[15px] md:text-[16px] leading-[26px] max-w-xl">
-                                To join the team, swimmers must first complete the tryout. It is free,
-                                and it is how our coaches confirm swim readiness and find the right
-                                team placement.
+                                {tryouts.before_you_join}
                             </p>
                         </div>
                         <Link
@@ -189,14 +159,9 @@ export function BeginnerDetails({ program = FALLBACK }: Props = {}) {
                                 <div className="space-y-2">
                                     <p className="font-bold text-white text-[16px] md:text-[18px] tracking-[1px] uppercase mb-3">What to Bring</p>
                                     <ul className="space-y-1 text-white/80 text-[14px] md:text-[16px] leading-[24px]">
-                                        <li>Swimsuit</li>
-                                        <li>Swim cap</li>
-                                        <li>Goggles</li>
-                                        <li>Nose clips</li>
-                                        <li>Towel</li>
-                                        <li>Water bottle</li>
-                                        <li>Yoga Mat</li>
-                                        <li>Elastic shorts for land</li>
+                                        {first_practice.what_to_bring.map((item) => (
+                                            <li key={item}>{item}</li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
@@ -214,8 +179,12 @@ export function BeginnerDetails({ program = FALLBACK }: Props = {}) {
                                 <div className="space-y-2">
                                     <p className="font-bold text-white text-[16px] md:text-[18px] tracking-[1px] uppercase mb-3">What to Expect</p>
                                     <p className="text-white/80 text-[14px] md:text-[16px] leading-[24px]">
-                                        Coaches will introduce swimmers to a head-to-toe warm-up and explain the rules of the class for both structure and safety. Each class includes 1 hour of water skills and 1 hour of land exercises. <br />
-                                        We ask swimmers to arrive on time and for parents to come into the facility promptly at the end of class for pick-up.
+                                        {splitLines(first_practice.what_to_expect).map((line, i, all) => (
+                                            <Fragment key={i}>
+                                                {line}
+                                                {i < all.length - 1 && <br />}
+                                            </Fragment>
+                                        ))}
                                     </p>
                                 </div>
                             </div>
@@ -223,12 +192,14 @@ export function BeginnerDetails({ program = FALLBACK }: Props = {}) {
                     </div>
                 )}
 
-                <div className="max-w-screen-lg mx-auto border-l-4 border-yellow-400 bg-yellow-50 px-5 py-4">
-                    <p className="text-black text-[16px] md:text-[18px] leading-[24px]">
-                        <span className="font-bold">Note:</span>{" "}
-                        Schedule might change if swimmers are advanced to a different level depending on progress.
-                    </p>
-                </div>
+                {data.note && (
+                    <div className="max-w-screen-lg mx-auto border-l-4 border-yellow-400 bg-yellow-50 px-5 py-4">
+                        <p className="text-black text-[16px] md:text-[18px] leading-[24px]">
+                            <span className="font-bold">Note:</span>{" "}
+                            {data.note}
+                        </p>
+                    </div>
+                )}
             </div>
         </section>
     )
@@ -236,6 +207,10 @@ export function BeginnerDetails({ program = FALLBACK }: Props = {}) {
 
 function splitLines(value: string): string[] {
     return value.split('\n').filter(Boolean)
+}
+
+export function splitParagraphs(value: string): string[] {
+    return value.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
 }
 
 function DetailItem({ label, value }: { label: string; value: string }) {

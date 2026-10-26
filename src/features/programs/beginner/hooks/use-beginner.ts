@@ -1,9 +1,9 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
-import { getBeginnerConfig } from '../services/beginner.service'
+import { getBeginnerData } from '../services/beginner.service'
 
 export const beginnerQueryOptions = queryOptions({
   queryKey: ['beginner'],
-  queryFn: getBeginnerConfig,
+  queryFn: getBeginnerData,
   staleTime: 1000 * 60 * 60,
 })
 

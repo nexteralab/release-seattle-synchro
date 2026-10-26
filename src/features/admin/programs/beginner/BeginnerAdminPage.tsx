@@ -1,22 +1,24 @@
-import { useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import { ArrowLeft } from 'lucide-react'
 import { Button } from '#/components/ui/button'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '#/components/ui/tabs'
 import { Form } from '#/components/ui/form'
-import type { BeginnerSubProgram, BeginnerSubProgramId } from '#/features/programs/beginner/types'
+import type { BeginnerData } from '#/features/programs/beginner/types'
+import { HeroImageField } from '#/features/admin/components/HeroImageField'
 import { useBeginnerForm } from './hooks/use-beginner-form'
+import { OverviewFields } from './components/OverviewFields'
 import { ProgramFields } from './components/ProgramFields'
+import { NoviceExtrasFields } from './components/NoviceExtrasFields'
+import { BannerFields } from './components/BannerFields'
 import { BeginnerPreview } from './components/BeginnerPreview'
+
+const sectionCls = 'text-[11px] font-bold tracking-[1.1px] uppercase text-muted-foreground pt-2'
 
 export function BeginnerAdminPage() {
   const navigate = useNavigate()
   const { form, save, loading, saving } = useBeginnerForm()
-  const [activeTab, setActiveTab] = useState<BeginnerSubProgramId>('novice')
 
-  // Live values para tabs labels y preview
-  const noviceLive = form.watch('novice') as BeginnerSubProgram
-  const intermediateLive = form.watch('intermediate') as BeginnerSubProgram
+  // Live values para preview
+  const liveData = form.watch() as BeginnerData
 
   if (loading) {
     return (
@@ -27,10 +29,12 @@ export function BeginnerAdminPage() {
   }
 
   return (
-    <div className="peer-[.header-fixed]/header:mt-16 flex flex-col flex-1 min-h-0">
+    // relative: ancla cualquier elemento absolute (p. ej. selects ocultos) al
+    // scroll del admin; sin esto aparece un segundo scroll.
+    <div className="relative">
 
       {/* Header */}
-      <div className="flex items-center justify-between px-8 py-4 border-b border-border bg-background shrink-0 z-10">
+      <div className="flex items-center justify-between px-8 py-4 border-b border-border bg-background">
         <div className="flex items-center gap-3">
           <Button variant="ghost" size="icon" onClick={() => navigate({ to: '/app/programs' })}>
             <ArrowLeft size={18} />
@@ -49,45 +53,36 @@ export function BeginnerAdminPage() {
       </div>
 
       {/* Body */}
-      <div className="flex flex-1 min-h-0">
+      <div className="flex">
+        <Form {...form}>
+          <form
+            id="beginner-form"
+            onSubmit={form.handleSubmit(save)}
+            className="flex-1 min-w-0 px-8 py-6 space-y-6"
+          >
+            <p className="text-[12px] text-muted-foreground">
+              Todo el contenido de la página es editable.
+            </p>
 
-        {/* Form */}
-        <div className="flex-1 min-h-0 overflow-y-auto">
-          <Form {...form}>
-            <form
-              id="beginner-form"
-              onSubmit={form.handleSubmit(save)}
-              className="max-w-3xl px-8 py-6 space-y-6"
-            >
-              <p className="text-[12px] text-muted-foreground">
-                Edita los detalles de cada equipo. Las descripciones, los tryouts requirements y la sección
-                <em> what to bring / what to expect</em> están fijos en el código.
-              </p>
+            {/* Hero + Overview */}
+            <HeroImageField name="hero.image" folder="programs/beginner" title="Beginner hero image" />
+            <OverviewFields />
 
-              <Tabs value={activeTab} onValueChange={v => setActiveTab(v as BeginnerSubProgramId)}>
-                <TabsList className="w-full grid grid-cols-2">
-                  <TabsTrigger value="novice">{noviceLive.name}</TabsTrigger>
-                  <TabsTrigger value="intermediate">{intermediateLive.name}</TabsTrigger>
-                </TabsList>
+            {/* Novice */}
+            <p className={sectionCls}>Novice</p>
+            <ProgramFields path="novice" showFirstPractice />
+            <NoviceExtrasFields />
 
-                <TabsContent value="novice" className="space-y-5 mt-4">
-                  <ProgramFields path="novice" showFirstPractice />
-                </TabsContent>
+            {/* Intermediate */}
+            <p className={sectionCls}>Intermediate</p>
+            <ProgramFields path="intermediate" showFirstPractice={false} />
 
-                <TabsContent value="intermediate" className="space-y-5 mt-4">
-                  <ProgramFields path="intermediate" showFirstPractice={false} />
-                </TabsContent>
-              </Tabs>
-            </form>
-          </Form>
-        </div>
+            <BannerFields />
+          </form>
+        </Form>
 
         {/* Preview */}
-        <BeginnerPreview
-          activeTab={activeTab}
-          novice={noviceLive}
-          intermediate={intermediateLive}
-        />
+        <BeginnerPreview data={liveData} />
 
       </div>
     </div>

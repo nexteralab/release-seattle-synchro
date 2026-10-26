@@ -1,4 +1,4 @@
 export { BeginnerPage } from './BeginnerPage'
-export { getBeginnerConfig, type BeginnerConfig } from './services/beginner.service'
+export { getBeginnerData, BEGINNER_DEFAULTS } from './services/beginner.service'
 export { beginnerQueryOptions, useBeginner } from './hooks/use-beginner'
-export type { BeginnerSubProgram, BeginnerSubProgramId } from './types'
+export type { BeginnerData, BeginnerSubProgram, BeginnerSubProgramId } from './types'

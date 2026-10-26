@@ -8,7 +8,6 @@ import { getBeginnerConfig, saveBeginnerConfig } from '../beginner-admin.service
 export function useBeginnerForm() {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
-  const [configId, setConfigId] = useState<string | undefined>(undefined)
 
   const form = useForm<BeginnerFormValues>({
     resolver: zodResolver(beginnerFormSchema),
@@ -17,13 +16,7 @@ export function useBeginnerForm() {
 
   useEffect(() => {
     getBeginnerConfig()
-      .then(cfg => {
-        setConfigId(cfg.id)
-        const novice = cfg.sub_programs.find(p => p.id === 'novice') ?? FORM_DEFAULTS.novice
-        const intermediate =
-          cfg.sub_programs.find(p => p.id === 'intermediate') ?? FORM_DEFAULTS.intermediate
-        form.reset({ novice, intermediate })
-      })
+      .then(cfg => form.reset(cfg))
       .catch(() => toast.error('Failed to load Beginner config'))
       .finally(() => setLoading(false))
   }, [form])
@@ -31,10 +24,7 @@ export function useBeginnerForm() {
   async function save(values: BeginnerFormValues) {
     setSaving(true)
     try {
-      await saveBeginnerConfig({
-        id: configId,
-        sub_programs: [values.novice, values.intermediate],
-      })
+      await saveBeginnerConfig(values)
       toast.success('Beginner program saved')
     } catch {
       toast.error('Failed to save')

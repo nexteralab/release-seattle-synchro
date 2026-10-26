@@ -1,27 +1,14 @@
 import { Fragment } from 'react'
 import { Link } from '@tanstack/react-router'
 import type { BeginnerSubProgram } from '../types'
-
-const FALLBACK: BeginnerSubProgram = {
-    id: 'intermediate',
-    name: 'Intermediate',
-    ages: '7-12 years old',
-    coaches: 'Lacey Ethier\nGiordana Ventura',
-    workout_days_times: 'Mondays 7:00-9:00pm\nFridays 5:00-7:00pm',
-    location:
-        "Bellevue Aquatic Center\n(Outdoor pool, please be aware and prepare for Seattle's weather). If you believe your swimmer will be too cold, we always recommend getting a wetsuit.",
-    dates: 'March 28th\nApril 4th, 11th, 18th, 25th\nMay 2nd, 9th',
-    cost: '$265 Per Month, $275 registration fee, outfitting costs & traveling costs.',
-    registration: '',
-    first_practice_date_time: '',
-    first_practice_address: '',
-}
+import { splitParagraphs } from './BeginnerDetails'
 
 interface Props {
-    program?: BeginnerSubProgram
+    program: BeginnerSubProgram
 }
 
-export function BeginnerIntermediate({ program = FALLBACK }: Props = {}) {
+export function BeginnerIntermediate({ program }: Props) {
+    const paragraphs = splitParagraphs(program.description)
     return (
         <section id="intermediate" className="p-6 md:px-12 lg:p-20 bg-white space-y-12 scroll-mt-24" aria-labelledby="details-heading">
             <div className="max-w-screen-lg mx-auto pt-8 space-y-10">
@@ -36,17 +23,14 @@ export function BeginnerIntermediate({ program = FALLBACK }: Props = {}) {
                         Contact Us
                     </Link>
                 </div>
-                <p className="text-[#171717] text-[16px] md:text-[18px] leading-[26px]">
-                    The Intermediate Team is the next level after Novice. Swimmers continue developing and perfecting their swimming and artistic swimming fundamentals. Athletes should be able to swim 8 laps of freestyle, 4 laps of breaststroke, and feel comfortable upside down in the water.
-                </p>
-                <br />
-                <p className="text-[#171717] text-[16px] md:text-[18px] leading-[26px]">
-                    Swimmers are placed on this team by invitation only, based on coaching staff evaluations and athlete progression. Team members attend several local competitions throughout the season, as well as one meet in Oregon.
-                </p>
-                <br />
-                <p className="text-[#171717] text-[16px] md:text-[18px] leading-[26px]">
-                    The season begins in September and ends in mid-June.
-                </p>
+                {paragraphs.map((para, i) => (
+                    <Fragment key={i}>
+                        {i > 0 && <br />}
+                        <p className="text-[#171717] text-[16px] md:text-[18px] leading-[26px]">
+                            {para}
+                        </p>
+                    </Fragment>
+                ))}
             </div>
             <div className="max-w-screen-lg mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div className="bg-[#F5F5F5] rounded-3xl p-6 md:p-10">

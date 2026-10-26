@@ -1,4 +1,4 @@
-import { BeginnerPage, getBeginnerConfig } from "#/features/programs/beginner";
+import { BeginnerPage, getBeginnerData } from "#/features/programs/beginner";
 import { createFileRoute } from "@tanstack/react-router";
 
 const SITE_URL = "https://seattlesynchro.com";
@@ -51,11 +51,11 @@ export const Route = createFileRoute("/_public/programs/beginner")({
     links: [{ rel: "canonical", href: PAGE_URL }],
     scripts: [{ type: "application/ld+json", children: SCHEMA_JSONLD }],
   }),
-  loader: () => getBeginnerConfig(),
+  loader: () => getBeginnerData(),
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const config = Route.useLoaderData();
-  return <BeginnerPage config={config} />;
+  const data = Route.useLoaderData();
+  return <BeginnerPage data={data} />;
 }

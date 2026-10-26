@@ -16,7 +16,7 @@ const labelCls = 'text-[11px] font-bold tracking-[1.1px] uppercase'
 const cardCls = 'rounded-[10px] border border-border bg-card p-5'
 const cardTitle = 'flex items-center gap-2 font-bold text-foreground text-[12px] tracking-[1px] uppercase mb-4'
 
-type FieldKey = Exclude<keyof BeginnerSubProgram, 'id' | 'name'>
+type FieldKey = Exclude<keyof BeginnerSubProgram, 'id'>
 
 interface Props {
   path: ProgramPath
@@ -32,6 +32,16 @@ export function ProgramFields({ path, showFirstPractice }: Props) {
           <Users size={13} className="text-primary" />
           Team
         </h3>
+        <div className="space-y-4 mb-4">
+          <TextField path={path} field="name" label="Team name" placeholder="Novice" />
+          <TextAreaField
+            path={path}
+            field="description"
+            label="Description"
+            rows={5}
+            description="Deja una línea en blanco entre párrafos."
+          />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-4">
           <TextField path={path} field="ages" label="Ages" placeholder="5–10" />
           <TextAreaField
