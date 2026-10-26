@@ -1,37 +1,20 @@
-import { getConfig, setConfig } from '#/features/programs/config.service'
-import type { AgeGroup, AgeGroupId, CompetitiveConfig } from '#/features/programs/competitive/types'
+import { setConfig } from '#/features/programs/config.service'
+import { getCompetitiveData } from '#/features/programs/competitive/services/competitive.service'
+import type { CompetitiveData } from '#/features/programs/competitive/types'
 
-// Re-exportamos los tipos públicos como SSOT
-export type { AgeGroup, AgeGroupId, CompetitiveConfig }
+// Re-export el tipo público como SSOT
+export type { CompetitiveData } from '#/features/programs/competitive/types'
 
-// ── Defaults ─────────────────────────────────────────────────
-export const DEFAULT_CONFIG: CompetitiveConfig = {
-  age_groups: [
-    {
-      id: '12u',
-      name: '12 & Under Age Group',
-      coaches: 'Maria Romero\nDaniela Garmendia\nPatricia Camaran\nIvy Huang',
-      workout_days: 'Monday, Wednesday & Saturday morning',
-    },
-    {
-      id: '13-15',
-      name: '13–15 Age Group',
-      coaches: 'A Team: Patricia Camaran\nB Team: Daniela Garmendia\nC Team: Ivy Huang',
-      workout_days: '2 Weekdays and Saturday morning',
-    },
-    {
-      id: 'junior',
-      name: 'Junior / 16–19 Age Group',
-      coaches: 'Maria Romero',
-      workout_days: '3 Weekdays and Sunday morning',
-    },
-  ],
+// Los defaults viven en el servicio público: una sola copia para la página y
+// para el formulario, así no pueden divergir.
+export { COMPETITIVE_DEFAULTS as DEFAULT_CONTENT } from '#/features/programs/competitive/services/competitive.service'
+
+export async function getCompetitiveConfig(): Promise<CompetitiveData> {
+  // Reutiliza el mismo relleno de defaults (y la migración de la forma vieja).
+  return getCompetitiveData()
 }
 
-export async function getCompetitiveConfig(): Promise<CompetitiveConfig> {
-  return (await getConfig<CompetitiveConfig>('competitive')) ?? DEFAULT_CONFIG
-}
-
-export async function saveCompetitiveConfig(config: CompetitiveConfig): Promise<void> {
-  await setConfig('competitive', { age_groups: config.age_groups })
+export async function saveCompetitiveConfig(content: CompetitiveData): Promise<void> {
+  // Sobrescribe la fila completa: la forma vieja (`age_groups`) desaparece aquí.
+  await setConfig('competitive', { content })
 }

@@ -1,14 +1,39 @@
-export type AgeGroupId = '12u' | '13-15' | 'junior'
-
-export interface AgeGroup {
-  id: AgeGroupId
-  name: string
+/** Un grupo de edad. Coaches: uno por línea. */
+export interface CompetitiveGroup {
+  title: string
+  /** Párrafo bajo el título; vacío = no se muestra. */
+  description: string
   coaches: string
-  workout_days: string
+  workoutDays: string
 }
 
-export interface CompetitiveConfig {
-  id?: string
-  age_groups: AgeGroup[]
-  updated_at?: string
+export interface CompetitiveData {
+  hero: {
+    /** URL de R2. Vacío = usa la imagen del bundle. */
+    image: string
+    alt: string
+  }
+  overview: {
+    /** H1 de la página. */
+    title: string
+    heading: string
+    /** Párrafos separados por una línea en blanco. */
+    body: string
+  }
+  under12: CompetitiveGroup
+  teen: CompetitiveGroup
+  junior: CompetitiveGroup & {
+    highlightsTitle: string
+    highlights: string[]
+  }
+  senior: {
+    title: string
+    description: string
+  }
+  banner: {
+    heading: string
+    description: string
+    contactLabel: string
+    image: '1' | '2' | '3' | '4'
+  }
 }

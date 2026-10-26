@@ -1,22 +1,22 @@
-import { useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import { ArrowLeft } from 'lucide-react'
 import { Button } from '#/components/ui/button'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '#/components/ui/tabs'
 import { Form } from '#/components/ui/form'
-import type { AgeGroup, AgeGroupId } from '#/features/programs/competitive/types'
+import { HeroImageField } from '#/features/admin/components/HeroImageField'
+import type { CompetitiveData } from '#/features/programs/competitive/types'
 import { useCompetitiveForm } from './hooks/use-competitive-form'
-import { TABS, TAB_INDEX } from './schema'
-import { AgeGroupFields } from './components/AgeGroupFields'
+import { OverviewFields } from './components/OverviewFields'
+import { GroupFields } from './components/GroupFields'
+import { SeniorFields } from './components/SeniorFields'
+import { BannerFields } from './components/BannerFields'
 import { CompetitivePreview } from './components/CompetitivePreview'
 
 export function CompetitiveAdminPage() {
   const navigate = useNavigate()
   const { form, save, loading, saving } = useCompetitiveForm()
-  const [activeTab, setActiveTab] = useState<AgeGroupId>('12u')
 
   // Live values para preview
-  const liveGroups = form.watch('age_groups') as AgeGroup[]
+  const liveData = form.watch() as CompetitiveData
 
   if (loading) {
     return (
@@ -27,10 +27,12 @@ export function CompetitiveAdminPage() {
   }
 
   return (
-    <div className="peer-[.header-fixed]/header:mt-16 flex flex-col flex-1 min-h-0">
+    // relative: ancla cualquier elemento absolute oculto (p. ej. selects nativos de
+    // Radix) para que no se escape del scroll del admin y cree un segundo scroll.
+    <div className="relative">
 
       {/* Header */}
-      <div className="flex items-center justify-between px-8 py-4 border-b border-border bg-background shrink-0 z-10">
+      <div className="flex items-center justify-between px-8 py-4 border-b border-border bg-background">
         <div className="flex items-center gap-3">
           <Button variant="ghost" size="icon" onClick={() => navigate({ to: '/app/programs' })}>
             <ArrowLeft size={18} />
@@ -49,40 +51,29 @@ export function CompetitiveAdminPage() {
       </div>
 
       {/* Body */}
-      <div className="flex flex-1 min-h-0">
+      <div className="flex">
+        <Form {...form}>
+          <form
+            id="competitive-form"
+            onSubmit={form.handleSubmit(save)}
+            className="flex-1 min-w-0 px-8 py-6 space-y-6"
+          >
+            <p className="text-[12px] text-muted-foreground">
+              Todo el contenido de la página es editable.
+            </p>
 
-        {/* Form */}
-        <div className="flex-1 min-h-0 overflow-y-auto">
-          <Form {...form}>
-            <form
-              id="competitive-form"
-              onSubmit={form.handleSubmit(save)}
-              className="max-w-3xl px-8 py-6 space-y-6"
-            >
-              <p className="text-[12px] text-muted-foreground">
-                Edita únicamente <strong>coaches</strong> y <strong>workout days</strong> de cada grupo.
-                El resto del contenido (descripción, highlights, hero, overview) está fijo en el código.
-              </p>
-
-              <Tabs value={activeTab} onValueChange={v => setActiveTab(v as AgeGroupId)}>
-                <TabsList className="w-full grid grid-cols-3">
-                  {TABS.map(t => (
-                    <TabsTrigger key={t.id} value={t.id}>{t.label}</TabsTrigger>
-                  ))}
-                </TabsList>
-
-                {TABS.map(t => (
-                  <TabsContent key={t.id} value={t.id} className="space-y-5 mt-4">
-                    <AgeGroupFields index={TAB_INDEX[t.id]} />
-                  </TabsContent>
-                ))}
-              </Tabs>
-            </form>
-          </Form>
-        </div>
+            <HeroImageField name="hero.image" folder="programs/competitive" title="Competitive hero image" />
+            <OverviewFields />
+            <GroupFields name="under12" label="12 & Under" />
+            <GroupFields name="teen" label="13–15" />
+            <GroupFields name="junior" label="Junior / 16–19" />
+            <SeniorFields />
+            <BannerFields />
+          </form>
+        </Form>
 
         {/* Preview */}
-        <CompetitivePreview activeTab={activeTab} groups={liveGroups} />
+        <CompetitivePreview data={liveData} />
 
       </div>
     </div>

@@ -1,12 +1,12 @@
 import { Fragment } from 'react'
+import type { CompetitiveGroup } from '../types'
 
 interface Props {
-  coaches: string
-  workoutDays: string
+  group: CompetitiveGroup
 }
 
-export function Competitive1315({ coaches, workoutDays }: Props) {
-  const coachLines = coaches.split('\n').filter(Boolean)
+export function Competitive1315({ group }: Props) {
+  const coachLines = group.coaches.split('\n').filter(Boolean)
 
   return (
     <section id="13-15" className="p-6 md:px-20 md:py-24 bg-white scroll-mt-24" aria-labelledby="group-1315">
@@ -16,9 +16,14 @@ export function Competitive1315({ coaches, workoutDays }: Props) {
             id="group-1315"
             className="font-bold text-primary text-[48px] tracking-[-2.4px] uppercase"
           >
-            13–15 Age Group
+            {group.title}
           </h2>
         </div>
+        {group.description && (
+          <p className="text-[#171717] text-[18px] leading-[26px] max-w-4xl mb-12">
+            {group.description}
+          </p>
+        )}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="bg-[#f5f5f5] rounded-3xl p-6 md:p-8">
             <h3 className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase mb-4">
@@ -38,7 +43,7 @@ export function Competitive1315({ coaches, workoutDays }: Props) {
               Workout Days
             </h3>
             <p className="text-[#737373] text-[16px] leading-[26px]">
-              {workoutDays}
+              {group.workoutDays}
             </p>
           </div>
         </div>

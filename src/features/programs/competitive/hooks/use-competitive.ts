@@ -1,9 +1,9 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
-import { getCompetitiveConfig } from '../services/competitive.service'
+import { getCompetitiveData } from '../services/competitive.service'
 
 export const competitiveQueryOptions = queryOptions({
   queryKey: ['competitive'],
-  queryFn: getCompetitiveConfig,
+  queryFn: getCompetitiveData,
   staleTime: 1000 * 60 * 60,
 })
 

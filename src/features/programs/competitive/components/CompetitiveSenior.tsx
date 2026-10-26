@@ -1,5 +1,10 @@
+import type { CompetitiveData } from '../types'
 
-export function CompetitiveSenior() {
+interface Props {
+  senior: CompetitiveData['senior']
+}
+
+export function CompetitiveSenior({ senior }: Props) {
   return (
     <section id="senior" className="p-6 md:px-20 md:py-24 bg-white scroll-mt-24" aria-labelledby="group-senior">
       <div className="max-w-screen-lg mx-auto">
@@ -8,13 +13,11 @@ export function CompetitiveSenior() {
             id="group-senior"
             className="font-bold text-primary text-[48px] tracking-[-2.4px] uppercase"
           >
-            Senior Team
+            {senior.title}
           </h2>
         </div>
         <p className="text-[#171717] text-[18px] leading-[26px] max-w-4xl">
-          Our Senior Team competes and trains at an elite level. The senior team program is designed
-          to place our athletes at the highest possible level of competition in the United States.
-          Swimmers train year round and attend national and international level meets.
+          {senior.description}
         </p>
       </div>
     </section>
