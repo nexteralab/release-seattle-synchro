@@ -71,12 +71,14 @@ export function EliteClinicDetails({ data }: Props) {
                   {data.location.poolAddress}
                 </p>
               </div>
-              <div>
-                <p className="font-bold text-secondary text-[14px] mb-0.5">Special Activities</p>
-                <p className="text-[#737373] text-[13px] md:text-[14px] leading-[20px]">
-                  {data.location.crossfitAddress}
-                </p>
-              </div>
+              {data.location.crossfitAddress && (
+                <div>
+                  <p className="font-bold text-secondary text-[14px] mb-0.5">Special Activities</p>
+                  <p className="text-[#737373] text-[13px] md:text-[14px] leading-[20px]">
+                    {data.location.crossfitAddress}
+                  </p>
+                </div>
+              )}
             </div>
           </motion.div>
 

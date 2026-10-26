@@ -80,20 +80,22 @@ export function EliteClinicOverview({ data }: Props) {
 
             <div className="space-y-4">
               <p className="font-bold text-white text-[14px] tracking-[1.4px] uppercase">
-                Available Discounts
+                Registration Options
               </p>
               <DiscountRow
-                badge="12% OFF"
+                badge={data.pricing.earlyBirdPrice}
                 title="Early Bird"
                 description={data.pricing.earlyBird}
                 accent="#a3e635"
               />
-              <DiscountRow
-                badge="10% OFF"
-                title="Before June 1st"
-                description={data.pricing.standardDiscount}
-                accent="white"
-              />
+              {data.pricing.standardTitle && (
+                <DiscountRow
+                  badge={data.pricing.standardPrice}
+                  title={data.pricing.standardTitle}
+                  description={data.pricing.standardDiscount}
+                  accent="white"
+                />
+              )}
             </div>
 
             <div className="pt-2">
@@ -148,7 +150,7 @@ function DiscountRow({
       </span>
       <div className="flex-1">
         <p className="font-bold text-white text-[14px] mb-0.5">{title}</p>
-        <p className="text-white/70 text-[13px] leading-[20px]">{description}</p>
+        {description && <p className="text-white/70 text-[13px] leading-[20px]">{description}</p>}
       </div>
     </div>
   )

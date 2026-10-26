@@ -12,6 +12,36 @@ import {
 const labelCls = 'text-[11px] font-bold tracking-[1.1px] uppercase'
 const cardCls = 'rounded-[10px] border border-border bg-card p-5'
 const cardTitle = 'flex items-center gap-2 font-bold text-foreground text-[12px] tracking-[1px] uppercase mb-4'
+const rowCls = 'space-y-3 border border-border rounded-[8px] p-3'
+const rowTitle = 'text-[12px] font-bold text-foreground'
+
+function TextField({
+  name,
+  label,
+  placeholder,
+  hint,
+}: {
+  name: string
+  label: string
+  placeholder: string
+  hint?: string
+}) {
+  return (
+    <FormField
+      name={name}
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel className={labelCls}>{label}</FormLabel>
+          <FormControl>
+            <Input {...field} placeholder={placeholder} className="text-[13px]" />
+          </FormControl>
+          {hint && <FormDescription className="text-[11px]">{hint}</FormDescription>}
+          <FormMessage className="text-[11px]" />
+        </FormItem>
+      )}
+    />
+  )
+}
 
 export function PricingFields() {
   return (
@@ -21,54 +51,50 @@ export function PricingFields() {
         Pricing
       </h3>
       <div className="space-y-4">
-        <FormField
+        <TextField
           name="pricing.basePrice"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className={labelCls}>Base Price</FormLabel>
-              <FormControl>
-                <Input {...field} placeholder="$TBD" className="text-[13px]" />
-              </FormControl>
-              <FormDescription className="text-[11px]">
-                Precio por atleta. Se muestra prominente en la sección de Pricing.
-              </FormDescription>
-              <FormMessage className="text-[11px]" />
-            </FormItem>
-          )}
+          label="Base Price"
+          placeholder="$350"
+          hint="Precio por atleta. Se muestra en grande en la tarjeta de Pricing."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <FormField
-            name="pricing.earlyBird"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className={labelCls}>Early Bird (12% off)</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    placeholder="First 10 to register get 12% off"
-                    className="text-[13px]"
-                  />
-                </FormControl>
-                <FormMessage className="text-[11px]" />
-              </FormItem>
-            )}
-          />
-          <FormField
+        {/* Early Bird: el título es fijo, precio y condiciones editables */}
+        <div className={rowCls}>
+          <p className={rowTitle}>Early Bird</p>
+          <div className="grid grid-cols-1 md:grid-cols-[140px_1fr] gap-3">
+            <TextField
+              name="pricing.earlyBirdPrice"
+              label="Price / Discount"
+              placeholder="$325"
+            />
+            <TextField
+              name="pricing.earlyBird"
+              label="Details"
+              placeholder="Limited to the first 15 registrations!"
+            />
+          </div>
+        </div>
+
+        {/* Segunda opción: todo editable, se oculta si el título queda vacío */}
+        <div className={rowCls}>
+          <p className={rowTitle}>Second Option</p>
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_140px] gap-3">
+            <TextField
+              name="pricing.standardTitle"
+              label="Title"
+              placeholder="Regular Registration"
+            />
+            <TextField
+              name="pricing.standardPrice"
+              label="Price / Discount"
+              placeholder="$350"
+            />
+          </div>
+          <TextField
             name="pricing.standardDiscount"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className={labelCls}>Standard Discount (10% off)</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    placeholder="10% off if you sign up before June 1st"
-                    className="text-[13px]"
-                  />
-                </FormControl>
-                <FormMessage className="text-[11px]" />
-              </FormItem>
-            )}
+            label="Details (optional)"
+            placeholder="After the first 15 spots are filled"
+            hint="Deja el título vacío para ocultar esta fila."
           />
         </div>
       </div>

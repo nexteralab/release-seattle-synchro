@@ -1,7 +1,7 @@
-import { useNavigate } from '@tanstack/react-router'
-import { Sun, Trophy, Waves, Dumbbell, Sparkles, Award, Pencil, Lock, CalendarDays } from 'lucide-react'
+import { Link, type LinkProps } from '@tanstack/react-router'
+import { Sun, Trophy, Waves, Dumbbell, Sparkles, Award, ArrowRight } from 'lucide-react'
 import { AdminPageHeader } from '#/features/admin/components/AdminPageHeader'
-import { Button } from '#/components/ui/button'
+import { Card } from '#/components/ui/card'
 
 interface Program {
   key: string
@@ -9,143 +9,119 @@ interface Program {
   name: string
   description: string
   image: string
-  route?: string
-  status: 'active' | 'coming-soon'
-  tag?: 'event'
+  route: LinkProps['to']
 }
 
-const PROGRAMS: Program[] = [
+const EVENTS: Program[] = [
   {
     key: 'summer-camp',
     icon: Sun,
     name: 'Summer Camp',
-    description: 'Recreational 1-week camp. Edit sessions, pricing, dates and requirements.',
+    description: 'Sessions, pricing, dates and requirements.',
     image: '/images/hero_summer.webp',
     route: '/app/programs/summer-camp',
-    status: 'active',
-    tag: 'event',
   },
   {
     key: 'free-try',
     icon: Sparkles,
     name: 'Free Try',
-    description: 'Free trial event. Edit date, time, ages, safety note, location and required items.',
+    description: 'Date, time, ages, safety note, location and FAQ.',
     image: '/images/image_free_try.webp',
     route: '/app/programs/free-try',
-    status: 'active',
-    tag: 'event',
   },
   {
     key: 'elite-clinic',
     icon: Award,
     name: 'Elite Clinic',
-    description: 'International Elite Clinic. Edit title, dates, pricing, coaches, schedule and registration link.',
+    description: 'Dates, pricing, location, coaches and registration link.',
     image: '/images/elite-clinc.webp',
     route: '/app/programs/elite-clinic',
-    status: 'active',
-    tag: 'event',
   },
+]
+
+const SEASON: Program[] = [
   {
     key: 'competitive',
     icon: Trophy,
     name: 'Competitive',
-    description: 'Age group, junior and senior competitive programs.',
+    description: 'Age group, junior and senior teams.',
     image: '/images/competitive_hero.webp',
     route: '/app/programs/competitive',
-    status: 'active',
   },
   {
     key: 'recreational',
     icon: Waves,
     name: 'Recreational',
-    description: 'Sea Stars, Sharks & Mermaids, and Dolphins sub-programs. Edit details, coaches, schedule and pricing.',
+    description: 'Sea Stars, Sharks & Mermaids and Dolphins.',
     image: '/images/recreational_hero.webp',
     route: '/app/programs/recreational',
-    status: 'active',
   },
   {
     key: 'beginner',
     icon: Dumbbell,
     name: 'Beginner',
-    description: 'Novice and Intermediate teams. Edit details, coaches, schedule, dates and cost.',
+    description: 'Novice and Intermediate teams.',
     image: '/images/beginner.jpg',
     route: '/app/programs/beginner',
-    status: 'active',
   },
 ]
 
 export function ProgramsPage() {
-  const navigate = useNavigate()
-
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <AdminPageHeader
         title="Programs"
         description="Edit content for each program shown on the public site"
       />
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-        {PROGRAMS.map(p => {
-          const Icon = p.icon
-          const editable = p.status === 'active' && !!p.route
-
-          return (
-            <div
-              key={p.key}
-              className={[
-                'group relative border border-border rounded-[10px] overflow-hidden flex flex-col min-h-[260px]',
-                !editable && 'opacity-60',
-              ].filter(Boolean).join(' ')}
-            >
-              <img
-                src={p.image}
-                alt=""
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/25" />
-
-              <div className="relative flex flex-col flex-1 p-5 gap-4">
-                <div className="flex items-start justify-between gap-3">
-                  <div className="size-10 rounded-[8px] bg-card/15 backdrop-blur-sm border border-white/20 flex items-center justify-center shrink-0">
-                    <Icon size={18} className="text-white" />
-                  </div>
-                  <div className="flex items-center gap-2">
-                    {p.tag === 'event' && (
-                      <span className="flex items-center gap-1 text-[10px] font-bold tracking-[1px] uppercase text-primary bg-card px-2 py-1 rounded-full shadow-sm">
-                        <CalendarDays size={10} />
-                        Event
-                      </span>
-                    )}
-                    {!editable && (
-                      <span className="flex items-center gap-1 text-[10px] font-bold tracking-[1px] uppercase text-white/90 bg-card/10 backdrop-blur-sm border border-white/20 px-2 py-1 rounded-full">
-                        <Lock size={9} />
-                        Soon
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div className="flex-1 flex flex-col justify-end">
-                  <h3 className="font-bold text-white text-[16px] tracking-[-0.3px] mb-1 drop-shadow-sm">{p.name}</h3>
-                  <p className="text-[13px] text-white/85 leading-[1.55] drop-shadow-sm">{p.description}</p>
-                </div>
-
-                {editable && (
-                  <Button
-                    size="sm"
-                    className="w-full bg-card text-primary hover:bg-card/90"
-                    onClick={() => navigate({ to: p.route as any })}
-                  >
-                    <Pencil size={13} />
-                    Edit Program
-                  </Button>
-                )}
-              </div>
-            </div>
-          )
-        })}
-      </div>
+      <ProgramGroup title="Events" programs={EVENTS} />
+      <ProgramGroup title="Season Programs" programs={SEASON} />
     </div>
+  )
+}
+
+function ProgramGroup({ title, programs }: { title: string; programs: Program[] }) {
+  return (
+    <section className="space-y-3">
+      <h2 className="text-[11px] font-bold tracking-[1.1px] uppercase text-muted-foreground">
+        {title}
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+        {programs.map(p => <ProgramCard key={p.key} program={p} />)}
+      </div>
+    </section>
+  )
+}
+
+function ProgramCard({ program: p }: { program: Program }) {
+  const Icon = p.icon
+  return (
+    <Link
+      to={p.route}
+      className="group rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+    >
+      <Card className="h-full gap-0 py-0 overflow-hidden transition-all duration-200 group-hover:border-primary/40 group-hover:shadow-md">
+        <div className="aspect-[16/7] overflow-hidden bg-muted">
+          <img
+            src={p.image}
+            alt=""
+            loading="lazy"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+        <div className="flex items-start gap-3 p-4">
+          <div className="size-8 rounded-[8px] bg-primary/10 flex items-center justify-center shrink-0">
+            <Icon size={15} className="text-primary" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-bold text-foreground text-[15px] leading-tight">{p.name}</h3>
+            <p className="mt-1 text-[13px] text-muted-foreground leading-snug">{p.description}</p>
+          </div>
+          <ArrowRight
+            size={16}
+            className="mt-0.5 shrink-0 text-muted-foreground transition-all group-hover:text-primary group-hover:translate-x-0.5"
+          />
+        </div>
+      </Card>
+    </Link>
   )
 }

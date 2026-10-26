@@ -3,51 +3,32 @@ import { EliteClinicOverview } from '#/features/programs/elite-clinic/components
 import { EliteClinicDetails } from '#/features/programs/elite-clinic/components/EliteClinicDetails'
 import { EliteClinicCoaches } from '#/features/programs/elite-clinic/components/EliteClinicCoaches'
 import type { EliteClinicData } from '#/features/programs/elite-clinic/types'
-import { HARDCODED_DEFAULTS } from '../elite-clinic-admin.service'
-import type { EliteClinicFormValues } from '../schema'
-
-export type EliteClinicTab = 'hero' | 'overview' | 'details' | 'coaches'
-
-const TAB_LABEL: Record<EliteClinicTab, string> = {
-  hero: 'Hero',
-  overview: 'Overview',
-  details: 'Details',
-  coaches: 'Coaches',
-}
 
 interface Props {
-  activeTab: EliteClinicTab
-  values: EliteClinicFormValues
+  data: EliteClinicData
 }
 
-function buildPreviewData(values: EliteClinicFormValues): EliteClinicData {
-  // Mergea los campos editables con los hardcoded (subtitle, location, objectives, packingList)
-  return {
-    ...values,
-    ...HARDCODED_DEFAULTS,
-  }
-}
-
-export function EliteClinicPreview({ activeTab, values }: Props) {
-  const data = buildPreviewData(values)
-
+export function EliteClinicPreview({ data }: Props) {
+  // self-start: sin esto el panel es un flex item con align-items:stretch y
+  // toma la altura de la fila (la del formulario), no la suya.
   return (
-    <div className="hidden lg:flex max-w-xl w-full shrink-0 border-l border-border bg-white flex-col">
+    <div className="hidden lg:flex self-start max-w-xl w-full shrink-0 border-l border-border bg-white flex-col">
       <div className="px-4 pt-5 pb-2 border-b border-border flex items-center justify-between shrink-0">
         <p className="text-[10px] font-bold tracking-[1.4px] uppercase text-muted-foreground">
           Preview
         </p>
         <p className="text-[10px] font-bold tracking-[1.4px] uppercase text-[#0A0A67]">
-          {TAB_LABEL[activeTab]}
+          Elite Clinic
         </p>
       </div>
 
-      <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
+      {/* Sin overflow-y propio: el preview se mueve con el scroll principal del admin. */}
+      <div className="overflow-x-hidden">
         <div className="brand-surface" style={{ zoom: '0.42' }}>
-          {activeTab === 'hero' && <EliteClinicHero data={data} />}
-          {activeTab === 'overview' && <EliteClinicOverview data={data} />}
-          {activeTab === 'details' && <EliteClinicDetails data={data} />}
-          {activeTab === 'coaches' && <EliteClinicCoaches data={data} />}
+          <EliteClinicHero data={data} />
+          <EliteClinicOverview data={data} />
+          <EliteClinicDetails data={data} />
+          <EliteClinicCoaches data={data} />
         </div>
       </div>
     </div>

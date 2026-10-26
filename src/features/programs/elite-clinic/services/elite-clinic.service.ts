@@ -1,7 +1,7 @@
 import { getConfig } from '#/features/programs/config.service'
 import type { EliteClinicData } from '../types'
 
-const FALLBACK: EliteClinicData = {
+export const ELITE_CLINIC_DEFAULTS: EliteClinicData = {
   title: 'Elite Clinic 2026',
   subtitle: 'Take your skills to the next level',
   description:
@@ -22,7 +22,10 @@ const FALLBACK: EliteClinicData = {
   },
   pricing: {
     basePrice: '$TBD',
+    earlyBirdPrice: '12% OFF',
     earlyBird: 'First 10 to register get 12% off',
+    standardTitle: 'Before June 1st',
+    standardPrice: '10% OFF',
     standardDiscount: '10% off if you sign up before June 1st',
   },
   coaches: [
@@ -53,7 +56,19 @@ const FALLBACK: EliteClinicData = {
   registerUrl: 'https://www.seattlesynchrosst.com/page/system/classreg-shopping',
 }
 
+/** Rellena lo que falte: filas guardadas cuando parte del contenido era fijo. */
+function withDefaults(stored: Partial<EliteClinicData> | undefined): EliteClinicData {
+  if (!stored) return ELITE_CLINIC_DEFAULTS
+  return {
+    ...ELITE_CLINIC_DEFAULTS,
+    ...stored,
+    location: { ...ELITE_CLINIC_DEFAULTS.location, ...stored.location },
+    manager: { ...ELITE_CLINIC_DEFAULTS.manager, ...stored.manager },
+    pricing: { ...ELITE_CLINIC_DEFAULTS.pricing, ...stored.pricing },
+  }
+}
+
 export async function getEliteClinicData(): Promise<EliteClinicData> {
-  const stored = await getConfig<{ content?: EliteClinicData }>('elite-clinic')
-  return stored?.content ?? FALLBACK
+  const stored = await getConfig<{ content?: Partial<EliteClinicData> }>('elite-clinic')
+  return withDefaults(stored?.content)
 }

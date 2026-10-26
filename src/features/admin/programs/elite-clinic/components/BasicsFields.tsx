@@ -37,6 +37,19 @@ export function BasicsFields() {
           )}
         />
 
+        <FormField
+          name="subtitle"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className={labelCls}>Subtitle</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder="Take your skills to the next level" className="text-[13px]" />
+              </FormControl>
+              <FormMessage className="text-[11px]" />
+            </FormItem>
+          )}
+        />
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField
             name="dates"

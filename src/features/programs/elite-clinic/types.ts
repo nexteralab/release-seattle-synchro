@@ -13,7 +13,12 @@ export interface EliteClinicManager {
 
 export interface EliteClinicPricing {
   basePrice: string
+  /** Badge de la fila Early Bird: un precio ("$325") o un descuento ("12% OFF"). */
+  earlyBirdPrice: string
   earlyBird: string
+  /** Segunda fila; si el título queda vacío no se muestra. */
+  standardTitle: string
+  standardPrice: string
   standardDiscount: string
 }
 
