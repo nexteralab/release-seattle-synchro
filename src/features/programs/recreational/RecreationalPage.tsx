@@ -9,53 +9,35 @@ import { RecreationalSummerCampFit } from './components/RecreationalSummerCampFi
 import { RecreationalFaq } from './components/RecreationalFaq'
 import { CtaBanner } from '#/components/CtaBanner'
 import { Reviews } from '#/components/Reviews'
-import type { RecreationalConfig } from './services/recreational.service'
-import type { RecreationalSubProgram, RecreationalSubProgramId } from './types'
+import type { RecreationalData } from './types'
 
 interface Props {
-  config: RecreationalConfig
+  data: RecreationalData
+  /** El preview del admin no carga Reviews (no es editable aquí). */
+  showReviews?: boolean
 }
 
-const FALLBACK_PROGRAM = (
-  id: RecreationalSubProgramId,
-  name: string,
-): RecreationalSubProgram => ({
-  id,
-  name,
-  ages: '',
-  coach: '',
-  workout_days_times: '',
-  schedule_note: '',
-  duration: '',
-  cost: '',
-  cost_note: '',
-})
-
-export function RecreationalPage({ config }: Props) {
-  const byId = new Map(config.sub_programs.map(p => [p.id, p]))
-  const sharksMermaids =
-    byId.get('sharks-mermaids') ?? FALLBACK_PROGRAM('sharks-mermaids', 'Sharks & Mermaids')
-
+export function RecreationalPage({ data, showReviews = true }: Props) {
   return (
     <div className="w-full">
-      <RecreationalHero />
-      <RecreationalOverview program={sharksMermaids} />
-      <RecreationalSharksMermaids program={sharksMermaids} />
-      <RecreationalClassLook />
-      <RecreationalWhoFor />
-      <RecreationalGymnasticsFit />
-      <RecreationalComparisonTable />
-      <RecreationalSummerCampFit />
-      <RecreationalFaq />
-      <Reviews bg="white" />
+      <RecreationalHero hero={data.hero} />
+      <RecreationalOverview overview={data.overview} ages={data.program.ages} />
+      <RecreationalSharksMermaids program={data.program} />
+      <RecreationalClassLook section={data.classLook} />
+      <RecreationalWhoFor section={data.whoFor} />
+      <RecreationalGymnasticsFit section={data.gymnasticsFit} />
+      <RecreationalComparisonTable section={data.comparison} />
+      <RecreationalSummerCampFit section={data.summerCampFit} />
+      <RecreationalFaq section={data.faq} />
+      {showReviews && <Reviews bg="white" />}
       <CtaBanner
-        heading="Ready to Join?"
-        description="Sign up for one of our recreational programs and discover the joy of artistic swimming."
+        heading={data.banner.heading}
+        description={data.banner.description}
         linkToContact="/contact-us"
-        linkLabelContact="Contact Us"
+        linkLabelContact={data.banner.contactLabel}
         linkVariantContact="secondary"
-        image="3"
-        alt="Ready to Join? Recreational programs banner"
+        image={data.banner.image}
+        alt={`${data.banner.heading} Recreational programs banner`}
       />
     </div>
   )

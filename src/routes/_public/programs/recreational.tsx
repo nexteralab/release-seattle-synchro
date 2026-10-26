@@ -1,4 +1,4 @@
-import { RecreationalPage, getRecreationalConfig } from "#/features/programs/recreational";
+import { RecreationalPage, getRecreationalData } from "#/features/programs/recreational";
 import { createFileRoute } from "@tanstack/react-router";
 
 const SITE_URL = "https://seattlesynchro.com";
@@ -51,11 +51,11 @@ export const Route = createFileRoute("/_public/programs/recreational")({
     links: [{ rel: "canonical", href: PAGE_URL }],
     scripts: [{ type: "application/ld+json", children: SCHEMA_JSONLD }],
   }),
-  loader: () => getRecreationalConfig(),
+  loader: () => getRecreationalData(),
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const config = Route.useLoaderData();
-  return <RecreationalPage config={config} />;
+  const data = Route.useLoaderData();
+  return <RecreationalPage data={data} />;
 }

@@ -8,7 +8,6 @@ import { getRecreationalConfig, saveRecreationalConfig } from '../recreational-a
 export function useRecreationalForm() {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
-  const [configId, setConfigId] = useState<string | undefined>(undefined)
 
   const form = useForm<RecreationalFormValues>({
     resolver: zodResolver(recreationalFormSchema),
@@ -17,12 +16,7 @@ export function useRecreationalForm() {
 
   useEffect(() => {
     getRecreationalConfig()
-      .then(cfg => {
-        setConfigId(cfg.id)
-        const byId = new Map(cfg.sub_programs.map(p => [p.id, p]))
-        const merged = FORM_DEFAULTS.sub_programs.map(d => byId.get(d.id) ?? d)
-        form.reset({ sub_programs: merged })
-      })
+      .then(cfg => form.reset(cfg))
       .catch(() => toast.error('Failed to load Recreational config'))
       .finally(() => setLoading(false))
   }, [form])
@@ -30,10 +24,7 @@ export function useRecreationalForm() {
   async function save(values: RecreationalFormValues) {
     setSaving(true)
     try {
-      await saveRecreationalConfig({
-        id: configId,
-        sub_programs: values.sub_programs,
-      })
+      await saveRecreationalConfig(values)
       toast.success('Recreational program saved')
     } catch {
       toast.error('Failed to save')

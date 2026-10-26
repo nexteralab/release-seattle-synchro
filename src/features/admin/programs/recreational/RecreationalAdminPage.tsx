@@ -1,32 +1,23 @@
-import { useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ImageIcon } from 'lucide-react'
 import { Button } from '#/components/ui/button'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '#/components/ui/tabs'
 import { Form } from '#/components/ui/form'
-import type {
-  RecreationalSubProgram,
-  RecreationalSubProgramId,
-} from '#/features/programs/recreational/types'
+import { HeroImageField } from '#/features/admin/components/HeroImageField'
+import type { RecreationalData } from '#/features/programs/recreational/types'
 import { useRecreationalForm } from './hooks/use-recreational-form'
-import { TABS, TAB_INDEX } from './schema'
-import { SubProgramFields } from './components/SubProgramFields'
+import { SectionCard, TextField } from './components/fields'
+import {
+  BannerFields, ClassLookFields, ComparisonFields, FaqFields, GymnasticsFitFields,
+  OverviewFields, ProgramFields, SummerCampFitFields, WhoForFields,
+} from './components/SectionFields'
 import { RecreationalPreview } from './components/RecreationalPreview'
-
-// Qué campos opcionales mostrar por sub-programa
-const FIELD_VISIBILITY: Record<
-  RecreationalSubProgramId,
-  { showScheduleNote: boolean; showDuration: boolean; showCostNote: boolean }
-> = {
-  'sharks-mermaids': { showScheduleNote: true, showDuration: false, showCostNote: true },
-}
 
 export function RecreationalAdminPage() {
   const navigate = useNavigate()
   const { form, save, loading, saving } = useRecreationalForm()
-  const [activeTab, setActiveTab] = useState<RecreationalSubProgramId>('sharks-mermaids')
 
-  const livePrograms = form.watch('sub_programs') as RecreationalSubProgram[]
+  // Live values para preview
+  const liveData = form.watch() as RecreationalData
 
   if (loading) {
     return (
@@ -37,10 +28,12 @@ export function RecreationalAdminPage() {
   }
 
   return (
-    <div className="peer-[.header-fixed]/header:mt-16 flex flex-col flex-1 min-h-0">
+    // relative: el <select> nativo oculto de Radix es absolute; sin un ancestro
+    // posicionado se escapa del scroll del admin y crea un segundo scroll.
+    <div className="relative">
 
       {/* Header */}
-      <div className="flex items-center justify-between px-8 py-4 border-b border-border bg-background shrink-0 z-10">
+      <div className="flex items-center justify-between px-8 py-4 border-b border-border bg-background">
         <div className="flex items-center gap-3">
           <Button variant="ghost" size="icon" onClick={() => navigate({ to: '/app/programs' })}>
             <ArrowLeft size={18} />
@@ -59,43 +52,37 @@ export function RecreationalAdminPage() {
       </div>
 
       {/* Body */}
-      <div className="flex flex-1 min-h-0">
+      <div className="flex">
+        <Form {...form}>
+          <form
+            id="recreational-form"
+            onSubmit={form.handleSubmit(save)}
+            className="flex-1 min-w-0 px-8 py-6 space-y-6"
+          >
+            <p className="text-[12px] text-muted-foreground">
+              Todo el texto de la página es editable. Las imágenes de cada sección y las
+              reseñas siguen en el código.
+            </p>
 
-        {/* Form */}
-        <div className="flex-1 min-h-0 overflow-y-auto">
-          <Form {...form}>
-            <form
-              id="recreational-form"
-              onSubmit={form.handleSubmit(save)}
-              className="max-w-3xl px-8 py-6 space-y-6"
-            >
-              <p className="text-[12px] text-muted-foreground">
-                Edita los detalles de cada sub-programa. Las descripciones, los <em>required swimming skills</em>
-                {' '}y la sección <em>unique opportunity</em> están fijos en el código.
-              </p>
-
-              <Tabs value={activeTab} onValueChange={v => setActiveTab(v as RecreationalSubProgramId)}>
-                <TabsList className="w-full grid grid-cols-1">
-                  {TABS.map(t => (
-                    <TabsTrigger key={t.id} value={t.id}>{t.label}</TabsTrigger>
-                  ))}
-                </TabsList>
-
-                {TABS.map(t => (
-                  <TabsContent key={t.id} value={t.id} className="space-y-5 mt-4">
-                    <SubProgramFields
-                      index={TAB_INDEX[t.id]}
-                      {...FIELD_VISIBILITY[t.id]}
-                    />
-                  </TabsContent>
-                ))}
-              </Tabs>
-            </form>
-          </Form>
-        </div>
+            {/* Hero */}
+            <HeroImageField name="hero.image" folder="programs/recreational" title="Recreational hero image" />
+            <SectionCard icon={ImageIcon} title="Hero image alt text">
+              <TextField name="hero.alt" label="Alt text" hint="Describe la imagen. Ayuda al SEO y la accesibilidad." />
+            </SectionCard>
+            <OverviewFields />
+            <ProgramFields />
+            <ClassLookFields />
+            <WhoForFields />
+            <GymnasticsFitFields />
+            <ComparisonFields />
+            <SummerCampFitFields />
+            <FaqFields />
+            <BannerFields />
+          </form>
+        </Form>
 
         {/* Preview */}
-        <RecreationalPreview activeTab={activeTab} programs={livePrograms} />
+        <RecreationalPreview data={liveData} />
 
       </div>
     </div>

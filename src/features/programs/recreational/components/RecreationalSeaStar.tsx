@@ -1,31 +1,10 @@
-import type { RecreationalSubProgram } from '../types'
-
-export const SHARKS_MERMAIDS_FALLBACK: RecreationalSubProgram = {
-  id: 'sharks-mermaids',
-  name: 'Sharks & Mermaids',
-  ages: '5–10',
-  coach: 'Sophie Lin & Daniela Garmendia',
-  workout_days_times: 'Saturdays 11:00am – 11:50am',
-  schedule_note: 'No class Friday May 15th. Last class June 5th.',
-  duration: '',
-  cost: '$50 registration fee + $60 March dues',
-  cost_note: 'Pool fees should be covered through one payment to the booster club (approximately $280)',
-}
-
-const REQUIRED_SKILLS = [
-  'Swimmers must be safe in water and swim independently',
-  '2 laps of crawl',
-  '2 laps of breaststroke',
-  '1 lap of backstroke',
-  'Float on back independently for 10 seconds',
-  'Tread water for 20 seconds',
-]
+import type { RecreationalProgram } from '../types'
 
 interface Props {
-  program?: RecreationalSubProgram
+  program: RecreationalProgram
 }
 
-export function RecreationalSharksMermaids({ program = SHARKS_MERMAIDS_FALLBACK }: Props = {}) {
+export function RecreationalSharksMermaids({ program }: Props) {
   return (
     <section id="sharks-mermaids" className="p-6 md:px-12 lg:p-20 bg-[#F5F5F5] scroll-mt-24" aria-labelledby="sharks-mermaids-heading">
       <div className="max-w-screen-lg mx-auto space-y-12">
@@ -38,18 +17,16 @@ export function RecreationalSharksMermaids({ program = SHARKS_MERMAIDS_FALLBACK 
               {program.name}
             </h2>
             <a
-              href="https://www.seattlesynchrosst.com/page/system/classreg-shopping"
+              href={program.register_url}
               target="_blank"
               rel="noopener"
               className="bg-secondary text-primary rounded-full px-10 py-4 font-bold text-[14px] tracking-[1.4px] uppercase hover:bg-secondary hover:text-white transition-colors"
             >
-              Register Now
+              {program.register_label}
             </a>
           </div>
           <p className="text-[#737373] text-[16px] md:text-[18px] leading-[26px] max-w-3xl">
-            These classes are designed for swimmers who have mastered crawl stroke, breaststroke
-            and backstroke. They should be comfortable floating on their back and swimming
-            independently.
+            {program.description}
           </p>
         </div>
 
@@ -89,11 +66,11 @@ export function RecreationalSharksMermaids({ program = SHARKS_MERMAIDS_FALLBACK 
 
           <div className="bg-white rounded-3xl p-6 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.1)]">
             <h3 className="font-bold text-secondary text-[14px] tracking-[1.4px] uppercase mb-8">
-              Required Swimming Skills
+              {program.skills_title}
             </h3>
             <ul className="space-y-5">
-              {REQUIRED_SKILLS.map((skill) => (
-                <li key={skill} className="flex gap-3 items-start">
+              {program.skills.map((skill, i) => (
+                <li key={i} className="flex gap-3 items-start">
                   <span
                     className="shrink-0 size-6 rounded-full bg-primary/18 text-primary flex items-center justify-center font-bold text-[13px] mt-0.5"
                     aria-hidden="true"

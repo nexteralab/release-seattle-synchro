@@ -1,36 +1,28 @@
-import {
-  RecreationalSharksMermaids,
-} from '#/features/programs/recreational/components/RecreationalSeaStar'
-import type {
-  RecreationalSubProgram,
-  RecreationalSubProgramId,
-} from '#/features/programs/recreational/types'
+import { RecreationalPage } from '#/features/programs/recreational/RecreationalPage'
+import type { RecreationalData } from '#/features/programs/recreational/types'
 
 interface Props {
-  activeTab: RecreationalSubProgramId
-  programs: RecreationalSubProgram[]
+  data: RecreationalData
 }
 
-export function RecreationalPreview({ activeTab, programs }: Props) {
-  const byId = new Map(programs.map(p => [p.id, p]))
-  const active = byId.get(activeTab)
-
+export function RecreationalPreview({ data }: Props) {
+  // self-start: sin esto el panel es un flex item con align-items:stretch y
+  // toma la altura de la fila (la del formulario), no la suya.
   return (
-    <div className="hidden lg:flex max-w-xl w-full shrink-0 border-l border-border bg-white flex-col">
+    <div className="hidden lg:flex self-start max-w-xl w-full shrink-0 border-l border-border bg-white flex-col">
       <div className="px-4 pt-5 pb-2 border-b border-border flex items-center justify-between shrink-0">
         <p className="text-[10px] font-bold tracking-[1.4px] uppercase text-muted-foreground">
           Preview
         </p>
         <p className="text-[10px] font-bold tracking-[1.4px] uppercase text-[#0A0A67]">
-          {active?.name ?? activeTab}
+          Recreational
         </p>
       </div>
 
-      <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
+      {/* Sin overflow-y propio: el preview se mueve con el scroll principal del admin. */}
+      <div className="overflow-x-hidden">
         <div className="brand-surface" style={{ zoom: '0.42' }}>
-          {active && activeTab === 'sharks-mermaids' && (
-            <RecreationalSharksMermaids program={active} />
-          )}
+          <RecreationalPage data={data} showReviews={false} />
         </div>
       </div>
     </div>

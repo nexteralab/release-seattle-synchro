@@ -1,9 +1,9 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
-import { getRecreationalConfig } from '../services/recreational.service'
+import { getRecreationalData } from '../services/recreational.service'
 
 export const recreationalQueryOptions = queryOptions({
   queryKey: ['recreational'],
-  queryFn: getRecreationalConfig,
+  queryFn: getRecreationalData,
   staleTime: 1000 * 60 * 60,
 })
 
