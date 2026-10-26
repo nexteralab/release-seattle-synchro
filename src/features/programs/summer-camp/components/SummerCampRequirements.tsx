@@ -1,29 +1,13 @@
 import { motion } from 'motion/react'
+import type { SummerCampRequirement, SummerCampRequirementsContent } from '../types'
 
 const vp = { once: true, margin: '-40px' }
 
-interface Requirement {
-  name: string
-  note?: string
-  link?: string
-}
-
-const REQUIREMENTS: Requirement[] = [
-  { name: 'Swim Suit' },
-  { name: 'Swim Cap' },
-  { name: 'Goggles' },
-  {
-    name: 'Nose Clips',
-    note: 'Recommendations',
-    link: 'https://www.amazon.com/Hurdilen-Swimming-Waterproof-Silica-Multi-Color/dp/B07HH4HQXW',
-  },
-  { name: 'Towel' },
-]
-
-export function SummerCampRequirements() {
-  const half = Math.ceil(REQUIREMENTS.length / 2)
-  const left = REQUIREMENTS.slice(0, half)
-  const right = REQUIREMENTS.slice(half)
+export function SummerCampRequirements({ requirements }: { requirements: SummerCampRequirementsContent }) {
+  const items = requirements.items
+  const half = Math.ceil(items.length / 2)
+  const left = items.slice(0, half)
+  const right = items.slice(half)
 
   return (
     <section
@@ -38,7 +22,7 @@ export function SummerCampRequirements() {
           transition={{ duration: 0.35, ease: [0.35, 0.85, 0.25, 1] }}
           className="font-bold text-[#0A0A67] text-[30px] md:text-[48px] tracking-[-2.4px] uppercase mb-12"
         >
-          What Do You Need?
+          {requirements.heading}
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <RequirementList items={left} />
@@ -49,12 +33,12 @@ export function SummerCampRequirements() {
   )
 }
 
-function RequirementList({ items }: { items: Requirement[] }) {
+function RequirementList({ items }: { items: SummerCampRequirement[] }) {
   return (
     <div className="space-y-6">
       {items.map((item, i) => (
         <motion.div
-          key={item.name}
+          key={i}
           whileInView={{ opacity: [0, 1], x: [-24, 0] }}
           viewport={vp}
           transition={{ duration: 0.3, ease: [0.35, 0.85, 0.25, 1], delay: i * 0.07 }}
@@ -70,16 +54,16 @@ function RequirementList({ items }: { items: Requirement[] }) {
             <h3 className="font-bold text-[#171717] text-[16px] md:text-[18px] mb-1">
               {item.name}
             </h3>
-            {item.note && item.link ? (
+            {item.link ? (
               <p className="text-[#737373] text-[14px] md:text-[16px] leading-[26px]">
-                {item.note}{' '}
+                {item.note && <>{item.note}{' '}</>}
                 <a
                   href={item.link}
                   target="_blank"
                   rel="noopener"
                   className="underline hover:text-[#0A0A67] transition-colors"
                 >
-                  View on Amazon
+                  {item.linkLabel || item.link}
                 </a>
               </p>
             ) : item.note ? (

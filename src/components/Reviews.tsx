@@ -8,18 +8,18 @@ import teamAthlete from '/images/programs/reviewers/TeamAthlete.webp'
 
 const vp = { once: true, margin: '-40px' }
 
-interface ReviewPhoto {
+export interface ReviewPhoto {
   src: string
   alt: string
 }
 
-interface Review {
+export interface Review {
   name: string
   paras: string[]
   photos?: ReviewPhoto[]
 }
 
-const REVIEWS: Review[] = [
+export const REVIEWS: Review[] = [
   {
     name: 'Synchro Parent',
     paras: [
@@ -76,14 +76,17 @@ function initialsOf(name: string) {
 interface ReviewsProps {
   /** Fondo de la sección — alterna con la sección anterior de cada página */
   bg?: 'light' | 'white'
+  /** Reviews propias de la página; si no llega o está vacía, las de siempre. */
+  reviews?: Review[]
 }
 
-export function Reviews({ bg = 'light' }: ReviewsProps) {
+export function Reviews({ bg = 'light', reviews }: ReviewsProps) {
+  const list = reviews?.length ? reviews : REVIEWS
   const [index, setIndex] = useState(0)
-  const review = REVIEWS[index]
+  const review = list[index] ?? list[0]
 
   function move(step: number) {
-    setIndex((i) => (i + step + REVIEWS.length) % REVIEWS.length)
+    setIndex((i) => (i + step + list.length) % list.length)
   }
 
   return (

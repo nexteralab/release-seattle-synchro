@@ -1,5 +1,6 @@
 import heroImage from '/images/hero_summer.webp'
 import { motion } from 'motion/react'
+import type { SummerCampHeroContent } from '../types'
 
 const t = { duration: 0.35, ease: [0.35, 0.85, 0.25, 1] as [number, number, number, number] }
 const vp = { once: true }
@@ -10,13 +11,14 @@ const HERO_IMAGE_FALLBACK =
 // La imagen va contenida como en FreeTryHero — con margen, esquinas redondeadas
 // y sin ocupar la pantalla entera — pero el texto sigue dentro de la imagen y
 // centrado, no debajo.
-export function SummerCampHero() {
+export function SummerCampHero({ hero }: { hero: SummerCampHeroContent }) {
   return (
     <section className="bg-white" aria-label="Summer Camp hero">
       <div className="p-6 pt-10 md:p-12 md:px-20 md:pt-16">
         <div className="relative w-full h-[42vh] md:h-[58vh] rounded-3xl overflow-hidden max-w-screen-xl mx-auto">
           <img
-            src={heroImage}
+            // Sin imagen propia en base, se usa la del bundle.
+            src={hero.image || heroImage}
             alt="Artistic swimming coach training kids poolside"
             className="absolute inset-0 w-full h-full object-cover"
             onError={(e) => {
@@ -30,7 +32,7 @@ export function SummerCampHero() {
           <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white px-6 md:px-12 gap-5 md:gap-8">
             <div className="bg-primary rounded-full inline-block px-3 py-1">
               <span className="font-bold text-[#f5f5f5] text-[12px] tracking-[1.2px] uppercase">
-                Limited Spots Available
+                {hero.badge}
               </span>
             </div>
 
@@ -42,7 +44,7 @@ export function SummerCampHero() {
                 transition={t}
                 className="text-[20px] md:text-[30px] tracking-[1.2px]"
               >
-                Artistic Swimming
+                {hero.kicker}
               </motion.p>
               <motion.h1
                 whileInView={{ opacity: [0, 1], x: [-40, 0] }}
@@ -50,7 +52,7 @@ export function SummerCampHero() {
                 transition={{ ...t, delay: 0.05 }}
                 className="text-[46px] md:text-[80px] leading-none uppercase"
               >
-                Summer Camp
+                {hero.title}
               </motion.h1>
               <motion.p
                 whileInView={{ opacity: [0, 1], x: [-40, 0] }}
@@ -58,17 +60,17 @@ export function SummerCampHero() {
                 transition={{ ...t, delay: 0.1 }}
                 className="text-[20px] md:text-[30px] tracking-[1.2px]"
               >
-                for kids in Washington
+                {hero.subtitle}
               </motion.p>
             </header>
 
             <a
-              href="https://www.seattlesynchrosst.com/page/system/classreg-shopping"
+              href={hero.ctaUrl}
               target="_blank"
               rel="noopener"
               className="inline-block bg-white text-secondary rounded-full px-10 py-4 font-bold text-[14px] tracking-[2.8px] uppercase hover:text-primary border border-secondary hover:border-primary transition-colors"
             >
-              Register Now
+              {hero.ctaLabel}
             </a>
           </div>
         </div>

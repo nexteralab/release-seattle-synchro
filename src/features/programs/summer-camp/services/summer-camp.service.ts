@@ -2,8 +2,28 @@ import { getConfig } from '#/features/programs/config.service'
 import type { SummerCampContent } from '../types'
 
 const REGISTER_URL = 'https://www.seattlesynchrosst.com/page/system/classreg-shopping'
-// Fallback estático — se usa si la tabla está vacía o aún no existe.
-const FALLBACK: SummerCampContent = {
+
+// Defaults = el texto que estaba fijo en la página. Una sola copia para la
+// página pública y para el formulario del admin.
+export const SUMMER_CAMP_DEFAULTS: SummerCampContent = {
+  hero: {
+    badge: 'Limited Spots Available',
+    kicker: 'Artistic Swimming',
+    title: 'Summer Camp',
+    subtitle: 'for kids in Washington',
+    ctaLabel: 'Register Now',
+    ctaUrl: REGISTER_URL,
+    image: '',
+  },
+  overview: {
+    heading: 'About the Camp',
+    body: [
+      "Dive into the world of artistic swimming at our recreational summer camp! Join us for a week of fun and creativity as we blend athleticism with artistry in the pool. Designed for swimmers of all levels, our camp offers expert instruction in technique, choreography, and teamwork.",
+      "Participants will learn a routine set to music, develop their swimming skills, and unleash their creativity through water-based performances. Whether you're a beginner or have some experience, come make a splash with us this summer!",
+      'Skills: campers will reinforce swimming technique, learn basic artistic swimming skills and a routine that will be performed at the end of the week.',
+    ].join('\n\n'),
+    detailsHeading: 'Camp Details',
+  },
   details: {
     ages: '6–11 years old',
     skill_level:
@@ -24,12 +44,56 @@ const FALLBACK: SummerCampContent = {
       register_url: REGISTER_URL,
     },
   ],
+  dates: {
+    kicker: 'Mark Your Calendar',
+    heading: 'Two Sessions.\nOne Summer.',
+    registerLabel: 'Register',
+    investmentLabel: 'Investment',
+  },
   price_per_week: '$330 per week',
+  requirements: {
+    heading: 'What Do You Need?',
+    items: [
+      { name: 'Swim Suit', note: '', link: '', linkLabel: '' },
+      { name: 'Swim Cap', note: '', link: '', linkLabel: '' },
+      { name: 'Goggles', note: '', link: '', linkLabel: '' },
+      {
+        name: 'Nose Clips',
+        note: 'Recommendations',
+        link: 'https://www.amazon.com/Hurdilen-Swimming-Waterproof-Silica-Multi-Color/dp/B07HH4HQXW',
+        linkLabel: 'View on Amazon',
+      },
+      { name: 'Towel', note: '', link: '', linkLabel: '' },
+    ],
+  },
+  reviews: [],
+  banner: {
+    heading: 'Ready to Dive In?',
+    description:
+      'Spots fill up quickly! Register now to secure your place in our 2026 Summer Camp program.',
+    registerLabel: 'Register Now',
+    registerUrl: REGISTER_URL,
+    contactLabel: 'Contact Us',
+    image: '1',
+  },
 }
 
-// `summer_camp` aún no está en database.types.ts.
+/** Rellena lo que falte: filas guardadas cuando solo existían details/sessions/precio. */
+function withDefaults(stored: Partial<SummerCampContent> | undefined): SummerCampContent {
+  if (!stored) return SUMMER_CAMP_DEFAULTS
+  return {
+    ...SUMMER_CAMP_DEFAULTS,
+    ...stored,
+    hero: { ...SUMMER_CAMP_DEFAULTS.hero, ...stored.hero },
+    overview: { ...SUMMER_CAMP_DEFAULTS.overview, ...stored.overview },
+    details: { ...SUMMER_CAMP_DEFAULTS.details, ...stored.details },
+    dates: { ...SUMMER_CAMP_DEFAULTS.dates, ...stored.dates },
+    requirements: { ...SUMMER_CAMP_DEFAULTS.requirements, ...stored.requirements },
+    banner: { ...SUMMER_CAMP_DEFAULTS.banner, ...stored.banner },
+  }
+}
 
 export async function getSummerCampContent(): Promise<SummerCampContent> {
-  const stored = await getConfig<{ content?: SummerCampContent }>('summer-camp')
-  return stored?.content ?? FALLBACK
+  const stored = await getConfig<{ content?: Partial<SummerCampContent> }>('summer-camp')
+  return withDefaults(stored?.content)
 }

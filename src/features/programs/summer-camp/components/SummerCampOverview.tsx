@@ -1,21 +1,16 @@
-import type { CampDetails, CampSession } from '../types'
+import type { CampDetails, CampSession, SummerCampOverviewContent } from '../types'
 import { motion } from 'motion/react'
 
 const transition = { duration: 0.35, ease: [0.35, 0.85, 0.25, 1] as [number, number, number, number] }
 const viewport = { once: true, margin: '-60px' }
 
-const OVERVIEW_PARAGRAPHS: string[] = [
-  "Dive into the world of artistic swimming at our recreational summer camp! Join us for a week of fun and creativity as we blend athleticism with artistry in the pool. Designed for swimmers of all levels, our camp offers expert instruction in technique, choreography, and teamwork.",
-  "Participants will learn a routine set to music, develop their swimming skills, and unleash their creativity through water-based performances. Whether you're a beginner or have some experience, come make a splash with us this summer!",
-  "Skills: campers will reinforce swimming technique, learn basic artistic swimming skills and a routine that will be performed at the end of the week.",
-]
-
 interface Props {
+  overview: SummerCampOverviewContent
   details: CampDetails
   sessions: CampSession[]
 }
 
-export function SummerCampOverview({ details, sessions }: Props) {
+export function SummerCampOverview({ overview, details, sessions }: Props) {
   return (
     <section className="p-6 md:p-12 md:px-20 md:py-24 bg-white peer-[.header-fixed]/header:mt-16" aria-labelledby="overview-heading">
       <div className="max-w-screen-lg mx-auto">
@@ -28,7 +23,7 @@ export function SummerCampOverview({ details, sessions }: Props) {
               transition={transition}
               className="font-bold text-secondary text-[30px] md:text-[48px] tracking-[-2.4px] uppercase mb-4 md:mb-8"
             >
-              About the Camp
+              {overview.heading}
             </motion.h2>
             <motion.div
               whileInView={{ opacity: [0, 1], x: [-40, 0] }}
@@ -36,7 +31,8 @@ export function SummerCampOverview({ details, sessions }: Props) {
               transition={{ ...transition, delay: 0.1 }}
               className="space-y-6 text-[#171717] text-[16px] md:text-[18px] leading-[29px]"
             >
-              {OVERVIEW_PARAGRAPHS.map((p, i) => (
+              {/* Párrafos separados por una línea en blanco */}
+              {overview.body.split(/\n\s*\n/).map((p, i) => (
                 <p key={i} className="whitespace-pre-line">{p}</p>
               ))}
             </motion.div>
@@ -49,7 +45,7 @@ export function SummerCampOverview({ details, sessions }: Props) {
               transition={transition}
               className="font-bold text-secondary text-[24px] tracking-[-1.2px] uppercase mb-8"
             >
-              Camp Details
+              {overview.detailsHeading}
             </motion.h3>
             <div className="space-y-6">
               <DetailItem label="Ages" value={details.ages} />
@@ -65,8 +61,8 @@ export function SummerCampOverview({ details, sessions }: Props) {
                   Locations
                 </h4>
                 <div className="space-y-4">
-                  {sessions.map((s) => (
-                    <div key={s.name}>
+                  {sessions.map((s, i) => (
+                    <div key={i}>
                       <p className="font-bold text-secondary mb-1 text-[16px]">
                         {s.name}
                       </p>

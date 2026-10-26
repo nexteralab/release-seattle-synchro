@@ -1,17 +1,19 @@
 import { trackConversion } from '#/features/analytics/client'
 import { motion } from 'motion/react'
-import type { CampSession } from '../types'
+import { Fragment } from 'react'
+import type { CampSession, SummerCampDatesContent } from '../types'
 
 const vp = { once: true, margin: '-50px' }
 const t  = { duration: 0.4, ease: [0.35, 0.85, 0.25, 1] as [number, number, number, number] }
 
 interface Props {
+  dates: SummerCampDatesContent
   sessions: CampSession[]
   schedule: string
   pricePerWeek: string
 }
 
-export function SummerCampDates({ sessions, schedule, pricePerWeek }: Props) {
+export function SummerCampDates({ dates, sessions, schedule, pricePerWeek }: Props) {
   return (
     <section
       className="bg-[#0A0A67] px-6 py-16 md:px-20 md:py-24"
@@ -26,7 +28,7 @@ export function SummerCampDates({ sessions, schedule, pricePerWeek }: Props) {
           transition={t}
           className="font-bold text-[#63AC23] text-[12px] tracking-[2.4px] uppercase mb-4"
         >
-          Mark Your Calendar
+          {dates.kicker}
         </motion.p>
 
         <motion.h2
@@ -36,7 +38,13 @@ export function SummerCampDates({ sessions, schedule, pricePerWeek }: Props) {
           transition={{ ...t, delay: 0.05 }}
           className="font-bold text-white text-[30px] md:text-[56px] tracking-[-2px] uppercase leading-none mb-12 md:mb-16"
         >
-          Two Sessions.<br className="hidden md:block" /> One Summer.
+          {/* Cada salto de línea corta solo en desktop */}
+          {dates.heading.split('\n').map((line, i) => (
+            <Fragment key={i}>
+              {i > 0 && <><br className="hidden md:block" />{' '}</>}
+              {line}
+            </Fragment>
+          ))}
         </motion.h2>
 
         {/* Cards */}
@@ -47,7 +55,7 @@ export function SummerCampDates({ sessions, schedule, pricePerWeek }: Props) {
 
             return (
               <motion.div
-                key={s.name}
+                key={i}
                 whileInView={{ opacity: [0, 1], y: [32, 0] }}
                 viewport={vp}
                 transition={{ ...t, delay: 0.1 + i * 0.1 }}
@@ -88,7 +96,7 @@ export function SummerCampDates({ sessions, schedule, pricePerWeek }: Props) {
                   rel="noopener"
                   className="mt-auto inline-block bg-[#63AC23] text-white rounded-full text-center px-6 py-3 font-bold text-[12px] tracking-[2.4px] uppercase hover:bg-[#4d8a18] transition-colors"
                 >
-                  Register
+                  {dates.registerLabel}
                 </a>
               </motion.div>
             )
@@ -102,7 +110,7 @@ export function SummerCampDates({ sessions, schedule, pricePerWeek }: Props) {
           transition={{ ...t, delay: 0.3 }}
           className="border-t border-white/15 pt-8"
         >
-          <p className="text-white/50 text-[12px] tracking-[1.2px] uppercase mb-1">Investment</p>
+          <p className="text-white/50 text-[12px] tracking-[1.2px] uppercase mb-1">{dates.investmentLabel}</p>
           <p className="font-bold text-white text-[24px] tracking-[-0.5px]">{pricePerWeek}</p>
         </motion.div>
 

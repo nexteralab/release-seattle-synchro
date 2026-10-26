@@ -1,26 +1,19 @@
-import { getConfig, setConfig } from '#/features/programs/config.service'
-import type { SummerCampContent } from '#/features/programs/summer-camp'
+import { setConfig } from '#/features/programs/config.service'
+import { getSummerCampContent } from '#/features/programs/summer-camp/services/summer-camp.service'
+import type { SummerCampContent } from '#/features/programs/summer-camp/types'
 
-export type {
-  SummerCampContent,
-  CampSession,
-  CampDetails,
-} from '#/features/programs/summer-camp'
+// Re-export el tipo público como SSOT
+export type { SummerCampContent } from '#/features/programs/summer-camp/types'
 
-export const DEFAULT_CONTENT: SummerCampContent = {
-  details: { ages: '', skill_level: '', schedule: '' },
-  sessions: [],
-  price_per_week: '',
+// Los defaults viven en el servicio público: una sola copia para la página y
+// para el formulario, así no pueden divergir.
+export { SUMMER_CAMP_DEFAULTS as DEFAULT_CONTENT } from '#/features/programs/summer-camp/services/summer-camp.service'
+
+export async function getSummerCampConfig(): Promise<SummerCampContent> {
+  // Reutiliza el mismo relleno de defaults que la página pública.
+  return getSummerCampContent()
 }
 
-// `summer_camp` aún no está en database.types.ts (regenerar con
-// Casteamos a any igual que el patrón de news.service.ts.
-
-export async function getSummerCampContent(): Promise<SummerCampContent> {
-  const stored = await getConfig<{ content?: SummerCampContent }>('summer-camp')
-  return stored?.content ?? DEFAULT_CONTENT
-}
-
-export async function saveSummerCampContent(content: SummerCampContent): Promise<void> {
+export async function saveSummerCampConfig(content: SummerCampContent): Promise<void> {
   await setConfig('summer-camp', { content })
 }
