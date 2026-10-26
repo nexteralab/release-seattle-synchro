@@ -40,6 +40,7 @@ export const coachSchema = z.object({
 export const eliteClinicFormSchema = z.object({
   title: required,
   subtitle: required,
+  heroImage: z.string(),
   description: required,
   dates: required,
   time: required,

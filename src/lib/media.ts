@@ -3,9 +3,18 @@ import { env } from 'cloudflare:workers'
 import { authed } from './auth-guard'
 
 // Todo vive en un solo bucket R2 con prefijos.
-export type MediaFolder = 'blog' | 'news' | 'coaches' | 'programs/free-try'
+// Los heros de programas (salvo Free Try, que se quedó en 1 MB) van a 500 KB.
+const HERO_FOLDERS = [
+  'programs/elite-clinic',
+  'programs/competitive',
+  'programs/beginner',
+  'programs/recreational',
+  'programs/summer-camp',
+] as const
 
-const FOLDERS: MediaFolder[] = ['blog', 'news', 'coaches', 'programs/free-try']
+export type MediaFolder = 'blog' | 'news' | 'coaches' | 'programs/free-try' | (typeof HERO_FOLDERS)[number]
+
+const FOLDERS: MediaFolder[] = ['blog', 'news', 'coaches', 'programs/free-try', ...HERO_FOLDERS]
 
 /**
  * Tope de 1 MB por imagen. No es una cifra arbitraria: las portadas y los hero
@@ -14,6 +23,12 @@ const FOLDERS: MediaFolder[] = ['blog', 'news', 'coaches', 'programs/free-try']
  * (autoridad real).
  */
 export const MAX_IMAGE_BYTES = 1024 * 1024
+
+// Heros de programas: 500 KB. Un hero bien exportado en WebP cabe de sobra.
+const HERO_MAX_BYTES = 500 * 1024
+
+export const maxImageBytes = (folder: MediaFolder) =>
+  (HERO_FOLDERS as readonly string[]).includes(folder) ? HERO_MAX_BYTES : MAX_IMAGE_BYTES
 
 export const formatBytes = (n: number) =>
   n >= 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(1)} MB` : `${Math.round(n / 1024)} KB`
@@ -31,8 +46,9 @@ const uploadFn = createServerFn({ method: 'POST' })
     if (!file) throw new Error('No file')
     if (!FOLDERS.includes(folder as MediaFolder)) throw new Error('Invalid folder')
     if (!file.type.startsWith('image/')) throw new Error('Only image files are allowed')
-    if (file.size > MAX_IMAGE_BYTES) {
-      throw new Error(`Image is ${formatBytes(file.size)}. Maximum is 1 MB.`)
+    const max = maxImageBytes(folder as MediaFolder)
+    if (file.size > max) {
+      throw new Error(`Image is ${formatBytes(file.size)}. Maximum is ${formatBytes(max)}.`)
     }
 
     const ext = file.name.split('.').pop()
@@ -67,8 +83,9 @@ const listFn = createServerFn({ method: 'GET' })
 export const uploadMedia = (folder: MediaFolder, file: File) => {
   // Se comprueba también aquí para no subir un archivo que el servidor va a
   // rechazar: el aviso llega antes y sin gastar la subida.
-  if (file.size > MAX_IMAGE_BYTES) {
-    throw new Error(`Image is ${formatBytes(file.size)}. Maximum is 1 MB.`)
+  const max = maxImageBytes(folder)
+  if (file.size > max) {
+    throw new Error(`Image is ${formatBytes(file.size)}. Maximum is ${formatBytes(max)}.`)
   }
   const fd = new FormData()
   fd.set('folder', folder)

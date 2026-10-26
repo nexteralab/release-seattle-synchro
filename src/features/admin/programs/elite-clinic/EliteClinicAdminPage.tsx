@@ -6,6 +6,7 @@ import type { EliteClinicData } from '#/features/programs/elite-clinic/types'
 import { useEliteClinicForm } from './hooks/use-elite-clinic-form'
 import { BasicsFields } from './components/BasicsFields'
 import { RegisterField } from './components/RegisterField'
+import { HeroImageField } from '#/features/admin/components/HeroImageField'
 import { DescriptionField } from './components/DescriptionField'
 import { ObjectivesFields } from './components/ObjectivesFields'
 import { PricingFields } from './components/PricingFields'
@@ -31,7 +32,9 @@ export function EliteClinicAdminPage() {
   }
 
   return (
-    <div className="">
+    // relative: el <select> nativo oculto de Radix (Coaches) es absolute; sin un
+    // ancestro posicionado se escapa del scroll del admin y crea un segundo scroll.
+    <div className="relative">
 
       {/* Header */}
       <div className="flex items-center justify-between px-8 py-4 border-b border-border bg-background">
@@ -58,7 +61,7 @@ export function EliteClinicAdminPage() {
           <form
             id="elite-clinic-form"
             onSubmit={form.handleSubmit(save)}
-            className="flex-1 max-w-3xl px-8 py-6 space-y-6"
+            className="flex-1 min-w-0 px-8 py-6 space-y-6"
           >
             <p className="text-[12px] text-muted-foreground">
               Todo el contenido de la página es editable.
@@ -66,6 +69,7 @@ export function EliteClinicAdminPage() {
 
             {/* Hero */}
             <BasicsFields />
+            <HeroImageField name="heroImage" folder="programs/elite-clinic" title="Elite Clinic hero image" />
             <RegisterField />
             {/* Overview */}
             <DescriptionField />

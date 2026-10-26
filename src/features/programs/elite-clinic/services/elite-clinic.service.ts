@@ -4,6 +4,7 @@ import type { EliteClinicData } from '../types'
 export const ELITE_CLINIC_DEFAULTS: EliteClinicData = {
   title: 'Elite Clinic 2026',
   subtitle: 'Take your skills to the next level',
+  heroImage: '',
   description:
     'Join us for an exciting clinic led by top-level coaches. The first 10 people to register will receive 12% off. After that, get 10% off if you sign up before June 1st.',
   dates: 'July 27th – 30th, 2026',

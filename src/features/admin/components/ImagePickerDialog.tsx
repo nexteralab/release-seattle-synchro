@@ -4,7 +4,7 @@ import { toast } from 'sonner'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '#/components/ui/dialog'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '#/components/ui/tabs'
 import { Button } from '#/components/ui/button'
-import { listMedia, type MediaFolder } from '#/lib/media'
+import { formatBytes, listMedia, maxImageBytes, type MediaFolder } from '#/lib/media'
 
 interface LibraryImage {
   name: string
@@ -67,8 +67,9 @@ export function ImagePickerDialog({
       const url = await onUpload(file)
       onSelect(url)
       onClose()
-    } catch {
-      toast.error('Failed to upload image')
+    } catch (err) {
+      // El mensaje del servidor dice el porqué (p. ej. el tope de tamaño).
+      toast.error(err instanceof Error ? err.message : 'Failed to upload image')
     } finally {
       setUploading(false)
     }
@@ -123,7 +124,7 @@ export function ImagePickerDialog({
                   <p className="text-[14px] font-medium text-foreground">
                     {uploading ? 'Uploading...' : 'Drop image or click to browse'}
                   </p>
-                  <p className="text-[12px] text-muted-foreground mt-1">PNG, JPG, WEBP — max 5MB</p>
+                  <p className="text-[12px] text-muted-foreground mt-1">PNG, JPG, WEBP — max {formatBytes(maxImageBytes(bucket))}</p>
                 </div>
               </div>
               <input

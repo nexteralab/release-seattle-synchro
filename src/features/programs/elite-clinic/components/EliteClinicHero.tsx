@@ -2,8 +2,6 @@ import { motion } from 'motion/react'
 import type { EliteClinicData } from '../types'
 import img1 from '/images/elite-clinc.webp'
 
-// Reemplazar esta imagen cuando esté el asset definitivo.
-
 const t = { duration: 0.35, ease: [0.35, 0.85, 0.25, 1] as [number, number, number, number] }
 const vp = { once: true }
 
@@ -20,8 +18,9 @@ export function EliteClinicHero({ data }: Props) {
             fechas incluida) y con altura fija se recortaría en pantallas bajas. */}
         <div className="relative w-full min-h-[42vh] md:min-h-[58vh] rounded-3xl overflow-hidden max-w-screen-xl mx-auto flex items-center justify-center">
           <img
-            src={img1}
-            alt="Elite Clinic 2026"
+            // Sin imagen propia en base, se usa la del bundle.
+            src={data.heroImage || img1}
+            alt={data.title}
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A67]/40 via-[#0A0A67]/40 to-[#0A0A67]/50" />

@@ -35,6 +35,8 @@ export interface EliteClinicScheduleItem {
 export interface EliteClinicData {
   title: string
   subtitle: string
+  /** URL de R2. Vacío = usa la imagen del bundle. */
+  heroImage: string
   description: string
   dates: string
   time: string

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { ImageIcon, Trash2, Sparkles } from 'lucide-react'
-import { toast } from 'sonner'
 import { Button } from '#/components/ui/button'
 import { Input } from '#/components/ui/input'
 import { Textarea } from '#/components/ui/textarea'
@@ -146,14 +145,7 @@ export function HeroFields() {
         bucket="programs/free-try"
         title="Free Try hero image"
         onSelect={(url) => form.setValue('hero.image', url, { shouldDirty: true })}
-        onUpload={async (file) => {
-          try {
-            return await uploadMedia('programs/free-try', file)
-          } catch (err) {
-            toast.error(err instanceof Error ? err.message : 'Upload failed')
-            throw err
-          }
-        }}
+        onUpload={(file) => uploadMedia('programs/free-try', file)}
       />
     </div>
   )
