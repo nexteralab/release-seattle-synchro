@@ -2,7 +2,7 @@ import { sqliteTable, text, integer, index, uniqueIndex } from 'drizzle-orm/sqli
 
 // ponytail: un solo archivo para 6 tablas pequeñas. Los timestamps son TEXT ISO
 // (no epoch) para que los servicios los sigan tratando como `string` sin capa de
-// conversión — es lo que ya devolvía Supabase.
+// conversión.
 const uuid = () => text('id').primaryKey().$defaultFn(() => crypto.randomUUID())
 const now = () => new Date().toISOString()
 

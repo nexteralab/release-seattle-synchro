@@ -175,7 +175,7 @@ function referrerHost(referrer: string | null): string {
 }
 
 // ============================================================
-// API pública del módulo (mismas firmas que la versión Supabase)
+// API pública del módulo
 // ============================================================
 
 export async function getOverview(postType: string, days: number): Promise<OverviewStats> {

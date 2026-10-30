@@ -3,8 +3,8 @@ import { getRequest } from '@tanstack/react-start/server'
 import { auth } from './auth'
 
 /**
- * Middleware para server functions del admin. Antes esto lo cubría RLS de
- * Supabase; con D1 la autorización es nuestra, así que TODA mutación del admin
+ * Middleware para server functions del admin. D1 no tiene RLS: la
+ * autorización es nuestra, así que TODA mutación del admin
  * debe llevar `.middleware([authed])` o `.middleware([adminOnly])`.
  *
  * `authed` = cualquier usuario del panel (contenido: blogs, news, coaches…).

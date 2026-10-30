@@ -1,12 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DonatePage } from "#/features/booster/donate/DonatePage";
+import { getBoosterDocs } from "#/features/booster/booster.service";
 
 const SITE_URL = "https://seattlesynchro.com";
 const PAGE_URL = `${SITE_URL}/booster/donate`;
 const OG_IMAGE = `${SITE_URL}/images/hero_donate.webp`;
 const TITLE = "Donate | Seattle Synchro Booster Club";
 const DESCRIPTION =
-  "Support Seattle Synchro athletes. Your donation funds scholarships, equipment, travel and coaching that keep artistic swimming thriving in the Pacific Northwest.";
+  "Seattle Synchronized Swim Team Booster Club: a volunteer-led 501(c)(3) charity supporting artistic swimmers. Donate, and read our bylaws, board and meeting minutes.";
 const KEYWORDS =
   "donate, Seattle Synchro donation, support artistic swimming, booster club, scholarship fund, swim team funding, charitable donation, nonprofit swim";
 
@@ -20,9 +21,11 @@ const SCHEMA_JSONLD = JSON.stringify({
   inLanguage: "en-US",
   about: {
     "@type": "SportsOrganization",
-    name: "Seattle Synchro Booster Club",
+    name: "Seattle Synchronized Swim Team Booster Club",
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
+    nonprofitStatus: "Nonprofit501c3",
+    taxID: "91-0890089",
   },
   potentialAction: {
     "@type": "DonateAction",
@@ -58,5 +61,8 @@ export const Route = createFileRoute("/_public/booster/donate")({
     links: [{ rel: "canonical", href: PAGE_URL }],
     scripts: [{ type: "application/ld+json", children: SCHEMA_JSONLD }],
   }),
-  component: DonatePage,
+  loader: () => getBoosterDocs(),
+  component: function DonateRoute() {
+    return <DonatePage documents={Route.useLoaderData()} />;
+  },
 });

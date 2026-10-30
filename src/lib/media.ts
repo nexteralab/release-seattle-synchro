@@ -12,9 +12,13 @@ const HERO_FOLDERS = [
   'programs/summer-camp',
 ] as const
 
-export type MediaFolder = 'blog' | 'news' | 'coaches' | 'programs/free-try' | (typeof HERO_FOLDERS)[number]
+export type MediaFolder = 'blog' | 'news' | 'coaches' | 'programs/free-try' | 'booster' | (typeof HERO_FOLDERS)[number]
 
-const FOLDERS: MediaFolder[] = ['blog', 'news', 'coaches', 'programs/free-try', ...HERO_FOLDERS]
+const FOLDERS: MediaFolder[] = ['blog', 'news', 'coaches', 'programs/free-try', 'booster', ...HERO_FOLDERS]
+
+// Documentos públicos del Booster Club (bylaws, actas…): solo PDF, hasta 10 MB.
+const DOC_FOLDER: MediaFolder = 'booster'
+const DOC_MAX_BYTES = 10 * 1024 * 1024
 
 /**
  * Tope de 1 MB por imagen. No es una cifra arbitraria: las portadas y los hero
@@ -28,7 +32,9 @@ export const MAX_IMAGE_BYTES = 1024 * 1024
 const HERO_MAX_BYTES = 500 * 1024
 
 export const maxImageBytes = (folder: MediaFolder) =>
-  (HERO_FOLDERS as readonly string[]).includes(folder) ? HERO_MAX_BYTES : MAX_IMAGE_BYTES
+  folder === DOC_FOLDER
+    ? DOC_MAX_BYTES
+    : (HERO_FOLDERS as readonly string[]).includes(folder) ? HERO_MAX_BYTES : MAX_IMAGE_BYTES
 
 export const formatBytes = (n: number) =>
   n >= 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(1)} MB` : `${Math.round(n / 1024)} KB`
@@ -45,10 +51,14 @@ const uploadFn = createServerFn({ method: 'POST' })
     const folder = String(data.get('folder') ?? '')
     if (!file) throw new Error('No file')
     if (!FOLDERS.includes(folder as MediaFolder)) throw new Error('Invalid folder')
-    if (!file.type.startsWith('image/')) throw new Error('Only image files are allowed')
+    if (folder === DOC_FOLDER) {
+      if (file.type !== 'application/pdf') throw new Error('Only PDF files are allowed')
+    } else if (!file.type.startsWith('image/')) {
+      throw new Error('Only image files are allowed')
+    }
     const max = maxImageBytes(folder as MediaFolder)
     if (file.size > max) {
-      throw new Error(`Image is ${formatBytes(file.size)}. Maximum is ${formatBytes(max)}.`)
+      throw new Error(`File is ${formatBytes(file.size)}. Maximum is ${formatBytes(max)}.`)
     }
 
     const ext = file.name.split('.').pop()
@@ -64,7 +74,7 @@ const deleteFn = createServerFn({ method: 'POST' })
   .inputValidator((url: string) => url)
   .handler(async ({ data }) => {
     const key = keyFromUrl(data)
-    // ponytail: si la URL no es nuestra (queda alguna vieja de Supabase), no borra nada
+    // ponytail: si la URL no es de nuestro bucket (link externo), no borra nada
     if (!key || key === data) return
     await env.MEDIA.delete(key)
   })
@@ -85,7 +95,7 @@ export const uploadMedia = (folder: MediaFolder, file: File) => {
   // rechazar: el aviso llega antes y sin gastar la subida.
   const max = maxImageBytes(folder)
   if (file.size > max) {
-    throw new Error(`Image is ${formatBytes(file.size)}. Maximum is ${formatBytes(max)}.`)
+    throw new Error(`File is ${formatBytes(file.size)}. Maximum is ${formatBytes(max)}.`)
   }
   const fd = new FormData()
   fd.set('folder', folder)

@@ -36,9 +36,11 @@ import { Route as AppSubscriptionsIndexRouteImport } from './routes/app/subscrip
 import { Route as AppProgramsIndexRouteImport } from './routes/app/programs/index'
 import { Route as AppNewsIndexRouteImport } from './routes/app/news/index'
 import { Route as AppCoachesIndexRouteImport } from './routes/app/coaches.index'
+import { Route as AppBoosterIndexRouteImport } from './routes/app/booster/index'
 import { Route as AppBlogsIndexRouteImport } from './routes/app/blogs.index'
 import { Route as AppAnalyticsIndexRouteImport } from './routes/app/analytics/index'
 import { Route as PublicProgramsIndexRouteImport } from './routes/_public/programs/index'
+import { Route as PublicBoosterIndexRouteImport } from './routes/_public/booster/index'
 import { Route as AppProgramsSummerCampRouteImport } from './routes/app/programs/summer-camp'
 import { Route as AppProgramsRecreationalRouteImport } from './routes/app/programs/recreational'
 import { Route as AppProgramsFreeTryRouteImport } from './routes/app/programs/free-try'
@@ -210,6 +212,11 @@ const AppCoachesIndexRoute = AppCoachesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppCoachesRoute,
 } as any)
+const AppBoosterIndexRoute = AppBoosterIndexRouteImport.update({
+  id: '/booster/',
+  path: '/booster/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppBlogsIndexRoute = AppBlogsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -223,6 +230,11 @@ const AppAnalyticsIndexRoute = AppAnalyticsIndexRouteImport.update({
 const PublicProgramsIndexRoute = PublicProgramsIndexRouteImport.update({
   id: '/programs/',
   path: '/programs/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicBoosterIndexRoute = PublicBoosterIndexRouteImport.update({
+  id: '/booster/',
+  path: '/booster/',
   getParentRoute: () => PublicRoute,
 } as any)
 const AppProgramsSummerCampRoute = AppProgramsSummerCampRouteImport.update({
@@ -467,9 +479,11 @@ export interface FileRoutesByFullPath {
   '/app/programs/free-try': typeof AppProgramsFreeTryRoute
   '/app/programs/recreational': typeof AppProgramsRecreationalRoute
   '/app/programs/summer-camp': typeof AppProgramsSummerCampRoute
+  '/booster/': typeof PublicBoosterIndexRoute
   '/programs/': typeof PublicProgramsIndexRoute
   '/app/analytics/': typeof AppAnalyticsIndexRoute
   '/app/blogs/': typeof AppBlogsIndexRoute
+  '/app/booster/': typeof AppBoosterIndexRoute
   '/app/coaches/': typeof AppCoachesIndexRoute
   '/app/news/': typeof AppNewsIndexRoute
   '/app/programs/': typeof AppProgramsIndexRoute
@@ -528,9 +542,11 @@ export interface FileRoutesByTo {
   '/app/programs/free-try': typeof AppProgramsFreeTryRoute
   '/app/programs/recreational': typeof AppProgramsRecreationalRoute
   '/app/programs/summer-camp': typeof AppProgramsSummerCampRoute
+  '/booster': typeof PublicBoosterIndexRoute
   '/programs': typeof PublicProgramsIndexRoute
   '/app/analytics': typeof AppAnalyticsIndexRoute
   '/app/blogs': typeof AppBlogsIndexRoute
+  '/app/booster': typeof AppBoosterIndexRoute
   '/app/coaches': typeof AppCoachesIndexRoute
   '/app/news': typeof AppNewsIndexRoute
   '/app/programs': typeof AppProgramsIndexRoute
@@ -597,9 +613,11 @@ export interface FileRoutesById {
   '/app/programs/free-try': typeof AppProgramsFreeTryRoute
   '/app/programs/recreational': typeof AppProgramsRecreationalRoute
   '/app/programs/summer-camp': typeof AppProgramsSummerCampRoute
+  '/_public/booster/': typeof PublicBoosterIndexRoute
   '/_public/programs/': typeof PublicProgramsIndexRoute
   '/app/analytics/': typeof AppAnalyticsIndexRoute
   '/app/blogs/': typeof AppBlogsIndexRoute
+  '/app/booster/': typeof AppBoosterIndexRoute
   '/app/coaches/': typeof AppCoachesIndexRoute
   '/app/news/': typeof AppNewsIndexRoute
   '/app/programs/': typeof AppProgramsIndexRoute
@@ -666,9 +684,11 @@ export interface FileRouteTypes {
     | '/app/programs/free-try'
     | '/app/programs/recreational'
     | '/app/programs/summer-camp'
+    | '/booster/'
     | '/programs/'
     | '/app/analytics/'
     | '/app/blogs/'
+    | '/app/booster/'
     | '/app/coaches/'
     | '/app/news/'
     | '/app/programs/'
@@ -727,9 +747,11 @@ export interface FileRouteTypes {
     | '/app/programs/free-try'
     | '/app/programs/recreational'
     | '/app/programs/summer-camp'
+    | '/booster'
     | '/programs'
     | '/app/analytics'
     | '/app/blogs'
+    | '/app/booster'
     | '/app/coaches'
     | '/app/news'
     | '/app/programs'
@@ -795,9 +817,11 @@ export interface FileRouteTypes {
     | '/app/programs/free-try'
     | '/app/programs/recreational'
     | '/app/programs/summer-camp'
+    | '/_public/booster/'
     | '/_public/programs/'
     | '/app/analytics/'
     | '/app/blogs/'
+    | '/app/booster/'
     | '/app/coaches/'
     | '/app/news/'
     | '/app/programs/'
@@ -1020,6 +1044,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppCoachesIndexRouteImport
       parentRoute: typeof AppCoachesRoute
     }
+    '/app/booster/': {
+      id: '/app/booster/'
+      path: '/booster'
+      fullPath: '/app/booster/'
+      preLoaderRoute: typeof AppBoosterIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/app/blogs/': {
       id: '/app/blogs/'
       path: '/'
@@ -1039,6 +1070,13 @@ declare module '@tanstack/react-router' {
       path: '/programs'
       fullPath: '/programs/'
       preLoaderRoute: typeof PublicProgramsIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/booster/': {
+      id: '/_public/booster/'
+      path: '/booster'
+      fullPath: '/booster/'
+      preLoaderRoute: typeof PublicBoosterIndexRouteImport
       parentRoute: typeof PublicRoute
     }
     '/app/programs/summer-camp': {
@@ -1385,6 +1423,7 @@ interface AppRouteRouteChildren {
   AppSubscriptionsRoute: typeof AppSubscriptionsRouteWithChildren
   AppIndexRoute: typeof AppIndexRoute
   AppAnalyticsIndexRoute: typeof AppAnalyticsIndexRoute
+  AppBoosterIndexRoute: typeof AppBoosterIndexRoute
   AppUsersIndexRoute: typeof AppUsersIndexRoute
 }
 
@@ -1396,6 +1435,7 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppSubscriptionsRoute: AppSubscriptionsRouteWithChildren,
   AppIndexRoute: AppIndexRoute,
   AppAnalyticsIndexRoute: AppAnalyticsIndexRoute,
+  AppBoosterIndexRoute: AppBoosterIndexRoute,
   AppUsersIndexRoute: AppUsersIndexRoute,
 }
 
@@ -1423,6 +1463,7 @@ interface PublicRouteChildren {
   PublicProgramsTryOutRoute: typeof PublicProgramsTryOutRoute
   PublicTeamAboutUsRoute: typeof PublicTeamAboutUsRoute
   PublicTeamCoachesRoute: typeof PublicTeamCoachesRoute
+  PublicBoosterIndexRoute: typeof PublicBoosterIndexRoute
   PublicProgramsIndexRoute: typeof PublicProgramsIndexRoute
   PublicProgramsSummerCampIdRouteRoute: typeof PublicProgramsSummerCampIdRouteRoute
   PublicTeamBlogSlugRoute: typeof PublicTeamBlogSlugRoute
@@ -1452,6 +1493,7 @@ const PublicRouteChildren: PublicRouteChildren = {
   PublicProgramsTryOutRoute: PublicProgramsTryOutRoute,
   PublicTeamAboutUsRoute: PublicTeamAboutUsRoute,
   PublicTeamCoachesRoute: PublicTeamCoachesRoute,
+  PublicBoosterIndexRoute: PublicBoosterIndexRoute,
   PublicProgramsIndexRoute: PublicProgramsIndexRoute,
   PublicProgramsSummerCampIdRouteRoute: PublicProgramsSummerCampIdRouteRoute,
   PublicTeamBlogSlugRoute: PublicTeamBlogSlugRoute,

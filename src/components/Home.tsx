@@ -322,7 +322,7 @@ export function Home() {
   );
 }
 
-// ─── Latest News (Supabase-backed) ─────────────────────────────────────────
+// ─── Latest News (D1) ─────────────────────────────────────────
 
 function fmtNewsDate(dateStr: string | null): string {
   if (!dateStr) return ''
@@ -476,7 +476,7 @@ function SmallNewsCard({ news }: { news: NewsItem }) {
   )
 }
 
-// ─── Latest Blog (Supabase-backed) ─────────────────────────────────────────
+// ─── Latest Blog (D1) ─────────────────────────────────────────
 
 function LatestBlogSection() {
   const { data: posts, isLoading } = usePublishedPosts()

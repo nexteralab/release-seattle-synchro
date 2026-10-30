@@ -4,13 +4,11 @@ import { db } from '#/db'
 import { config } from '#/db/schema'
 import { authed } from '#/lib/auth-guard'
 
-/**
- * Las 7 tablas `*_config` de una sola fila que había en Supabase son ahora
- * filas de la tabla `config` (key → value JSON).
- */
+/** Contenido editable de una sola fila: tabla `config` (key → value JSON). */
 export type ConfigKey =
   | 'beginner' | 'competitive' | 'elite-clinic'
   | 'free-try' | 'recreational' | 'summer-camp' | 'try-out'
+  | 'booster'
 
 const getFn = createServerFn({ method: 'GET' })
   .inputValidator((key: ConfigKey) => key)

@@ -34,7 +34,7 @@ const menuItems = {
     ],
   },
   support: {
-    label: "Support Us",
+    label: "Boosters",
     blurb: "Every season runs on the families and friends behind the team.",
     items: [
       { label: "Donate", path: "/booster/donate", description: "Support the club with a donation.", image: "/images/nav/hero_donate.jpg" },
